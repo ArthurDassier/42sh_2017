@@ -33,6 +33,7 @@ SRCS	=	srcs/main.c									\
 			$(DIR)/utils/delim_words.c					\
 			$(DIR)/utils/path.c							\
 			$(DIR)/utils/free.c							\
+			$(DIR)/utils/prompt.c						\
 			$(DIR)/lexer/lexer.c						\
 			$(DIR)/lexer/get_options.c					\
 			$(DIR)/lexer/get_builtins.c					\

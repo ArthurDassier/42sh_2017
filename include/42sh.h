@@ -49,6 +49,7 @@ void	init_cmd(t_node **, char *);
 /*
 ** Utils
 */
+char *prompt(t_node *);
 void	delete_node(t_node **, char *);
 int	cmp(void *, void *);
 char	**list_to_tab(t_node *);
