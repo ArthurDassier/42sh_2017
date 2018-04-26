@@ -42,13 +42,13 @@ static char **add_glob(char **line, char *str, int check)
 char **globbings(char **line)
 {
 	glob_t	globlist;
-	int	i = 0;
+	int	i = 1;
 	int	j = 0;
 
 	while (line[j] != NULL) {
-		if (!(glob(line[j], GLOB_PERIOD, NULL, &globlist) == GLOB_NOSPACE
-		|| glob(line[j], GLOB_PERIOD, NULL, &globlist) == GLOB_NOMATCH
-		|| glob(line[j], GLOB_PERIOD, NULL, &globlist) == GLOB_ABORTED)) {
+		if (!(glob(line[j], 0, NULL, &globlist) == GLOB_NOSPACE
+		|| glob(line[j], 0, NULL, &globlist) == GLOB_NOMATCH
+		|| glob(line[j], 0, NULL, &globlist) == GLOB_ABORTED)) {
 			while (globlist.gl_pathv[i]) {
 				line = add_glob(line, globlist.gl_pathv[i], i);
 				++i;
