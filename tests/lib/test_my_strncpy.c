@@ -6,7 +6,7 @@
 */
 #include <criterion/criterion.h>
 #include <string.h>
-#include "minishell2.h"
+#include "42sh.h"
 
 char *my_strncpy(char *dest, char const *src, int n);
 

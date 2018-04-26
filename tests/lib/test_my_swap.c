@@ -5,7 +5,7 @@
 ** test_my_swap
 */
 #include <criterion/criterion.h>
-#include <minishell2.h>
+#include <42sh.h>
 
 void my_swap(int *a, int *b);
 

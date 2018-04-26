@@ -5,7 +5,7 @@
 ** test prime
 */
 #include <criterion/criterion.h>
-#include "minishell2.h"
+#include "42sh.h"
 
 int my_is_prime(int nb);
 

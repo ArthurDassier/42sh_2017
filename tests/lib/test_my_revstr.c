@@ -5,7 +5,7 @@
 ** test_my_revstr
 */
 #include <criterion/criterion.h>
-#include "minishell2.h"
+#include "42sh.h"
 
 char *my_revstr(char *str);
 

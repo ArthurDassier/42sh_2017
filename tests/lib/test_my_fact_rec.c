@@ -5,7 +5,7 @@
 ** test_my_fact_rec
 */
 #include <criterion/criterion.h>
-#include "minishell2.h"
+#include "42sh.h"
 
 int my_compute_factorial_rec(int nb);
 

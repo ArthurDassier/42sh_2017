@@ -1,9 +1,10 @@
 /*
 ** EPITECH PROJECT, 2018
-** PSU_minishell2
+** PSU_42sh_2017
 ** File description:
 ** define
 */
+
 #ifndef DEFINE_H_
 #define DEFINE_H_
 

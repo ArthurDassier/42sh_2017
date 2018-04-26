@@ -5,7 +5,7 @@
 ** test_my_char_is_num
 */
 #include <criterion/criterion.h>
-#include "minishell2.h"
+#include "42sh.h"
 
 int my_char_is_num(char);
 

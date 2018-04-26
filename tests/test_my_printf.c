@@ -6,7 +6,7 @@
 */
 #include <criterion/criterion.h>
 #include <criterion/redirect.h>
-#include "minishell2.h"
+#include "42sh.h"
 
 int my_printf(char const *str, ...);
 

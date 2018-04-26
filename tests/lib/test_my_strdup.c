@@ -5,7 +5,7 @@
 ** test_my_strdup
 */
 #include <criterion/criterion.h>
-#include "minishell2.h"
+#include "42sh.h"
 
 char	*my_strdup(char const *src);
 

@@ -5,14 +5,7 @@
 ** main.c
 */
 
-#include "minishell2.h"
-
-void	func(int a)
-{
-	for (int i = 0;) {
-		;
-	}
-}
+#include "42sh.h"
 
 static void	ctrl_c(int sig)
 {

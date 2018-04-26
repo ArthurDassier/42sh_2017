@@ -6,7 +6,7 @@
 */
 #include <criterion/criterion.h>
 #include <string.h>
-#include "minishell2.h"
+#include "42sh.h"
 
 int my_str_isupper(const char *str);
 

@@ -5,7 +5,7 @@
 ** power rec test
 */
 #include <criterion/criterion.h>
-#include "minishell2.h"
+#include "42sh.h"
 int my_compute_power_rec(int nb, int p);
 
 Test(my_compute_power_rec, return_value_is_good)

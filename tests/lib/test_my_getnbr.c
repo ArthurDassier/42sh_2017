@@ -5,7 +5,7 @@
 ** test_my_getnbr
 */
 #include <criterion/criterion.h>
-#include "minishell2.h"
+#include "42sh.h"
 
 int my_getnbr(char const *str);
 

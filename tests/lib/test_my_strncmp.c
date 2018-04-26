@@ -6,7 +6,7 @@
 */
 #include <criterion/criterion.h>
 #include <string.h>
-#include "minishell2.h"
+#include "42sh.h"
 
 int my_strncmp(const char *s1, const char *s2, int n);
 
