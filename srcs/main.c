@@ -36,6 +36,7 @@ static int	init_exec(char *s, t_node **cmd_list, t_node **env_list)
 	}
 	s_exec(tree, env_list);
 	free(s);
+	free_tree(tree);
 	return (SUCCESS);
 }
 
