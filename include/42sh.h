@@ -12,6 +12,8 @@
 #include <sys/types.h>
 #include <signal.h>
 #include <wait.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 #include "list.h"
 #include "my.h"
 #include "parser.h"
@@ -73,9 +75,9 @@ void	check_perm_cmd(char **, t_node *);
 char	**get_path(t_node *);
 char	*get_env_name(t_node *, char *);
 char	*get_env_content(t_node *, char *);
-int	delim_words(char *, char *);
+int		delim_words(char *, char *);
 bool	check_delim(char, char *);
-int	is_lexem(char *);
+int		is_lexem(char *);
 
 /*
 ** Execution
@@ -115,5 +117,10 @@ void	write_in_history(char *, int);
 
 void	print_list(void *);
 void	display(void *);
+
+/*
+** Free
+*/
+void	free_lexer(void *);
 
 #endif /* !42SH_H_ */

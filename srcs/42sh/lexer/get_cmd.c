@@ -13,6 +13,8 @@ static void add_cmd(char **path, char *line)
 	for (int i = 0; path != NULL && path[i] != NULL; ++i) {
 		save = malloc(sizeof(char) * (my_strlen(path[i])
 		+ my_strlen(line) + 2));
+		if (!save)
+			exit(FAILURE);
 		my_strcpy(save, path[i]);
 		my_strcat(save, "/");
 		my_strcat(save, line);

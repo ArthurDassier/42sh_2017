@@ -36,6 +36,7 @@ SRCS	=	srcs/main.c								\
 			$(DIR)/utils/display_tree.c					\
 			$(DIR)/utils/delim_words.c					\
 			$(DIR)/utils/path.c						\
+			$(DIR)/utils/free.c							\
 			$(DIR)/lexer/lexer.c						\
 			$(DIR)/lexer/get_options.c					\
 			$(DIR)/lexer/get_builtins.c					\
@@ -123,7 +124,7 @@ SRCS_TESTS=	tests/test_my_printf.c			\
 		$(UT_DIR)test_my_strncmp.c		\
 		$(UT_DIR)test_my_swap.c
 
-LDFLAGS=	-lcriterion --coverage -lncurses -L./lib -lmy
+LDFLAGS=	-lcriterion --coverage -lreadline -lncurses -L./lib -lmy
 
 TEST_NAME=	units
 
