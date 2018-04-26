@@ -104,6 +104,12 @@ void	change_for_alias(t_aliases_list *, char **);
 t_aliases_list	*recup_aliases_list(void);
 
 /*
+** History
+*/
+
+void	write_in_history(char *, int);
+
+/*
 ** Display
 */
 
