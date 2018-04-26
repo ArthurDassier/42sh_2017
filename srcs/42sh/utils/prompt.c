@@ -9,10 +9,10 @@
 
 static char *get_branch(void)
 {
-	int 				fd = open(".git/HEAD", O_RDWR);
-	char				*branch;
-	int					save;
-	char				*curr = strdup(" \033[1;35mgit:(");
+	int 	fd = open(".git/HEAD", O_RDWR);
+	char	*branch;
+	int		save;
+	char	*curr = strdup(" \033[1;35mgit:(");
 
 	if (fd == -1) {
 		free(curr);
