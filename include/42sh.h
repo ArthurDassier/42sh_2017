@@ -63,9 +63,9 @@ void	check_perm_cmd(char **, t_node *);
 char	**get_path(t_node *);
 char	*get_env_name(t_node *, char *);
 char	*get_env_content(t_node *, char *);
-int	delim_words(char *, char *);
+int		delim_words(char *, char *);
 bool	check_delim(char, char *);
-int	is_lexem(char *);
+int		is_lexem(char *);
 
 /*
 ** Execution
@@ -90,5 +90,10 @@ bool	dl_redirection(t_tree *, t_node **);
 */
 void	print_list(void *);
 void	display(void *);
+
+/*
+** Free
+*/
+void	free_lexer(void *);
 
 #endif /* !42SH_H_ */

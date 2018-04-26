@@ -50,6 +50,7 @@ int	main(int ac, char **av, char **env)
 	signal(SIGINT, ctrl_c);
 	init_list(&env_list, env);
 	while (1) {
+		free_list(cmd_list, &free_lexer);
 		cmd_list = NULL;
 		s = readline("$> ");
 		ctrl_d(s);
