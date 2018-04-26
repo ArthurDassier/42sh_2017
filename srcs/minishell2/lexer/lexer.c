@@ -1,0 +1,31 @@
+/*
+** EPITECH PROJECT, 2018
+** PSU_minishell2_2017
+** File description:
+** lexer
+*/
+#include "minishell2.h"
+
+void	add_node(t_node **cmd_list, t_token token, char *line)
+{
+	t_parser *parser = malloc(sizeof(*parser));
+
+	if (parser == NULL)
+		exit(0);
+	parser->token = token;
+	parser->name = my_strdup(line);
+	parser->visited = false;
+	insert_end(cmd_list, parser);
+}
+
+void	lexer(t_node **cmd_list, char **line, t_node *env_list)
+{
+	char **path;
+
+	for (int i = 0; line[i]; ++i) {
+		path = get_path(env_list);
+		if (get_lexem(cmd_list, line[i]) == FAILURE
+		&& get_builtins(cmd_list, line[i]) == FAILURE)
+			get_cmd(cmd_list, line[i], path);
+	}
+}
