@@ -20,7 +20,6 @@ static void add_cmd(char **path, char *line)
 		my_strcat(save, line);
 		free(path[i]);
 		path[i] = save;
-		free(save);
 	}
 }
 

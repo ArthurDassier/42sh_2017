@@ -8,11 +8,9 @@
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <readline/readline.h>
-#include <readline/history.h>
 
 int main(int ac, char **av)
 {
-    printf( "%s\n", readline(av[1]));
+    readline(av[1]);
     return (0);
 }

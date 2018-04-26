@@ -50,9 +50,8 @@ int	main(int ac, char **av, char **env)
 	signal(SIGINT, ctrl_c);
 	init_list(&env_list, env);
 	while (1) {
-		my_putstr("$> ");
 		cmd_list = NULL;
-		s = get_next_line(0);
+		s = readline("$> ");
 		ctrl_d(s);
 		if (check_char(s) == SUCCESS)
 			if (init_exec(s, &cmd_list, &env_list) == FAILURE)
