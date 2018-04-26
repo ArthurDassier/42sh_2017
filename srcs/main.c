@@ -28,6 +28,7 @@ static int	init_exec(char *s, t_node **cmd_list, t_node **env_list)
 	t_tree	*tree;
 
 	line = my_str_to_wordtab_delim(s, " \t\r");
+	line = globbings(line);
 	lexer(cmd_list, line, *env_list);
 	tree = s_rule(cmd_list);
 	if (!tree) {

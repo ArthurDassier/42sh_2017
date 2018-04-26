@@ -89,4 +89,9 @@ bool	dl_redirection(t_tree *, t_node **);
 void	print_list(void *);
 void	display(void *);
 
+/*
+** Globbings
+*/
+char **globbings(char **);
+
 #endif /* !42SH_H_ */

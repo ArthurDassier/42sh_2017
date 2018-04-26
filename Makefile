@@ -19,23 +19,23 @@ NAME	=	mysh
 
 DIR	=	srcs/42sh/
 
-SRCS	=	srcs/main.c									\
+SRCS	=	srcs/main.c								\
 			$(DIR)/utils/check_perm.c					\
 			$(DIR)/utils/delete_list.c					\
 			$(DIR)/utils/print.c						\
 			$(DIR)/utils/fill_list.c					\
 			$(DIR)/utils/list_to_tab.c					\
-			$(DIR)/utils/comp.c							\
+			$(DIR)/utils/comp.c						\
 			$(DIR)/utils/check_char.c					\
 			$(DIR)/utils/delete_node.c					\
 			$(DIR)/utils/display.c						\
 			$(DIR)/utils/display_tree.c					\
 			$(DIR)/utils/delim_words.c					\
-			$(DIR)/utils/path.c							\
+			$(DIR)/utils/path.c						\
 			$(DIR)/lexer/lexer.c						\
 			$(DIR)/lexer/get_options.c					\
 			$(DIR)/lexer/get_builtins.c					\
-			$(DIR)/lexer/my_str_to_wordarray_delim.c	\
+			$(DIR)/lexer/my_str_to_wordarray_delim.c			\
 			$(DIR)/lexer/get_cmd.c						\
 			$(DIR)/parser/cmd_rule.c					\
 			$(DIR)/parser/exp_rule.c					\
@@ -50,7 +50,8 @@ SRCS	=	srcs/main.c									\
 			$(DIR)/execution/builtins.c					\
 			$(DIR)/execution/setenv.c					\
 			$(DIR)/execution/cd.c						\
-			$(DIR)/execution/rules_exec.c
+			$(DIR)/execution/rules_exec.c					\
+			$(DIR)/globbings/globbings.c					\
 
 SRCS_UT	=	$(DIR)/utils/check_perm.c	\
 		$(DIR)/utils/delete_list.c		\
