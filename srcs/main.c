@@ -53,7 +53,7 @@ int	main(int ac, char **av, char **env)
 	while (1) {
 		free_list(cmd_list, &free_lexer);
 		cmd_list = NULL;
-		printf("\033[1;36m");
+		printf(CYAN);
 		s = readline(prompt(env_list));
 		ctrl_d(s);
 		if (check_char(s) == SUCCESS)

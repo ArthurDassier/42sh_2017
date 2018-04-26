@@ -19,6 +19,26 @@
 #include "parser.h"
 #include "define.h"
 
+#define RED     "\x1b[31m"
+#define GREEN   "\x1b[32m"
+#define YELLOW  "\x1b[33m"
+#define BLUE    "\x1b[34m"
+#define MAGENTA "\x1b[35m"
+#define CYAN    "\x1b[36m"
+#define RESET   "\x1b[0m"
+
+typedef struct	s_aliases
+{
+	char	*src;
+	char	*dest;
+}		t_aliases;
+
+typedef struct	s_aliases_list
+{
+	t_aliases		*alias;
+	struct	s_aliases_list	*next;
+}				t_aliases_list;
+
 typedef struct	s_save {
 	char	*name;
 	char	*content;
@@ -87,8 +107,23 @@ bool	pipe_exec(t_tree *, t_node **);
 bool	dl_redirection(t_tree *, t_node **);
 
 /*
+** Aliases
+*/
+
+int	aliases(t_aliases_list *, char **);
+void	change_for_alias(t_aliases_list *, char **);
+t_aliases_list	*recup_aliases_list(void);
+
+/*
+** History
+*/
+
+void	write_in_history(char *, int);
+
+/*
 ** Display
 */
+
 void	print_list(void *);
 void	display(void *);
 
