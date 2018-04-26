@@ -23,6 +23,7 @@ static char **add_glob(char **line, char *str, int check)
 	int	i = 0;
 	char	**tmp;
 
+	printf(">>> %s %d\n", str, check);
 	while (line[i] != NULL)
 		++i;
 	tmp = malloc(sizeof(char *) * (i + 1));
@@ -42,21 +43,21 @@ static char **add_glob(char **line, char *str, int check)
 char **globbings(char **line)
 {
 	glob_t	globlist;
-	int	i = 1;
-	int	j = 0;
+	int	i = 0;
+	int	j = 1;
 
 	while (line[j] != NULL) {
 		if (!(glob(line[j], 0, NULL, &globlist) == GLOB_NOSPACE
 		|| glob(line[j], 0, NULL, &globlist) == GLOB_NOMATCH
 		|| glob(line[j], 0, NULL, &globlist) == GLOB_ABORTED)) {
-			while (globlist.gl_pathv[i]) {
+			while (globlist.gl_pathv[i] != NULL) {
 				line = add_glob(line, globlist.gl_pathv[i], i);
 				++i;
 			}
-			globfree(&globlist);
 		}
 		++j;
 		i = 0;
 	}
+	globfree(&globlist);
 	return (line);
 }
