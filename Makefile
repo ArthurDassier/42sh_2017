@@ -50,7 +50,10 @@ SRCS	=	srcs/main.c									\
 			$(DIR)/execution/builtins.c					\
 			$(DIR)/execution/setenv.c					\
 			$(DIR)/execution/cd.c						\
-			$(DIR)/execution/rules_exec.c
+			$(DIR)/execution/rules_exec.c					\
+			$(DIR)/42_src/alias_cmd.c					\
+			$(DIR)/42_src/recup_aliases.c					\
+			$(DIR)/42_src/change_for_alias.c
 
 SRCS_UT	=	$(DIR)/utils/check_perm.c	\
 		$(DIR)/utils/delete_list.c		\
@@ -80,7 +83,10 @@ SRCS_UT	=	$(DIR)/utils/check_perm.c	\
 		$(DIR)/execution/builtins.c		\
 		$(DIR)/execution/setenv.c		\
 		$(DIR)/execution/cd.c			\
-		$(DIR)/execution/rules_exec.c
+		$(DIR)/execution/rules_exec.c		\
+		$(DIR)/42_src/alias_cmd.c		\
+		$(DIR)/42_src/recup_aliases.c		\
+		$(DIR)/42_src/change_for_alias.c
 
 UT_DIR	=	tests/lib/
 
