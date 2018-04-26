@@ -126,8 +126,7 @@ OBJS	=	$(SRCS:.c=.o)
 
 LIB = libmy.a
 
-all: $(LIB) $(NAME)
-
+all: $(LIB) $(NAME) $(VERSION_FLAGS)
 
 tests_run:	EXEC
 		./$(TEST_NAME)

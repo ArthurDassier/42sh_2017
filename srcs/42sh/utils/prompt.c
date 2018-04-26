@@ -7,6 +7,28 @@
 
 #include "42sh.h"
 
+static char *get_branch(void)
+{
+	int 				fd = open(".git/HEAD", O_RDWR);
+	char				*branch;
+	int					save;
+	char				*curr = strdup(" \033[1;35mgit:(");
+
+	if (fd == -1) {
+		free(curr);
+		return (NULL);
+	}
+	branch = get_next_line(fd);
+	for (int i = 0; branch[i]; ++i) {
+		if (branch[i] == '/')
+			save = i;
+	}
+	curr = realloc(curr, strlen(branch + save + 1) + 2);
+	strcat(curr, branch + save + 1);
+	strcat(curr, ")");
+	return (curr);
+}
+
 static char *get_user(t_node *env)
 {
 	char	*user;
@@ -33,16 +55,18 @@ char *prompt(t_node *env)
 	char	cwd[1024];
 	int		slash = 0;
 	char	*user = get_user(env);
+	char	*branch = get_branch();
 
 	if (getcwd(cwd, sizeof(cwd)) != NULL) {
 		for (int i = 0; cwd[i]; ++i) {
 			if (cwd[i] == '/')
 				slash = i;
 		}
-		++slash;
-		str = realloc(str, strlen(cwd) + strlen(save) + strlen(user) + 1);
-    	strcat(str, cwd + slash);
+		str = realloc(str, strlen(cwd) + strlen(save) + strlen(user) + 99);
+    	strcat(str, cwd + slash + 1);
     	strcat(str, user);
+		if (branch != NULL)
+			strcat(str, branch);
     	strcat(str, save);
 	}
 	return (str);
