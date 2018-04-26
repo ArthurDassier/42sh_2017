@@ -52,6 +52,7 @@ int	main(int ac, char **av, char **env)
 	while (1) {
 		free_list(cmd_list, &free_lexer);
 		cmd_list = NULL;
+		printf(RED "> " CYAN "> " GREEN "> " YELLOW ">" BLUE ">" MAGENTA ">");
 		s = readline("$> ");
 		ctrl_d(s);
 		if (check_char(s) == SUCCESS)
