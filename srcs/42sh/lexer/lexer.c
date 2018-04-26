@@ -10,7 +10,7 @@ void	add_node(t_node **cmd_list, t_token token, char *line)
 {
 	t_parser *parser = malloc(sizeof(*parser));
 
-	if (parser == NULL)
+	if (!parser)
 		exit(0);
 	parser->token = token;
 	parser->name = my_strdup(line);
