@@ -132,4 +132,10 @@ void	display(void *);
 */
 char **globbings(char **);
 
+/*
+** Free
+*/
+void	free_lexer(void *);
+void	free_tree(t_tree *);
+
 #endif /* !42SH_H_ */
