@@ -9,56 +9,74 @@
 #include <glob.h>
 #include <string.h>
 
-static void release_line(char **line, int i)
-{
-	while (i != 1) {
-		free(line[i]);
-		--i;
-	}
-	free(line);
-}
-
-static char **add_glob(char **line, char *str, int check)
+char **copy_line(char **line)
 {
 	int	i = 0;
+	int	j = 0;
 	char	**tmp;
 
 	while (line[i] != NULL)
 		++i;
-	tmp = malloc(sizeof(char *) * (i + 2));
-	for (i = 0; line[i] != NULL; ++i)
-		tmp[i] = strdup(line[i]);
-	if (check == 0) {
-		tmp[i - 1] = strdup(str);
-		tmp[i] = NULL;
-	} else {
-		tmp[i] = strdup(str);
-		tmp[i + 1] = NULL;
+	tmp = malloc(sizeof(char *) * (i + 1));
+	while (line[j] != NULL) {
+		tmp[j] = strdup(line[j]);
+		++j;
 	}
-	//release_line(line, i);
+	tmp[j] = NULL;
 	return (tmp);
+}
+
+int alloc_tab(char **tmp, char **globs)
+{
+	int	i = 0;
+	int	j = 0;
+
+	while (tmp[i] != NULL)
+		++i;
+	while(globs[j] != NULL)
+		++j;
+	return (j + i + 2);
+}
+
+char **add_glob(char **tmp, char **line, char **globs, int j)
+{
+	int	i = 0;
+	int	u = 0;
+	int	x = 0;
+	char	**tab = malloc(sizeof(char *) * alloc_tab(tmp, globs));
+
+	while (tmp[i] != NULL) {
+		if (i == j)
+			++i;
+		if (tmp[i] == NULL)
+			break;
+		tab[x] = strdup(tmp[i]);
+		++x;
+		++i;
+	}
+	while (globs[u] != NULL) {
+		tab[x] = strdup(globs[u]);
+		++x;
+		++u;
+	}
+	tab[x] = NULL;
+	for (int a = 0; tab[a] == NULL; a++) {
+	}
+	return (tab);
 }
 
 char **globbings(char **line)
 {
 	glob_t	globlist;
-	int	i = 0;
 	int	j = 0;
+	char	**tmp = copy_line(line);
 
 	while (line[j] != NULL) {
-		if (!(glob(line[j], 0, NULL, &globlist) == GLOB_NOSPACE
-		|| glob(line[j], 0, NULL, &globlist) == GLOB_NOMATCH
-		|| glob(line[j], 0, NULL, &globlist) == GLOB_ABORTED)) {
-			while (globlist.gl_pathv[i] != NULL) {
-				line = add_glob(line, globlist.gl_pathv[i], i);
-				++i;
-				++j;
-			}
+		if (glob(line[j], 0, NULL, &globlist) == 0) {
+			tmp = add_glob(tmp, line, globlist.gl_pathv, j);
 			globfree(&globlist);
 		}
-		if (line[j] != NULL)
-			++j;
-		i = 0;
+		++j;
 	}
-	return (line);
+	return (tmp);
 }
