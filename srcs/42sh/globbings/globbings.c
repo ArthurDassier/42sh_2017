@@ -26,7 +26,7 @@ static char **add_glob(char **line, char *str, int check)
 	printf(">>> %s %d\n", str, check);
 	while (line[i] != NULL)
 		++i;
-	tmp = malloc(sizeof(char *) * (i + 1));
+	tmp = malloc(sizeof(char *) * (i + 2));
 	for (i = 0; line[i] != NULL; ++i)
 		tmp[i] = strdup(line[i]);
 	if (check == 0) {
@@ -58,6 +58,6 @@ char **globbings(char **line)
 		++j;
 		i = 0;
 	}
-	globfree(&globlist);
+	//globfree(&globlist);
 	return (line);
 }
