@@ -44,16 +44,17 @@ typedef struct	s_count {
 	int	i;
 	int	j;
 }		t_count;
+
 /*
 ** Lexer
 */
-int	get_redirect_double(t_node **, char *);
-int	get_redirect(t_node **, char *);
-int	get_options(t_node **, char *);
+int		get_redirect_double(t_node **, char *);
+int		get_redirect(t_node **, char *);
+int		get_options(t_node **, char *);
 void	get_cmd(t_node **, char *, char **);
 void	add_node(t_node **, t_token, char *);
-int	get_builtins(t_node **, char *);
-int	get_lexem(t_node **, char *);
+int		get_builtins(t_node **, char *);
+int		get_lexem(t_node **, char *);
 void	lexer(t_node **, char **, t_node *);
 char	**my_str_to_wordtab_delim(char *, char *);
 

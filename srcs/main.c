@@ -37,6 +37,7 @@ static int	init_exec(char *s, t_node **cmd_list, t_node **env_list)
 	}
 	s_exec(tree, env_list);
 	free(s);
+	free_tree(tree);
 	return (SUCCESS);
 }
 
@@ -51,9 +52,10 @@ int	main(int ac, char **av, char **env)
 	signal(SIGINT, ctrl_c);
 	init_list(&env_list, env);
 	while (1) {
-		my_putstr("$> ");
+		free_list(cmd_list, &free_lexer);
 		cmd_list = NULL;
-		s = get_next_line(0);
+		printf(CYAN);
+		s = readline(prompt(env_list));
 		ctrl_d(s);
 		if (check_char(s) == SUCCESS)
 			if (init_exec(s, &cmd_list, &env_list) == FAILURE)

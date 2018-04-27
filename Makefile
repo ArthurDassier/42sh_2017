@@ -20,6 +20,10 @@ NAME	=	mysh
 DIR	=	srcs/42sh/
 
 SRCS	=	srcs/main.c								\
+		srcs/42_src/alias/alias_cmd.c						\
+		srcs/42_src/alias/recup_aliases.c					\
+		srcs/42_src/alias/change_for_alias.c					\
+		srcs/42_src/history/create_history.c					\
 			$(DIR)/utils/check_perm.c					\
 			$(DIR)/utils/delete_list.c					\
 			$(DIR)/utils/print.c						\
@@ -32,6 +36,8 @@ SRCS	=	srcs/main.c								\
 			$(DIR)/utils/display_tree.c					\
 			$(DIR)/utils/delim_words.c					\
 			$(DIR)/utils/path.c						\
+			$(DIR)/utils/free.c							\
+			$(DIR)/utils/prompt.c						\
 			$(DIR)/lexer/lexer.c						\
 			$(DIR)/lexer/get_options.c					\
 			$(DIR)/lexer/get_builtins.c					\
@@ -53,7 +59,7 @@ SRCS	=	srcs/main.c								\
 			$(DIR)/execution/rules_exec.c					\
 			$(DIR)/globbings/globbings.c					\
 
-SRCS_UT	=	$(DIR)/utils/check_perm.c	\
+SRCS_UT	=	$(DIR)/utils/check_perm.c		\
 		$(DIR)/utils/delete_list.c		\
 		$(DIR)/utils/print.c			\
 		$(DIR)/utils/fill_list.c		\
@@ -81,7 +87,10 @@ SRCS_UT	=	$(DIR)/utils/check_perm.c	\
 		$(DIR)/execution/builtins.c		\
 		$(DIR)/execution/setenv.c		\
 		$(DIR)/execution/cd.c			\
-		$(DIR)/execution/rules_exec.c
+		$(DIR)/execution/rules_exec.c		\
+		srcs/42_src/alias/alias_cmd.c		\
+		srcs/42_src/alias/recup_aliases.c	\
+		srcs/42_src/aliaschange_for_alias.c
 
 UT_DIR	=	tests/lib/
 
@@ -117,7 +126,7 @@ SRCS_TESTS=	tests/test_my_printf.c			\
 		$(UT_DIR)test_my_strncmp.c		\
 		$(UT_DIR)test_my_swap.c
 
-LDFLAGS=	-lcriterion --coverage -lncurses -L./lib -lmy
+LDFLAGS=	-lcriterion --coverage -lreadline -lncurses -L./lib -lmy
 
 TEST_NAME=	units
 
@@ -125,8 +134,7 @@ OBJS	=	$(SRCS:.c=.o)
 
 LIB = libmy.a
 
-all: $(LIB) $(NAME)
-
+all: $(LIB) $(NAME) $(VERSION_FLAGS)
 
 tests_run:	EXEC
 		./$(TEST_NAME)
