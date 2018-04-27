@@ -52,11 +52,12 @@ char **globbings(char **line)
 			while (globlist.gl_pathv[i] != NULL) {
 				line = add_glob(line, globlist.gl_pathv[i], i);
 				++i;
+				++j;
 			}
 			globfree(&globlist);
-			break;
 		}
-		++j;
+		if (line[j + 1] != NULL)
+			++j;
 		i = 0;
 	}
 	return (line);
