@@ -43,7 +43,7 @@ char **globbings(char **line)
 {
 	glob_t	globlist;
 	int	i = 0;
-	int	j = 1;
+	int	j = 0;
 
 	while (line[j] != NULL) {
 		if (!(glob(line[j], 0, NULL, &globlist) == GLOB_NOSPACE
@@ -56,7 +56,7 @@ char **globbings(char **line)
 			}
 			globfree(&globlist);
 		}
-		if (line[j + 1] != NULL)
+		if (line[j] != NULL)
 			++j;
 		i = 0;
 	}
