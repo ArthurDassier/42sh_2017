@@ -17,7 +17,7 @@ char **add_glob(char **tmp, char **globs, int j)
 	char	**tab = malloc(sizeof(char *) * alloc_tab(tmp, globs));
 
 	if (tab == NULL)
-		return(NULL);
+		return (NULL);
 	while (tmp[i] != NULL) {
 		if (i == j)
 			++i;
@@ -58,5 +58,6 @@ char **globbings(char **line)
 			return (NULL);
 		++j;
 	}
+	release_tmp(line);
 	return (tmp);
 }
