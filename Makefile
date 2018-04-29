@@ -36,7 +36,7 @@ SRCS	=	srcs/main.c								\
 			$(DIR)/utils/display_tree.c					\
 			$(DIR)/utils/delim_words.c					\
 			$(DIR)/utils/path.c						\
-			$(DIR)/utils/free.c							\
+			$(DIR)/utils/free.c						\
 			$(DIR)/utils/prompt.c						\
 			$(DIR)/lexer/lexer.c						\
 			$(DIR)/lexer/get_options.c					\
@@ -58,6 +58,7 @@ SRCS	=	srcs/main.c								\
 			$(DIR)/execution/cd.c						\
 			$(DIR)/execution/rules_exec.c					\
 			$(DIR)/globbings/globbings.c					\
+			$(DIR)/globbings/globbings_utils.c				\
 
 SRCS_UT	=	$(DIR)/utils/check_perm.c		\
 		$(DIR)/utils/delete_list.c		\

@@ -131,6 +131,9 @@ void	display(void *);
 ** Globbings
 */
 char **globbings(char **);
+void release_tmp(char **);
+char **copy_line(char **);
+int alloc_tab(char **, char **);
 
 /*
 ** Free

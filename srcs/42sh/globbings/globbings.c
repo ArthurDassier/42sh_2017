@@ -9,73 +9,53 @@
 #include <glob.h>
 #include <string.h>
 
-char **copy_line(char **line)
+char **add_glob(char **tmp, char **globs, int j)
 {
 	int	i = 0;
-	int	j = 0;
-	char	**tmp;
-
-	while (line[i] != NULL)
-		++i;
-	tmp = malloc(sizeof(char *) * (i + 1));
-	while (line[j] != NULL) {
-		tmp[j] = strdup(line[j]);
-		++j;
-	}
-	tmp[j] = NULL;
-	return (tmp);
-}
-
-int alloc_tab(char **tmp, char **globs)
-{
-	int	i = 0;
-	int	j = 0;
-
-	while (tmp[i] != NULL)
-		++i;
-	while(globs[j] != NULL)
-		++j;
-	return (j + i + 2);
-}
-
-char **add_glob(char **tmp, char **line, char **globs, int j)
-{
-	int	i = 0;
-	int	u = 0;
-	int	x = 0;
+	int	count = 0;
+	int	nb = 0;
 	char	**tab = malloc(sizeof(char *) * alloc_tab(tmp, globs));
 
+	if (tab == NULL)
+		return(NULL);
 	while (tmp[i] != NULL) {
 		if (i == j)
 			++i;
 		if (tmp[i] == NULL)
 			break;
-		tab[x] = strdup(tmp[i]);
-		++x;
-		++i;
+		tab[nb++] = strdup(tmp[i++]);
 	}
-	while (globs[u] != NULL) {
-		tab[x] = strdup(globs[u]);
-		++x;
-		++u;
-	}
-	tab[x] = NULL;
-	for (int a = 0; tab[a] == NULL; a++) {
-	}
+	while (globs[count] != NULL)
+		tab[nb++] = strdup(globs[count++]);
+	tab[nb] = NULL;
+	release_tmp(tmp);
 	return (tab);
+}
+
+char **my_glob(char *line, int j, char ** tmp)
+{
+	glob_t	globlist;
+
+	if (glob(line, 0, NULL, &globlist) == 0) {
+		tmp = add_glob(tmp, globlist.gl_pathv, j);
+		if (tmp == NULL)
+			return (NULL);
+		globfree(&globlist);
+	}
+	return (tmp);
 }
 
 char **globbings(char **line)
 {
-	glob_t	globlist;
 	int	j = 0;
 	char	**tmp = copy_line(line);
 
+	if (tmp == NULL)
+		return (NULL);
 	while (line[j] != NULL) {
-		if (glob(line[j], 0, NULL, &globlist) == 0) {
-			tmp = add_glob(tmp, line, globlist.gl_pathv, j);
-			globfree(&globlist);
-		}
+		tmp = my_glob(line[j], j, tmp);
+		if (tmp == NULL)
+			return (NULL);
 		++j;
 	}
 	return (tmp);
