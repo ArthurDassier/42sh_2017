@@ -28,5 +28,6 @@ void write_in_history(char *line, int fd)
 	write(fd, line, strlen(line));
 	write(fd, "\t", 1);
 	write(fd, ctime(&timestamp), my_strlen(ctime(&timestamp)));
+	free(nb);
 	++count;
 }
