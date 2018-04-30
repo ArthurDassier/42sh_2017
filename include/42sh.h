@@ -110,7 +110,7 @@ bool	dl_redirection(t_tree *, t_node **);
 ** Aliases
 */
 
-int	aliases(t_aliases_list *, char **);
+void	change_for_alias(t_aliases_list *, char **);
 int	alias_cmd(t_aliases_list *, char **);
 t_aliases_list	*recup_aliases_list(void);
 
