@@ -45,9 +45,11 @@ int	main(int ac, char **av, char **env)
 	char		*s;
 	t_node		*env_list = NULL;
 	t_node		*cmd_list = NULL;
+	t_history_list	*hist_list = NULL;
 
 	(void)ac;
 	(void)av;
+	open(".42_src/history.txt", O_RDWR | O_CREAT | O_TRUNC, S_IWUSR | S_IRUSR);
 	signal(SIGINT, ctrl_c);
 	init_list(&env_list, env);
 	while (1) {
@@ -56,6 +58,7 @@ int	main(int ac, char **av, char **env)
 		printf(CYAN);
 		s = readline(prompt(env_list));
 		ctrl_d(s);
+		add_in_history(hist_list, s);
 		if (check_char(s) == SUCCESS)
 			if (init_exec(s, &cmd_list, &env_list) == FAILURE)
 				continue;

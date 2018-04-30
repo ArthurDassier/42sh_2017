@@ -50,18 +50,17 @@ int	alias_cmd(t_aliases_list *list, char **line)
 {
 	t_aliases_list	*head = list;
 
-	while (head->next != NULL) {
+	while (head != NULL) {
 		if (my_strcmp(head->alias->src, line[1]) == 1)
 			break;
 		head = head->next;
 	}
-	if (head->next == NULL) {
+	if (head == NULL) {
+		head = malloc(sizeof(t_aliases_list));
 		head->alias = malloc(sizeof(t_aliases));
-		create_aliase(head->alias, line);
-		head->next = malloc(sizeof(t_aliases_list));
-		if (head->alias == NULL || head->next == NULL)
+		if (head->alias == NULL)
 			exit(84);
-		head = head->next;
+		create_aliase(head->alias, line);
 		head->next = NULL;
 	} else
 		change_alias(head, line[2]);
