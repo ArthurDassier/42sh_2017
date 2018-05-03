@@ -36,7 +36,7 @@ char **my_glob(char *line, int j, char **tmp)
 {
 	glob_t	globlist;
 
-	if (line[0] != '\\' && glob(line, 0, NULL, &globlist) == 0) {
+	if (glob(line, 0, NULL, &globlist) == 0) {
 		tmp = add_glob(tmp, globlist.gl_pathv, j);
 		if (tmp == NULL)
 			return (NULL);
