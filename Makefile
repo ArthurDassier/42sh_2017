@@ -24,6 +24,7 @@ SRCS	=	srcs/main.c								\
 		srcs/42_src/alias/recup_aliases.c					\
 		srcs/42_src/alias/change_for_alias.c					\
 		srcs/42_src/history/create_history.c					\
+		srcs/42_src/history/history_function.c					\
 			$(DIR)/utils/check_perm.c					\
 			$(DIR)/utils/delete_list.c					\
 			$(DIR)/utils/print.c						\

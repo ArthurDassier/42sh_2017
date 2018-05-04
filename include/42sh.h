@@ -120,6 +120,7 @@ t_aliases_list	*recup_aliases(void);
 
 void	put_in_history(char *);
 void	write_in_file(void);
+void	replace_from_history(char **);
 
 /*
 ** Display

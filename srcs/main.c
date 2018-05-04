@@ -30,6 +30,7 @@ t_aliases_list *alias_list)
 
 	line = my_str_to_wordtab_delim(s, " \t\r");
 	change_for_alias(alias_list, line);
+	replace_from_history(line);
 	lexer(cmd_list, line, *env_list);
 	tree = s_rule(cmd_list);
 	if (!tree) {
