@@ -1,3 +1,0 @@
-src / dest
-history
-.42_srcs/history.txt

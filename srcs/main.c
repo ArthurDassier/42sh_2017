@@ -23,12 +23,14 @@ static void	ctrl_d(char *s)
 	}
 }
 
-static int	init_exec(char *s, t_node **cmd_list, t_node **env_list)
+static int	init_exec(char *s, t_node **cmd_list, t_node **env_list,
+t_aliases_list *alias_list)
 {
 	char	**line = NULL;
 	t_tree	*tree;
 
 	line = my_str_to_wordtab_delim(s, " \t\r");
+	change_for_alias(alias_list, line);
 	lexer(cmd_list, line, *env_list);
 	tree = s_rule(cmd_list);
 	if (!tree) {
@@ -46,6 +48,7 @@ int	main(int ac, char **av, char **env)
 	char		*s;
 	t_node		*env_list = NULL;
 	t_node		*cmd_list = NULL;
+	t_aliases_list	*alias_list = recup_aliases();
 	time_t		timestamp;
 
 	(void)ac;
@@ -64,7 +67,7 @@ int	main(int ac, char **av, char **env)
 		timestamp = time(NULL);
 		add_history_time(ctime(&timestamp));
 		if (check_char(s) == SUCCESS)
-			if (init_exec(s, &cmd_list, &env_list) == FAILURE)
+			if (init_exec(s, &cmd_list, &env_list, alias_list) == FAILURE)
 				continue;
 	}
 	return (SUCCESS);

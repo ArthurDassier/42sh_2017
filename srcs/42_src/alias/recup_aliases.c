@@ -20,7 +20,7 @@ static int	check_malloc_fd(t_aliases_list *list, int fd)
 
 t_aliases_list	*recup_aliases(void)
 {
-	int		fd = open(".42_src/aliases.txt", O_RDONLY | O_APPEND);
+	int		fd = open(".42_src/aliases.txt", O_RDONLY | O_TRUNC);
 	t_aliases_list	*list = malloc(sizeof(t_aliases_list));
 	t_aliases_list	*tmp = list;
 	char		*buf = NULL;
