@@ -45,6 +45,34 @@ char **my_glob(char *line, int j, char **tmp)
 	return (tmp);
 }
 
+int analyse_globbings(char *tmp)
+{
+	int i = 0;
+
+	while (tmp[i] != '\0') {
+		if ((tmp[i] == '*' || tmp[i] == '?' || tmp[i] == '['
+		|| tmp[i] == '{' || tmp[i] == '^' || tmp[i] == '$')
+		&& (back_slash(i, tmp) == 1))
+			return (-1);
+		++i;
+	}
+	return (0);
+}
+
+int check_glob(char **tmp)
+{
+	int i = 0;
+
+	while (tmp[i] != NULL) {
+		if (analyse_globbings(tmp[i]) == -1) {
+			my_printf("%s: No match.\n", tmp[0]);
+			return (-1);
+		}
+		++i;
+	}
+	return (0);
+}
+
 char **globbings(char **line)
 {
 	int	j = 0;
@@ -59,5 +87,7 @@ char **globbings(char **line)
 		++j;
 	}
 	release_tmp(line);
+	if (check_glob(tmp) == -1)
+		return (NULL);
 	return (tmp);
 }

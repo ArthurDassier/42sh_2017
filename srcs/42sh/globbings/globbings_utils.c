@@ -7,6 +7,13 @@
 
 #include "42sh.h"
 
+int back_slash(int i, char *tmp)
+{
+	if (i == 0 || tmp[i - 1] != '\\')
+		return (1);
+	return (0);
+}
+
 void release_tmp(char **tmp)
 {
 	int	i = 0;

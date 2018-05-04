@@ -134,6 +134,7 @@ char **globbings(char **);
 void release_tmp(char **);
 char **copy_line(char **);
 int alloc_tab(char **, char **);
+int back_slash(int, char *);
 
 /*
 ** Free
