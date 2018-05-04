@@ -17,7 +17,6 @@ static void	ctrl_c(int sig)
 static void	ctrl_d(char *s)
 {
 	if (s == NULL) {
-		write_in_file();
 		my_putstr("exit\n");
 		exit(0);
 	}
@@ -66,6 +65,7 @@ int	main(int ac, char **av, char **env)
 		add_history(s);
 		timestamp = time(NULL);
 		add_history_time(ctime(&timestamp));
+		write_in_file();
 		if (check_char(s) == SUCCESS)
 			if (init_exec(s, &cmd_list, &env_list, alias_list) == FAILURE)
 				continue;

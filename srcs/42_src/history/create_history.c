@@ -12,32 +12,26 @@ void write_in_file(void)
 	HISTORY_STATE		*my_hist = history_get_history_state();
 	HIST_ENTRY		**my_list = history_list();
 	int			fd = open(".42_src/history.txt",
-	O_WRONLY | O_TRUNC);
+	O_WRONLY | O_APPEND);
 	static char		back_t = '\t';
-	int			nb = 1;
-	int			save = 1;
+	static int		nb = 1;
+	int			save = nb;
 	int			save2 = 0;
 	char			tmp[10];
 	int			j = 0;
 
-	for (int i = 0; i < my_hist->length; ++i) {
-		while (nb > 0) {
-			save2 = nb % 10;
-			nb /= 10;
-			tmp[j++] = save2 + 48;
-		}
-		tmp[j] = '\0';
-		write(fd, my_revstr(tmp), my_strlen(tmp));
-		write(fd, &back_t, 1);
-		write(fd, my_list[i]->line, strlen(my_list[i]->line));
-		write(fd, &back_t, 1);
-		write(fd, my_list[i]->timestamp,
-		strlen(my_list[i]->timestamp));
-		free_history_entry(my_list[i]);
-		save += 1;
-		nb = save;
-		j = 0;
+	while (save > 0) {
+		save2 = save % 10;
+		save /= 10;
+		tmp[j++] = save2 + 48;
 	}
-	free(my_hist);
-	free(my_list);
+	tmp[j] = '\0';
+	write(fd, my_revstr(tmp), my_strlen(tmp));
+	write(fd, &back_t, 1);
+	write(fd, my_list[my_hist->length - 1]->line,
+	strlen(my_list[my_hist->length - 1]->line));
+	write(fd, &back_t, 1);
+	write(fd, my_list[my_hist->length - 1]->timestamp,
+	strlen(my_list[my_hist->length - 1]->timestamp));
+	++nb;
 }

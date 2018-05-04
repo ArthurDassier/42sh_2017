@@ -11,12 +11,12 @@ static t_aliases	*check_for_alias(t_aliases_list *list, char *line)
 {
 	t_aliases_list	*tmp = list;
 
-	while (tmp != NULL) {
+	while (tmp->next != NULL) {
 		if (my_strcmp(tmp->alias->src, line) == 0)
 			break;
 		tmp = tmp->next;
 	}
-	if (tmp == NULL)
+	if (tmp->next == NULL)
 		return (NULL);
 	return (tmp->alias);
 }
