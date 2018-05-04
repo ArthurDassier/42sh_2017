@@ -7,7 +7,7 @@
 
 #include "42sh.h"
 
-void write_in_file(void)
+void write_in_file()
 {
 	HISTORY_STATE		*my_hist = history_get_history_state();
 	HIST_ENTRY		**my_list = history_list();
@@ -34,4 +34,13 @@ void write_in_file(void)
 	write(fd, my_list[my_hist->length - 1]->timestamp,
 	strlen(my_list[my_hist->length - 1]->timestamp));
 	++nb;
+}
+
+void put_in_history(char *s)
+{
+	time_t		timestamp = time(NULL);
+	
+	add_history(s);
+	add_history_time(ctime(&timestamp));
+	write_in_file();
 }

@@ -118,6 +118,7 @@ t_aliases_list	*recup_aliases(void);
 ** History
 */
 
+void	put_in_history(char *);
 void	write_in_file(void);
 
 /*

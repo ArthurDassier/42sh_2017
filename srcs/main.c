@@ -48,7 +48,6 @@ int	main(int ac, char **av, char **env)
 	t_node		*env_list = NULL;
 	t_node		*cmd_list = NULL;
 	t_aliases_list	*alias_list = recup_aliases();
-	time_t		timestamp;
 
 	(void)ac;
 	(void)av;
@@ -62,10 +61,7 @@ int	main(int ac, char **av, char **env)
 		printf(CYAN);
 		s = readline(prompt(env_list));
 		ctrl_d(s);
-		add_history(s);
-		timestamp = time(NULL);
-		add_history_time(ctime(&timestamp));
-		write_in_file();
+		put_in_history(s);
 		if (check_char(s) == SUCCESS)
 			if (init_exec(s, &cmd_list, &env_list, alias_list) == FAILURE)
 				continue;
