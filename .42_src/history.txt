@@ -1,5 +1,0 @@
-1	ls	Fri May  4 15:09:41 2018
-2	clear	Fri May  4 15:09:42 2018
-3	cat history	Fri May  4 15:09:45 2018
-4	ls	Fri May  4 15:09:46 2018
-5	ls	Fri May  4 15:09:51 2018

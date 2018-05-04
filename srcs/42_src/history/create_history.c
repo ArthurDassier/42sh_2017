@@ -15,18 +15,8 @@ void write_in_file()
 	O_WRONLY | O_APPEND);
 	static char		back_t = '\t';
 	static int		nb = 1;
-	int			save = nb;
-	int			save2 = 0;
-	char			tmp[10];
-	int			j = 0;
 
-	while (save > 0) {
-		save2 = save % 10;
-		save /= 10;
-		tmp[j++] = save2 + 48;
-	}
-	tmp[j] = '\0';
-	write(fd, my_revstr(tmp), my_strlen(tmp));
+	write(fd, my_itoa(nb), my_strlen(my_itoa(nb)));
 	write(fd, &back_t, 1);
 	write(fd, my_list[my_hist->length - 1]->line,
 	strlen(my_list[my_hist->length - 1]->line));
