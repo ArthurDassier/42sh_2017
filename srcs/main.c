@@ -14,7 +14,6 @@ static void	ctrl_c(int sig)
 	(void)sig;
 	my_putstr("\n");
 	my_putstr(prompt_line);
-	//my_putstr("$> ");
 }
 
 static void	ctrl_d(char *s)
