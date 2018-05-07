@@ -7,11 +7,14 @@
 
 #include "42sh.h"
 
+const char *prompt_line = NULL;
+
 static void	ctrl_c(int sig)
 {
 	(void)sig;
 	my_putstr("\n");
-	my_putstr("$> ");
+	my_putstr(prompt_line);
+	//my_putstr("$> ");
 }
 
 static void	ctrl_d(char *s)
@@ -51,10 +54,11 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char **e
 	signal(SIGINT, ctrl_c);
 	init_list(&env_list, env);
 	while (1) {
+		prompt_line = prompt(env_list);
 		free_list(cmd_list, &free_lexer);
 		cmd_list = NULL;
 		printf(CYAN);
-		s = readline(prompt(env_list));
+		s = readline(prompt_line);
 		ctrl_d(s);
 		add_in_history(hist_list, s);
 		if (check_char(s) == SUCCESS)
