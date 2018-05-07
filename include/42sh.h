@@ -27,6 +27,19 @@
 #define CYAN    "\x1b[36m"
 #define RESET   "\x1b[0m"
 
+typedef struct	s_history
+{
+	int	count;
+	char	*line;
+	char	*timestamp;
+}		t_history;
+
+typedef struct	s_history_list
+{
+	t_history		*history;
+	struct s_history_list	*next;
+}				t_history_list;
+
 typedef struct	s_aliases
 {
 	char	*src;
@@ -110,15 +123,15 @@ bool	dl_redirection(t_tree *, t_node **);
 ** Aliases
 */
 
-int	aliases(t_aliases_list *, char **);
 void	change_for_alias(t_aliases_list *, char **);
+int	alias_cmd(t_aliases_list *, char **);
 t_aliases_list	*recup_aliases_list(void);
 
 /*
 ** History
 */
 
-void	write_in_history(char *, int);
+void	add_in_history(t_history_list *, char *);
 
 /*
 ** Display

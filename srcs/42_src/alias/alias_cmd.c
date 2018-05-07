@@ -7,40 +7,63 @@
 
 #include "42sh.h"
 
-static void	create_aliase(t_aliases_list *tmp, char **line)
+static void	create_aliase(t_aliases *alias, char **line)
 {
-	tmp->next = malloc(sizeof(t_aliases_list));
-	tmp = tmp->next;
-	tmp->alias = malloc(sizeof(t_aliases));
-	tmp->alias->src = malloc(sizeof(char) * (my_strlen(line[1]) + 1));
-	tmp->alias->dest = malloc(sizeof(char) * (my_strlen(line[2]) + 1));
-	my_strcpy(tmp->alias->src, line[1]);
-	my_strcpy(tmp->alias->dest, line[2]);
-	tmp->next = NULL;
+	alias->src = malloc(sizeof(char) * (my_strlen(line[1]) + 1));
+	alias->dest = malloc(sizeof(char) * (my_strlen(line[2]) + 1));
+	if (alias->src == NULL || alias->dest == NULL)
+		exit(84);
+	my_strcpy(alias->src, line[1]);
+	my_strcpy(alias->dest, line[2]);
 }
 
 static void	change_alias(t_aliases_list *tmp, char *line)
 {
 	free(tmp->alias->dest);
 	tmp->alias->dest = malloc(sizeof(char) * (my_strlen(line) + 1));
+	if (tmp->alias->dest == NULL)
+		exit(84);
 	my_strcpy(tmp->alias->dest, line);
+}
+
+static void write_in_aliase_txt(t_aliases_list *list)
+{
+	t_aliases_list	*head = list;
+	int		fd = open(".42_src/aliases.txt", O_RDWR | O_CREAT |
+	O_TRUNC, S_IWUSR | S_IRUSR);
+
+	if (fd == -1) {
+		my_putstr("open failed\n");
+		return;
+	}
+	while (head->next != NULL) {
+		write(fd, "src / dest\n", 11);
+		write(fd, head->alias->src, my_strlen(head->alias->src));
+		write(fd, "\n", 1);
+		write(fd, head->alias->dest, my_strlen(head->alias->dest));
+		write(fd, "\n", 1);
+		head = head->next;
+	}
 }
 
 int	alias_cmd(t_aliases_list *list, char **line)
 {
-	int		fd = open(".42_src/aliases.txt", O_RDWR | O_APPEND);
-	t_aliases_list	*tmp = list;
+	t_aliases_list	*head = list;
 
-	while (my_strcmp(tmp->alias->src, line[1]) != 0 || tmp->next != NULL)
-		tmp = tmp->next;
-	if (tmp->next == NULL)
-		create_aliase(tmp, line);
-	else
-		change_alias(tmp, line[2]);
-	tmp = list;
-	while (tmp->next != NULL) {
-		write(fd, tmp->alias, sizeof(t_aliases));
-		tmp = tmp->next;
+	while (head != NULL) {
+		if (my_strcmp(head->alias->src, line[1]) == 1)
+			break;
+		head = head->next;
 	}
+	if (head == NULL) {
+		head = malloc(sizeof(t_aliases_list));
+		head->alias = malloc(sizeof(t_aliases));
+		if (head->alias == NULL)
+			exit(84);
+		create_aliase(head->alias, line);
+		head->next = NULL;
+	} else
+		change_alias(head, line[2]);
+	write_in_aliase_txt(list);
 	return (SUCCESS);
 }
