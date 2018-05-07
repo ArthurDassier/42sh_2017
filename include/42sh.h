@@ -51,18 +51,18 @@ typedef struct	s_save {
 
 typedef struct	s_built {
 	char	*builtin;
-	char	**(*ptr)(char **, t_node **);
+	int		(*ptr)(char **, t_node **);
 }		t_built;
 
 /*
 ** Built-ins
 */
-char	**env_built(char **, t_node **);
-char	**exit_built(char **, t_node **);
+int		env_built(char **, t_node **);
+int		exit_built(char **, t_node **);
 int		cd_built(char **, t_node **);
-char	**setenv_built(char **, t_node **);
+int		setenv_built(char **, t_node **);
 bool	check_env_name(t_node *, char *);
-char	**unsetenv_built(char **, t_node **);
+int		unsetenv_built(char **, t_node **);
 void	change_pwd(t_node **, char *);
 int 	cd_special_cases(char **, t_node **, char *);
 
@@ -112,6 +112,7 @@ bool	pipe_exec(t_tree *, t_node **);
 bool	dl_redirection(t_tree *, t_node **);
 bool	separators_exec(t_tree *, t_node **);
 int		exec_builtins(char **line, t_node **env);
+bool	semiexp_exec(t_tree *tree, t_node **env_list);
 
 /*
 ** Aliases

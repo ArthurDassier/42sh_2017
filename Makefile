@@ -47,11 +47,13 @@ SRCS	=	srcs/main.c									\
 			$(DIR)/parser/exp_rule.c					\
 			$(DIR)/parser/get_name.c					\
 			$(DIR)/parser/pipexp_rule.c					\
+			$(DIR)/parser/semiexp_rule.c				\
 			$(DIR)/parser/rexp_rule.c					\
 			$(DIR)/parser/s_rule.c						\
 			$(DIR)/execution/exec_cmd.c					\
 			$(DIR)/execution/cd_special_cases.c			\
 			$(DIR)/execution/redirect.c					\
+			$(DIR)/execution/s_rule_exec.c				\
 			$(DIR)/execution/pipe.c						\
 			$(DIR)/execution/env.c						\
 			$(DIR)/execution/separators.c				\

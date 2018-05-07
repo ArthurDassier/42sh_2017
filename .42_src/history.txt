@@ -1,0 +1,3 @@
+1	ls	Mon May  7 22:12:42 2018
+2	setenv TATA TOTO && env	Mon May  7 22:12:52 2018
+3	ls	Mon May  7 22:12:55 2018
