@@ -14,16 +14,15 @@ static t_built	tab_mini[NB_BUILT] = {
 	{"exit", &exit_built}
 };
 
-char	**env_built(char **line, t_node **head)
+char	**env_built( __attribute((unused)) char **line, t_node **head)
 {
 	(void)line;
 	display_list(*head, &print_list);
 	return (NULL);
 }
 
-char	**exit_built(char **line, t_node **head)
+char	**exit_built(char **line, __attribute((unused)) t_node **head)
 {
-	(void)head;
 	if (my_strarraylen(line) == 1)
 		exit(0);
 	exit(my_getnbr(line[1]));
@@ -34,8 +33,8 @@ int	exec_builtins(char **line, t_node **env)
 {
 	for (int i = 0; i < NB_BUILT; ++i) {
 		if (my_strcmp(tab_mini[i].builtin, line[0]) == 0) {
-			(tab_mini[i].ptr)(line, env);
-			return (SUCCESS);
+			if ((tab_mini[i].ptr)(line, env) == FAILURE)
+				return (FAILURE);
 		}
 	}
 	return (SUCCESS);

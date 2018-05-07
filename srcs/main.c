@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2018
-** Epitech First Year
+** PSU_42sh_2017
 ** File description:
-** main.c
+** main
 */
 
 #include "42sh.h"

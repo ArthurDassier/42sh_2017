@@ -19,14 +19,6 @@
 #include "parser.h"
 #include "define.h"
 
-#define RED     "\x1b[31m"
-#define GREEN   "\x1b[32m"
-#define YELLOW  "\x1b[33m"
-#define BLUE    "\x1b[34m"
-#define MAGENTA "\x1b[35m"
-#define CYAN    "\x1b[36m"
-#define RESET   "\x1b[0m"
-
 typedef struct	s_history
 {
 	int	count;
@@ -67,11 +59,12 @@ typedef struct	s_built {
 */
 char	**env_built(char **, t_node **);
 char	**exit_built(char **, t_node **);
-int	exec_builtins(char **, t_node **);
-char	**cd_built(char **, t_node **);
+int		cd_built(char **, t_node **);
 char	**setenv_built(char **, t_node **);
 bool	check_env_name(t_node *, char *);
 char	**unsetenv_built(char **, t_node **);
+void	change_pwd(t_node **, char *);
+int 	cd_special_cases(char **, t_node **, char *);
 
 /*
 ** Initialization
@@ -82,20 +75,19 @@ void	init_cmd(t_node **, char *);
 /*
 ** Utils
 */
-char *prompt(t_node *);
+char 	*prompt(t_node *);
 void	delete_node(t_node **, char *);
-int	cmp(void *, void *);
+int		cmp(void *, void *);
 char	**list_to_tab(t_node *);
-int	check_char(char *);
+int		check_char(char *);
 void	delete_tab(void *);
 void	printing(void*);
 t_tree	*s_rule(t_node **);
-int	check_path(char **, char **path, t_node *);
+int		check_path(char **, char **, t_node *);
 char	*get_env_name(t_node *, char *);
 void	check_perm(char **, char **, int, t_node *);
 void	check_perm_cmd(char **, t_node *);
 char	**get_path(t_node *);
-char	*get_env_name(t_node *, char *);
 char	*get_env_content(t_node *, char *);
 int		delim_words(char *, char *);
 bool	check_delim(char, char *);
@@ -119,11 +111,11 @@ bool	l_redirection(t_tree *, t_node **);
 bool	pipe_exec(t_tree *, t_node **);
 bool	dl_redirection(t_tree *, t_node **);
 bool	separators_exec(t_tree *, t_node **);
+int		exec_builtins(char **line, t_node **env);
 
 /*
 ** Aliases
 */
-
 void	change_for_alias(t_aliases_list *, char **);
 int	alias_cmd(t_aliases_list *, char **);
 t_aliases_list	*recup_aliases_list(void);
@@ -131,13 +123,11 @@ t_aliases_list	*recup_aliases_list(void);
 /*
 ** History
 */
-
 void	add_in_history(t_history_list *, char *);
 
 /*
 ** Display
 */
-
 void	print_list(void *);
 void	display(void *);
 

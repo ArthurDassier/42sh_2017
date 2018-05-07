@@ -50,6 +50,7 @@ SRCS	=	srcs/main.c									\
 			$(DIR)/parser/rexp_rule.c					\
 			$(DIR)/parser/s_rule.c						\
 			$(DIR)/execution/exec_cmd.c					\
+			$(DIR)/execution/cd_special_cases.c			\
 			$(DIR)/execution/redirect.c					\
 			$(DIR)/execution/pipe.c						\
 			$(DIR)/execution/env.c						\
