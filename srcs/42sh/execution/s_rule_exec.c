@@ -14,8 +14,8 @@ bool	s_exec(t_tree *tree, t_node **env_list)
 	if (tree->cmd.token != L_PARENTHESE)
 		ret = semiexp_exec(tree, env_list);
 	else {
-		ret = s_exec(tree->left, env_list);
-		if (tree->right)
+		ret = parentheses(tree->left, env_list);
+		if (tree->cmd.token != R_PARENTHESE)
 			ret = s_exec(tree->right, env_list);
 	}
 	return (ret);
