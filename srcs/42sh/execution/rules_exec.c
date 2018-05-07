@@ -28,10 +28,11 @@ bool	exp_exec(t_tree *tree, t_node **env_list)
 	if (tree->cmd.token != AND && tree->cmd.token != OR)
 		ret = pipexp_exec(tree, env_list);
 	else {
-		ret = exp_exec(tree->left, env_list);
-		if ((tree->cmd.token == AND && ret)
-		|| (tree->cmd.token == OR && !ret))
-			ret = exp_exec(tree->right, env_list);
+		ret = separators_exec(tree->left, env_list);
+		//printf("ret = %d\n", ret);
+		if ((tree->cmd.token == AND && !ret)
+		|| (tree->cmd.token == OR && ret))
+			ret = separators_exec(tree->right, env_list);
 	}
 	return (ret);
 }

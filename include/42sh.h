@@ -118,6 +118,7 @@ bool	dr_redirection(t_tree *, t_node **);
 bool	l_redirection(t_tree *, t_node **);
 bool	pipe_exec(t_tree *, t_node **);
 bool	dl_redirection(t_tree *, t_node **);
+bool	separators_exec(t_tree *, t_node **);
 
 /*
 ** Aliases

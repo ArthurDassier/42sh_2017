@@ -1,5 +1,12 @@
-1	ls	Mon Apr 30 15:17:22 2018
-2	clear	Mon Apr 30 15:17:23 2018
-3	mdr	Mon Apr 30 15:17:24 2018
-4	cat history	Mon Apr 30 15:17:28 2018
-5	clear	Mon Apr 30 15:17:31 2018
+1	ls	Mon May  7 15:24:09 2018
+2	ls && pwd	Mon May  7 15:24:11 2018
+3	lss && pwd	Mon May  7 15:24:14 2018
+4	echo $?	Mon May  7 15:24:17 2018
+5	ls	Mon May  7 15:24:21 2018
+6	ls	Mon May  7 15:24:22 2018
+7	ls	Mon May  7 15:24:23 2018
+8	ls || pwd	Mon May  7 15:24:28 2018
+09	lss || pwd	Mon May  7 15:24:31 2018
+10	ls	Mon May  7 15:24:33 2018
+11	ls	Mon May  7 15:24:34 2018
+12	ls && pwd || echo a	Mon May  7 15:24:40 2018
