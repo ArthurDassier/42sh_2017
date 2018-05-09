@@ -33,38 +33,38 @@ t_save *data)
 		data->content = my_strdup(line[2]);
 }
 
-char	**setenv_built(char **line, t_node **head)
+int		setenv_built(char **line, t_node **head)
 {
 	t_save	*data = NULL;
 
 	if (my_strarraylen(line) == 1) {
 		display_list(*head, &print_list);
-		return (NULL);
+		return (SUCCESS);
 	}
 	if (my_strisalphanum(line[1]) == 0) {
 		my_putstr("setenv: Variable name must");
 		my_putstr(" contain alphanumeric characters.\n");
-		return (NULL);
+		return (FAILURE);
 	}
 	if (check_env_name(*head, line[1]) == false) {
 		adding_variable(data, line, head);
 	} else {
 		normal_setenv(*head, line, data);
 	}
-	return (NULL);
+	return (SUCCESS);
 }
 
-char	**unsetenv_built(char **line, t_node **head)
+int		unsetenv_built(char **line, t_node **head)
 {
 	char	*str;
 
 	if (my_strarraylen(line) == 1) {
 		my_print_err("unsetenv: Too few arguments.\n");
-		return (NULL);
+		return (FAILURE);
 	}
 	str = get_env_name(*head, line[1]);
-	if (str == NULL)
-		return (NULL);
+	if (!str)
+		return (FAILURE);
 	delete_node(head, str);
-	return (NULL);
+	return (SUCCESS);
 }

@@ -18,7 +18,7 @@ t_tree	*create_node(void)
 	return (new);
 }
 
-bool	check_token(t_node **cmd_list, t_token token, t_tree *tree)
+bool	check_token(t_node **cmd_list, e_token token, t_tree *tree)
 {
 	if (((t_parser *)((*cmd_list)->data))->token == token) {
 		tree->cmd.token = ((t_parser *)((*cmd_list)->data))->token;

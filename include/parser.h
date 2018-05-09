@@ -20,11 +20,11 @@ typedef enum	s_token {
 	WORD,
 	BUILTIN,
 	CMD
-}		t_token;
+}				e_token;
 
 typedef struct s_cmd {
 	char	**name;
-	t_token	token;
+	e_token	token;
 }		t_cmd;
 
 typedef	struct	s_tree {
@@ -36,7 +36,7 @@ typedef	struct	s_tree {
 
 typedef struct	s_parser {
 	char	*name;
-	t_token	token;
+	e_token	token;
 	bool	visited;
 }		t_parser;
 
@@ -52,7 +52,7 @@ int		get_redirect_double(t_node **, char *);
 int		get_redirect(t_node **, char *);
 int		get_options(t_node **, char *);
 void	get_cmd(t_node **, char *, char **);
-void	add_node(t_node **, t_token, char *);
+void	add_node(t_node **, e_token, char *);
 int		get_builtins(t_node **, char *);
 int		get_lexem(t_node **, char *);
 void	lexer(t_node **, char **, t_node *);
@@ -69,7 +69,7 @@ t_tree	*pipexp_rule(t_node **);
 t_tree	*rexp_rule(t_node **);
 t_tree	*s_rule(t_node **);
 t_tree	*create_node(void);
-bool	check_token(t_node **, t_token, t_tree *);
+bool	check_token(t_node **, e_token, t_tree *);
 t_tree	*ret_node(t_tree *, t_tree *);
 
 #endif /* !PARSER_H_ */
