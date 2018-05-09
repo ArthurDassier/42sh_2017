@@ -18,7 +18,7 @@ t_tree	*create_node(void)
 	return (new);
 }
 
-bool	check_token(t_node **cmd_list, t_token token, t_tree *tree)
+bool	check_token(t_node **cmd_list, e_token token, t_tree *tree)
 {
 	if (((t_parser *)((*cmd_list)->data))->token == token) {
 		tree->cmd.token = ((t_parser *)((*cmd_list)->data))->token;
@@ -39,12 +39,12 @@ t_tree	*s_rule(t_node **cmd_list)
 {
 	t_tree *tree = create_node();
 
-	tree->left = semiexp_rule(cmd_list);
+	tree->left = exp_rule(cmd_list);
 	if (!tree->left) {
 		free(tree);
 		return (NULL);
 	}
-	if (check_token(cmd_list, L_PARENTHESE, tree) == false)
+	if (check_token(cmd_list, S_COLON, tree) == false)
 		return (ret_node(tree, tree->left));
 	if (((t_parser *)(*cmd_list)->data)->visited == true)
 		return (tree);

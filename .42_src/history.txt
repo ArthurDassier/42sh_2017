@@ -1,3 +1,6 @@
-1	ls	Mon May  7 22:12:42 2018
-2	setenv TATA TOTO && env	Mon May  7 22:12:52 2018
-3	ls	Mon May  7 22:12:55 2018
+1	ls	Wed May  9 14:51:12 2018
+2	ls -la	Wed May  9 14:51:13 2018
+3	ls ; pwd	Wed May  9 14:51:15 2018
+4	ls && pwd	Wed May  9 14:51:18 2018
+5	ls && pwd || echo a	Wed May  9 14:51:27 2018
+6	exit	Wed May  9 14:51:30 2018

@@ -111,8 +111,9 @@ bool	l_redirection(t_tree *, t_node **);
 bool	pipe_exec(t_tree *, t_node **);
 bool	dl_redirection(t_tree *, t_node **);
 bool	separators_exec(t_tree *, t_node **);
-int		exec_builtins(char **line, t_node **env);
-bool	semiexp_exec(t_tree *tree, t_node **env_list);
+int		exec_builtins(char **, t_node **);
+bool	semiexp_exec(t_tree *, t_node **);
+bool	parentheses(t_tree *, t_node **);
 
 /*
 ** Aliases

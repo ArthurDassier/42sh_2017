@@ -14,7 +14,7 @@ static t_built	tab_mini[NB_BUILT] = {
 	{"exit", &exit_built}
 };
 
-int env_built( __attribute((unused)) char **line, t_node **head)
+int	env_built( __attribute((unused)) char **line, t_node **head)
 {
 	display_list(*head, &print_list);
 	return (SUCCESS);
@@ -23,7 +23,7 @@ int env_built( __attribute((unused)) char **line, t_node **head)
 int	exit_built(char **line, __attribute((unused)) t_node **head)
 {
 	if (my_strarraylen(line) == 1)
-		exit(0);
+		exit(SUCCESS);
 	exit(my_getnbr(line[1]));
 	return (SUCCESS);
 }

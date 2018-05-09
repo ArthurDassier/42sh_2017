@@ -33,7 +33,7 @@ t_save *data)
 		data->content = my_strdup(line[2]);
 }
 
-int	setenv_built(char **line, t_node **head)
+int		setenv_built(char **line, t_node **head)
 {
 	t_save	*data = NULL;
 
@@ -54,7 +54,7 @@ int	setenv_built(char **line, t_node **head)
 	return (SUCCESS);
 }
 
-int	unsetenv_built(char **line, t_node **head)
+int		unsetenv_built(char **line, t_node **head)
 {
 	char	*str;
 

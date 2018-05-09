@@ -47,13 +47,11 @@ SRCS	=	srcs/main.c									\
 			$(DIR)/parser/exp_rule.c					\
 			$(DIR)/parser/get_name.c					\
 			$(DIR)/parser/pipexp_rule.c					\
-			$(DIR)/parser/semiexp_rule.c				\
 			$(DIR)/parser/rexp_rule.c					\
 			$(DIR)/parser/s_rule.c						\
 			$(DIR)/execution/exec_cmd.c					\
 			$(DIR)/execution/cd_special_cases.c			\
 			$(DIR)/execution/redirect.c					\
-			$(DIR)/execution/s_rule_exec.c				\
 			$(DIR)/execution/pipe.c						\
 			$(DIR)/execution/env.c						\
 			$(DIR)/execution/separators.c				\
@@ -62,38 +60,39 @@ SRCS	=	srcs/main.c									\
 			$(DIR)/execution/cd.c						\
 			$(DIR)/execution/rules_exec.c
 
-SRCS_UT	=	$(DIR)/utils/check_perm.c		\
-			$(DIR)/utils/delete_list.c		\
-			$(DIR)/utils/print.c			\
-			$(DIR)/utils/fill_list.c		\
-			$(DIR)/utils/list_to_tab.c		\
-			$(DIR)/utils/comp.c				\
-			$(DIR)/utils/check_char.c		\
-			$(DIR)/utils/delete_node.c		\
-			$(DIR)/utils/display.c			\
-			$(DIR)/utils/display_tree.c		\
-			$(DIR)/utils/path.c				\
-			$(DIR)/lexer/lexer.c			\
-			$(DIR)/lexer/get_options.c		\
-			$(DIR)/lexer/get_builtins.c		\
-			$(DIR)/lexer/get_cmd.c			\
-			$(DIR)/parser/cmd_rule.c		\
-			$(DIR)/parser/exp_rule.c		\
-			$(DIR)/parser/get_name.c		\
-			$(DIR)/parser/pipexp_rule.c		\
-			$(DIR)/parser/rexp_rule.c		\
-			$(DIR)/parser/s_rule.c			\
-			$(DIR)/execution/exec_cmd.c		\
-			$(DIR)/execution/redirect.c		\
-			$(DIR)/execution/pipe.c			\
-			$(DIR)/execution/env.c			\
-			$(DIR)/execution/builtins.c		\
-			$(DIR)/execution/setenv.c		\
-			$(DIR)/execution/cd.c			\
+SRCS_UT	=	$(DIR)/utils/check_perm.c			\
+			$(DIR)/utils/delete_list.c			\
+			$(DIR)/utils/print.c				\
+			$(DIR)/utils/fill_list.c			\
+			$(DIR)/utils/list_to_tab.c			\
+			$(DIR)/utils/comp.c					\
+			$(DIR)/utils/check_char.c			\
+			$(DIR)/utils/delete_node.c			\
+			$(DIR)/utils/display.c				\
+			$(DIR)/utils/display_tree.c			\
+			$(DIR)/utils/path.c					\
+			$(DIR)/lexer/lexer.c				\
+			$(DIR)/lexer/get_options.c			\
+			$(DIR)/lexer/get_builtins.c			\
+			$(DIR)/lexer/get_cmd.c				\
+			$(DIR)/parser/cmd_rule.c			\
+			$(DIR)/parser/exp_rule.c			\
+			$(DIR)/parser/get_name.c			\
+			$(DIR)/parser/pipexp_rule.c			\
+			$(DIR)/parser/rexp_rule.c			\
+			$(DIR)/parser/s_rule.c				\
+			$(DIR)/execution/exec_cmd.c			\
+			$(DIR)/execution/redirect.c			\
+			$(DIR)/execution/pipe.c				\
+			$(DIR)/execution/env.c				\
+			$(DIR)/execution/builtins.c			\
+			$(DIR)/execution/parentheses.c		\
+			$(DIR)/execution/setenv.c			\
+			$(DIR)/execution/cd.c				\
 			$(DIR)/execution/rules_exec.c		\
-			$(DIR)/42_src/alias/alias_cmd.c		\
-			$(DIR)/42_src/alias/recup_aliases.c	\
-			$(DIR)/42_src/aliaschange_for_alias.c
+			$(DIR)/alias/alias_cmd.c			\
+			$(DIR)/alias/recup_aliases.c		\
+			$(DIR)/aliaschange_for_alias.c
 
 UT_DIR	=	tests/lib/
 
