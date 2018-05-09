@@ -11,6 +11,8 @@
 typedef enum	s_token {
 	AND,
 	PIPE,
+	L_PARENTHESE,
+	R_PARENTHESE,
 	OR,
 	S_COLON,
 	R_REDIRECT,
@@ -71,5 +73,6 @@ t_tree	*s_rule(t_node **);
 t_tree	*create_node(void);
 bool	check_token(t_node **, e_token, t_tree *);
 t_tree	*ret_node(t_tree *, t_tree *);
+t_tree	*semiexp_rule(t_node **cmd_list);
 
 #endif /* !PARSER_H_ */

@@ -1,11 +1,4 @@
-1	ls	Wed May  9 14:44:49 2018
-2	ls -la	Wed May  9 14:44:51 2018
-3	ls	Wed May  9 14:44:52 2018
-4	ls	Wed May  9 14:44:53 2018
-5	ls && cd	Wed May  9 14:44:57 2018
-7	ls	Wed May  9 14:44:59 2018
-8	pwd || env && ls	Wed May  9 14:45:06 2018
-09	ls	Wed May  9 14:45:14 2018
-10	..	Wed May  9 14:45:15 2018
-11	ls	Wed May  9 14:45:15 2018
-12	cd ..	Wed May  9 14:45:18 2018
+1	ls ; ks	Mon May  7 22:39:47 2018
+2	ls ; pwd	Mon May  7 22:39:50 2018
+3	pwd ; cd	Mon May  7 22:39:53 2018
+4	ls	Mon May  7 22:39:55 2018

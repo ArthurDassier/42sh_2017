@@ -11,8 +11,8 @@ t_node **head)
 {
 	data = malloc(sizeof(*data));
 
-	if (data == NULL)
-		return;
+	if (!data)
+		exit(FAILURE);
 	data->name = my_strdup(line[1]);
 	if (line[2] == NULL)
 		data->content = my_strdup("");
