@@ -1,17 +1,19 @@
 /*
 ** EPITECH PROJECT, 2018
-** Epitech First Year
+** PSU_42sh_2017
 ** File description:
-** main.c
+** main
 */
 
 #include "42sh.h"
+
+const char *prompt_line = NULL;
 
 static void	ctrl_c(int sig)
 {
 	(void)sig;
 	my_putstr("\n");
-	my_putstr("$> ");
+	my_putstr(prompt_line);
 }
 
 static void	ctrl_d(char *s)
@@ -43,24 +45,24 @@ t_aliases_list *alias_list)
 	return (SUCCESS);
 }
 
-int	main(int ac, char **av, char **env)
+int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
+**env)
 {
 	char		*s;
 	t_node		*env_list = NULL;
 	t_node		*cmd_list = NULL;
 	t_aliases_list	*alias_list = recup_aliases();
 
-	(void)ac;
-	(void)av;
 	open(".42_src/history.txt", O_RDWR | O_CREAT | O_TRUNC, S_IWUSR | S_IRUSR);
 	signal(SIGINT, ctrl_c);
 	init_list(&env_list, env);
 	using_history();
 	while (1) {
+		prompt_line = prompt(env_list);
 		free_list(cmd_list, &free_lexer);
 		cmd_list = NULL;
 		printf(CYAN);
-		s = readline(prompt(env_list));
+		s = readline(prompt_line);
 		ctrl_d(s);
 		put_in_history(s);
 		if (check_char(s) == SUCCESS)

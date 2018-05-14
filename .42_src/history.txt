@@ -1,5 +1,6 @@
-1	ls	Fri May  4 16:13:02 2018
-2	!1	Fri May  4 16:13:03 2018
-3	ls	Fri May  4 16:13:04 2018
-4	ls	Fri May  4 16:13:07 2018
-5	!1 -a	Fri May  4 16:13:14 2018
+1	ls	Wed May  9 14:51:12 2018
+2	ls -la	Wed May  9 14:51:13 2018
+3	ls ; pwd	Wed May  9 14:51:15 2018
+4	ls && pwd	Wed May  9 14:51:18 2018
+5	ls && pwd || echo a	Wed May  9 14:51:27 2018
+6	exit	Wed May  9 14:51:30 2018

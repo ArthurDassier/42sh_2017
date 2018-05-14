@@ -16,7 +16,7 @@ static int	get_nb_word(t_node *cmd_list)
 	do {
 		++count;
 		tmp = tmp->next;
-		parser = (t_parser *)tmp->data;		
+		parser = (t_parser *)tmp->data;
 	} while (tmp != cmd_list && (parser->token == WORD
 	|| parser->token == CMD || parser->token == BUILTIN));
 	return (count);
