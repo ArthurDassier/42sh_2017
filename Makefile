@@ -29,6 +29,7 @@ SRCS	=	srcs/main.c										\
 			$(DIR)/utils/delete_list.c						\
 			$(DIR)/utils/print.c							\
 			$(DIR)/utils/fill_list.c						\
+			$(DIR)/utils/get_env.c							\
 			$(DIR)/utils/list_to_tab.c						\
 			$(DIR)/utils/comp.c								\
 			$(DIR)/utils/check_char.c						\

@@ -47,7 +47,7 @@ typedef struct	s_save {
 typedef struct	s_built {
 	char	*builtin;
 	int		(*ptr)(char **, t_node **);
-}		t_built;
+}				t_built;
 
 /*
 ** Built-ins
@@ -59,7 +59,12 @@ int		setenv_built(char **, t_node **);
 bool	check_env_name(t_node *, char *);
 int		unsetenv_built(char **, t_node **);
 void	change_pwd(t_node **, char *);
-int 	cd_special_cases(char **, t_node **, char *);
+int		cd_special_cases(char **, t_node **, char *);
+int		display_help(__attribute((unused)) char **line, t_node **env_list);
+int		display_version(char **line, t_node **env_list);
+int		rm_var(char **line, t_node **env_list);
+int		ignore_env(char **line, t_node **env_list);
+int 	end_with_null(__attribute((unused)) char **line, t_node **env_list);
 
 /*
 ** Initialization
@@ -130,6 +135,7 @@ void	replace_from_history(char **);
 */
 void	print_list(void *);
 void	display(void *);
+void	print_list_with_null(void *);
 
 /*
 ** Free

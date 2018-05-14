@@ -8,11 +8,23 @@
 #ifndef DEFINE_H_
 #define DEFINE_H_
 
+/*
+** Error handling
+*/
 #define	ERROR		-1
 #define	VALID		1
 #define	SUCCESS		0
 #define	FAILURE		84
+
+/*
+** NB
+*/
 #define NB_BUILT	5
+#define NB_FLAGS	8
+
+/*
+** Colors
+*/
 #define RED     	"\x1b[31m"
 #define GREEN   	"\x1b[32m"
 #define YELLOW  	"\x1b[33m"

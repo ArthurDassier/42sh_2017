@@ -6,6 +6,7 @@
 */
 #include "list.h"
 #include <stdio.h>
+
 //Displays the list.
 void	display_list(t_node *head, void (*ptr)(void *data))
 {

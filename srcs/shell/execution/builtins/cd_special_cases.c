@@ -7,7 +7,7 @@
 
 #include "42sh.h"
 
-void	change_pwd(t_node **head, char *str)
+void	change_pwd(t_node **env_list, char *str)
 {
 	char	**line = malloc(sizeof(*line) * 4);
 	char	buf[500];
@@ -16,7 +16,7 @@ void	change_pwd(t_node **head, char *str)
 	line[1] = my_strdup("OLDPWD");
 	line[2] = my_strdup(getcwd(buf, 500));
 	line[3] = NULL;
-	setenv_built(line, head);
+	setenv_built(line, env_list);
 	free(line[0]);
 	free(line[1]);
 	free(line[2]);
@@ -24,12 +24,12 @@ void	change_pwd(t_node **head, char *str)
 	chdir(str);
 }
 
-static int	normal_cd(t_node **head, char **line)
+static int	normal_cd(t_node **env_list, char **line)
 {
 	struct stat	s;
 
 	if (stat(line[1], &s) == 0 && S_ISDIR(s.st_mode)) {
-		change_pwd(head, line[1]);
+		change_pwd(env_list, line[1]);
 		return (SUCCESS);
 	} else {
 		my_putstr(line[1]);
@@ -38,31 +38,31 @@ static int	normal_cd(t_node **head, char **line)
 	}
 }
 
-static int get_cd(char *str, t_node **head)
+static int get_cd(char *str, t_node **env_list)
 {
 	if (str == NULL) {
 		my_putstr("cd: No variable OLDPWD.\n");
 		return (FAILURE);
 	}
-	change_pwd(head, str);
+	change_pwd(env_list, str);
 	return (SUCCESS);
 }
 
-int cd_special_cases(char **line, t_node **head, char *str)
+int cd_special_cases(char **line, t_node **env_list, char *str)
 {
 	if (my_strcmp(line[1], "-") == 0) {
-		if (get_cd(str, head) == FAILURE)
+		if (get_cd(str, env_list) == FAILURE)
 			return (FAILURE);
 		return (SUCCESS);
 	} else if (my_strcmp(line[1], "~") == 0) {
-		if ((str = get_env_content(*head, "HOME")) == NULL) {
+		if ((str = get_env_content(*env_list, "HOME")) == NULL) {
 			my_putstr("cd: No home directory.\n");
 			return (FAILURE);
 		}
-		change_pwd(head, str);
+		change_pwd(env_list, str);
 		return (SUCCESS);
 	} else {
-		if (normal_cd(head, line) == FAILURE)
+		if (normal_cd(env_list, line) == FAILURE)
 			return (FAILURE);
 		return (SUCCESS);
 	}

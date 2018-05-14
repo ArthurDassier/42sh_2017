@@ -7,24 +7,24 @@
 #include "42sh.h"
 
 static void	adding_variable(t_save *data, char **line,
-t_node **head)
+t_node **env_list)
 {
 	data = malloc(sizeof(*data));
 
 	if (!data)
 		exit(FAILURE);
 	data->name = my_strdup(line[1]);
-	if (line[2] == NULL)
+	if (!line[2])
 		data->content = my_strdup("");
 	else
 		data->content = my_strdup(line[2]);
-	insert_end(head, data);
+	insert_end(env_list, data);
 }
 
-static void	normal_setenv(t_node *head, char **line,
+static void	normal_setenv(t_node *env_list, char **line,
 t_save *data)
 {
-	t_node	*tmp = find_node(head, &cmp, line[1]);
+	t_node	*tmp = find_node(env_list, &cmp, line[1]);
 
 	data = (t_save *)tmp->data;
 	if (my_strarraylen(line) == 2)
@@ -33,28 +33,28 @@ t_save *data)
 		data->content = my_strdup(line[2]);
 }
 
-int		setenv_built(char **line, t_node **head)
+int		setenv_built(char **line, t_node **env_list)
 {
 	t_save	*data = NULL;
 
-	if (my_strarraylen(line) == 1) {
-		display_list(*head, &print_list);
+	if (my_strarraylen(line) == VALID) {
+		display_list(*env_list, &print_list);
 		return (SUCCESS);
 	}
-	if (my_strisalphanum(line[1]) == 0) {
+	if (my_strisalphanum(line[1]) == SUCCESS) {
 		my_putstr("setenv: Variable name must");
 		my_putstr(" contain alphanumeric characters.\n");
 		return (FAILURE);
 	}
-	if (check_env_name(*head, line[1]) == false) {
-		adding_variable(data, line, head);
+	if (check_env_name(*env_list, line[1]) == false) {
+		adding_variable(data, line, env_list);
 	} else {
-		normal_setenv(*head, line, data);
+		normal_setenv(*env_list, line, data);
 	}
 	return (SUCCESS);
 }
 
-int		unsetenv_built(char **line, t_node **head)
+int		unsetenv_built(char **line, t_node **env_list)
 {
 	char	*str;
 
@@ -62,9 +62,9 @@ int		unsetenv_built(char **line, t_node **head)
 		my_print_err("unsetenv: Too few arguments.\n");
 		return (FAILURE);
 	}
-	str = get_env_name(*head, line[1]);
+	str = get_env_name(*env_list, line[1]);
 	if (!str)
 		return (FAILURE);
-	delete_node(head, str);
+	delete_node(env_list, str);
 	return (SUCCESS);
 }
