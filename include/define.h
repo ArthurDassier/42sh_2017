@@ -9,6 +9,7 @@
 #define DEFINE_H_
 
 #define	ERROR		-1
+#define	VALID		1
 #define	SUCCESS		0
 #define	FAILURE		84
 #define NB_BUILT	5

@@ -11,8 +11,6 @@
 typedef enum	s_token {
 	AND,
 	PIPE,
-	L_PARENTHESE,
-	R_PARENTHESE,
 	OR,
 	S_COLON,
 	R_REDIRECT,

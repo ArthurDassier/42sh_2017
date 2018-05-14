@@ -1,3 +1,5 @@
-1	toto	Mon May 14 13:53:04 2018
-2	ls	Mon May 14 13:53:06 2018
-3	ls	Mon May 14 13:53:07 2018
+1	ls ; pwd	Mon May 14 15:25:29 2018
+2	ls	Mon May 14 15:25:33 2018
+3	ls; cat srcs	Mon May 14 15:25:39 2018
+4	s	Mon May 14 15:25:43 2018
+5	ls	Mon May 14 15:25:45 2018
