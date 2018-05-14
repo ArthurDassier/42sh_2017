@@ -17,7 +17,7 @@ CPPFLAGS	+=	-I./include -I./lib/my/include
 
 NAME	=	mysh
 
-DIR	=	srcs/42sh/
+DIR	=	srcs/shell/
 
 SRCS	=	srcs/main.c								\
 			$(DIR)/alias/alias_cmd.c					\
