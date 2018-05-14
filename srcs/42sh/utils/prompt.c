@@ -62,7 +62,8 @@ char *prompt(t_node *env)
 			if (cwd[i] == '/')
 				slash = i;
 		}
-		str = realloc(str, strlen(cwd) + strlen(save) + strlen(user) + 99
+		str = realloc(str, strlen(cwd) + strlen(save) +
+		strlen(user) + 99);
 		strcat(str, cwd + slash + 1);
 		strcat(str, user);
 		if (branch != NULL)
