@@ -58,10 +58,9 @@ char *prompt(t_node *env)
 	char	*branch = get_branch();
 
 	if (getcwd(cwd, sizeof(cwd)) != NULL) {
-		for (int i = 0; cwd[i]; ++i) {
+		for (int i = 0; cwd[i]; ++i)
 			if (cwd[i] == '/')
 				slash = i;
-		}
 		str = realloc(str, strlen(cwd) + strlen(save) +
 		strlen(user) + 99);
 		strcat(str, cwd + slash + 1);
