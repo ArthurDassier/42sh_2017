@@ -1,1 +1,3 @@
-1	env -0 ls	Tue May 15 16:17:13 2018
+1	env - ./a.out 	Tue May 15 16:22:34 2018
+2	env -	Tue May 15 16:22:37 2018
+3	ls	Tue May 15 16:22:38 2018

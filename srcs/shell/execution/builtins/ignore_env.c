@@ -35,8 +35,10 @@ int	ignore_env(char **line, __attribute((unused)) t_node **env_list)
 {
 	int	size = my_strarraylen(line);
 
-	if (size < 3)
+	if (size == 2) {
+		display_list(*env_list, &print_list);
 		return (SUCCESS);
+	}
 	if (size == 4 && strcmp(line[2], "sh") == SUCCESS
 	&& access(line[3], F_OK) != ERROR) {
 		exec_no_env(line[3], line);
