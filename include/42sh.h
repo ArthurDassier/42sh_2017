@@ -60,11 +60,14 @@ bool	check_env_name(t_node *, char *);
 int		unsetenv_built(char **, t_node **);
 void	change_pwd(t_node **, char *);
 int		cd_special_cases(char **, t_node **, char *);
-int		display_help(__attribute((unused)) char **line, t_node **env_list);
-int		display_version(char **line, t_node **env_list);
-int		rm_var(char **line, t_node **env_list);
+int		display_help(__attribute((unused)) char **, t_node **);
+int		normal_cd(t_node **, char **);
+int		get_cd(char *, t_node **);
+int		display_version(char **line, t_node **);
+int		rm_var(char **, t_node **);
 int		ignore_env(char **, t_node **);
 int		end_with_null(__attribute((unused)) char **, t_node **);
+int		env_chdir(char **, t_node **);
 
 /*
 ** Initialization

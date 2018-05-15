@@ -1,3 +1,1 @@
-1	cat < main.c 	Tue May 15 14:07:37 2018
-2	cat < Makefile 	Tue May 15 14:07:44 2018
-3	cat < Makefile 	Tue May 15 14:08:01 2018
+1	env -C include/ ls -la	Tue May 15 15:12:40 2018

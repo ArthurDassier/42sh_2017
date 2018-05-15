@@ -24,7 +24,7 @@ void	change_pwd(t_node **env_list, char *str)
 	chdir(str);
 }
 
-static int	normal_cd(t_node **env_list, char **line)
+int	normal_cd(t_node **env_list, char **line)
 {
 	struct stat	s;
 
@@ -38,7 +38,7 @@ static int	normal_cd(t_node **env_list, char **line)
 	}
 }
 
-static int get_cd(char *str, t_node **env_list)
+int get_cd(char *str, t_node **env_list)
 {
 	if (str == NULL) {
 		my_putstr("cd: No variable OLDPWD.\n");
