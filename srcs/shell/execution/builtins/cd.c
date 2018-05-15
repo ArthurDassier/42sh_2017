@@ -20,7 +20,7 @@ int	cd_built(char **line, t_node **env_list)
 {
 	char	*str = get_env_content(*env_list, "OLDPWD");
 
-	if (my_strarraylen(line) == 1) {
+	if (my_strarraylen(line) == VALID) {
 		if (only_cd(env_list, str) == FAILURE)
 			return (FAILURE);
 		return (SUCCESS);

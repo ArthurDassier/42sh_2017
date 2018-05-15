@@ -12,12 +12,12 @@ char	**get_path(t_node *head)
 	t_save	*content;
 	char		**path;
 
-	if (head == NULL)
+	if (!head)
 		return (NULL);
 	do {
 		content = (t_save *)tmp->data;
 		tmp = tmp->next;
-		if (my_strcmp(content->name, "PATH") == 0)
+		if (strcmp(content->name, "PATH") == SUCCESS)
 			break;
 	} while (tmp != head);
 	path = my_str_to_wordtab_delim(content->content, ":");
@@ -37,11 +37,11 @@ void	add_com(char **path, char **line)
 	char	*save;
 
 	for (int i = 0; path != NULL && path[i] != NULL; ++i) {
-		save = malloc(sizeof(char) * (my_strlen(path[i])
-		+ my_strlen(line[0]) + 2));
-		my_strcpy(save, path[i]);
-		my_strcat(save, "/");
-		my_strcat(save, line[0]);
+		save = malloc(sizeof(char) * (strlen(path[i])
+		+ strlen(line[0]) + 2));
+		strcpy(save, path[i]);
+		strcat(save, "/");
+		strcat(save, line[0]);
 		free(path[i]);
 		path[i] = save;
 	}

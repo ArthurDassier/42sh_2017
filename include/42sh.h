@@ -12,8 +12,8 @@
 #include <sys/types.h>
 #include <signal.h>
 #include <wait.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include <stdio.h>
+#include <string.h>
 #include "list.h"
 #include "my.h"
 #include "parser.h"

@@ -23,8 +23,6 @@ SRCS	=	srcs/main.c										\
 			$(DIR)/alias/alias_cmd.c						\
 			$(DIR)/alias/recup_aliases.c					\
 			$(DIR)/alias/change_for_alias.c					\
-			$(DIR)/history/create_history.c					\
-			$(DIR)/history/history_function.c				\
 			$(DIR)/utils/check_perm.c						\
 			$(DIR)/utils/delete_list.c						\
 			$(DIR)/utils/print.c							\

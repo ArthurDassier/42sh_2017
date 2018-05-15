@@ -32,7 +32,7 @@ static char	**get_args_opt(t_node **cmd_list)
 		exit(FAILURE);
 	do {
 		parser->visited = true;
-		tab[i] = my_strdup(parser->name);
+		tab[i] = strdup(parser->name);
 		*cmd_list = (*cmd_list)->next;
 		++i;
 		parser = (t_parser *)(*cmd_list)->data;
@@ -57,7 +57,7 @@ char	**get_name_cmd(t_node **cmd_list)
 	if (!tab)
 		exit(FAILURE);
 	parser->visited = true;
-	tab[0] = my_strdup(parser->name);
+	tab[0] = strdup(parser->name);
 	tab[1] = NULL;
 	*cmd_list = (*cmd_list)->next;
 	return (tab);

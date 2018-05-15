@@ -13,7 +13,7 @@ void	add_node(t_node **cmd_list, e_token token, char *line)
 	if (!parser)
 		exit(SUCCESS);
 	parser->token = token;
-	parser->name = my_strdup(line);
+	parser->name = strdup(line);
 	parser->visited = false;
 	insert_end(cmd_list, parser);
 }

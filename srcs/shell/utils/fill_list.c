@@ -30,11 +30,11 @@ static char	*get_name(char *str)
 static char *get_content(char *str)
 {
 	int	i = count(str);
-	char	*content = malloc(sizeof(*content) * (my_strlen(str) - i));
+	char	*content = malloc(sizeof(*content) * (strlen(str) - i));
 
 	if (content == NULL)
 		return (NULL);
-	my_strcpy(content, str + i + 1);
+	strcpy(content, str + i + 1);
 	return (content);
 }
 

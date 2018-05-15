@@ -50,7 +50,7 @@ bool	l_redirection(t_tree *tree, t_node **env_list)
 	int	fd;
 	int	dupfd = dup(0);
 
-	if ((fd = open(tree->right->cmd.name[0], O_RDONLY)) == -1) {
+	if ((fd = open(tree->right->cmd.name[0], O_RDONLY)) == ERROR) {
 		cmd_exec(tree->left, env_list);
 		return (true);
 	}
@@ -68,9 +68,9 @@ static	char *fill_buffer(t_tree *tree, char *buffer)
 
 	my_memset(buffer, BUFFER_SIZE);
 	line = get_next_line(0);
-	while (my_strcmp(line, tree->right->cmd.name[0]) != 0) {
-		my_strcat(buffer, line);
-		my_strcat(buffer, "\n");
+	while (strcmp(line, tree->right->cmd.name[0]) != SUCCESS) {
+		strcat(buffer, line);
+		strcat(buffer, "\n");
 		my_putstr("? ");
 		free(line);
 		line = get_next_line(0);
@@ -87,7 +87,7 @@ bool	dl_redirection(t_tree *tree, t_node **env_list)
 	my_putstr("? ");
 	fill_buffer(tree, buffer);
 	pipe(pipefd);
-	write(pipefd[1], buffer, my_strlen(buffer));
+	write(pipefd[1], buffer, strlen(buffer));
 	close(pipefd[1]);
 	dupfd = dup(0);
 	dup2(pipefd[0], 0);

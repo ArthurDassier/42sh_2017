@@ -12,7 +12,7 @@ void	check_perm(char **path, char **line, int i, t_node *head)
 	char		**tab = list_to_tab(head);
 
 	if ((stat(path[i], &s) == 0 && S_ISDIR(s.st_mode))
-	|| (access(path[i], X_OK) == -1)) {
+	|| (access(path[i], X_OK) == ERROR)) {
 			my_putstr(path[i]);
 			my_putstr(": Permission denied.\n");
 			exit(1);
@@ -26,10 +26,10 @@ void	check_perm_cmd(char **line, t_node *head)
 	struct stat	s;
 
 	if ((stat(line[0], &s) == 0 && S_ISDIR(s.st_mode))
-	|| (access(line[0], X_OK) == -1)) {
+	|| (access(line[0], X_OK) == ERROR)) {
 			my_putstr(line[0]);
 			my_putstr(": Permission denied.\n");
-			exit(1);
+			exit(VALID);
 	} else {
 		exec_line(head, line);
 	}
