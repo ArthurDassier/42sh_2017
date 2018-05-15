@@ -20,7 +20,7 @@
 ** NB
 */
 #define NB_BUILT	5
-#define NB_FLAGS	8
+#define NB_FLAGS	9
 
 /*
 ** Print
@@ -30,7 +30,18 @@
 #define VERSION_MSG3 " free to change and redistribute it.\nThere is NO "
 #define VERSION_MSG4 "WARRANTY, to the extent permitted by law.\n\nWritten by"
 #define VERSION_MSG5 " Angela Martoccia Boyadjian."
-
+#define HELP_MSG1 "Usage: env [OPTION]... [-] [NAME=VALUE]... [COMMAND "
+#define HELP_MSG2 "[ARG]...]\nSet each NAME to VALUE in the environment and "
+#define HELP_MSG3 "run COMMAND.\n\nMandatory arguments to long options are "
+#define HELP_MSG4 "mandatory for short options too.\n\t-i, --ignore-environment"
+#define HELP_MSG5 "  start with an empty environment\n\t-0, --null           "
+#define HELP_MSG6 "end each output line with NUL, not newline\n"
+#define HELP_MSG7 "\t-u, --unset=NAME     remove variable from the environment"
+#define HELP_MSG8 "\n\t-C, --chdir=DIR      change working directory to DIR\n"
+#define HELP_MSG9 "\t--help     display this help and exit\n"
+#define HELP_MSG10 "\t--version  output version information and exit\n\n"
+#define HELP_MSG11 "A mere - implies -i.  If no COMMAND, print the resulting "
+#define HELP_MSG12 "environment."
 
 /*
 ** Colors

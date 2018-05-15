@@ -14,13 +14,17 @@ static t_built	env_tab[NB_FLAGS] = {
 	{"--null", &end_with_null},
 	{"-u", &rm_var},
 	{"--help", &display_help},
+	{"-C", &env_chdir},
 	{"--version", &display_version},
 	{"-", &ignore_env},
 };
 
-int	display_help(__attribute((unused)) char **line, t_node **env_list)
+int	display_help(__attribute((unused)) char **line, __attribute((unused))
+t_node **env_list)
 {
-	(void)env_list;
+	printf("%s%s%s%s", HELP_MSG1, HELP_MSG2, HELP_MSG3, HELP_MSG4);
+	printf("%s%s%s%s", HELP_MSG5, HELP_MSG6, HELP_MSG7, HELP_MSG8);
+	printf("%s%s%s%s\n", HELP_MSG9, HELP_MSG10, HELP_MSG11, HELP_MSG12);
 	return (SUCCESS);
 }
 
