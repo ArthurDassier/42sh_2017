@@ -50,6 +50,11 @@ bool	l_redirection(t_tree *tree, t_node **env_list)
 	int	fd;
 	int	dupfd = dup(0);
 
+	if (access(tree->right->cmd.name[0], F_OK) != 0) {
+		my_putstr(tree->right->cmd.name[0]);
+		my_putstr(": No such file or directory.\n");
+		return (false);
+	}
 	if ((fd = open(tree->right->cmd.name[0], O_RDONLY)) == -1) {
 		cmd_exec(tree->left, env_list);
 		return (true);
