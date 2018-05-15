@@ -23,7 +23,7 @@ int	check_path(char **line, char **path, t_node *env_list)
 	return (i);
 }
 
-static void	handling_sig(int status)
+void	handling_sig(int status)
 {
 	if (WIFSIGNALED(status) != 0 && WTERMSIG(status) != 0) {
 		if (WCOREDUMP(status) != 0 && WTERMSIG(status) == SIGSEGV)

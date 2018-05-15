@@ -63,8 +63,8 @@ int		cd_special_cases(char **, t_node **, char *);
 int		display_help(__attribute((unused)) char **line, t_node **env_list);
 int		display_version(char **line, t_node **env_list);
 int		rm_var(char **line, t_node **env_list);
-int		ignore_env(char **line, t_node **env_list);
-int 	end_with_null(__attribute((unused)) char **line, t_node **env_list);
+int		ignore_env(char **, t_node **);
+int		end_with_null(__attribute((unused)) char **, t_node **);
 
 /*
 ** Initialization
@@ -92,6 +92,7 @@ char	*get_env_content(t_node *, char *);
 int		delim_words(char *, char *);
 bool	check_delim(char, char *);
 int		is_lexem(char *);
+void	handling_sig(int);
 
 /*
 ** Execution

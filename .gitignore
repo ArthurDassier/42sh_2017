@@ -2,3 +2,6 @@ norm.rb
 GRAMMAR.txt
 test.c
 a.out
+mysh
+*.o
+main.c
