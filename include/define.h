@@ -15,6 +15,8 @@
 #define	VALID		1
 #define	SUCCESS		0
 #define	FAILURE		84
+#define ERR_MSG1 "env: cannot specify --null (-0) with command\n"
+#define ERR_MSG2 "Try 'env --help' for more information."
 
 /*
 ** NB
