@@ -62,8 +62,13 @@ SRCS	=	srcs/main.c										\
 			$(DIR)/execution/pipe.c							\
 			$(DIR)/execution/separators.c					\
 			$(DIR)/execution/rules_exec.c					\
+<<<<<<< HEAD
 			$(DIR)/scripting/check_script.c
 			
+=======
+			$(DIR)/globbings/globbings.c					\
+			$(DIR)/globbings/globbings_utils.c
+>>>>>>> 2e4a9c6befe7a2e2403beb4b6d3c7c52993292bb
 
 SRCS_UT	=	$(DIR)/utils/check_perm.c			\
 			$(DIR)/utils/delete_list.c			\
