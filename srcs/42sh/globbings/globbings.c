@@ -9,7 +9,7 @@
 #include <glob.h>
 #include <string.h>
 
-char **add_glob(char **tmp, char **globs, int j)
+static char **add_glob(char **tmp, char **globs, int j)
 {
 	int	i = 0;
 	int	count = 0;
@@ -32,7 +32,7 @@ char **add_glob(char **tmp, char **globs, int j)
 	return (tab);
 }
 
-char **my_glob(char *line, int j, char **tmp)
+static char **my_glob(char *line, int j, char **tmp)
 {
 	glob_t	globlist;
 
@@ -45,9 +45,9 @@ char **my_glob(char *line, int j, char **tmp)
 	return (tmp);
 }
 
-int analyse_globbings(char *tmp)
+static int analyse_globbings(char *tmp)
 {
-	int i = 0;
+	int	i = 0;
 
 	while (tmp[i] != '\0') {
 		if ((tmp[i] == '*' || tmp[i] == '?' || tmp[i] == '['
@@ -59,9 +59,9 @@ int analyse_globbings(char *tmp)
 	return (0);
 }
 
-int check_glob(char **tmp)
+static int check_glob(char **tmp)
 {
-	int i = 0;
+	int	i = 0;
 
 	while (tmp[i] != NULL) {
 		if (analyse_globbings(tmp[i]) == -1) {
