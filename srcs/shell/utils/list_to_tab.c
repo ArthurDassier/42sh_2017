@@ -14,15 +14,15 @@ char	**list_to_tab(t_node *head)
 	t_save	*data;
 	int		i = 0;
 
-	if (tab == NULL || head == NULL)
+	if (!tab || !head)
 		return (NULL);
 	do {
 		data = (t_save *)tmp->data;
-		tab[i] = malloc(sizeof(char) * (my_strlen(data->name)
-		+ my_strlen(data->content) + 2));
-		my_strcpy(tab[i], data->name);
-		my_strcat(tab[i], "=");
-		my_strcat(tab[i], data->content);
+		tab[i] = malloc(sizeof(char) * (strlen(data->name)
+		+ strlen(data->content) + 2));
+		strcpy(tab[i], data->name);
+		strcat(tab[i], "=");
+		strcat(tab[i], data->content);
 		tmp = tmp->next;
 		++i;
 	} while (tmp != head);

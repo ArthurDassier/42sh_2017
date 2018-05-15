@@ -20,7 +20,7 @@ static void	ctrl_d(char *s)
 {
 	if (s == NULL) {
 		my_putstr("exit\n");
-		exit(0);
+		exit(SUCCESS);
 	}
 }
 
@@ -32,7 +32,6 @@ t_aliases_list *alias_list)
 
 	line = my_str_to_wordtab_delim(s, " \t\r");
 	change_for_alias(alias_list, line);
-	replace_from_history(line);
 	lexer(cmd_list, line, *env_list);
 	tree = s_rule(cmd_list);
 	if (!tree) {
@@ -56,18 +55,18 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 	open(".42_src/history.txt", O_RDWR | O_CREAT | O_TRUNC, S_IWUSR | S_IRUSR);
 	signal(SIGINT, ctrl_c);
 	init_list(&env_list, env);
-	using_history();
 	while (1) {
 		prompt_line = prompt(env_list);
 		free_list(cmd_list, &free_lexer);
 		cmd_list = NULL;
 		printf(CYAN);
-		s = readline(prompt_line);
+		my_putstr(prompt_line);
+		s = get_next_line(0);
 		ctrl_d(s);
-		put_in_history(s);
-		if (check_char(s) == SUCCESS)
+		if (check_char(s) == SUCCESS) {
 			if (init_exec(s, &cmd_list, &env_list, alias_list) == FAILURE)
 				continue;
+		}
 	}
 	return (SUCCESS);
 }

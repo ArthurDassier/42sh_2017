@@ -12,8 +12,8 @@
 #include <sys/types.h>
 #include <signal.h>
 #include <wait.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include <stdio.h>
+#include <string.h>
 #include "list.h"
 #include "my.h"
 #include "parser.h"
@@ -130,10 +130,14 @@ t_aliases_list	*recup_aliases(void);
 /*
 ** History
 */
-
 void	put_in_history(char *);
 void	write_in_file(void);
 void	replace_from_history(char **);
+
+/*
+** Scripting
+*/
+bool	check_script(char **);
 
 /*
 ** Display

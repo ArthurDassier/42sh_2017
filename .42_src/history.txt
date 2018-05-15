@@ -1,4 +1,0 @@
-1	env -u TERM_PROGRAM	Tue May 15 15:53:28 2018
-2	env	Tue May 15 15:53:30 2018
-3	env -u LESS	Tue May 15 15:53:37 2018
-4	ls	Tue May 15 15:53:42 2018

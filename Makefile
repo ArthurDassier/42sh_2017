@@ -23,8 +23,6 @@ SRCS	=	srcs/main.c										\
 			$(DIR)/alias/alias_cmd.c						\
 			$(DIR)/alias/recup_aliases.c					\
 			$(DIR)/alias/change_for_alias.c					\
-			$(DIR)/history/create_history.c					\
-			$(DIR)/history/history_function.c				\
 			$(DIR)/utils/check_perm.c						\
 			$(DIR)/utils/delete_list.c						\
 			$(DIR)/utils/print.c							\
@@ -63,7 +61,9 @@ SRCS	=	srcs/main.c										\
 			$(DIR)/execution/builtins/setenv.c				\
 			$(DIR)/execution/pipe.c							\
 			$(DIR)/execution/separators.c					\
-			$(DIR)/execution/rules_exec.c
+			$(DIR)/execution/rules_exec.c					\
+			$(DIR)/scripting/check_script.c
+			
 
 SRCS_UT	=	$(DIR)/utils/check_perm.c			\
 			$(DIR)/utils/delete_list.c			\
@@ -97,7 +97,9 @@ SRCS_UT	=	$(DIR)/utils/check_perm.c			\
 			$(DIR)/execution/rules_exec.c		\
 			$(DIR)/alias/alias_cmd.c			\
 			$(DIR)/alias/recup_aliases.c		\
-			$(DIR)/aliaschange_for_alias.c
+			$(DIR)/aliaschange_for_alias.c		\
+			$(DIR)/scripting/check_script.c
+
 
 UT_DIR	=	tests/lib/
 

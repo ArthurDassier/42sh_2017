@@ -11,13 +11,13 @@ void	display_tree(t_tree *tree)
 {
 	if (tree == NULL)
 		return;
-	my_printf("node %d / %s\n", tree->cmd.token , tree->cmd.name[0]);
+	printf("node %d / %s\n", tree->cmd.token , tree->cmd.name[0]);
 	if (tree->left != NULL) {
-		my_printf("left -> %d / %s\n", tree->left->cmd.token,
+		printf("left -> %d / %s\n", tree->left->cmd.token,
 		tree->left->cmd.name[0]);
 	}
 	if (tree->right != NULL) {
-		my_printf("right -> %d / %s\n\n", tree->right->cmd.token,
+		printf("right -> %d / %s\n\n", tree->right->cmd.token,
 		tree->right->cmd.name[0]);
 	}
 	display_tree(tree->left);

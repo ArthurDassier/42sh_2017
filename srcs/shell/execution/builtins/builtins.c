@@ -18,14 +18,14 @@ int	exit_built(char **line, __attribute((unused)) t_node **env_list)
 {
 	if (my_strarraylen(line) == VALID)
 		exit(SUCCESS);
-	exit(my_getnbr(line[1]));
+	exit(atoi(line[1]));
 	return (SUCCESS);
 }
 
 int	exec_builtins(char **line, t_node **env_list)
 {
 	for (int i = 0; i < NB_BUILT; ++i) {
-		if (my_strcmp(tab_mini[i].builtin, line[0]) == SUCCESS) {
+		if (strcmp(tab_mini[i].builtin, line[0]) == SUCCESS) {
 			if ((tab_mini[i].ptr)(line, env_list) == FAILURE)
 				return (FAILURE);
 		}

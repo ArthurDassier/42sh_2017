@@ -49,6 +49,10 @@ int	rm_var(char **line, t_node **env_list)
 
 int end_with_null(__attribute((unused)) char **line, t_node **env_list)
 {
+	if (my_strarraylen(line) > 2) {
+		printf("%s%s\n", ERR_MSG1, ERR_MSG2);
+		return (SUCCESS);
+	}
 	display_list(*env_list, &print_list_with_null);
 	return (SUCCESS);
 }
