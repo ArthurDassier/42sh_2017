@@ -24,10 +24,11 @@ int	display_help(__attribute((unused)) char **line, t_node **env_list)
 	return (SUCCESS);
 }
 
-int display_version(char **line, t_node **env_list)
+int display_version(__attribute((unused)) char **line, __attribute((unused))
+t_node **env_list)
 {
-	(void)line;
-	(void)env_list;
+	printf("%s%s%s", VERSION_MSG1, VERSION_MSG2, VERSION_MSG3);
+	printf("%s%s\n", VERSION_MSG4, VERSION_MSG5);
 	return (SUCCESS);
 }
 
@@ -46,13 +47,6 @@ int	rm_var(char **line, t_node **env_list)
 	return (SUCCESS);
 }
 
-int	ignore_env(char **line, t_node **env_list)
-{
-	(void)line;
-	(void)env_list;
-	return (SUCCESS);
-}
-
 int end_with_null(__attribute((unused)) char **line, t_node **env_list)
 {
 	display_list(*env_list, &print_list_with_null);
@@ -65,7 +59,7 @@ int	env_built( __attribute((unused)) char **line, t_node **env_list)
 		display_list(*env_list, &print_list);
 		return (SUCCESS);
 	}
-	for (int i = 0; i < NB_BUILT; ++i) {
+	for (int i = 0; i < NB_FLAGS; ++i) {
 		if (my_strcmp(env_tab[i].builtin, line[1]) == SUCCESS) {
 			if ((env_tab[i].ptr)(line, env_list) == FAILURE)
 				return (FAILURE);

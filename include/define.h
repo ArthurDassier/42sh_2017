@@ -23,6 +23,16 @@
 #define NB_FLAGS	8
 
 /*
+** Print
+*/
+#define VERSION_MSG1 "env (GNU coreutils) 8.28\nCopyright (C) 2017 Free "
+#define VERSION_MSG2 "Software Foundation, Inc.\nThis is free software: you are"
+#define VERSION_MSG3 " free to change and redistribute it.\nThere is NO "
+#define VERSION_MSG4 "WARRANTY, to the extent permitted by law.\n\nWritten by"
+#define VERSION_MSG5 " Angela Martoccia Boyadjian."
+
+
+/*
 ** Colors
 */
 #define RED     	"\x1b[31m"

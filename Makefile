@@ -57,6 +57,7 @@ SRCS	=	srcs/main.c										\
 			$(DIR)/execution/builtins/builtins.c			\
 			$(DIR)/execution/builtins/cd.c					\
 			$(DIR)/execution/builtins/env.c					\
+			$(DIR)/execution/builtins/ignore_env.c			\
 			$(DIR)/execution/builtins/setenv.c				\
 			$(DIR)/execution/pipe.c							\
 			$(DIR)/execution/separators.c					\
