@@ -38,16 +38,12 @@ t_node **env_list)
 
 int	rm_var(char **line, t_node **env_list)
 {
-	char *str;
+	char *str = get_env_name(*env_list, line[2]);
 
-	if (strcmp(line[1], "-u") == SUCCESS) {
-		str = get_env_name(*env_list, line[2]);
-		if (!str)
-			return (FAILURE);
-		delete_node(env_list, str);
-		display_list(*env_list, &print_list);
-		return (SUCCESS);
-	}
+	if (!str)
+		return (FAILURE);
+	delete_node(env_list, str);
+	display_list(*env_list, &print_list);
 	return (SUCCESS);
 }
 
@@ -63,8 +59,13 @@ int	env_built( __attribute((unused)) char **line, t_node **env_list)
 		display_list(*env_list, &print_list);
 		return (SUCCESS);
 	}
+	if (strncmp(line[1], "--unset=", 8) == SUCCESS) {
+		if (unset_name(line, env_list) == FAILURE)
+			return (FAILURE);
+		return (SUCCESS);
+	}
 	for (int i = 0; i < NB_FLAGS; ++i) {
-		if (my_strcmp(env_tab[i].builtin, line[1]) == SUCCESS) {
+		if (strcmp(env_tab[i].builtin, line[1]) == SUCCESS) {
 			if ((env_tab[i].ptr)(line, env_list) == FAILURE)
 				return (FAILURE);
 		}

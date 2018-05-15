@@ -62,6 +62,7 @@ void	change_pwd(t_node **, char *);
 int		cd_special_cases(char **, t_node **, char *);
 int		display_help(__attribute((unused)) char **, t_node **);
 int		normal_cd(t_node **, char **);
+int		unset_name(char **, t_node **);
 int		get_cd(char *, t_node **);
 int		display_version(char **line, t_node **);
 int		rm_var(char **, t_node **);
