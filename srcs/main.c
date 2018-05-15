@@ -62,12 +62,14 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 		free_list(cmd_list, &free_lexer);
 		cmd_list = NULL;
 		printf(CYAN);
-		s = readline(prompt_line);
+		my_putstr(prompt_line);
+		s = get_next_line(0);
 		ctrl_d(s);
 		put_in_history(s);
-		if (check_char(s) == SUCCESS)
+		if (check_char(s) == SUCCESS) {
 			if (init_exec(s, &cmd_list, &env_list, alias_list) == FAILURE)
 				continue;
+		}
 	}
 	return (SUCCESS);
 }

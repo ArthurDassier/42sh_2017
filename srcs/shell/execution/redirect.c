@@ -15,7 +15,7 @@ bool	r_redirection(t_tree *tree, t_node **env_list)
 	int	dupfd = dup(1);
 
 	if ((fd = open(tree->right->cmd.name[0], O_RDWR
-	| O_CREAT | O_TRUNC, 0666)) == -1) {
+	| O_CREAT | O_TRUNC, 0666)) == ERROR) {
 		my_print_err("Failed to open");
 		exit(FAILURE);
 	}
@@ -33,7 +33,7 @@ bool	dr_redirection(t_tree *tree, t_node **env_list)
 	int	dupfd = dup(1);
 
 	if ((fd = open(tree->right->cmd.name[0], O_RDWR
-	| O_CREAT | O_APPEND, 0666)) == -1) {
+	| O_CREAT | O_APPEND, 0666)) == ERROR) {
 		my_print_err("Failed to open");
 		exit(FAILURE);
 	}
