@@ -6,12 +6,12 @@
 */
 #include "42sh.h"
 
-void	add_node(t_node **cmd_list, t_token token, char *line)
+void	add_node(t_node **cmd_list, e_token token, char *line)
 {
 	t_parser *parser = malloc(sizeof(*parser));
 
 	if (!parser)
-		exit(0);
+		exit(SUCCESS);
 	parser->token = token;
 	parser->name = my_strdup(line);
 	parser->visited = false;

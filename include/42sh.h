@@ -46,19 +46,29 @@ typedef struct	s_save {
 
 typedef struct	s_built {
 	char	*builtin;
-	char	**(*ptr)(char **, t_node **);
-}		t_built;
+	int		(*ptr)(char **, t_node **);
+}				t_built;
 
 /*
 ** Built-ins
 */
-char	**env_built(char **, t_node **);
-char	**exit_built(char **, t_node **);
-int	exec_builtins(char **, t_node **);
-char	**cd_built(char **, t_node **);
-char	**setenv_built(char **, t_node **);
+int		env_built(char **, t_node **);
+int		exit_built(char **, t_node **);
+int		cd_built(char **, t_node **);
+int		setenv_built(char **, t_node **);
 bool	check_env_name(t_node *, char *);
-char	**unsetenv_built(char **, t_node **);
+int		unsetenv_built(char **, t_node **);
+void	change_pwd(t_node **, char *);
+int		cd_special_cases(char **, t_node **, char *);
+int		display_help(__attribute((unused)) char **, t_node **);
+int		normal_cd(t_node **, char **);
+int		unset_name(char **, t_node **);
+int		get_cd(char *, t_node **);
+int		display_version(char **line, t_node **);
+int		rm_var(char **, t_node **);
+int		ignore_env(char **, t_node **);
+int		end_with_null(__attribute((unused)) char **, t_node **);
+int		env_chdir(char **, t_node **);
 
 /*
 ** Initialization
@@ -69,24 +79,24 @@ void	init_cmd(t_node **, char *);
 /*
 ** Utils
 */
-char *prompt(t_node *);
+char 	*prompt(t_node *);
 void	delete_node(t_node **, char *);
-int	cmp(void *, void *);
+int		cmp(void *, void *);
 char	**list_to_tab(t_node *);
-int	check_char(char *);
+int		check_char(char *);
 void	delete_tab(void *);
 void	printing(void*);
 t_tree	*s_rule(t_node **);
-int	check_path(char **, char **path, t_node *);
+int		check_path(char **, char **, t_node *);
 char	*get_env_name(t_node *, char *);
 void	check_perm(char **, char **, int, t_node *);
 void	check_perm_cmd(char **, t_node *);
 char	**get_path(t_node *);
-char	*get_env_name(t_node *, char *);
 char	*get_env_content(t_node *, char *);
 int		delim_words(char *, char *);
 bool	check_delim(char, char *);
 int		is_lexem(char *);
+void	handling_sig(int);
 
 /*
 ** Execution
@@ -105,27 +115,32 @@ bool	dr_redirection(t_tree *, t_node **);
 bool	l_redirection(t_tree *, t_node **);
 bool	pipe_exec(t_tree *, t_node **);
 bool	dl_redirection(t_tree *, t_node **);
+bool	separators_exec(t_tree *, t_node **);
+int		exec_builtins(char **, t_node **);
+bool	semiexp_exec(t_tree *, t_node **);
+bool	parentheses(t_tree *, t_node **);
 
 /*
 ** Aliases
 */
-
-int	aliases(t_aliases_list *, char **);
 void	change_for_alias(t_aliases_list *, char **);
-t_aliases_list	*recup_aliases_list(void);
+int	alias_cmd(t_aliases_list *, char **);
+t_aliases_list	*recup_aliases(void);
 
 /*
 ** History
 */
 
-void	write_in_history(char *, int);
+void	put_in_history(char *);
+void	write_in_file(void);
+void	replace_from_history(char **);
 
 /*
 ** Display
 */
-
 void	print_list(void *);
 void	display(void *);
+void	print_list_with_null(void *);
 
 /*
 ** Globbings

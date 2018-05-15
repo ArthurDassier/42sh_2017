@@ -10,7 +10,7 @@ static int count_num(int i)
 {
 	int	nb = 0;
 
-	while (i <= -9 || i >= 9) {
+	while (i < -9 || i > 9) {
 		i = i / 10;
 		++nb;
 	}

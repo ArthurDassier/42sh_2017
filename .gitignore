@@ -1,2 +1,8 @@
 norm.rb
 GRAMMAR.txt
+test.c
+a.out
+mysh
+*.o
+*.a
+main.c
