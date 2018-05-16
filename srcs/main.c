@@ -66,6 +66,7 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 		cmd_list = NULL;
 		printf(CYAN);
 		s = readline(prompt_line);
+		s = inib(s);
 		ctrl_d(s);
 		put_in_history(s);
 		if (check_char(s) == SUCCESS)

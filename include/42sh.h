@@ -152,6 +152,12 @@ int alloc_tab(char **, char **);
 int back_slash(int, char *);
 
 /*
+** Inihibitors
+*/
+
+char *inib(char *);
+
+/*
 ** Free
 */
 void	free_lexer(void *);
