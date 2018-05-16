@@ -5,6 +5,5 @@ a.out
 mysh
 *.o
 *.a
-main.c
 .42_src/history.txt
 .42_src
