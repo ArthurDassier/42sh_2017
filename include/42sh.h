@@ -147,6 +147,15 @@ void	display(void *);
 void	print_list_with_null(void *);
 
 /*
+** Globbings
+*/
+char **globbings(char **);
+void release_tmp(char **);
+char **copy_line(char **);
+int alloc_tab(char **, char **);
+int back_slash(int, char *);
+
+/*
 ** Free
 */
 void	free_lexer(void *);

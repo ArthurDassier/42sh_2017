@@ -31,6 +31,9 @@ t_aliases_list *alias_list)
 	t_tree	*tree;
 
 	line = my_str_to_wordtab_delim(s, " \t\r");
+	line = globbings(line);
+	if (line == NULL)
+		return (FAILURE);
 	change_for_alias(alias_list, line);
 	lexer(cmd_list, line, *env_list);
 	tree = s_rule(cmd_list);
