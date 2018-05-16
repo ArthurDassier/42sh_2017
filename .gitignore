@@ -4,10 +4,5 @@ test.c
 a.out
 mysh
 *.o
-<<<<<<< HEAD
-main.c
-script.sh
-=======
 *.a
-main.c
->>>>>>> 2e4a9c6befe7a2e2403beb4b6d3c7c52993292bb
+script.sh

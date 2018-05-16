@@ -41,6 +41,7 @@ t_aliases_list *alias_list)
 		my_putstr("ERROR\n");
 		return (FAILURE);
 	}
+	display_tree(tree);
 	s_exec(tree, env_list);
 	free(s);
 	free_tree(tree);
@@ -65,6 +66,7 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 		printf(CYAN);
 		my_putstr(prompt_line);
 		s = get_next_line(0);
+		s = inib(s);
 		ctrl_d(s);
 		if (check_char(s) == SUCCESS
 		&& init_exec(s, &cmd_list, &env_list, alias_list) == FAILURE)
