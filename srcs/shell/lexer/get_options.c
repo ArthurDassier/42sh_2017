@@ -8,7 +8,7 @@
 
 // Array of const value
 static const char	*lexem_list[WORD] = {
-	"&&", "|", "||", ";", ">", "<", ">>", "<<"
+	"&&", "|", "||", ";", ">", "<", ">>", "<<", "(", ")"
 };
 
 int	get_lexem(t_node **lexer_list, char *str)

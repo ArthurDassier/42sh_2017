@@ -6,16 +6,16 @@
 */
 #include "42sh.h"
 
-static const char	*lexem_list[8] = {
-	"&&", "|", "||", ";", ">", "<", ">>", "<<"
+static const char	*lexem_list[10] = {
+	"&&", "|", "||", ";", ">", "<", ">>", "<<", "(", ")"
 };
 
 int	is_lexem(char *str)
 {
 	int	i;
-	int	save = -1;
+	int	save = ERROR;
 
-	for (i = 0; i < 8; ++i) {
+	for (i = 0; i < 10; ++i) {
 		if (strncmp(str, lexem_list[i],
 		strlen(lexem_list[i])) == SUCCESS) {
 			save = i;
@@ -54,11 +54,11 @@ static int	add_lexem(char *str, char **tab, int *j, int count)
 
 char	**my_str_to_wordtab_delim(char *str, char *delim)
 {
-	char	**tab;
-	int	nb = delim_words(str, delim);
-	int	i = 0;
-	int	j = 0;
-	int	count = 0;
+	char			**tab;
+	int				nb = delim_words(str, delim);
+	unsigned int	i = 0;
+	int				j = 0;
+	int				count = 0;
 
 	tab = malloc(sizeof(char *) * (nb + 1));
 	while (j < nb && i < strlen(str)) {

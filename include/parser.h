@@ -17,6 +17,8 @@ typedef enum	s_token {
 	L_REDIRECT,
 	DR_REDIRECT,
 	DL_REDIRECT,
+	L_PAR,
+	R_PAR,
 	WORD,
 	BUILTIN,
 	CMD
