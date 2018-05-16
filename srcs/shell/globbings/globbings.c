@@ -35,39 +35,33 @@ static int check_glob(char **tmp)
 	return (0);
 }
 
-static char **add_glob(char **tmp, char **globs, int j)
+static char **add_glob(char **tmp, char **globs)
 {
 	int	i = 0;
-	int	count = 0;
 	int	nb = 0;
+	int	count = 0;
 	char	**tab = malloc(sizeof(char *) * alloc_tab(tmp, globs));
 
 	if (tab == NULL)
 		return (NULL);
-	while (tmp[i] != NULL) {
-		if (i == j)
-			++i;
-		if (tmp[i] == NULL)
-			break;
+	while (tmp[i] != NULL && analyse_globbings(tmp[i]) != -1)
 		tab[nb++] = strdup(tmp[i++]);
-	}
 	while (globs[count] != NULL)
 		tab[nb++] = strdup(globs[count++]);
+	while (tmp[++i] != NULL)
+		tab[nb++] = strdup(tmp[i]);
 	tab[nb] = NULL;
 	release_tmp(tmp);
 	return (tab);
 }
 
-static char **my_glob(char *line, int j, char **tmp)
+static char **my_glob(char *line, char **tmp)
 {
 	glob_t	globlist;
 
-	if (glob(line, 0, NULL, &globlist) == 0) {
-		if (check_glob(tmp) != -1) {
-			globfree(&globlist);
-			return (tmp);
-		}
-		tmp = add_glob(tmp, globlist.gl_pathv, j);
+	if (analyse_globbings(line) == -1
+	&& glob(line, 0, NULL, &globlist) == 0) {
+		tmp = add_glob(tmp, globlist.gl_pathv);
 		if (tmp == NULL)
 			return (NULL);
 		globfree(&globlist);
@@ -77,20 +71,23 @@ static char **my_glob(char *line, int j, char **tmp)
 
 char **globbings(char **line)
 {
-	int	j = 0;
 	char	**tmp = copy_line(line);
 
 	if (tmp == NULL)
 		return (NULL);
-	while (line[j] != NULL) {
-		tmp = my_glob(line[j], j, tmp);
+	if (check_glob(tmp) != -1) {
+		release_tmp(tmp);
+		return (line);
+	}
+	for (int j = 0; line[j] != NULL; ++j) {
+		tmp = my_glob(line[j], tmp);
 		if (tmp == NULL)
 			return (NULL);
-		++j;
 	}
 	release_tmp(line);
 	if (check_glob(tmp) == -1) {
 		my_printf("%s: No match.\n", tmp[0]);
+		release_tmp(tmp);
 		return (NULL);
 	}
 	return (tmp);
