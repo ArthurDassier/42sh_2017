@@ -16,6 +16,8 @@ static char **add_glob(char **tmp, char **globs, int j)
 	int	nb = 0;
 	char	**tab = malloc(sizeof(char *) * alloc_tab(tmp, globs));
 
+	//for (int i = 0; globs[i]; ++i)
+	//	printf(">>>>>>> %s\n", globs[i]);
 	if (tab == NULL)
 		return (NULL);
 	while (tmp[i] != NULL) {
@@ -29,6 +31,8 @@ static char **add_glob(char **tmp, char **globs, int j)
 		tab[nb++] = strdup(globs[count++]);
 	tab[nb] = NULL;
 	release_tmp(tmp);
+	// /for (int i = 0; tab[i]; ++i)
+	//	printf(">> %s\n", tab[i]);
 	return (tab);
 }
 
