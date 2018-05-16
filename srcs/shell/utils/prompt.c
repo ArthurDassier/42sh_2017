@@ -14,7 +14,7 @@ static char *get_branch(void)
 	int		save;
 	char	*curr = strdup(" \033[1;35mgit:(");
 
-	if (fd == -1) {
+	if (fd == ERROR) {
 		free(curr);
 		return (NULL);
 	}
@@ -23,7 +23,7 @@ static char *get_branch(void)
 		if (branch[i] == '/')
 			save = i;
 	}
-	curr = realloc(curr, strlen(branch + save + 1) + 2);
+	curr = realloc(curr, sizeof(*curr) * strlen(branch + save + 1) + 15);
 	strcat(curr, branch + save + 1);
 	strcat(curr, ")");
 	return (curr);
