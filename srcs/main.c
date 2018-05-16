@@ -55,7 +55,7 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 	open(".42_src/history.txt", O_RDWR | O_CREAT | O_TRUNC, S_IWUSR | S_IRUSR);
 	signal(SIGINT, ctrl_c);
 	init_list(&env_list, env);
-	while (1) {
+	while (VALID) {
 		prompt_line = prompt(env_list);
 		free_list(cmd_list, &free_lexer);
 		cmd_list = NULL;
@@ -63,10 +63,9 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 		my_putstr(prompt_line);
 		s = get_next_line(0);
 		ctrl_d(s);
-		if (check_char(s) == SUCCESS) {
-			if (init_exec(s, &cmd_list, &env_list, alias_list) == FAILURE)
+		if (check_char(s) == SUCCESS
+		&& init_exec(s, &cmd_list, &env_list, alias_list) == FAILURE)
 				continue;
-		}
 	}
 	return (SUCCESS);
 }
