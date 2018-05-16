@@ -10,6 +10,7 @@ static void	cmd_not_found(char **line)
 {
 	my_putstr(line[0]);
 	my_putstr(": Command not found.\n");
+	exit(0);
 }
 
 int	check_path(char **line, char **path, t_node *env_list)
