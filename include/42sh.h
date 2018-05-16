@@ -160,6 +160,7 @@ int back_slash(int, char *);
 */
 
 char *inib(char *);
+char **handle_backslash(char **, char *);
 
 /*
 ** Free

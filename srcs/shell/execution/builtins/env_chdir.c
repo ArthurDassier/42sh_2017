@@ -7,7 +7,7 @@
 
 #include "42sh.h"
 
-static char  **get_cmd_from_line(char **line)
+static char **get_cmd_from_line(char **line)
 {
 	char	**cmd = malloc(sizeof(*cmd) * (my_strarraylen(line) - 2));
 	int		j = 0;

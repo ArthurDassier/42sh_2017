@@ -31,6 +31,7 @@ t_aliases_list *alias_list)
 	t_tree	*tree;
 
 	line = my_str_to_wordtab_delim(s, " \t\r");
+	line = handle_backslash(line, s);
 	line = globbings(line);
 	if (line == NULL)
 		return (FAILURE);
