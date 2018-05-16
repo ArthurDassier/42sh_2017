@@ -10,6 +10,7 @@
 static char *check_inib(char *str, int *i)
 {
 	char *tmp;
+	char *s;
 
 	if (str[*i + 1] == '\\') {
 		str[*i] = ' ';
@@ -20,7 +21,12 @@ static char *check_inib(char *str, int *i)
 		tmp = get_next_line(0);
 		if (tmp == NULL)
 			return (str);
-		my_strcat(str, tmp);
+		s = malloc(sizeof(char) * (strlen(tmp) + strlen(str) + 1));
+		s = strcpy(s, str);
+		s = strcat(s, tmp);
+		free(tmp);
+		free(str);
+		return (s);
 	}
 	return (str);
 }
