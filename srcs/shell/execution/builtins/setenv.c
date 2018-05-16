@@ -13,11 +13,11 @@ t_node **env_list)
 
 	if (!data)
 		exit(FAILURE);
-	data->name = my_strdup(line[1]);
+	data->name = strdup(line[1]);
 	if (!line[2])
-		data->content = my_strdup("");
+		data->content = strdup("");
 	else
-		data->content = my_strdup(line[2]);
+		data->content = strdup(line[2]);
 	insert_end(env_list, data);
 }
 
@@ -28,9 +28,9 @@ t_save *data)
 
 	data = (t_save *)tmp->data;
 	if (my_strarraylen(line) == 2)
-		data->content = my_strdup("");
+		data->content = strdup("");
 	else
-		data->content = my_strdup(line[2]);
+		data->content = strdup(line[2]);
 }
 
 int		setenv_built(char **line, t_node **env_list)
@@ -58,7 +58,7 @@ int		unsetenv_built(char **line, t_node **env_list)
 {
 	char	*str;
 
-	if (my_strarraylen(line) == 1) {
+	if (my_strarraylen(line) == VALID) {
 		my_print_err("unsetenv: Too few arguments.\n");
 		return (FAILURE);
 	}

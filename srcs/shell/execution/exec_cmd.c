@@ -10,6 +10,7 @@ static void	cmd_not_found(char **line)
 {
 	my_putstr(line[0]);
 	my_putstr(": Command not found.\n");
+	exit(0);
 }
 
 int	check_path(char **line, char **path, t_node *env_list)
@@ -52,7 +53,7 @@ bool	exec_cmd(char **line, t_node *env_list)
 	pid_t	pid = fork();
 	int		i;
 
-	if (pid == -1) {
+	if (pid == ERROR) {
 		my_print_err("Failed\n");
 	} else if (pid > 0) {
 		waitpid(pid, &status, WUNTRACED);
@@ -60,7 +61,7 @@ bool	exec_cmd(char **line, t_node *env_list)
 	} else {
 		i = check_path(line, path, env_list);
 		if ((path == NULL || path[i] == 0)
-		&& (access(line[0], F_OK) != -1))
+		&& (access(line[0], F_OK) != ERROR))
 			check_perm_cmd(line, env_list);
 		else {
 			cmd_not_found(line);

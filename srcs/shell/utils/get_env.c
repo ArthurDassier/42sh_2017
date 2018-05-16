@@ -16,7 +16,7 @@ char	*get_env_name(t_node *head, char *name)
 	do {
 		content = (t_save *)tmp->data;
 		tmp = tmp->next;
-		if (my_strcmp(content->name, name) == 0)
+		if (strcmp(content->name, name) == SUCCESS)
 			return (content->name);
 	} while (tmp != head);
 	return (NULL);
@@ -32,7 +32,7 @@ char	*get_env_content(t_node *head, char *name)
 	do {
 		content = (t_save *)tmp->data;
 		tmp = tmp->next;
-		if (my_strcmp(content->name, name) == 0)
+		if (strcmp(content->name, name) == SUCCESS)
 			return (content->content);
 	} while (tmp != head);
 	return (NULL);
@@ -48,7 +48,7 @@ bool	check_env_name(t_node *head, char *name)
 	do {
 		content = (t_save *)tmp->data;
 		tmp = tmp->next;
-		if (my_strcmp(content->name, name) == 0)
+		if (strcmp(content->name, name) == SUCCESS)
 			return (true);
 	} while (tmp != head);
 	return (false);

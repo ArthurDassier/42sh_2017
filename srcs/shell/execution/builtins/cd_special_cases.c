@@ -12,9 +12,9 @@ void	change_pwd(t_node **env_list, char *str)
 	char	**line = malloc(sizeof(*line) * 4);
 	char	buf[500];
 
-	line[0] = my_strdup("setenv");
-	line[1] = my_strdup("OLDPWD");
-	line[2] = my_strdup(getcwd(buf, 500));
+	line[0] = strdup("setenv");
+	line[1] = strdup("OLDPWD");
+	line[2] = strdup(getcwd(buf, 500));
 	line[3] = NULL;
 	setenv_built(line, env_list);
 	free(line[0]);
@@ -50,11 +50,11 @@ int get_cd(char *str, t_node **env_list)
 
 int cd_special_cases(char **line, t_node **env_list, char *str)
 {
-	if (my_strcmp(line[1], "-") == 0) {
+	if (strcmp(line[1], "-") == SUCCESS) {
 		if (get_cd(str, env_list) == FAILURE)
 			return (FAILURE);
 		return (SUCCESS);
-	} else if (my_strcmp(line[1], "~") == 0) {
+	} else if (strcmp(line[1], "~") == SUCCESS) {
 		if ((str = get_env_content(*env_list, "HOME")) == NULL) {
 			my_putstr("cd: No home directory.\n");
 			return (FAILURE);

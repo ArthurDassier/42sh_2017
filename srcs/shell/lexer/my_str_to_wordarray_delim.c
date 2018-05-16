@@ -16,8 +16,8 @@ int	is_lexem(char *str)
 	int	save = -1;
 
 	for (i = 0; i < 8; ++i) {
-		if (my_strncmp(str, lexem_list[i],
-		my_strlen(lexem_list[i])) == 0) {
+		if (strncmp(str, lexem_list[i],
+		strlen(lexem_list[i])) == SUCCESS) {
 			save = i;
 		}
 	}
@@ -41,9 +41,9 @@ static int	add_lexem(char *str, char **tab, int *j, int count)
 			tab[*j][count] = '\0';
 			*j += 1;
 		}
-		tab[*j] = my_strdup(lexem_list[is_lexem(str)]);
+		tab[*j] = strdup(lexem_list[is_lexem(str)]);
 		*j += 1;
-		return (my_strlen(lexem_list[is_lexem(str)]));
+		return (strlen(lexem_list[is_lexem(str)]));
 	} else {
 		tab[*j][count] = '\0';
 		*j += 1;
@@ -61,7 +61,7 @@ char	**my_str_to_wordtab_delim(char *str, char *delim)
 	int	count = 0;
 
 	tab = malloc(sizeof(char *) * (nb + 1));
-	while (j < nb && i < my_strlen(str)) {
+	while (j < nb && i < strlen(str)) {
 		while (check_delim(str[i], delim) == true)
 			++i;
 		count = 0;

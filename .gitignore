@@ -5,5 +5,4 @@ a.out
 mysh
 *.o
 *.a
-.42_src/history.txt
-.42_src
+script.sh
