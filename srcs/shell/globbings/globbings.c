@@ -9,46 +9,6 @@
 #include <glob.h>
 #include <string.h>
 
-static char **add_glob(char **tmp, char **globs, int j)
-{
-	int	i = 0;
-	int	count = 0;
-	int	nb = 0;
-	char	**tab = malloc(sizeof(char *) * alloc_tab(tmp, globs));
-
-	//for (int i = 0; globs[i]; ++i)
-	//	printf(">>>>>>> %s\n", globs[i]);
-	if (tab == NULL)
-		return (NULL);
-	while (tmp[i] != NULL) {
-		if (i == j)
-			++i;
-		if (tmp[i] == NULL)
-			break;
-		tab[nb++] = strdup(tmp[i++]);
-	}
-	while (globs[count] != NULL)
-		tab[nb++] = strdup(globs[count++]);
-	tab[nb] = NULL;
-	release_tmp(tmp);
-	// /for (int i = 0; tab[i]; ++i)
-	//	printf(">> %s\n", tab[i]);
-	return (tab);
-}
-
-static char **my_glob(char *line, int j, char **tmp)
-{
-	glob_t	globlist;
-
-	if (glob(line, 0, NULL, &globlist) == 0) {
-		tmp = add_glob(tmp, globlist.gl_pathv, j);
-		if (tmp == NULL)
-			return (NULL);
-		globfree(&globlist);
-	}
-	return (tmp);
-}
-
 static int analyse_globbings(char *tmp)
 {
 	int	i = 0;
@@ -68,13 +28,51 @@ static int check_glob(char **tmp)
 	int	i = 0;
 
 	while (tmp[i] != NULL) {
-		if (analyse_globbings(tmp[i]) == -1) {
-			my_printf("%s: No match.\n", tmp[0]);
+		if (analyse_globbings(tmp[i]) == -1)
 			return (-1);
-		}
 		++i;
 	}
 	return (0);
+}
+
+static char **add_glob(char **tmp, char **globs, int j)
+{
+	int	i = 0;
+	int	count = 0;
+	int	nb = 0;
+	char	**tab = malloc(sizeof(char *) * alloc_tab(tmp, globs));
+
+	if (tab == NULL)
+		return (NULL);
+	while (tmp[i] != NULL) {
+		if (i == j)
+			++i;
+		if (tmp[i] == NULL)
+			break;
+		tab[nb++] = strdup(tmp[i++]);
+	}
+	while (globs[count] != NULL)
+		tab[nb++] = strdup(globs[count++]);
+	tab[nb] = NULL;
+	release_tmp(tmp);
+	return (tab);
+}
+
+static char **my_glob(char *line, int j, char **tmp)
+{
+	glob_t	globlist;
+
+	if (glob(line, 0, NULL, &globlist) == 0) {
+		if (check_glob(tmp) != -1) {
+			globfree(&globlist);
+			return (tmp);
+		}
+		tmp = add_glob(tmp, globlist.gl_pathv, j);
+		if (tmp == NULL)
+			return (NULL);
+		globfree(&globlist);
+	}
+	return (tmp);
 }
 
 char **globbings(char **line)
@@ -91,7 +89,9 @@ char **globbings(char **line)
 		++j;
 	}
 	release_tmp(line);
-	if (check_glob(tmp) == -1)
+	if (check_glob(tmp) == -1) {
+		my_printf("%s: No match.\n", tmp[0]);
 		return (NULL);
+	}
 	return (tmp);
 }
