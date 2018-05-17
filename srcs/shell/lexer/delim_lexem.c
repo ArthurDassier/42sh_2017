@@ -6,8 +6,8 @@
 */
 #include "42sh.h"
 
-static const char	*lexem_list[10] = {
-	"&&", "|", "||", ";", ">", "<", ">>", "<<", "(", ")"
+static const char	*lexem_list[WORD] = {
+	"&&", "|", "||", ";", ">", "<", ">>", "<<", "(", ")", "`"
 };
 
 int	is_lexem(char *str)
@@ -15,7 +15,7 @@ int	is_lexem(char *str)
 	int	i;
 	int	save = ERROR;
 
-	for (i = 0; i < 10; ++i) {
+	for (i = 0; i < WORD; ++i) {
 		if (strncmp(str, lexem_list[i],
 		strlen(lexem_list[i])) == SUCCESS) {
 			save = i;

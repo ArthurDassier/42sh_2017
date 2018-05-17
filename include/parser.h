@@ -19,6 +19,7 @@ typedef enum	s_token {
 	DL_REDIRECT,
 	L_PAR,
 	R_PAR,
+	BACKTICKS,
 	WORD,
 	BUILTIN,
 	CMD
@@ -56,9 +57,10 @@ int		get_options(t_node **, char *);
 void	get_cmd(t_node **, char *, char **);
 void	add_node(t_node **, e_token, char *);
 int		get_builtins(t_node **, char *);
-int		get_lexem(t_node **, char *);
 void	lexer(t_node **, char **, t_node *);
 char	**delim_lexem(char *, char *);
+int	get_lexem(t_node **lexer_list, char **line, int index, t_node *env_list);
+char *handle_backticks(char **line, int index, t_node *env_list);
 
 /*
 ** Parser

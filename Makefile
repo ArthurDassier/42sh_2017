@@ -42,6 +42,7 @@ SRCS	=	srcs/main.c										\
 			$(DIR)/lexer/get_options.c						\
 			$(DIR)/lexer/get_builtins.c						\
 			$(DIR)/lexer/delim_lexem.c						\
+			$(DIR)/lexer/handle_backticks.c					\
 			$(DIR)/lexer/get_cmd.c							\
 			$(DIR)/parser/cmd_rule.c						\
 			$(DIR)/parser/exp_rule.c						\
@@ -83,6 +84,7 @@ SRCS_UT	=	$(DIR)/utils/check_perm.c			\
 			$(DIR)/lexer/get_options.c			\
 			$(DIR)/lexer/get_builtins.c			\
 			$(DIR)/lexer/get_cmd.c				\
+			$(DIR)/lexer/handle_backticks.c		\
 			$(DIR)/parser/cmd_rule.c			\
 			$(DIR)/parser/exp_rule.c			\
 			$(DIR)/parser/get_name.c			\
