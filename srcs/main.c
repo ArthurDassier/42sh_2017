@@ -30,7 +30,7 @@ t_aliases_list *alias_list)
 	char	**line = NULL;
 	t_tree	*tree;
 
-	line = my_str_to_wordtab_delim(s, " \t\r");
+	line = delim_lexem(s, " \t\r");
 	line = handle_backslash(line, s);
 	line = globbings(line);
 	if (line == NULL)

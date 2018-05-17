@@ -58,7 +58,7 @@ void	add_node(t_node **, e_token, char *);
 int		get_builtins(t_node **, char *);
 int		get_lexem(t_node **, char *);
 void	lexer(t_node **, char **, t_node *);
-char	**my_str_to_wordtab_delim(char *, char *);
+char	**delim_lexem(char *, char *);
 
 /*
 ** Parser

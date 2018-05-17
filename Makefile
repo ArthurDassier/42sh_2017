@@ -1,8 +1,8 @@
 ##
-## EPITECH PROJECT, 2017
-## Makefile
+## EPITECH PROJECT, 2018
+## PSU_42sh_2017
 ## File description:
-## A Makefile for projetcs
+## Makefile
 ##
 
 CC	=	gcc -g3
@@ -41,7 +41,7 @@ SRCS	=	srcs/main.c										\
 			$(DIR)/lexer/lexer.c							\
 			$(DIR)/lexer/get_options.c						\
 			$(DIR)/lexer/get_builtins.c						\
-			$(DIR)/lexer/my_str_to_wordarray_delim.c		\
+			$(DIR)/lexer/delim_lexem.c						\
 			$(DIR)/lexer/get_cmd.c							\
 			$(DIR)/parser/cmd_rule.c						\
 			$(DIR)/parser/exp_rule.c						\
