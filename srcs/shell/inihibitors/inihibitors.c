@@ -62,7 +62,6 @@ static char *check_inib(char *str, int *i)
 		free(str);
 		return (s);
 	}
-	printf(">>> %s\n", str);
 	return (str);
 }
 

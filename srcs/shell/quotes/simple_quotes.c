@@ -48,6 +48,19 @@ char	**simple_tab(char **line, char *s)
 	return (line);
 }
 
+int	count_quotes(char **line)
+{
+	int	i = 0;
+	int	nb_quote = 0;
+
+	while (line[i] != NULL) {
+		if (line[i][0] == '\'')
+			++nb_quote;
+		++i;
+	}
+	return (nb_quote);
+}
+
 char	**simple_quotes(char **line, char *s)
 {
 	int	i = 0;
@@ -63,7 +76,9 @@ char	**simple_quotes(char **line, char *s)
 			my_putstr("Unmatched \'\'\'.\n");
 			return (NULL);
 		}
-		return (simple_tab(line, s));
+		while (count_quotes(line))
+			line = simple_tab(line, s);
+		return (line);
 	}
 	return (line);
 }
