@@ -30,11 +30,11 @@ t_aliases_list *alias_list)
 	char	**line = NULL;
 	t_tree	*tree;
 
-	line = my_str_to_wordtab_delim(s, " \t\r");
-	line = handle_backslash(line, s);
-	line = globbings(line);
-	if (line == NULL)
+	line = handle_line(s);
+	if (line == NULL) {
+		free(s);
 		return (FAILURE);
+	}
 	change_for_alias(alias_list, line);
 	lexer(cmd_list, line, *env_list);
 	tree = s_rule(cmd_list);

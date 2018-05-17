@@ -81,22 +81,23 @@ void	init_cmd(t_node **, char *);
 */
 char 	*prompt(t_node *);
 void	delete_node(t_node **, char *);
-int		cmp(void *, void *);
+int	cmp(void *, void *);
 char	**list_to_tab(t_node *);
-int		check_char(char *);
+int	check_char(char *);
 void	delete_tab(void *);
 void	printing(void*);
 t_tree	*s_rule(t_node **);
-int		check_path(char **, char **, t_node *);
+int	check_path(char **, char **, t_node *);
 char	*get_env_name(t_node *, char *);
 void	check_perm(char **, char **, int, t_node *);
 void	check_perm_cmd(char **, t_node *);
 char	**get_path(t_node *);
 char	*get_env_content(t_node *, char *);
-int		delim_words(char *, char *);
+int	delim_words(char *, char *);
 bool	check_delim(char, char *);
-int		is_lexem(char *);
+int	is_lexem(char *);
 void	handling_sig(int);
+char	**handle_line(char *);
 
 /*
 ** Execution
@@ -116,7 +117,7 @@ bool	l_redirection(t_tree *, t_node **);
 bool	pipe_exec(t_tree *, t_node **);
 bool	dl_redirection(t_tree *, t_node **);
 bool	separators_exec(t_tree *, t_node **);
-int		exec_builtins(char **, t_node **);
+int	exec_builtins(char **, t_node **);
 bool	semiexp_exec(t_tree *, t_node **);
 bool	parentheses(t_tree *, t_node **);
 
@@ -149,19 +150,26 @@ void	print_list_with_null(void *);
 /*
 ** Globbings
 */
-char **globbings(char **);
-void release_tmp(char **);
-char **copy_line(char **);
-int alloc_tab(char **, char **);
-int back_slash(int, char *);
-int count_glob(char **);
+char	**globbings(char **);
+void	release_tmp(char **);
+char	**copy_line(char **);
+int	alloc_tab(char **, char **);
+int	back_slash(int, char *);
+int	count_glob(char **);
 
 /*
 ** Inihibitors
 */
 
-char *inib(char *);
-char **handle_backslash(char **, char *);
+char	*inib(char *);
+char	**handle_backslash(char **, char *);
+char	*decal_line(char *, int);
+
+/*
+** Quotes
+*/
+
+char	**simple_quotes(char **);
 
 /*
 ** Free

@@ -62,10 +62,12 @@ SRCS	=	srcs/main.c										\
 			$(DIR)/execution/pipe.c							\
 			$(DIR)/execution/separators.c					\
 			$(DIR)/execution/rules_exec.c					\
+			$(DIR)/handle_line/handle_line.c				\
 			$(DIR)/scripting/check_script.c					\
 			$(DIR)/globbings/globbings.c					\
 			$(DIR)/globbings/globbings_utils.c				\
-			$(DIR)/inihibitors/inihibitors.c
+			$(DIR)/quotes/simple_quotes.c					\
+			$(DIR)/inihibitors/inihibitors.c				\
 
 SRCS_UT	=	$(DIR)/utils/check_perm.c			\
 			$(DIR)/utils/delete_list.c			\
