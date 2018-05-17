@@ -58,7 +58,7 @@ void	add_node(t_node **, e_token, char *);
 int		get_builtins(t_node **, char *);
 int		get_lexem(t_node **, char *);
 void	lexer(t_node **, char **, t_node *);
-char	**my_str_to_wordtab_delim(char *, char *);
+char	**delim_lexem(char *, char *);
 
 /*
 ** Parser
@@ -73,6 +73,7 @@ t_tree	*s_rule(t_node **);
 t_tree	*create_node(void);
 bool	check_token(t_node **, e_token, t_tree *);
 t_tree	*ret_node(t_tree *, t_tree *);
-t_tree	*semiexp_rule(t_node **cmd_list);
+t_tree	*semiexp_rule(t_node **);
+int		handle_parentheses(t_node **, t_tree *);
 
 #endif /* !PARSER_H_ */

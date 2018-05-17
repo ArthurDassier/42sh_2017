@@ -24,7 +24,6 @@ bool	s_exec(t_tree *tree, t_node **env_list)
 bool	exp_exec(t_tree *tree, t_node **env_list)
 {
 	bool	ret;
-
 	if (tree->cmd.token != AND && tree->cmd.token != OR)
 		ret = pipexp_exec(tree, env_list);
 	else {
@@ -73,6 +72,8 @@ bool	cmd_exec(t_tree *tree, t_node **env_list)
 {
 	bool	ret = false;
 
+	if (tree->cmd.token == L_PAR)
+		ret = s_exec(tree->left, env_list);
 	if (tree->cmd.token == BUILTIN)
 		ret = exec_builtins(tree->cmd.name, env_list);
 	if (tree->cmd.token == CMD || tree->cmd.token == WORD)

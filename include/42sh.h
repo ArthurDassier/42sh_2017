@@ -97,7 +97,7 @@ int	delim_words(char *, char *);
 bool	check_delim(char, char *);
 int	is_lexem(char *);
 void	handling_sig(int);
-char	**handle_line(char *);
+char	**handle_line(char **, char *);
 
 /*
 ** Execution

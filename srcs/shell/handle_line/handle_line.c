@@ -7,13 +7,9 @@
 
 #include "42sh.h"
 
-char	**handle_line(char *s)
+char	**handle_line(char **line, char *s)
 {
-	char **line = NULL;
-
-	line = my_str_to_wordtab_delim(s, " \t\r");
-	if (line != NULL)
-		line = simple_quotes(line, s);
+	line = simple_quotes(line, s);
 	if (line != NULL)
 		line = handle_backslash(line, s);
 	if (line != NULL)

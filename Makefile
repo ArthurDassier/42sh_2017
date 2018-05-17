@@ -1,8 +1,8 @@
 ##
-## EPITECH PROJECT, 2017
-## Makefile
+## EPITECH PROJECT, 2018
+## PSU_42sh_2017
 ## File description:
-## A Makefile for projetcs
+## Makefile
 ##
 
 CC	=	gcc -g3
@@ -15,7 +15,7 @@ CFLAGS	+=	-Wall -Wextra
 
 CPPFLAGS	+=	-I./include -I./lib/my/include
 
-NAME	=	mysh
+NAME	=	42sh
 
 DIR	=	srcs/shell/
 
@@ -41,7 +41,7 @@ SRCS	=	srcs/main.c										\
 			$(DIR)/lexer/lexer.c							\
 			$(DIR)/lexer/get_options.c						\
 			$(DIR)/lexer/get_builtins.c						\
-			$(DIR)/lexer/my_str_to_wordarray_delim.c		\
+			$(DIR)/lexer/delim_lexem.c						\
 			$(DIR)/lexer/get_cmd.c							\
 			$(DIR)/parser/cmd_rule.c						\
 			$(DIR)/parser/exp_rule.c						\
@@ -49,6 +49,7 @@ SRCS	=	srcs/main.c										\
 			$(DIR)/parser/pipexp_rule.c						\
 			$(DIR)/parser/rexp_rule.c						\
 			$(DIR)/parser/s_rule.c							\
+			$(DIR)/parser/handle_parentheses.c				\
 			$(DIR)/execution/exec_cmd.c						\
 			$(DIR)/execution/redirect.c						\
 			$(DIR)/execution/builtins/cd_special_cases.c	\

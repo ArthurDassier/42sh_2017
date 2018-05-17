@@ -20,7 +20,7 @@ char	**get_path(t_node *head)
 		if (strcmp(content->name, "PATH") == SUCCESS)
 			break;
 	} while (tmp != head);
-	path = my_str_to_wordtab_delim(content->content, ":");
+	path = delim_lexem(content->content, ":");
 	return (path);
 }
 

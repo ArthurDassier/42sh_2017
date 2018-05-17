@@ -52,7 +52,7 @@ static int	add_lexem(char *str, char **tab, int *j, int count)
 
 }
 
-char	**my_str_to_wordtab_delim(char *str, char *delim)
+char	**delim_lexem(char *str, char *delim)
 {
 	char			**tab;
 	int				nb = delim_words(str, delim);

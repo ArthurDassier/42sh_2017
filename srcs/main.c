@@ -30,7 +30,8 @@ t_aliases_list *alias_list)
 	char	**line = NULL;
 	t_tree	*tree;
 
-	line = handle_line(s);
+	line = delim_lexem(s, " \t\r");
+	line = handle_line(line, s);
 	if (line == NULL) {
 		free(s);
 		return (FAILURE);
@@ -39,9 +40,10 @@ t_aliases_list *alias_list)
 	lexer(cmd_list, line, *env_list);
 	tree = s_rule(cmd_list);
 	if (!tree) {
-		my_putstr("ERROR\n");
+		my_putstr("Error\n");
 		return (FAILURE);
 	}
+	//display_tree(tree);
 	s_exec(tree, env_list);
 	free(s);
 	free_tree(tree);
