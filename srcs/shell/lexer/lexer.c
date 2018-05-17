@@ -28,4 +28,5 @@ void	lexer(t_node **cmd_list, char **line, t_node *env_list)
 		&& get_builtins(cmd_list, line[i]) == FAILURE)
 			get_cmd(cmd_list, line[i], path);
 	}
+	display_list(*cmd_list, &display);
 }
