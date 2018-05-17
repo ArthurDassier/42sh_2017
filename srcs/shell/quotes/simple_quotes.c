@@ -7,20 +7,38 @@
 
 #include "42sh.h"
 
-char **simple_tab(char **line)
+char	*my_cat(char *line_one, char *line_two, char *s)
+{
+	char	*find = strstr(s, line_one);
+	int	i = 0;
+	int	j = strlen(line_one);
+
+	for (unsigned int nb = 0; nb != strlen(line_one); ++nb)
+		++find;
+	while (line_one[0] != '\0' && find[i] != line_two[0]) {
+		line_one[j] = find[i];
+		++j;
+		++i;
+	}
+	if (line_one[0] != '\0')
+		line_one[j] = '\0';
+	line_one = strcat(line_one, line_two);
+	return (line_one);
+}
+
+char	**simple_tab(char **line, char *s)
 {
 	int	i = 0;
 	int	j = 0;
-	int	size = 2;
 
 	while (line[i][0] != '\'')
 		++i;
-	for (j = i + 1; line[j][0] != '\''; ++j)
-		size += strlen(line[j]);
-	line[i] = malloc(sizeof(char) * size);
+	line[i] = malloc(sizeof(char) * strlen(s));
+	if (line[i] == NULL)
+		return (NULL);
 	line[i][0] = '\0';
 	for (j = i + 1; line[j][0] != '\''; ++j)
-		line[i] = strcat(line[i], line[j]);
+		line[i] = my_cat(line[i], line[j], s);
 	for (i = i + 1; line[++j] != NULL;) {
 		line[i] = strdup(line[j]);
 		free(line[j]);
@@ -30,7 +48,7 @@ char **simple_tab(char **line)
 	return (line);
 }
 
-char	**simple_quotes(char **line)
+char	**simple_quotes(char **line, char *s)
 {
 	int	i = 0;
 	int	nb_quote = 0;
@@ -45,7 +63,7 @@ char	**simple_quotes(char **line)
 			my_putstr("Unmatched \'\'\'.\n");
 			return (NULL);
 		}
-		return (simple_tab(line));
+		return (simple_tab(line, s));
 	}
 	return (line);
 }

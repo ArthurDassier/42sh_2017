@@ -169,7 +169,7 @@ char	*decal_line(char *, int);
 ** Quotes
 */
 
-char	**simple_quotes(char **);
+char	**simple_quotes(char **, char *);
 
 /*
 ** Free
