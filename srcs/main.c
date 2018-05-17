@@ -38,9 +38,10 @@ t_aliases_list *alias_list)
 	lexer(cmd_list, line, *env_list);
 	tree = s_rule(cmd_list);
 	if (!tree) {
-		my_putstr("ERROR\n");
+		my_putstr("Error\n");
 		return (FAILURE);
 	}
+	//display_tree(tree);
 	s_exec(tree, env_list);
 	free(s);
 	free_tree(tree);
