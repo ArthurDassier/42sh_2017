@@ -42,7 +42,6 @@ t_aliases_list *alias_list)
 		my_putstr("Error\n");
 		return (FAILURE);
 	}
-	//display_tree(tree);
 	s_exec(tree, env_list);
 	free(s);
 	free_tree(tree);
