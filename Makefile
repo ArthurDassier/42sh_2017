@@ -49,6 +49,7 @@ SRCS	=	srcs/main.c										\
 			$(DIR)/parser/pipexp_rule.c						\
 			$(DIR)/parser/rexp_rule.c						\
 			$(DIR)/parser/s_rule.c							\
+			$(DIR)/parser/handle_parentheses.c				\
 			$(DIR)/execution/exec_cmd.c						\
 			$(DIR)/execution/redirect.c						\
 			$(DIR)/execution/builtins/cd_special_cases.c	\
