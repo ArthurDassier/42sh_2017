@@ -21,9 +21,8 @@ char *delete_backslash(char *line)
 	int i = 0;
 
 	while (line[i] != '\0') {
-		if (line[i] == '\\') {
+		if (line[i] == '\\')
 			line = decal_line(line, i);
-		}
 		++i;
 	}
 	return (line);
@@ -37,8 +36,8 @@ char **handle_backslash(char **line, char *s)
 	while (line[i]) {
 		if (line[i][0] == '\\' && line[i][1] == '\0') {
 			line[i][0] = ' ';
-		} else
-			line[i] = delete_backslash(line[i]);
+		}// else
+		//	line[i] = delete_backslash(line[i]);
 		++i;
 	}
 	return (line);

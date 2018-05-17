@@ -23,6 +23,7 @@ char	*my_cat(char *line_one, char *line_two, char *s)
 	if (line_one[0] != '\0')
 		line_one[j] = '\0';
 	line_one = strcat(line_one, line_two);
+	line_one = delete_special(line_one);
 	return (line_one);
 }
 
