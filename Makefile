@@ -15,7 +15,7 @@ CFLAGS	+=	-Wall -Wextra
 
 CPPFLAGS	+=	-I./include -I./lib/my/include
 
-NAME	=	mysh
+NAME	=	42sh
 
 DIR	=	srcs/shell/
 
