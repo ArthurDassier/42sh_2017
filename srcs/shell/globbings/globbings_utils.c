@@ -55,3 +55,12 @@ int alloc_tab(char **tmp, char **globs)
 		++j;
 	return (j + i + 2);
 }
+
+int	count_glob(char **globs)
+{
+	int i = 0;
+
+	while (globs[i])
+		++i;
+	return (i);
+}
