@@ -11,7 +11,7 @@ char	**handle_line(char **line, char *s)
 {
 	line = quotes(line, s);
 	if (line != NULL)
-		line = handle_backslash(line, s);
+		line = handle_backslash(line);
 	if (line != NULL)
 		line = globbings(line);
 	if (line == NULL)

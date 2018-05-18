@@ -28,16 +28,13 @@ char *delete_backslash(char *line)
 	return (line);
 }
 
-char **handle_backslash(char **line, char *s)
+char **handle_backslash(char **line)
 {
 	int	i = 0;
 
-	(void) s;
 	while (line[i]) {
-		if (line[i][0] == '\\' && line[i][1] == '\0') {
+		if (line[i][0] == '\\' && line[i][1] == '\0')
 			line[i][0] = ' ';
-		}// else
-		//	line[i] = delete_backslash(line[i]);
 		++i;
 	}
 	return (line);

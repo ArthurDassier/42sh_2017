@@ -76,12 +76,14 @@ char **quotes(char **line, char *s)
 	int	i = 0;
 
 	while (line[i] != NULL) {
-		if (line[i][0] == '\'')
+		if (line[i][0] == '\'') {
 			line = simple_quotes(line, s);
-		if (line == NULL)
-			return (NULL);
-		if (line[i][0] == '\"')
+			if (line == NULL)
+				return (NULL);
+		} else if (line[i][0] == '\"')
 			line = double_quotes(line, s);
+		else
+			line[i] = delete_backslash(line[i]);
 		++i;
 	}
 	return (line);

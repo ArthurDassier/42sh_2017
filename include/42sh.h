@@ -162,7 +162,8 @@ int	count_glob(char **);
 */
 
 char	*inib(char *);
-char	**handle_backslash(char **, char *);
+char	**handle_backslash(char **);
+char	*delete_backslash(char *);
 char	*decal_line(char *, int);
 
 /*
