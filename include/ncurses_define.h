@@ -21,6 +21,7 @@
 
 #define	ENTER_KEY	13
 #define	TAB		9
+#define DEL		127
 
 // define catch ctr+
 #define	CTR_L		12

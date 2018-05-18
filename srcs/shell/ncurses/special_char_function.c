@@ -20,6 +20,7 @@ __attribute((unused)) const char *))
 	case CTR_K : return (1);
 	case CTR_U : return (1);
 	case CTR_Y : return (1);
+	case DEL : return (1);
 	case TAB :
 		buf_function[TAB](str, prompt);
 		return (1);
