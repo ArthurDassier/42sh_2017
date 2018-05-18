@@ -9,7 +9,7 @@
 
 char	**handle_line(char **line, char *s)
 {
-	line = simple_quotes(line, s);
+	line = quotes(line, s);
 	if (line != NULL)
 		line = handle_backslash(line, s);
 	if (line != NULL)

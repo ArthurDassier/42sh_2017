@@ -1,13 +1,13 @@
 /*
 ** EPITECH PROJECT, 2018
-** simple_quotes.c
+** quotes.c
 ** File description:
 ** Arthur
 */
 
 #include "42sh.h"
 
-char	*my_cat(char *line_one, char *line_two, char *s)
+char	*my_cat_double(char *line_one, char *line_two, char *s)
 {
 	char	*find = strstr(s, line_one);
 	int	i = 0;
@@ -27,19 +27,19 @@ char	*my_cat(char *line_one, char *line_two, char *s)
 	return (line_one);
 }
 
-char	**simple_tab(char **line, char *s)
+char	**double_tab(char **line, char *s)
 {
 	int	i = 0;
 	int	j = 0;
 
-	while (line[i][0] != '\'')
+	while (line[i][0] != '\"')
 		++i;
 	line[i] = malloc(sizeof(char) * strlen(s));
 	if (line[i] == NULL)
 		return (NULL);
 	line[i][0] = '\0';
-	for (j = i + 1; line[j][0] != '\''; ++j)
-		line[i] = my_cat(line[i], line[j], s);
+	for (j = i + 1; line[j][0] != '\"'; ++j)
+		line[i] = my_cat_double(line[i], line[j], s);
 	for (i = i + 1; line[++j] != NULL;) {
 		line[i] = strdup(line[j]);
 		free(line[j]);
@@ -49,37 +49,40 @@ char	**simple_tab(char **line, char *s)
 	return (line);
 }
 
-int	count_quotes(char **line, char quote)
+char	**double_quotes(char **line, char *s)
 {
 	int	i = 0;
 	int	nb_quote = 0;
 
 	while (line[i] != NULL) {
-		if (line[i][0] == quote)
-			++nb_quote;
-		++i;
-	}
-	return (nb_quote);
-}
-
-char	**simple_quotes(char **line, char *s)
-{
-	int	i = 0;
-	int	nb_quote = 0;
-
-	while (line[i] != NULL) {
-		if (line[i][0] == '\'')
+		if (line[i][0] == '\"')
 			++nb_quote;
 		++i;
 	}
 	if (nb_quote > 0) {
 		if (nb_quote % 2 != 0) {
-			my_putstr("Unmatched \'\'\'.\n");
+			my_putstr("Unmatched \'\"\'.\n");
 			return (NULL);
 		}
-		while (count_quotes(line, '\''))
-			line = simple_tab(line, s);
+		while (count_quotes(line, '\"'))
+			line = double_tab(line, s);
 		return (line);
+	}
+	return (line);
+}
+
+char **quotes(char **line, char *s)
+{
+	int	i = 0;
+
+	while (line[i] != NULL) {
+		if (line[i][0] == '\'')
+			line = simple_quotes(line, s);
+		if (line == NULL)
+			return (NULL);
+		if (line[i][0] == '\"')
+			line = double_quotes(line, s);
+		++i;
 	}
 	return (line);
 }

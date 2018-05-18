@@ -67,6 +67,7 @@ SRCS	=	srcs/main.c										\
 			$(DIR)/scripting/check_script.c					\
 			$(DIR)/globbings/globbings.c					\
 			$(DIR)/globbings/globbings_utils.c				\
+			$(DIR)/quotes/quotes.c						\
 			$(DIR)/quotes/simple_quotes.c					\
 			$(DIR)/quotes/simple_quotes_utils.c				\
 			$(DIR)/inihibitors/inihibitors.c				\

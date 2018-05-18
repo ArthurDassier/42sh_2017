@@ -169,7 +169,9 @@ char	*decal_line(char *, int);
 ** Quotes
 */
 
+char	**quotes(char **, char *);
 char	**simple_quotes(char **, char *);
+int	count_quotes(char **, char);
 char	*delete_special(char *);
 
 /*
