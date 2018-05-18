@@ -181,4 +181,9 @@ char	*delete_special(char *);
 void	free_lexer(void *);
 void	free_tree(t_tree *);
 
+/*
+**
+*/
+char	*recup_line(const char *);
+
 #endif /* !42SH_H_ */
