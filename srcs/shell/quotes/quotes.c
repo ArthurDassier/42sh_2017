@@ -7,7 +7,7 @@
 
 #include "42sh.h"
 
-char	*my_cat_double(char *line_one, char *line_two, char *s)
+char	*my_cat_double(char *line_one, char *line_two, char *s, t_node **env_l)
 {
 	char	*find = strstr(s, line_one);
 	int	i = 0;
@@ -24,10 +24,11 @@ char	*my_cat_double(char *line_one, char *line_two, char *s)
 		line_one[j] = '\0';
 	line_one = strcat(line_one, line_two);
 	line_one = delete_special(line_one);
+	line_one = handle_dollars(line_one, env_l);
 	return (line_one);
 }
 
-char	**double_tab(char **line, char *s)
+char	**double_tab(char **line, char *s, t_node **env_list)
 {
 	int	i = 0;
 	int	j = 0;
@@ -39,7 +40,9 @@ char	**double_tab(char **line, char *s)
 		return (NULL);
 	line[i][0] = '\0';
 	for (j = i + 1; line[j][0] != '\"'; ++j)
-		line[i] = my_cat_double(line[i], line[j], s);
+		line[i] = my_cat_double(line[i], line[j], s, env_list);
+	if (line[i] == NULL)
+		return (NULL);
 	for (i = i + 1; line[++j] != NULL;) {
 		line[i] = strdup(line[j]);
 		free(line[j]);
@@ -49,7 +52,7 @@ char	**double_tab(char **line, char *s)
 	return (line);
 }
 
-char	**double_quotes(char **line, char *s)
+char	**double_quotes(char **line, char *s, t_node **env_list)
 {
 	int	i = 0;
 	int	nb_quote = 0;
@@ -64,26 +67,36 @@ char	**double_quotes(char **line, char *s)
 			my_putstr("Unmatched \'\"\'.\n");
 			return (NULL);
 		}
-		while (count_quotes(line, '\"'))
-			line = double_tab(line, s);
+		while (line != NULL && count_quotes(line, '\"'))
+			line = double_tab(line, s, env_list);
 		return (line);
 	}
 	return (line);
 }
 
-char **quotes(char **line, char *s)
+char	**quotes_commands(char **line, char *s, t_node **env_list, int i)
+{
+	if (line[i][0] == '\'') {
+		line = simple_quotes(line, s);
+		if (line == NULL)
+			return (NULL);
+	} else if (line[i][0] == '\"') {
+		line = double_quotes(line, s, env_list);
+		if (line == NULL)
+			return (NULL);
+	} else
+		line[i] = delete_backslash(line[i]);
+	return (line);
+}
+
+char	**quotes(char **line, char *s, t_node **env_list)
 {
 	int	i = 0;
 
 	while (line[i] != NULL) {
-		if (line[i][0] == '\'') {
-			line = simple_quotes(line, s);
-			if (line == NULL)
-				return (NULL);
-		} else if (line[i][0] == '\"')
-			line = double_quotes(line, s);
-		else
-			line[i] = delete_backslash(line[i]);
+		line = quotes_commands(line, s, env_list, i);
+		if (line == NULL)
+			return (NULL);
 		++i;
 	}
 	return (line);

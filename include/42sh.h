@@ -97,7 +97,7 @@ int	delim_words(char *, char *);
 bool	check_delim(char, char *);
 int	is_lexem(char *);
 void	handling_sig(int);
-char	**handle_line(char **, char *);
+char	**handle_line(char **, char *, t_node **);
 
 /*
 ** Execution
@@ -163,7 +163,8 @@ char	*decal_line(char *, int);
 ** Quotes
 */
 
-char	**quotes(char **, char *);
+char	*handle_dollars(char *, t_node **);
+char	**quotes(char **, char *, t_node **);
 char	**simple_quotes(char **, char *);
 int	count_quotes(char **, char);
 char	*delete_special(char *);
