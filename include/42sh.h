@@ -129,13 +129,6 @@ int	alias_cmd(t_aliases_list *, char **);
 t_aliases_list	*recup_aliases(void);
 
 /*
-** History
-*/
-void	put_in_history(char *);
-void	write_in_file(void);
-void	replace_from_history(char **);
-
-/*
 ** Scripting
 */
 bool	check_script(char **);
@@ -180,10 +173,5 @@ char	*delete_special(char *);
 */
 void	free_lexer(void *);
 void	free_tree(t_tree *);
-
-/*
-**
-*/
-char	*recup_line(const char *);
 
 #endif /* !42SH_H_ */

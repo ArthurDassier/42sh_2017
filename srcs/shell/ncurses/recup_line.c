@@ -40,7 +40,7 @@ static void	init_buf_function_tab(int (**buf_function)
 	buf_function[TAB] = &auto_completion;
 }
 
-char	*recup_line(const char *prompt)
+char	*recup_line(const char *prompt, t_history *list)
 {
 	char	buf;
 	char	*term;
@@ -73,6 +73,7 @@ char	*recup_line(const char *prompt)
 		}
 	}
 	canonique_mode(0);
+	put_in_history(list, line);
 	printf("\n");
 	return (line);
 }

@@ -6,6 +6,8 @@
 */
 
 #include "42sh.h"
+#include "history.h"
+#include "line.h"
 
 const char *prompt_line = NULL;
 
@@ -55,6 +57,7 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 	char		*s;
 	t_node		*env_list = NULL;
 	t_node		*cmd_list = NULL;
+	t_history	*hist_list = NULL;
 	t_aliases_list	*alias_list = recup_aliases();
 
 	open(".42_src/history.txt", O_RDWR | O_CREAT | O_TRUNC, S_IWUSR | S_IRUSR);
@@ -64,7 +67,7 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 		prompt_line = prompt(env_list);
 		free_list(cmd_list, &free_lexer);
 		cmd_list = NULL;
-		s = recup_line(prompt_line);
+		s = recup_line(prompt_line, hist_list);
 		s = inib(s);
 		ctrl_d(s);
 		if (check_char(s) == SUCCESS

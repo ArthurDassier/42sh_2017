@@ -8,11 +8,13 @@
 #ifndef LINE_H_
 	#define LINE_H_
 
-int	special_char_function(char, char **, const char *, int (**)
-(__attribute((unused)) char **, __attribute((unused)) const char *));
+#include "history.h"
 
 void	canonique_mode(int);
+char	*recup_line(const char *, t_history *);
 
+int	special_char_function(char, char **, const char *, int (**)
+(__attribute((unused)) char **, __attribute((unused)) const char *));
 int	auto_completion(__attribute((unused)) char **,
 __attribute((unused)) const char *);
 int	ctr_l(__attribute((unused))char **str,
