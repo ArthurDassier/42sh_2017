@@ -31,7 +31,7 @@ t_aliases_list *alias_list)
 	t_tree	*tree;
 
 	line = delim_lexem(s, " \t\r");
-	line = handle_line(line, s);
+	line = handle_line(line, s, env_list);
 	if (line == NULL) {
 		free(s);
 		return (FAILURE);
