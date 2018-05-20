@@ -25,9 +25,9 @@ static void	write_in_history(t_history *list)
 	}
 	write(fd, my_itoa(count), strlen(my_itoa(count)));
 	write(fd, &ct, 1);
-	write(fd, list->timestamp, strlen(list->timestamp));
-	write(fd, &ct, 1);
 	write(fd, list->line, strlen(list->line));
+	write(fd, &ct, 1);
+	write(fd, list->timestamp, strlen(list->timestamp));
 	++count;
 }
 
@@ -44,23 +44,25 @@ static void	first_node(t_history **list, char *line, char *timestamp)
 	(*list)->next = malloc(sizeof(t_history));
 	tmp = *list;
 	*list = (*list)->next;
+	(*list)->next = NULL;
 	(*list)->prev = tmp;
 }
 
-void	put_in_history(t_history *list, char *line)
+void	put_in_history(t_history **list, char *line)
 {
 	time_t		timestamp = time(NULL);
 	t_history	*tmp = NULL;
 
-	if (list == NULL) {
-		first_node(&list, line, ctime(&timestamp));
+	if (*list == NULL) {
+		first_node(list, line, ctime(&timestamp));
 		return;
 	}
-	list->line = strdup(line);
-	list->timestamp = strdup(ctime(&timestamp));
-	write_in_history(list);
-	list->next = malloc(sizeof(t_history));
-	tmp = list;
-	list = list->next;
-	list->prev = tmp;
+	(*list)->line = strdup(line);
+	(*list)->timestamp = strdup(ctime(&timestamp));
+	write_in_history(*list);
+	(*list)->next = malloc(sizeof(t_history));
+	tmp = *list;
+	*list = (*list)->next;
+	(*list)->prev = tmp;
+	(*list)->next = NULL;
 }

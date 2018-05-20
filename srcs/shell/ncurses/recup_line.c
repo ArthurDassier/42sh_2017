@@ -33,16 +33,18 @@ void	canonique_mode(int set)
 
 // initialisation of the function tab
 static void	init_buf_function_tab(int (**buf_function)
-(__attribute((unused)) char **line, __attribute((unused)) const char *prompt))
+(__attribute((unused)) char **line, __attribute((unused)) const char *prompt,
+__attribute((unused)) t_history *hist_list))
 {
 	buf_function[0] = &do_nothing;
 	buf_function[CTR_L] = &ctr_l;
 	buf_function[RIGHT_KEY] = &move_right;
 	buf_function[LEFT_KEY] = &move_left;
+	buf_function[UP_KEY] = &history_up;
 	buf_function[TAB] = &auto_completion;
 }
 
-char	*recup_line(const char *prompt, t_history *list)
+char	*recup_line(const char *prompt, t_history **hist_list)
 {
 	char	buf;
 	char	*term;
@@ -50,7 +52,8 @@ char	*recup_line(const char *prompt, t_history *list)
 	char	*line = malloc(sizeof(char) * size);
 	int	i = 0;
 	static int (*buf_function[177])(__attribute((unused)) char **,
-	__attribute((unused)) const char *);
+	__attribute((unused)) const char *,
+	__attribute((unused)) t_history *hist_list);
 
 	init_buf_function_tab(buf_function);
 	write(1, prompt, strlen(prompt));
@@ -61,7 +64,7 @@ char	*recup_line(const char *prompt, t_history *list)
 	while (read(0, &buf, 1) != 0) {
 		if (buf == ENTER_KEY)
 			break;
-		else if (special_char_function(buf, &line, prompt,
+		else if (special_char_function(buf, &line, prompt, *hist_list,
 		buf_function) == 1)
 			continue;
 		else {
@@ -75,7 +78,7 @@ char	*recup_line(const char *prompt, t_history *list)
 		}
 	}
 	canonique_mode(0);
-	put_in_history(list, line);
+	put_in_history(hist_list, line);
 	printf("\n");
 	return (line);
 }

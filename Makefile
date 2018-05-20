@@ -26,6 +26,7 @@ SRCS	=	srcs/main.c									\
 			$(DIR)/ncurses/ctr_function.c						\
 			$(DIR)/ncurses/move_cursor.c						\
 			$(DIR)/ncurses/recup_line.c						\
+			$(DIR)/ncurses/history_key.c						\
 			$(DIR)/alias/alias_cmd.c						\
 			$(DIR)/alias/recup_aliases.c						\
 			$(DIR)/alias/change_for_alias.c						\
