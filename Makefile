@@ -21,7 +21,8 @@ DIR	=	srcs/shell/
 
 SRCS	=	srcs/main.c									\
 			$(DIR)/history/put_in_history.c						\
-			$(DIR)/history/history_functions.c						\
+			$(DIR)/history/history_functions.c					\
+			$(DIR)/history/history_completion.c					\
 			$(DIR)/ncurses/autocompletion.c						\
 			$(DIR)/ncurses/special_char_function.c					\
 			$(DIR)/ncurses/ctr_function.c						\

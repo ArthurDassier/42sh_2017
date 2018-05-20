@@ -62,6 +62,7 @@ char	*recup_line(const char *prompt, t_history **hist_list)
 	if (tgetent(NULL, term) != 1)
 		return (NULL);
 	while (read(0, &buf, 1) != 0) {
+		history_completion(*hist_list, line);
 		if (buf == ENTER_KEY)
 			break;
 		else if (special_char_function(buf, &line, prompt, *hist_list,
