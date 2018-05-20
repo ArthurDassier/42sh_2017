@@ -43,7 +43,8 @@ static int	match_str(char **line, char *info, const char *prompt, int size)
 }
 
 int	auto_completion(__attribute((unused)) char **line,
-__attribute((unused)) const char *prompt)
+__attribute((unused)) const char *prompt,
+__attribute((unused)) t_history *hist_list)
 {
 	int		size = strlen(*line) + strlen(prompt);
 	DIR		*dir = opendir(".");
