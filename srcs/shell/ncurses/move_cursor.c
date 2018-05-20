@@ -27,13 +27,13 @@ static void	move_right(void)
 	canonique_mode(1);
 }
 
-int	move_cursor(__attribute((unused)) char **str,
+int	move_cursor(__attribute((unused)) char **line,
 __attribute((unused)) const char *prompt)
 {
 	static int	pos = 0;
 	char		buf;
 	int		max_x = 0;
-	int		min_x = strlen(*str) * -1;
+	int		min_x = strlen(*line) * -1;
 
 	if (read(0, &buf, 1) == -1)
 		return (84);

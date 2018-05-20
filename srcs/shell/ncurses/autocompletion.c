@@ -13,8 +13,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-static void	rewrite_prompt_str(int size, char *save, const char *prompt,
-char *str)
+static void	rewrite_prompt_line(int size, char *save, const char *prompt,
+char *line)
 {
 	cursorbackward(size);
 	printf("%s", save);
@@ -22,30 +22,30 @@ char *str)
 	cursorbackward(size);
 	fflush(stdout);
 	write(1, prompt, strlen(prompt));
-	write(1, str, strlen(str));
+	write(1, line, strlen(line));
 }
 
-static int	match_str(char **str, char *info, const char *prompt, int size)
+static int	match_str(char **line, char *info, const char *prompt, int size)
 {
-	if (strlen(*str) == 0)
+	if (strlen(*line) == 0)
 		return (0);
-	if (strncmp(*str, info, strlen(*str)) == 0) {
-		free(*str);
-		*str = malloc(sizeof(char) * (strlen(info) + 1));
-		*str = strcpy(*str, info);
+	if (strncmp(*line, info, strlen(*line)) == 0) {
+		free(*line);
+		*line = malloc(sizeof(char) * (strlen(info) + 1));
+		*line = strcpy(*line, info);
 		cursorbackward(size);
 		fflush(stdout);
 		write(1, prompt, strlen(prompt));
-		write(1, *str, strlen(*str));
+		write(1, *line, strlen(*line));
 		return (1);
 	}
 	return (0);
 }
 
-int	auto_completion(__attribute((unused)) char **str,
+int	auto_completion(__attribute((unused)) char **line,
 __attribute((unused)) const char *prompt)
 {
-	int		size = strlen(*str) + strlen(prompt);
+	int		size = strlen(*line) + strlen(prompt);
 	DIR		*dir = opendir(".");
 	struct dirent	*red;
 	char		*save = malloc(sizeof(char));
@@ -54,13 +54,13 @@ __attribute((unused)) const char *prompt)
 	save[0] = '\0';
 	cursorbackward(size);
 	while ((red = readdir(dir)) != NULL) {
-		if (match_str(str, red->d_name, prompt, size) == 1)
+		if (match_str(line, red->d_name, prompt, size) == 1)
 			return (0);
 		size += strlen(red->d_name) + 2;
 		save = realloc(save, size);
 		strcat(save, red->d_name);
 		strcat(save, " ");
 	}
-	rewrite_prompt_str(size, save, prompt, *str);
+	rewrite_prompt_line(size, save, prompt, *line);
 	return (0);
 }

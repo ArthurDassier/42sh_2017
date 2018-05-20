@@ -33,7 +33,7 @@ void	canonique_mode(int set)
 
 // initialisation of the function tab
 static void	init_buf_function_tab(int (**buf_function)
-(__attribute((unused)) char **str, __attribute((unused)) const char *prompt))
+(__attribute((unused)) char **line, __attribute((unused)) const char *prompt))
 {
 	buf_function[CTR_L] = &ctr_l;
 	buf_function[ARROW] = &move_cursor;
@@ -45,7 +45,7 @@ char	*recup_line(const char *prompt)
 	char	buf;
 	char	*term;
 	int	size = 10;
-	char	*str = malloc(sizeof(char) * size);
+	char	*line = malloc(sizeof(char) * size);
 	int	i = 0;
 	static int (*buf_function[177])(__attribute((unused)) char **,
 	__attribute((unused)) const char *);
@@ -59,20 +59,20 @@ char	*recup_line(const char *prompt)
 	while (read(0, &buf, 1) != 0) {
 		if (buf == ENTER_KEY)
 			break;
-		else if (special_char_function(buf, &str, prompt,
+		else if (special_char_function(buf, &line, prompt,
 		buf_function) == 1)
 			continue;
 		else {
 			write(1, &buf, 1);
-			str[i++] = buf;
-			str[i] = '\0';
+			line[i++] = buf;
+			line[i] = '\0';
 		}
 		if (i == size) {
 			size += size;
-			str = realloc(str, size);
+			line = realloc(line, size);
 		}
 	}
 	canonique_mode(0);
 	printf("\n");
-	return (str);
+	return (line);
 }
