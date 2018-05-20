@@ -8,6 +8,12 @@
 #include "line.h"
 #include "ncurses_define.h"
 
+int	do_nothing(__attribute((unused)) char **line,
+__attribute((unused)) const char *prompt)
+{
+	return (1);
+}
+
 int	special_char_function(char buf, char **line, const char *prompt, int
 (**buf_function) (__attribute((unused)) char **,
 __attribute((unused)) const char *))
@@ -25,7 +31,7 @@ __attribute((unused)) const char *))
 		buf_function[TAB](line, prompt);
 		return (1);
 	case ARROW :
-		buf_function[ARROW](line, prompt);
+		buf_function[find_key(*line)](line, prompt);
 		return (1);
 	}
 	return (0);

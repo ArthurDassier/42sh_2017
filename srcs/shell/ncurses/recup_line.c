@@ -35,8 +35,10 @@ void	canonique_mode(int set)
 static void	init_buf_function_tab(int (**buf_function)
 (__attribute((unused)) char **line, __attribute((unused)) const char *prompt))
 {
+	buf_function[0] = &do_nothing;
 	buf_function[CTR_L] = &ctr_l;
-	buf_function[ARROW] = &move_cursor;
+	buf_function[RIGHT_KEY] = &move_right;
+	buf_function[LEFT_KEY] = &move_left;
 	buf_function[TAB] = &auto_completion;
 }
 

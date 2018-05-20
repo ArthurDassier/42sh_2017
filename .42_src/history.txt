@@ -1,6 +1,5 @@
-1	ls	Sun May 20 14:26:01 2018
-2	saltu	Sun May 20 14:26:19 2018
-3	mdr	Sun May 20 14:26:23 2018
-4	ls	Sun May 20 14:26:26 2018
-5	arm	Sun May 20 14:26:28 2018
-6	exit	Sun May 20 14:26:32 2018
+1	Sun May 20 15:12:35 2018
+	salt2	Sun May 20 15:12:37 2018
+	0İ•3	Sun May 20 15:12:37 2018
+	ğ–4	Sun May 20 15:12:39 2018
+	exit

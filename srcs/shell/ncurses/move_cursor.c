@@ -11,40 +11,46 @@
 #include <unistd.h>
 #include <string.h>
 
-static void	move_left(void)
+int	move_left(__attribute((unused)) char **line,
+__attribute((unused)) const char *prompt)
 {
 	canonique_mode(0);
 	cursorbackward(1);
 	fflush(stdout);
 	canonique_mode(1);
+	return (0);
 }
-
-static void	move_right(void)
+int	move_right(__attribute((unused)) char **line,
+__attribute((unused)) const char *prompt)
 {
 	canonique_mode(0);
 	cursorforward(1);
 	fflush(stdout);
 	canonique_mode(1);
+	return (0);
 }
 
-int	move_cursor(__attribute((unused)) char **line,
-__attribute((unused)) const char *prompt)
+int	find_key(char *line)
 {
 	static int	pos = 0;
 	char		buf;
 	int		max_x = 0;
-	int		min_x = strlen(*line) * -1;
+	int		min_x = strlen(line) * -1;
 
 	if (read(0, &buf, 1) == -1)
 		return (84);
 	if (read(0, &buf, 1) == -1)
 		return (84);
 	if (buf == LEFT_KEY && pos > min_x) {
-		move_left();
 		--pos;
+		return (LEFT_KEY);
 	} else if (buf == RIGHT_KEY && pos < max_x) {
-		move_right();
 		++pos;
+		return (RIGHT_KEY);
 	}
+	if (buf == DOWN_KEY)
+		return (DOWN_KEY);
+	else if (buf == UP_KEY)
+		return (UP_KEY);
 	return (0);
 }
