@@ -44,7 +44,7 @@ __attribute((unused)) t_history *hist_list))
 	buf_function[TAB] = &auto_completion;
 }
 
-char	*recup_line(const char *prompt, t_history *hist_list)
+char	*recup_line(const char *prompt, t_history **hist_list)
 {
 	char	buf;
 	char	*term;
@@ -64,7 +64,7 @@ char	*recup_line(const char *prompt, t_history *hist_list)
 	while (read(0, &buf, 1) != 0) {
 		if (buf == ENTER_KEY)
 			break;
-		else if (special_char_function(buf, &line, prompt, hist_list,
+		else if (special_char_function(buf, &line, prompt, *hist_list,
 		buf_function) == 1)
 			continue;
 		else {
@@ -78,7 +78,7 @@ char	*recup_line(const char *prompt, t_history *hist_list)
 		}
 	}
 	canonique_mode(0);
-	put_in_history(&hist_list, line);
+	put_in_history(hist_list, line);
 	printf("\n");
 	return (line);
 }

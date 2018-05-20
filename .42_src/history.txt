@@ -1,0 +1,4 @@
+1	ls	Sun May 20 16:58:57 2018
+2	olol	Sun May 20 16:58:58 2018
+3	À‘	Sun May 20 16:59:00 2018
+4	exit	Sun May 20 16:59:02 2018

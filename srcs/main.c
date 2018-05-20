@@ -67,7 +67,7 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 		prompt_line = prompt(env_list);
 		free_list(cmd_list, &free_lexer);
 		cmd_list = NULL;
-		s = recup_line(prompt_line, hist_list);
+		s = recup_line(prompt_line, &hist_list);
 		s = inib(s);
 		ctrl_d(s);
 		if (check_char(s) == SUCCESS

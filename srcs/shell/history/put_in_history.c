@@ -53,7 +53,7 @@ void	put_in_history(t_history **list, char *line)
 	time_t		timestamp = time(NULL);
 	t_history	*tmp = NULL;
 
-	if (list == NULL) {
+	if (*list == NULL) {
 		first_node(list, line, ctime(&timestamp));
 		return;
 	}

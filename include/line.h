@@ -11,7 +11,7 @@
 #include "history.h"
 
 void	canonique_mode(int);
-char	*recup_line(const char *, t_history *);
+char	*recup_line(const char *, t_history **);
 int	find_key(char *);
 
 int	special_char_function(char, char **, const char *,
