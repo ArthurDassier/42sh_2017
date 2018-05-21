@@ -29,5 +29,6 @@
 #define	CTR_Y		25
 #define	CTR_U		21
 #define	CTR_K		11
+#define	CTR_D		4
 
 #endif /* !NCURSES_DEFINE_H_ */

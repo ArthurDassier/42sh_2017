@@ -58,6 +58,8 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 	init_buf_function_tab(buf_function);
 	while (read(0, &buf, 1) != 0) {
 		history_completion(*hist_list, line);
+		if (buf == CTR_D)
+			return (NULL);
 		if (buf == ENTER_KEY)
 			break;
 		else if (special_char_function(buf, &line, prompt, *hist_list,
@@ -72,7 +74,6 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 			size += size;
 			line = realloc(line, size);
 		}
-		fflush(stdin);
 	}
 	return (line);
 }

@@ -1,3 +1,1 @@
-1	echo lol	Mon May 21 10:57:26 2018
-2	echo ""lol""	Mon May 21 10:57:29 2018
-3	exit	Mon May 21 10:57:41 2018
+1	ls	Mon May 21 11:53:48 2018
