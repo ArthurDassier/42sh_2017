@@ -1,1 +1,5 @@
-1	ls	Mon May 21 11:53:48 2018
+1	ls	Mon May 21 13:34:15 2018
+2	ls |cat -e	Mon May 21 13:34:17 2018
+3	ls	Mon May 21 13:34:19 2018
+4	êMÏ	Mon May 21 13:34:21 2018
+5	exit	Mon May 21 13:34:23 2018
