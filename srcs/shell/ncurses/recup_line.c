@@ -41,7 +41,7 @@ __attribute((unused)) t_history *hist_list))
 	buf_function[RIGHT_KEY] = &move_right;
 	buf_function[LEFT_KEY] = &move_left;
 	buf_function[UP_KEY] = &history_up;
-	buf_function[UP_DOWN] = &history_down;
+	buf_function[DOWN_KEY] = &history_down;
 	buf_function[TAB] = &auto_completion;
 }
 
