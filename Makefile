@@ -21,7 +21,8 @@ DIR	=	srcs/shell/
 
 SRCS	=	srcs/main.c									\
 			$(DIR)/history/put_in_history.c						\
-			$(DIR)/history/history_functions.c						\
+			$(DIR)/history/history_functions.c					\
+			$(DIR)/history/history_completion.c					\
 			$(DIR)/ncurses/autocompletion.c						\
 			$(DIR)/ncurses/special_char_function.c					\
 			$(DIR)/ncurses/ctr_function.c						\
@@ -151,7 +152,7 @@ SRCS_TESTS=	tests/test_my_printf.c						\
 			$(UT_DIR)test_my_strncmp.c				\
 			$(UT_DIR)test_my_swap.c
 
-LDFLAGS=	-lcriterion --coverage -lreadline -lncurses -L./lib -lmy
+LDFLAGS=	-lcriterion --coverage -lncurses -L./lib -lmy
 
 TEST_NAME=	units
 

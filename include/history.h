@@ -17,5 +17,6 @@ typedef struct	s_history
 }				t_history;
 
 void	put_in_history(t_history **, char *);
+char	*history_completion(t_history *, char *);
 
 #endif /* !HISTORY_H_ */

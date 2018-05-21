@@ -51,6 +51,10 @@ __attribute((unused)) t_history *hist_list)
 	struct dirent	*red;
 	char		*save = malloc(sizeof(char));
 
+	if ((save = history_completion(hist_list, *line)) != NULL) {
+		*line = save;
+		return (0);
+	}
 	printf("\n");
 	save[0] = '\0';
 	cursorbackward(size);
