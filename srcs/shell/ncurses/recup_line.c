@@ -44,23 +44,17 @@ __attribute((unused)) t_history *hist_list))
 	buf_function[TAB] = &auto_completion;
 }
 
-char	*recup_line(const char *prompt, t_history **hist_list)
+static char	*read_loop(const char *prompt, t_history **hist_list)
 {
-	char	buf;
-	char	*term;
-	int	size = 10;
-	char	*line = malloc(sizeof(char) * size);
-	int	i = 0;
-	static int (*buf_function[177])(__attribute((unused)) char **,
+	int		size = 10;
+	char		buf;
+	int		i = 0;
+	char		*line = malloc(sizeof(char) * size);
+	static int	(*buf_function[177])(__attribute((unused)) char **,
 	__attribute((unused)) const char *,
 	__attribute((unused)) t_history *hist_list);
 
 	init_buf_function_tab(buf_function);
-	write(1, prompt, strlen(prompt));
-	canonique_mode(1);
-	term = getenv("TERM");
-	if (tgetent(NULL, term) != 1)
-		return (NULL);
 	while (read(0, &buf, 1) != 0) {
 		history_completion(*hist_list, line);
 		if (buf == ENTER_KEY)
@@ -78,6 +72,20 @@ char	*recup_line(const char *prompt, t_history **hist_list)
 			line = realloc(line, size);
 		}
 	}
+	return (line);
+}
+
+char	*recup_line(const char *prompt, t_history **hist_list)
+{
+	char	*term = NULL;
+	char	*line = NULL;
+
+	write(1, prompt, strlen(prompt));
+	canonique_mode(1);
+	term = getenv("TERM");
+	if (tgetent(NULL, term) != 1)
+		return (NULL);
+	line = read_loop(prompt, hist_list);
 	canonique_mode(0);
 	put_in_history(hist_list, line);
 	printf("\n");
