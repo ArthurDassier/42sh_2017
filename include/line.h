@@ -12,10 +12,11 @@
 
 void	canonique_mode(int);
 char	*recup_line(const char *, t_history **);
-int	find_key(char *);
+int	find_key(char *, int *);
+char	*del_char(int *, char *, const char *);
 
 int	special_char_function(char, char **, const char *,
-t_history **, int (**)(__attribute((unused)) char **,
+t_history **, int *, int (**)(__attribute((unused)) char **,
 __attribute((unused)) const char *,
 __attribute((unused)) t_history **));
 

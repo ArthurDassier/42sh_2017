@@ -12,20 +12,39 @@
 #include <stdio.h>
 #include <string.h>
 
-char	*history_completion(t_history *hist_list, char *line)
+static void	rewrite_prompt(char *line, const char *prompt)
+{
+	int		len = 0;
+
+	len = strlen(line) + strlen(prompt) + 1;
+	cursorbackward(len);
+	fflush(stdout);
+	write(1, prompt, strlen(prompt));
+}
+
+static void	print_cache(char *line)
+{
+	char	cache[] = "                                     ";
+	int	len = 0;
+
+	write(1, line, strlen(line));
+	write(1, cache, strlen(cache));
+	len = strlen(cache);
+	cursorbackward(len);
+	fflush(stdout);
+}
+
+char	*history_completion(t_history *hist_list, char *line, const char *prompt)
 {
 	t_history	*tmp = hist_list;
 	int		len = 0;
 
-	if (tmp == NULL || tmp->next == NULL)
+	if (tmp == NULL)
 		return (NULL);
-	while (tmp->next->next != NULL)
-		tmp = tmp->next;
+	tmp = tmp->prev;
 	while (tmp->prev != NULL) {
 		if (strncmp(line, tmp->line, strlen(line)) == 0) {
-			len = strlen(line);
-			cursorbackward(len);
-			fflush(stdout);
+			rewrite_prompt(line, prompt);
 			write(1, tmp->line, strlen(tmp->line));
 			len = strlen(tmp->line) - strlen(line);
 			cursorbackward(len);
@@ -34,5 +53,7 @@ char	*history_completion(t_history *hist_list, char *line)
 		}
 		tmp = tmp->prev;
 	}
+	rewrite_prompt(line, prompt);
+	print_cache(line);
 	return (NULL);
 }

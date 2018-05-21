@@ -46,14 +46,14 @@ int	auto_completion(__attribute((unused)) char **line,
 __attribute((unused)) const char *prompt,
 __attribute((unused)) t_history **hist_list)
 {
-	int		size = strlen(*line) + strlen(prompt);
+	int		size = strlen(*line) + strlen(prompt) + 1;
 	DIR		*dir = opendir(".");
 	struct dirent	*red;
 	char		*save = NULL;
 
-	if ((save = history_completion(*hist_list, *line)) != NULL) {
+	if ((save = history_completion(*hist_list, *line, prompt)) != NULL) {
 		free(*line);
-		*line = strdup(save);;
+		*line = strdup(save);
 		cursorbackward(size);
 		fflush(stdout);
 		write(1, prompt, strlen(prompt));
@@ -67,7 +67,7 @@ __attribute((unused)) t_history **hist_list)
 	while ((red = readdir(dir)) != NULL) {
 		if (match_str(line, red->d_name, prompt, size) == 1)
 			return (0);
-		size += strlen(red->d_name) + 2;
+		size += strlen(red->d_name) + 1;
 		save = realloc(save, size);
 		strcat(save, red->d_name);
 		strcat(save, " ");

@@ -1,0 +1,4 @@
+1	ls	Mon May 21 21:26:08 2018
+2	ls |cat -e	Mon May 21 21:26:10 2018
+3	ls |cat -e	Mon May 21 21:26:14 2018
+4	exit	Mon May 21 21:26:15 2018

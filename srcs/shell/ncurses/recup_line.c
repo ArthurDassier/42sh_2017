@@ -45,11 +45,48 @@ __attribute((unused)) t_history **hist_list))
 	buf_function[TAB] = &auto_completion;
 }
 
+static char	*write_char(char buf, int *pos, char *line, const char *prompt)
+{
+	char	*save = strdup(line);
+	int	j = strlen(line);
+	int	len = 0;
+	int	tmp = *pos;
+
+	if (*pos == 0) {
+		write(1, &buf, 1);
+		line[j] = buf;
+		line[j + 1] = '\0';
+		return (line);
+	}
+	line = realloc(line, j + 2);
+	while (tmp < 0) {
+		--j;
+		++tmp;
+	}
+	line[j] = buf;
+	while (save[j] != '\0') {
+		line[j + 1] = save[j];
+		++j;
+	}
+	line[j + 1] = '\0';
+	free(save);
+	len = strlen(prompt) + strlen(line);
+	cursorbackward(len);
+	fflush(stdout);
+	write(1, prompt, strlen(prompt));
+	write(1, line, strlen(line));
+	len = strlen(line) - *pos - 3;
+	cursorbackward(len);
+	fflush(stdout);
+	return (line);
+}
+
 static char	*read_loop(const char *prompt, t_history **hist_list)
 {
 	int		size = 10;
 	char		buf;
 	int		i = 0;
+	int		pos = 0;
 	t_history	*tmp = *hist_list;
 	char		*line = malloc(sizeof(char) * size);
 	static int	(*buf_function[177])(__attribute((unused)) char **,
@@ -59,22 +96,29 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 	memset(line, '\0', size);
 	init_buf_function_tab(buf_function);
 	while (read(0, &buf, 1) != 0) {
-		history_completion(*hist_list, line);
+		history_completion(*hist_list, line, prompt);
 		if (buf == CTR_D)
-			return (NULL);
-		if (buf == ENTER_KEY)
 			break;
+		if (buf == ENTER_KEY) {
+			if (line[0] == '\0')
+				line[0] = ' ';
+			break;
+		}
+		if (buf == DEL) {
+			del_char(&pos, line, prompt);
+			continue;
+		}
 		else if (special_char_function(buf, &line, prompt, &tmp,
-		buf_function) == 1)
+		&pos, buf_function) == 1)
 			continue;
 		else {
-			write(1, &buf, 1);
-			line[i++] = buf;
-			line[i] = '\0';
+			line = write_char(buf, &pos, line, prompt);
+			++i;
 		}
 		if (i == size) {
 			size += size;
-			line = realloc(line, size);
+			line = realloc(line, size + 1);
+			line[size] = '\0';
 		}
 	}
 	return (line);
@@ -92,7 +136,10 @@ char	*recup_line(const char *prompt, t_history **hist_list)
 		return (NULL);
 	line = read_loop(prompt, hist_list);
 	canonique_mode(0);
-	put_in_history(hist_list, line);
-	printf("\n");
+	if (line[0] != '\0') {
+		put_in_history(hist_list, line);
+		printf("\n");
+	} else
+		return (NULL);
 	return (line);
 }

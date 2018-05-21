@@ -33,9 +33,8 @@ __attribute((unused)) t_history **hist_list)
 	return (0);
 }
 
-int	find_key(char *line)
+int	find_key(char *line, int *pos)
 {
-	static int	pos = 0;
 	char		buf;
 	int		max_x = 0;
 	int		min_x = strlen(line) * -1;
@@ -44,11 +43,11 @@ int	find_key(char *line)
 		return (84);
 	if (read(0, &buf, 1) == -1)
 		return (84);
-	if (buf == LEFT_KEY && pos > min_x) {
-		--pos;
+	if (buf == LEFT_KEY && *pos > min_x) {
+		--*pos;
 		return (LEFT_KEY);
-	} else if (buf == RIGHT_KEY && pos < max_x) {
-		++pos;
+	} else if (buf == RIGHT_KEY && *pos < max_x) {
+		++*pos;
 		return (RIGHT_KEY);
 	}
 	if (buf == DOWN_KEY)
