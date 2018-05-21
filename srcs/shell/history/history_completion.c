@@ -25,8 +25,9 @@ char	*history_completion(t_history *hist_list, char *line)
 		if (strncmp(line, tmp->line, strlen(line)) == 0) {
 			len = strlen(line);
 			cursorbackward(len);
-			printf("%s", tmp->line);
-			len = strlen(tmp->line) - strlen(line) - 1;
+			fflush(stdout);
+			write(1, tmp->line, strlen(tmp->line));
+			len = strlen(tmp->line) - strlen(line);
 			cursorbackward(len);
 			fflush(stdout);
 			return (tmp->line);

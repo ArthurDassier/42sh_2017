@@ -49,12 +49,18 @@ __attribute((unused)) t_history *hist_list)
 	int		size = strlen(*line) + strlen(prompt);
 	DIR		*dir = opendir(".");
 	struct dirent	*red;
-	char		*save = malloc(sizeof(char));
+	char		*save = NULL;
 
 	if ((save = history_completion(hist_list, *line)) != NULL) {
-		*line = save;
+		free(*line);
+		*line = strdup(save);;
+		cursorbackward(size);
+		fflush(stdout);
+		write(1, prompt, strlen(prompt));
+		write(1, *line, strlen(*line));
 		return (0);
 	}
+	save = malloc(sizeof(char));
 	printf("\n");
 	save[0] = '\0';
 	cursorbackward(size);
