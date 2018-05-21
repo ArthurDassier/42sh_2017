@@ -15,3 +15,10 @@ __attribute((unused)) t_history *hist_list)
 {
 	return (1);
 }
+
+int	history_down(__attribute((unused)) char **line,
+__attribute((unused)) const char *prompt,
+__attribute((unused)) t_history *hist_list)
+{
+	return (1);
+}

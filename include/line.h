@@ -23,6 +23,10 @@ int	history_up(__attribute((unused)) char **,
 __attribute((unused)) const char *,
 __attribute((unused)) t_history *);
 
+int	history_down(__attribute((unused)) char **,
+__attribute((unused)) const char *,
+__attribute((unused)) t_history *);
+
 int	do_nothing(__attribute((unused)) char **,
 __attribute((unused)) const char *,
 __attribute((unused)) t_history *);
