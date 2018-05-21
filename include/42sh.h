@@ -168,6 +168,8 @@ char	**quotes(char **, char *, t_node **);
 char	**simple_quotes(char **, char *);
 int	count_quotes(char **, char);
 char	*delete_special(char *);
+char	*inc_space(char *, char *, char);
+char	*find_endspace(char *, char *, char);
 
 /*
 ** Free

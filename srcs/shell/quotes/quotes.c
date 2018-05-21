@@ -21,10 +21,11 @@ char *s, t_node **env_l)
 		++j;
 		++i;
 	}
-	if (line_one[0] != '\0')
+	if (line_one[0] == '\0')
+		line_one = inc_space(line_one, s, '"');
+	else
 		line_one[j] = '\0';
 	line_one = strcat(line_one, line_two);
-	my_printf("- > %s|\n", line_one);
 	line_one = delete_special(line_one);
 	line_one = handle_dollars(line_one, env_l);
 	return (line_one);
@@ -41,15 +42,14 @@ static char	**double_tab(char **line, char *s, t_node **env_list)
 	if (line[i] == NULL)
 		return (NULL);
 	line[i][0] = '\0';
-	for (j = i + 1; line[j][0] != '\"'; ++j)
+	for (j = i + 1; line[j][0] != '\"'; ++j) {
 		line[i] = my_cat_double(line[i], line[j], s, env_list);
+		line[i] = find_endspace(line[i], s, '"');
+	}
 	if (line[i] == NULL)
 		return (NULL);
-	for (i = i + 1; line[++j] != NULL;) {
+	for (i = i + 1; line[++j] != NULL; ++i)
 		line[i] = strdup(line[j]);
-		free(line[j]);
-		++i;
-	}
 	line[i] = NULL;
 	return (line);
 }

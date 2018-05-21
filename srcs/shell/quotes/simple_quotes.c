@@ -20,7 +20,9 @@ char	*my_cat(char *line_one, char *line_two, char *s)
 		++j;
 		++i;
 	}
-	if (line_one[0] != '\0')
+	if (line_one[0] == '\0')
+		line_one = inc_space(line_one, s, '\'');
+	else
 		line_one[j] = '\0';
 	line_one = strcat(line_one, line_two);
 	line_one = delete_special(line_one);
@@ -38,12 +40,13 @@ char	**simple_tab(char **line, char *s)
 	if (line[i] == NULL)
 		return (NULL);
 	line[i][0] = '\0';
-	for (j = i + 1; line[j][0] != '\''; ++j)
+	for (j = i + 1; line[j][0] != '\''; ++j) {
 		line[i] = my_cat(line[i], line[j], s);
-	for (i = i + 1; line[++j] != NULL;) {
+		line[i] = find_endspace(line[i], s, '\'');
+	}
+	for (i = i + 1; line[++j] != NULL; ++i) {
 		line[i] = strdup(line[j]);
 		free(line[j]);
-		++i;
 	}
 	line[i] = NULL;
 	return (line);
