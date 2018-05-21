@@ -51,15 +51,14 @@ static char	*write_char(char buf, int *pos, char *line, const char *prompt)
 	int	j = strlen(line);
 	int	len = 0;
 	int	tmp = *pos;
-	int	size = strlen(line);
 
 	if (*pos == 0) {
 		write(1, &buf, 1);
-		line[size] = buf;
-		line[size + 1] = '\0';
+		line[j] = buf;
+		line[j + 1] = '\0';
 		return (line);
 	}
-	line = realloc(line, size + 2);
+	line = realloc(line, j + 2);
 	while (tmp < 0) {
 		--j;
 		++tmp;
@@ -102,6 +101,10 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 			break;
 		if (buf == ENTER_KEY)
 			break;
+		if (buf == DEL) {
+			del_char(&pos, line, prompt);
+			continue;
+		}
 		else if (special_char_function(buf, &line, prompt, &tmp,
 		&pos, buf_function) == 1)
 			continue;
