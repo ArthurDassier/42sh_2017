@@ -84,6 +84,7 @@ SRCS	=	srcs/main.c									\
 
 SRCS_UT	=	$(DIR)/utils/check_perm.c				\
 			$(DIR)/utils/delete_list.c			\
+			$(DIR)/utils/get_env.c				\
 			$(DIR)/utils/print.c				\
 			$(DIR)/utils/fill_list.c			\
 			$(DIR)/utils/list_to_tab.c			\
@@ -93,12 +94,15 @@ SRCS_UT	=	$(DIR)/utils/check_perm.c				\
 			$(DIR)/utils/display.c				\
 			$(DIR)/utils/display_tree.c			\
 			$(DIR)/utils/path.c				\
+			$(DIR)/utils/delim_words.c			\
 			$(DIR)/lexer/lexer.c				\
 			$(DIR)/lexer/get_options.c			\
+			$(DIR)/lexer/delim_lexem.c			\
 			$(DIR)/lexer/get_builtins.c			\
 			$(DIR)/lexer/get_cmd.c				\
 			$(DIR)/parser/cmd_rule.c			\
 			$(DIR)/parser/exp_rule.c			\
+			$(DIR)/parser/handle_parentheses.c		\
 			$(DIR)/parser/get_name.c			\
 			$(DIR)/parser/pipexp_rule.c			\
 			$(DIR)/parser/rexp_rule.c			\
@@ -106,17 +110,21 @@ SRCS_UT	=	$(DIR)/utils/check_perm.c				\
 			$(DIR)/execution/exec_cmd.c			\
 			$(DIR)/execution/redirect.c			\
 			$(DIR)/execution/pipe.c				\
-			$(DIR)/execution/env.c				\
-			$(DIR)/execution/builtins.c			\
+			$(DIR)/execution/builtins/env.c			\
+			$(DIR)/execution/builtins/builtins.c		\
 			$(DIR)/execution/parentheses.c			\
-			$(DIR)/execution/setenv.c			\
-			$(DIR)/execution/cd.c				\
+			$(DIR)/execution/builtins/setenv.c		\
+			$(DIR)/execution/builtins/cd.c			\
+			$(DIR)/execution/builtins/env_special_cases.c	\
+			$(DIR)/execution/builtins/ignore_env.c		\
+			$(DIR)/execution/builtins/env_chdir.c		\
+			$(DIR)/execution/builtins/cd_special_cases.c	\
+			$(DIR)/execution/separators.c			\
 			$(DIR)/execution/rules_exec.c			\
 			$(DIR)/alias/alias_cmd.c			\
 			$(DIR)/alias/recup_aliases.c			\
-			$(DIR)/aliaschange_for_alias.c			\
+			$(DIR)/alias/change_for_alias.c			\
 			$(DIR)/scripting/check_script.c
-
 
 UT_DIR	=	tests/lib/
 
