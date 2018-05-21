@@ -25,7 +25,8 @@ static void	write_in_history(t_history *list)
 	}
 	write(fd, my_itoa(count), strlen(my_itoa(count)));
 	write(fd, &ct, 1);
-	write(fd, list->line, strlen(list->line));
+	if (list->line != NULL)
+		write(fd, list->line, strlen(list->line));
 	write(fd, &ct, 1);
 	write(fd, list->timestamp, strlen(list->timestamp));
 	++count;
@@ -57,6 +58,8 @@ void	put_in_history(t_history **list, char *line)
 		first_node(list, line, ctime(&timestamp));
 		return;
 	}
+	if (line == NULL)
+		return;
 	(*list)->line = strdup(line);
 	(*list)->timestamp = strdup(ctime(&timestamp));
 	write_in_history(*list);

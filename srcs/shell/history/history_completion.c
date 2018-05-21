@@ -17,9 +17,9 @@ char	*history_completion(t_history *hist_list, char *line)
 	t_history	*tmp = hist_list;
 	int		len = 0;
 
-	if (tmp == NULL)
+	if (tmp == NULL || tmp->next == NULL)
 		return (NULL);
-	while (tmp->next != NULL)
+	while (tmp->next->next != NULL)
 		tmp = tmp->next;
 	while (tmp->prev != NULL) {
 		if (strncmp(line, tmp->line, strlen(line)) == 0) {

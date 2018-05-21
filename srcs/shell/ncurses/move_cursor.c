@@ -13,7 +13,7 @@
 
 int	move_left(__attribute((unused)) char **line,
 __attribute((unused)) const char *prompt,
-__attribute((unused)) t_history *hist_list)
+__attribute((unused)) t_history **hist_list)
 {
 	canonique_mode(0);
 	cursorbackward(1);
@@ -21,9 +21,10 @@ __attribute((unused)) t_history *hist_list)
 	canonique_mode(1);
 	return (0);
 }
+
 int	move_right(__attribute((unused)) char **line,
 __attribute((unused)) const char *prompt,
-__attribute((unused)) t_history *hist_list)
+__attribute((unused)) t_history **hist_list)
 {
 	canonique_mode(0);
 	cursorforward(1);

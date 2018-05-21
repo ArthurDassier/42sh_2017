@@ -34,7 +34,7 @@ void	canonique_mode(int set)
 // initialisation of the function tab
 static void	init_buf_function_tab(int (**buf_function)
 (__attribute((unused)) char **line, __attribute((unused)) const char *prompt,
-__attribute((unused)) t_history *hist_list))
+__attribute((unused)) t_history **hist_list))
 {
 	buf_function[0] = &do_nothing;
 	buf_function[CTR_L] = &ctr_l;
@@ -50,17 +50,21 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 	int		size = 10;
 	char		buf;
 	int		i = 0;
+	t_history	*tmp = *hist_list;
 	char		*line = malloc(sizeof(char) * size);
 	static int	(*buf_function[177])(__attribute((unused)) char **,
 	__attribute((unused)) const char *,
-	__attribute((unused)) t_history *hist_list);
+	__attribute((unused)) t_history **);
 
+	memset(line, '\0', size);
 	init_buf_function_tab(buf_function);
 	while (read(0, &buf, 1) != 0) {
 		history_completion(*hist_list, line);
+		if (buf == CTR_D)
+			return (NULL);
 		if (buf == ENTER_KEY)
 			break;
-		else if (special_char_function(buf, &line, prompt, *hist_list,
+		else if (special_char_function(buf, &line, prompt, &tmp,
 		buf_function) == 1)
 			continue;
 		else {
@@ -72,7 +76,6 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 			size += size;
 			line = realloc(line, size);
 		}
-		fflush(stdin);
 	}
 	return (line);
 }

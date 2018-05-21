@@ -25,7 +25,7 @@ static char *negate(int nb)
 	int 	i;
 	int 	m = 10;
 
-	str = my_malloc(sizeof(char) * (count_num(nb) + 1));
+	str = malloc(sizeof(char) * (count_num(nb) + 1));
 	str[i = (count_num(nb) + 1)] = '\0';
 	i -= 1;
 	nb = nb * (-1);
@@ -48,7 +48,7 @@ char *my_itoa(int nb)
 
 	if (nb < 0)
 		return (negate(nb));
-	str = my_malloc(sizeof(char) * (count_num(nb)));
+	str = malloc(sizeof(char) * (count_num(nb) + 1));
 	str[i = count_num(nb)] = '\0';
 	i -= 1;
 	while (i >= 0) {
