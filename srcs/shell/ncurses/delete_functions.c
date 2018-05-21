@@ -26,6 +26,7 @@ char	*del_char(int *pos, char *line, const char *prompt)
 		++tmp;
 	}
 	while (save[j] != '\0') {
+		write(1, " ", 1);
 		line[j] = save[j + 1];
 		++j;
 	}
@@ -35,7 +36,7 @@ char	*del_char(int *pos, char *line, const char *prompt)
 	fflush(stdout);
 	write(1, prompt, strlen(prompt));
 	write(1, line, strlen(line));
-	len = strlen(line) - *pos;
+	len = strlen(line) - *pos - 2;
 	cursorbackward(len);
 	fflush(stdout);
 	return (line);

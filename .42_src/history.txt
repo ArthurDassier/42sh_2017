@@ -1,3 +1,14 @@
-1	l	Mon May 21 19:06:10 2018
-2	ext	Mon May 21 19:06:28 2018
-3	exit	Mon May 21 19:06:30 2018
+1	ls	Mon May 21 21:21:12 2018
+2	 	Mon May 21 21:21:16 2018
+3	 	Mon May 21 21:21:18 2018
+4	 	Mon May 21 21:21:23 2018
+5	 	Mon May 21 21:21:25 2018
+6	 	Mon May 21 21:21:38 2018
+7	 	Mon May 21 21:21:45 2018
+8	 	Mon May 21 21:21:46 2018
+9	 	Mon May 21 21:21:49 2018
+10	 	Mon May 21 21:21:50 2018
+11	sid	Mon May 21 21:22:02 2018
+12	sid	Mon May 21 21:22:05 2018
+13	sida	Mon May 21 21:22:08 2018
+14	exit	Mon May 21 21:22:11 2018

@@ -51,7 +51,7 @@ __attribute((unused)) t_history **hist_list)
 	struct dirent	*red;
 	char		*save = NULL;
 
-	if ((save = history_completion(*hist_list, *line)) != NULL) {
+	if ((save = history_completion(*hist_list, *line, prompt)) != NULL) {
 		free(*line);
 		*line = strdup(save);
 		cursorbackward(size);

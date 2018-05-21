@@ -96,11 +96,14 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 	memset(line, '\0', size);
 	init_buf_function_tab(buf_function);
 	while (read(0, &buf, 1) != 0) {
-	//	history_completion(*hist_list, line);
+		history_completion(*hist_list, line, prompt);
 		if (buf == CTR_D)
 			break;
-		if (buf == ENTER_KEY)
+		if (buf == ENTER_KEY) {
+			if (line[0] == '\0')
+				line[0] = ' ';
 			break;
+		}
 		if (buf == DEL) {
 			del_char(&pos, line, prompt);
 			continue;
@@ -133,7 +136,7 @@ char	*recup_line(const char *prompt, t_history **hist_list)
 		return (NULL);
 	line = read_loop(prompt, hist_list);
 	canonique_mode(0);
-	if (line != NULL && line[0] != '\0') {
+	if (line[0] != '\0') {
 		put_in_history(hist_list, line);
 		printf("\n");
 	} else
