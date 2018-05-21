@@ -7,7 +7,8 @@
 
 #include "42sh.h"
 
-char	*my_cat_double(char *line_one, char *line_two, char *s, t_node **env_l)
+static char	*my_cat_double(char *line_one, char *line_two,
+char *s, t_node **env_l)
 {
 	char	*find = strstr(s, line_one);
 	int	i = 0;
@@ -23,12 +24,13 @@ char	*my_cat_double(char *line_one, char *line_two, char *s, t_node **env_l)
 	if (line_one[0] != '\0')
 		line_one[j] = '\0';
 	line_one = strcat(line_one, line_two);
+	my_printf("- > %s|\n", line_one);
 	line_one = delete_special(line_one);
 	line_one = handle_dollars(line_one, env_l);
 	return (line_one);
 }
 
-char	**double_tab(char **line, char *s, t_node **env_list)
+static char	**double_tab(char **line, char *s, t_node **env_list)
 {
 	int	i = 0;
 	int	j = 0;
@@ -52,7 +54,7 @@ char	**double_tab(char **line, char *s, t_node **env_list)
 	return (line);
 }
 
-char	**double_quotes(char **line, char *s, t_node **env_list)
+static char	**double_quotes(char **line, char *s, t_node **env_list)
 {
 	int	i = 0;
 	int	nb_quote = 0;
