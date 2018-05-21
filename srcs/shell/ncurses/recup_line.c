@@ -71,6 +71,7 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 			size += size;
 			line = realloc(line, size);
 		}
+		fflush(stdin);
 	}
 	return (line);
 }
