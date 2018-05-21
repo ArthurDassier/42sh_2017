@@ -45,21 +45,21 @@ __attribute((unused)) t_history **hist_list))
 	buf_function[TAB] = &auto_completion;
 }
 
-static void	write_char(char buf, int *pos, char *line, int *i, const char *prompt)
+static char	*write_char(char buf, int *pos, char *line, const char *prompt)
 {
 	char	*save = strdup(line);
 	int	j = strlen(line);
 	int	len = 0;
 	int	tmp = *pos;
+	int	size = strlen(line);
 
 	if (*pos == 0) {
 		write(1, &buf, 1);
-		line[*i] = buf;
-		*i += 1;
-		line[*i] = '\0';
-		return;
+		line[size] = buf;
+		line[size + 1] = '\0';
+		return (line);
 	}
-	line = realloc(line, strlen(line) + 2);
+	line = realloc(line, size + 2);
 	while (tmp < 0) {
 		--j;
 		++tmp;
@@ -76,10 +76,10 @@ static void	write_char(char buf, int *pos, char *line, int *i, const char *promp
 	fflush(stdout);
 	write(1, prompt, strlen(prompt));
 	write(1, line, strlen(line));
-	len = strlen(line) + *pos - 1;
-	*pos -= 2;
+	len = strlen(line) - *pos - 3;
 	cursorbackward(len);
 	fflush(stdout);
+	return (line);
 }
 
 static char	*read_loop(const char *prompt, t_history **hist_list)
@@ -105,11 +105,14 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 		else if (special_char_function(buf, &line, prompt, &tmp,
 		&pos, buf_function) == 1)
 			continue;
-		else
-			write_char(buf, &pos, line, &i, prompt);
+		else {
+			line = write_char(buf, &pos, line, prompt);
+			++i;
+		}
 		if (i == size) {
 			size += size;
-			line = realloc(line, size);
+			line = realloc(line, size + 1);
+			line[size] = '\0';
 		}
 	}
 	return (line);

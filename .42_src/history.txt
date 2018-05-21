@@ -1,8 +1,5 @@
-1	las	Mon May 21 16:58:41 2018
-2	las	Mon May 21 16:58:42 2018
-3	mdr	Mon May 21 16:58:44 2018
-4	mdr	Mon May 21 16:59:01 2018
-5	ls |cat -e	Mon May 21 16:59:03 2018
-6	 mdr	Mon May 21 16:59:05 2018
-7	 mdr	Mon May 21 16:59:09 2018
-8	exit	Mon May 21 16:59:25 2018
+1	ls	Mon May 21 18:12:09 2018
+2	lol	Mon May 21 18:12:10 2018
+3	mdr	Mon May 21 18:12:11 2018
+4	ls z r rr q	Mon May 21 18:13:40 2018
+5	exit	Mon May 21 18:13:42 2018
