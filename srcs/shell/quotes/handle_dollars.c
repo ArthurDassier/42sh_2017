@@ -7,7 +7,7 @@
 
 #include "42sh.h"
 
-char *found_env(t_node **env_list, char *pathname)
+static char	*found_env(t_node **env_list, char *pathname)
 {
 	t_node *tmp = (*env_list);
 	t_save *tmp_content;
@@ -26,7 +26,7 @@ char *found_env(t_node **env_list, char *pathname)
 	return (NULL);
 }
 
-char *replace_the_dollar_part2(char *line_one, char *name, int i, int save)
+static char	*replace_line(char *line_one, char *name, int i, int save)
 {
 	char	*tmp = malloc(sizeof(char)
 	* (strlen(line_one) + strlen(name)));
@@ -48,7 +48,7 @@ char *replace_the_dollar_part2(char *line_one, char *name, int i, int save)
 	return (tmp);
 }
 
-char *replace_the_dollar(char *line_one, t_node **env_list, int i)
+static char	*replace_the_dollar(char *line_one, t_node **env_list, int i)
 {
 	char	*pathname = malloc(sizeof(char) * strlen(line_one));
 	char	*name;
@@ -65,7 +65,7 @@ char *replace_the_dollar(char *line_one, t_node **env_list, int i)
 	name = found_env(env_list, pathname);
 	if (name == NULL)
 		return (NULL);
-	return (replace_the_dollar_part2(line_one, name, i, save));
+	return (replace_line(line_one, name, i, save));
 }
 
 char	*handle_dollars(char *line_one, t_node **env_list)

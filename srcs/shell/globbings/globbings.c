@@ -15,7 +15,7 @@ static int	analyse_globbings(char *tmp)
 
 	while (tmp[i] != '\0') {
 		if ((tmp[i] == '*' || tmp[i] == '?' || tmp[i] == '['
-		|| tmp[i] == '{' || tmp[i] == '^' || tmp[i] == '$')
+		|| tmp[i] == '{' || tmp[i] == '^')
 		&& (back_slash(i, tmp) == 1))
 			return (-1);
 		++i;

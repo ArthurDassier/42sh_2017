@@ -7,7 +7,7 @@
 
 #include "42sh.h"
 
-char *decal_line(char *line, int i)
+char	*decal_line(char *line, int i)
 {
 	while (line[i] != '\0') {
 		line[i] = line[i + 1];
@@ -16,7 +16,7 @@ char *decal_line(char *line, int i)
 	return (line);
 }
 
-char *delete_backslash(char *line)
+char	*delete_backslash(char *line)
 {
 	int i = 0;
 
@@ -28,7 +28,7 @@ char *delete_backslash(char *line)
 	return (line);
 }
 
-char **handle_backslash(char **line)
+char	**handle_backslash(char **line)
 {
 	int	i = 0;
 
@@ -40,7 +40,7 @@ char **handle_backslash(char **line)
 	return (line);
 }
 
-static char *check_inib(char *str, int *i)
+static char	*check_inib(char *str, int *i)
 {
 	char *tmp;
 	char *s;
@@ -61,7 +61,7 @@ static char *check_inib(char *str, int *i)
 	return (str);
 }
 
-char *inib(char *str)
+char	*inib(char *str)
 {
 	int i = 0;
 

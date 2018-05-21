@@ -7,7 +7,7 @@
 
 #include "42sh.h"
 
-char *replace_bs(char *line, int *i)
+static char	*replace_bs(char *line, int *i)
 {
 	int	j = 0;
 	char	*escape = "abtnvfr";
