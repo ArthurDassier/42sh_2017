@@ -13,7 +13,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-static void	rewrite_prompt_line(int size, char *save, const char *prompt,
+static void	rewrite_prompt_and_line(int size, char *save, const char *prompt,
 char *line)
 {
 	cursorbackward(size);
@@ -72,6 +72,6 @@ __attribute((unused)) t_history **hist_list)
 		strcat(save, red->d_name);
 		strcat(save, " ");
 	}
-	rewrite_prompt_line(size, save, prompt, *line);
+	rewrite_prompt_and_line(size, save, prompt, *line);
 	return (0);
 }
