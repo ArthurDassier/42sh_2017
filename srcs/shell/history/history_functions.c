@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 int	show_history(t_history *hist_list)
 {
@@ -26,45 +27,82 @@ int	show_history(t_history *hist_list)
 	return (1);
 }
 
-static int	recup_index(char *line)
-{
-	int	i = 0;
 
-	while (line[i] != '\0') {
-		line[i] = line[i + 1];
-		++i;
+static int	pos_index(t_history *tmp, char **line, int index)
+{
+	int		ind_tmp = index;
+
+	while (tmp->prev != NULL)
+		tmp = tmp->prev;
+	while (index > 1) {
+		if (tmp->next == NULL) {
+			printf("%d: Event not found\n", ind_tmp);
+			return (-1);
+		}
+		tmp = tmp->next;
+		--index;
 	}
-	return (atoi(line));
+	free(*line);
+	*line = strdup(tmp->line);
+	return (0);
 }
 
-int	find_in_history(t_history *hist_list, char **line)
+static int	find_in_history(t_history *hist_list, char **line)
 {
 	t_history	*tmp = hist_list;
-	int		index = recup_index(line[0]);
+	int		index = recup_index(*line);
+	int		ind_tmp = index;
 
-	if (index == -1)
-		return (0);
-	if (index > 0) {
-		while (tmp->prev != NULL)
-			tmp = tmp->prev;
-		while (index >= 0 && tmp->next != NULL) {
-			tmp = tmp->next;
-			--index;
-		}
-		free(line[0]);
-		line[0] = strdup(tmp->line);
-		printf("%s\n", line[0]);
-		return (1);
-	} else if (index < 0) {
-		while (tmp->next != NULL)
-			tmp = tmp->next;
-		while (index < 0 && tmp->prev != NULL) {
+	if (index > 0)
+		return (pos_index(tmp, line, index));
+	if (index < 0) {
+		tmp = tmp->prev->prev;
+		while (index < -1) {
+			if (tmp == NULL) {
+				printf("%d: Event not found\n", ind_tmp);
+				return (-1);
+			}
 			tmp = tmp->prev;
 			++index;
 		}
-		free(line[0]);
-		line[0] = strdup(tmp->line);
-		return (1);
+		free(*line);
+		*line = strdup(tmp->line);
 	}
+	return (0);
+}
+
+static void	change_in_history_from_ex(t_history **hist_list, char *buffer,
+int flag)
+{
+	if (flag == 1) {
+		free((*hist_list)->prev->line);
+		(*hist_list)->prev->line = strdup(buffer);
+		write(1, buffer, strlen(buffer));
+		write(1, "\n", 1);
+	}
+}
+
+int	changes_from_history(t_history **hist_list, char **line)
+{
+	t_history	*hist_tmp = *hist_list;
+	int		i = 0;
+	int		tmp = 0;
+	char		*buffer = malloc(sizeof(char));
+	int		flag = 0;
+
+	buffer[0] = '\0';
+	while (line[i] != NULL) {
+		if (line[i][0] == '!' && line[i][1] != '\0') {
+			if ((tmp  = find_in_history(hist_tmp, &line[i])) == -1)
+				return (-1);
+			buffer = realloc(buffer,
+			strlen(buffer) + strlen(line[i]) + 2);
+			buffer = strcat(buffer, line[i]);
+			buffer = strcat(buffer, " ");
+			flag = 1;
+		}
+		++i;
+	}
+	change_in_history_from_ex(hist_list, buffer, flag);
 	return (0);
 }

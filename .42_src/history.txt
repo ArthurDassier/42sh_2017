@@ -1,0 +1,7 @@
+1	ls	Tue May 22 17:49:48 2018
+2	!1	Tue May 22 17:49:49 2018
+3	ls	Tue May 22 17:49:50 2018
+4	src	Tue May 22 17:49:51 2018
+5	!1 !2	Tue May 22 17:49:53 2018
+6	ls ls  	Tue May 22 17:50:02 2018
+7	exit	Tue May 22 17:50:03 2018

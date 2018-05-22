@@ -39,6 +39,8 @@ t_files_info *info)
 		return (FAILURE);
 	}
 	change_for_alias(info->alias_list, line);
+	if (changes_from_history(&info->hist_list, line) == -1)
+		return (FAILURE);
 	lexer(cmd_list, line, *env_list);
 	tree = s_rule(cmd_list);
 	if (!tree) {
@@ -69,8 +71,7 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 		prompt_line = prompt(env_list);
 		free_list(cmd_list, &free_lexer);
 		cmd_list = NULL;
-		my_putstr(prompt_line);
-		s = get_next_line(0);
+		s = recup_line(prompt_line, &info->hist_list);
 		s = inib(s);
 		ctrl_d(s);
 		if (check_char(s) == SUCCESS
