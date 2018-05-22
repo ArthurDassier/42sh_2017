@@ -16,6 +16,7 @@
 #include <string.h>
 #include "list.h"
 #include "my.h"
+#include "history.h"
 #include "parser.h"
 #include "define.h"
 
@@ -39,6 +40,12 @@ typedef struct	s_aliases_list
 	struct	s_aliases_list	*next;
 }				t_aliases_list;
 
+typedef struct s_files_info
+{
+	t_aliases_list	*alias_list;
+	t_history	*hist_list;
+}			t_files_info;
+
 typedef struct	s_save {
 	char	*name;
 	char	*content;
@@ -56,9 +63,9 @@ int		env_built(char **, t_node **);
 int		exit_built(char **, t_node **);
 int		cd_built(char **, t_node **);
 int		setenv_built(char **, t_node **);
-bool	check_env_name(t_node *, char *);
+bool		check_env_name(t_node *, char *);
 int		unsetenv_built(char **, t_node **);
-void	change_pwd(t_node **, char *);
+void		change_pwd(t_node **, char *);
 int		cd_special_cases(char **, t_node **, char *);
 int		display_help(__attribute((unused)) char **, t_node **);
 int		normal_cd(t_node **, char **);
@@ -103,21 +110,21 @@ char	**handle_line(char **, char *, t_node **);
 ** Execution
 */
 bool	exec_cmd(char **, t_node *);
-bool	s_exec(t_tree *, t_node **);
-bool	exp_exec(t_tree *, t_node **);
-bool	pipexp_exec(t_tree *, t_node **);
-bool	rexp_exec(t_tree *, t_node **);
-bool	cmd_exec(t_tree *, t_node **);
+bool	s_exec(t_tree *, t_node **, t_files_info *);
+bool	exp_exec(t_tree *, t_node **, t_files_info *);
+bool	pipexp_exec(t_tree *, t_node **, t_files_info *);
+bool	rexp_exec(t_tree *, t_node **, t_files_info *);
+bool	cmd_exec(t_tree *, t_node **, t_files_info *);
 void	exec_com(char **, char **, t_node *);
 void	add_com(char **, char **);
 void	exec_line(t_node *, char **);
-bool	r_redirection(t_tree *, t_node **);
-bool	dr_redirection(t_tree *, t_node **);
-bool	l_redirection(t_tree *, t_node **);
-bool	pipe_exec(t_tree *, t_node **);
-bool	dl_redirection(t_tree *, t_node **);
-bool	separators_exec(t_tree *, t_node **);
-int	exec_builtins(char **, t_node **);
+bool	r_redirection(t_tree *, t_node **, t_files_info *);
+bool	dr_redirection(t_tree *, t_node **, t_files_info *);
+bool	l_redirection(t_tree *, t_node **, t_files_info *);
+bool	pipe_exec(t_tree *, t_node **, t_files_info *);
+bool	dl_redirection(t_tree *, t_node **, t_files_info *);
+bool	separators_exec(t_tree *, t_node **, t_files_info *);
+int	exec_builtins(char **, t_node **, t_files_info *);
 bool	semiexp_exec(t_tree *, t_node **);
 bool	parentheses(t_tree *, t_node **);
 

@@ -18,5 +18,7 @@ typedef struct	s_history
 
 void	put_in_history(t_history **, char *);
 char	*history_completion(t_history *, char *, const char *);
+int	show_history(t_history *);
+int	find_in_history(t_history *, char **);
 
 #endif /* !HISTORY_H_ */

@@ -9,7 +9,8 @@
 
 const int BUFFER_SIZE = 2048;
 
-bool	r_redirection(t_tree *tree, t_node **env_list)
+bool	r_redirection(t_tree *tree, t_node **env_list,
+t_files_info *info)
 {
 	int	fd;
 	int	dupfd = dup(1);
@@ -20,14 +21,15 @@ bool	r_redirection(t_tree *tree, t_node **env_list)
 		exit(FAILURE);
 	}
 	dup2(fd, 1);
-	cmd_exec(tree->left, env_list);
+	cmd_exec(tree->left, env_list, info);
 	dup2(dupfd, 1);
 	close(fd);
 	close(dupfd);
 	return (true);
 }
 
-bool	dr_redirection(t_tree *tree, t_node **env_list)
+bool	dr_redirection(t_tree *tree, t_node **env_list,
+t_files_info *info)
 {
 	int	fd;
 	int	dupfd = dup(1);
@@ -38,14 +40,15 @@ bool	dr_redirection(t_tree *tree, t_node **env_list)
 		exit(FAILURE);
 	}
 	dup2(fd, 1);
-	cmd_exec(tree->left, env_list);
+	cmd_exec(tree->left, env_list, info);
 	dup2(dupfd, 1);
 	close(fd);
 	close(dupfd);
 	return (true);
 }
 
-bool	l_redirection(t_tree *tree, t_node **env_list)
+bool	l_redirection(t_tree *tree, t_node **env_list,
+t_files_info *info)
 {
 	int	fd;
 	int	dupfd = dup(0);
@@ -56,11 +59,11 @@ bool	l_redirection(t_tree *tree, t_node **env_list)
 		return (false);
 	}
 	if ((fd = open(tree->right->cmd.name[0], O_RDONLY)) == ERROR) {
-		cmd_exec(tree->left, env_list);
+		cmd_exec(tree->left, env_list, info);
 		return (true);
 	}
 	dup2(fd, 0);
-	cmd_exec(tree->left, env_list);
+	cmd_exec(tree->left, env_list, info);
 	dup2(dupfd, 0);
 	close(fd);
 	close(dupfd);
@@ -83,7 +86,8 @@ static	char *fill_buffer(t_tree *tree, char *buffer)
 	return (buffer);
 }
 
-bool	dl_redirection(t_tree *tree, t_node **env_list)
+bool	dl_redirection(t_tree *tree, t_node **env_list,
+t_files_info *info)
 {
 	int	pipefd[2];
 	int	dupfd;
@@ -96,7 +100,7 @@ bool	dl_redirection(t_tree *tree, t_node **env_list)
 	close(pipefd[1]);
 	dupfd = dup(0);
 	dup2(pipefd[0], 0);
-	cmd_exec(tree->left, env_list);
+	cmd_exec(tree->left, env_list, info);
 	dup2(dupfd, 0);
 	close(dupfd);
 	close(pipefd[0]);

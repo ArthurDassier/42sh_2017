@@ -8,8 +8,9 @@
 #include "history.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
-void	show_history(t_history *hist_list)
+int	show_history(t_history *hist_list)
 {
 	t_history	*tmp = hist_list;
 	int		count = 1;
@@ -22,18 +23,38 @@ void	show_history(t_history *hist_list)
 		printf("%s", tmp->timestamp);
 		tmp = tmp->next;
 	}
+	return (1);
 }
 
-char	*find_in_history(t_history *hist_list, int index)
+static int	recup_index(char *line)
+{
+	int	i = 0;
+
+	while (line[i] != '\0') {
+		line[i] = line[i + 1];
+		++i;
+	}
+	return (atoi(line));
+}
+
+int	find_in_history(t_history *hist_list, char **line)
 {
 	t_history	*tmp = hist_list;
+	int		index = recup_index(line[0]);
 
+	if (index == -1)
+		return (0);
 	if (index > 0) {
-		while (index > 0 && tmp->next != NULL) {
+		while (tmp->prev != NULL)
+			tmp = tmp->prev;
+		while (index >= 0 && tmp->next != NULL) {
 			tmp = tmp->next;
 			--index;
 		}
-		return (tmp->line);
+		free(line[0]);
+		line[0] = strdup(tmp->line);
+		printf("%s\n", line[0]);
+		return (1);
 	} else if (index < 0) {
 		while (tmp->next != NULL)
 			tmp = tmp->next;
@@ -41,7 +62,9 @@ char	*find_in_history(t_history *hist_list, int index)
 			tmp = tmp->prev;
 			++index;
 		}
-		return (tmp->line);
+		free(line[0]);
+		line[0] = strdup(tmp->line);
+		return (1);
 	}
-	return (NULL);
+	return (0);
 }
