@@ -45,42 +45,6 @@ __attribute((unused)) t_history **hist_list))
 	buf_function[TAB] = &auto_completion;
 }
 
-static char	*write_char(char buf, int *pos, char *line, const char *prompt)
-{
-	char	*save = strdup(line);
-	int	j = strlen(line);
-	int	len = 0;
-	int	tmp = *pos;
-
-	if (*pos == 0) {
-		write(1, &buf, 1);
-		line[j] = buf;
-		line[j + 1] = '\0';
-		return (line);
-	}
-	line = realloc(line, j + 2);
-	while (tmp < 0) {
-		--j;
-		++tmp;
-	}
-	line[j] = buf;
-	while (save[j] != '\0') {
-		line[j + 1] = save[j];
-		++j;
-	}
-	line[j + 1] = '\0';
-	free(save);
-	len = strlen(prompt) + strlen(line);
-	cursorbackward(len);
-	fflush(stdout);
-	write(1, prompt, strlen(prompt));
-	write(1, line, strlen(line));
-	len = strlen(line) - *pos - 3;
-	cursorbackward(len);
-	fflush(stdout);
-	return (line);
-}
-
 static char	*read_loop(const char *prompt, t_history **hist_list)
 {
 	int		size = 10;
@@ -115,7 +79,7 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 			line = write_char(buf, &pos, line, prompt);
 			++i;
 		}
-		if (i == size) {
+		if (i == size - 1) {
 			size += size;
 			line = realloc(line, size + 1);
 			line[size] = '\0';
