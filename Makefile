@@ -20,6 +20,7 @@ NAME	=	42sh
 DIR	=	srcs/shell/
 
 SRCS	=	srcs/main.c									\
+			$(DIR)/history/recup_index.c						\
 			$(DIR)/history/put_in_history.c						\
 			$(DIR)/history/history_functions.c					\
 			$(DIR)/history/history_completion.c					\

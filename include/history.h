@@ -16,9 +16,10 @@ typedef struct	s_history
 	struct s_history	*prev;
 }				t_history;
 
+int	recup_index(char *line);
 void	put_in_history(t_history **, char *);
 char	*history_completion(t_history *, char *, const char *);
 int	show_history(t_history *);
-int	changes_from_history(t_history *, char **line);
+int	changes_from_history(t_history **, char **line);
 
 #endif /* !HISTORY_H_ */

@@ -39,7 +39,7 @@ t_files_info *info)
 		return (FAILURE);
 	}
 	change_for_alias(info->alias_list, line);
-	if (changes_from_history(info->hist_list, line) == -1)
+	if (changes_from_history(&info->hist_list, line) == -1)
 		return (FAILURE);
 	lexer(cmd_list, line, *env_list);
 	tree = s_rule(cmd_list);

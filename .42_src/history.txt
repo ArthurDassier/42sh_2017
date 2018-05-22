@@ -1,6 +1,7 @@
-1	ls	Tue May 22 17:23:39 2018
-2	!-1	Tue May 22 17:23:41 2018
-3	!1	Tue May 22 17:23:43 2018
-4	ls |cat -e	Tue May 22 17:23:46 2018
-5	ls |cat -e	Tue May 22 17:23:47 2018
-6	exit	Tue May 22 17:23:49 2018
+1	ls	Tue May 22 17:41:51 2018
+2	!1	Tue May 22 17:41:53 2018
+3	!-1	Tue May 22 17:41:55 2018
+4	ls |cat -e	Tue May 22 17:41:58 2018
+5	ls |cat -e	Tue May 22 17:41:59 2018
+6	!-1	Tue May 22 17:42:01 2018
+7	exit	Tue May 22 17:42:31 2018
