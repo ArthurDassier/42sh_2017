@@ -72,6 +72,10 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 			del_char(&pos, line, prompt);
 			continue;
 		}
+		if (buf == SUPPR) {
+			suppr_char(&pos, line, prompt);
+			continue;
+		}
 		else if (special_char_function(buf, &line, prompt, &tmp,
 		&pos, buf_function) == 1)
 			continue;
