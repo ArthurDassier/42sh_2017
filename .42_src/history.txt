@@ -1,5 +1,4 @@
-1	ls	Tue May 22 13:00:01 2018
-2	l	Tue May 22 13:00:03 2018
-3	ls	Tue May 22 13:00:06 2018
-4	l	Tue May 22 13:00:09 2018
-5	exit	Tue May 22 13:00:10 2018
+1	ls	Tue May 22 13:33:07 2018
+2	lasmdros	Tue May 22 13:33:12 2018
+3	olas	Tue May 22 13:33:23 2018
+4	exit	Tue May 22 13:33:24 2018

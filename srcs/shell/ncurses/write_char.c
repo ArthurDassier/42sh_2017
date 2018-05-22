@@ -21,16 +21,18 @@ static void	remp_line(char *line, char *save, int j, char buf)
 	line[j + 1] = '\0';
 }
 
-static void	rewrite_prompt_line(char *line ,char const *prompt, int pos)
+void	rewrite_prompt_line(char *line, const char *prompt, int pos)
 {
-	int	len = 0;
+	static char	cache[] = "                                          ";
+	int		len = 0;
 
-	len = strlen(prompt) + strlen(line);
+	len = strlen(prompt) + strlen(line) + 2;
 	cursorbackward(len);
 	fflush(stdout);
 	write(1, prompt, strlen(prompt));
 	write(1, line, strlen(line));
-	len = pos;
+	write(1, cache, strlen(cache));
+	len = strlen(cache) + pos;
 	cursorbackward(len);
 	fflush(stdout);
 }
@@ -54,6 +56,7 @@ char	*write_char(char buf, int *pos, char *line, const char *prompt)
 	}
 	remp_line(line, save, j, buf);
 	free(save);
-	rewrite_prompt_line(line, prompt, *pos);
+	rewrite_prompt_line(line, prompt, (*pos * -1));
+	*pos += 1;
 	return (line);
 }

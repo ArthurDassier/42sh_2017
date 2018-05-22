@@ -12,28 +12,12 @@
 #include <unistd.h>
 #include <string.h>
 
-static void	rewrite_prompt_line(char *line, const char *prompt, int pos)
-{
-	static char	cache[] = "                                          ";
-	int		len = 0;
-
-	len = strlen(prompt) + strlen(line) + 2;
-	cursorbackward(len);
-	fflush(stdout);
-	write(1, prompt, strlen(prompt));
-	write(1, line, strlen(line));
-	write(1, cache, strlen(cache));
-	len = strlen(cache) + pos;
-	cursorbackward(len);
-	fflush(stdout);
-}
-
 char	*del_char(int *pos, char *line, const char *prompt)
 {
 	int	j = strlen(line);
 	int	tmp = *pos;
 
-	if (*pos * -1 == j + 1)
+	if (*pos * -1 == j)
 		return (line);
 	while (tmp <= 0) {
 		--j;
