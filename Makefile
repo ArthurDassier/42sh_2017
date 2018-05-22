@@ -84,6 +84,9 @@ SRCS	=	srcs/main.c									\
 			$(DIR)/quotes/simple_quotes_utils.c					\
 			$(DIR)/quotes/handle_dollars.c						\
 			$(DIR)/inihibitors/inihibitors.c					\
+			$(DIR)/special_var/chainlist_spec.c					\
+			$(DIR)/special_var/special_var_init.c					\
+			$(DIR)/special_var/special_var.c					\
 
 SRCS_UT	=	$(DIR)/utils/check_perm.c				\
 			$(DIR)/utils/delete_list.c			\

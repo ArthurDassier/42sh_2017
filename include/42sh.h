@@ -40,16 +40,24 @@ typedef struct	s_aliases_list
 	struct	s_aliases_list	*next;
 }				t_aliases_list;
 
-typedef struct s_files_info
-{
-	t_aliases_list	*alias_list;
-	t_history	*hist_list;
-}			t_files_info;
-
 typedef struct	s_save {
 	char	*name;
 	char	*content;
 }		t_save;
+
+typedef struct s_list_var
+{
+	char			*name;
+	char			*content;
+	struct s_list_var	*next;
+}		list_var;
+
+typedef struct s_files_info
+{
+	t_aliases_list	*alias_list;
+	t_history	*hist_list;
+	list_var	*spec_var_list;
+}			t_files_info;
 
 typedef struct	s_built {
 	char	*builtin;
@@ -177,6 +185,15 @@ int	count_quotes(char **, char);
 char	*delete_special(char *);
 char	*inc_space(char *, char *, char);
 char	*find_endspace(char *, char *, char);
+
+/*
+** Special variables
+*/
+
+list_var	*init_set(void);
+void		print_var(list_var *);
+int		special_var(char **, list_var **);
+list_var	*insert_end_var(list_var **, char *, char *);
 
 /*
 ** Free

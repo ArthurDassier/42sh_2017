@@ -61,6 +61,7 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 
 	info->hist_list = NULL;
 	info->alias_list = recup_aliases();
+	info->spec_var_list = init_set();
 	open(".42_src/history.txt", O_RDWR | O_CREAT | O_TRUNC, S_IWUSR | S_IRUSR);
 	signal(SIGINT, ctrl_c);
 	init_list(&env_list, env);
@@ -68,7 +69,8 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 		prompt_line = prompt(env_list);
 		free_list(cmd_list, &free_lexer);
 		cmd_list = NULL;
-		s = recup_line(prompt_line, &info->hist_list);
+		my_putstr(prompt_line);
+		s = get_next_line(0);
 		s = inib(s);
 		ctrl_d(s);
 		if (check_char(s) == SUCCESS

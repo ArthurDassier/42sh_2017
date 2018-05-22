@@ -34,7 +34,7 @@ int	exec_builtins(char **line, t_node **env_list, t_files_info *info)
 		return (alias_cmd(info->alias_list, line));
 	if (strcmp("!", line[0]) == SUCCESS)
 		return (show_history(info->hist_list));
-	else if (line[0][0] == '!')
-		return (find_in_history(info->hist_list, line));
+	if (strcmp("set", line[0]) == SUCCESS)
+		return (special_var(line, &info->spec_var_list));
 	return (SUCCESS);
 }
