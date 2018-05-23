@@ -60,7 +60,7 @@ void	change_var(char **line, list_var **spec)
 	int	i = 1;
 
 	while (line[i]) {
-		if (my_str_isalpha(line[i]) == SUCCESS) {
+		if (my_strisalphanum(line[i]) == SUCCESS) {
 			my_putstr("set: Variable name must");
 			my_putstr(" contain alphanumeric characters.\n");
 			return;
