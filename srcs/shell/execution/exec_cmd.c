@@ -46,7 +46,7 @@ void	exec_line(t_node *env_list, char **line)
 	execve(line[0], line, tab);
 }
 
-bool	exec_cmd(char **line, t_node *env_list)
+bool	exec_cmd(char **line, t_node *env_list, bool background)
 {
 	char	**path = get_path(env_list);
 	int		status;
@@ -56,7 +56,10 @@ bool	exec_cmd(char **line, t_node *env_list)
 	if (pid == ERROR) {
 		my_print_err("Failed\n");
 	} else if (pid > 0) {
-		waitpid(pid, &status, WUNTRACED);
+		if (background == true)
+			waitpid(pid, &status, WNOHANG);
+		else
+			waitpid(pid, &status, WUNTRACED);
 		handling_sig(status);
 	} else {
 		i = check_path(line, path, env_list);

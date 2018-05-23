@@ -26,6 +26,19 @@ static void	ctrl_d(char *s)
 	}
 }
 
+static bool	is_background(char **line)
+{
+	int	i = 0;
+
+	while (line[i + 1] != NULL)
+		++i;
+	if (line[i][strlen(line[i] - 1)] == '&') {
+		line[i] = NULL;
+		return (true);
+	}
+	return (false);
+}
+
 static int	init_exec(char *s, t_node **cmd_list, t_node **env_list,
 t_files_info *info)
 {
@@ -41,6 +54,7 @@ t_files_info *info)
 	change_for_alias(info->alias_list, line);
 	if (changes_from_history(&info->hist_list, line) == -1)
 		return (FAILURE);
+	info->background = is_background(line);
 	lexer(cmd_list, line, *env_list);
 	tree = s_rule(cmd_list);
 	if (!tree) {
