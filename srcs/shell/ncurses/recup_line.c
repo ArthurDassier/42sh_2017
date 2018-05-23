@@ -61,7 +61,7 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 	memset(line, '\0', size);
 	init_buf_function_tab(buf_function);
 	while (read(0, &buf, 1) != 0) {
-		history_completion(*hist_list, line, prompt);
+	//	history_completion(*hist_list, line, prompt);
 		if (buf == CTR_D)
 			break;
 		if (buf == ENTER_KEY) {
