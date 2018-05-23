@@ -8,7 +8,7 @@
 #include "42sh.h"
 
 static char	*my_cat_double(char *line_one, char *line_two,
-char *s, t_node **env_l)
+char *s, t_quotes *quotes_st)
 {
 	char	*find = strstr(s, line_one);
 	int	i = 0;
@@ -27,13 +27,12 @@ char *s, t_node **env_l)
 		line_one[j] = '\0';
 	line_one = strcat(line_one, line_two);
 	line_one = delete_special(line_one);
-	line_one = handle_dollars(line_one, env_l);
+	line_one = handle_dollars(line_one, quotes_st);
 	return (line_one);
 }
 
-static char	**double_tab(char **line, char *s, t_node **env_list)
+static char	**double_tab(char **line, char *s, t_quotes *quotes_st, int i)
 {
-	int	i = 0;
 	int	j = 0;
 
 	while (line[i][0] != '\"')
@@ -43,7 +42,9 @@ static char	**double_tab(char **line, char *s, t_node **env_list)
 		return (NULL);
 	line[i][0] = '\0';
 	for (j = i + 1; line[j][0] != '\"'; ++j) {
-		line[i] = my_cat_double(line[i], line[j], s, env_list);
+		line[i] = my_cat_double(line[i], line[j], s, quotes_st);
+		if (line[i] == NULL)
+			break;
 		line[i] = find_endspace(line[i], s, '"');
 	}
 	if (line[i] == NULL)
@@ -54,7 +55,7 @@ static char	**double_tab(char **line, char *s, t_node **env_list)
 	return (line);
 }
 
-static char	**double_quotes(char **line, char *s, t_node **env_list)
+static char	**double_quotes(char **line, char *s, t_quotes *quotes_st)
 {
 	int	i = 0;
 	int	nb_quote = 0;
@@ -70,20 +71,20 @@ static char	**double_quotes(char **line, char *s, t_node **env_list)
 			return (NULL);
 		}
 		while (line != NULL && count_quotes(line, '\"'))
-			line = double_tab(line, s, env_list);
+			line = double_tab(line, s, quotes_st, 0);
 		return (line);
 	}
 	return (line);
 }
 
-char	**quotes_commands(char **line, char *s, t_node **env_list, int i)
+char	**quotes_commands(char **line, char *s, t_quotes *quotes_st, int i)
 {
 	if (line[i][0] == '\'') {
 		line = simple_quotes(line, s);
 		if (line == NULL)
 			return (NULL);
 	} else if (line[i][0] == '\"') {
-		line = double_quotes(line, s, env_list);
+		line = double_quotes(line, s, quotes_st);
 		if (line == NULL)
 			return (NULL);
 	} else
@@ -91,12 +92,15 @@ char	**quotes_commands(char **line, char *s, t_node **env_list, int i)
 	return (line);
 }
 
-char	**quotes(char **line, char *s, t_node **env_list)
+char	**quotes(char **line, char *s, t_node **env_list, list_var *spec)
 {
-	int	i = 0;
+	int		i = 0;
+	t_quotes	*quotes_st = malloc(sizeof(t_quotes));
 
+	quotes_st->new_env = env_list;
+	quotes_st->spec_var_list = spec;
 	while (line[i] != NULL) {
-		line = quotes_commands(line, s, env_list, i);
+		line = quotes_commands(line, s, quotes_st, i);
 		if (line == NULL)
 			return (NULL);
 		++i;

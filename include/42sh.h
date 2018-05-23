@@ -59,6 +59,12 @@ typedef struct s_files_info
 	list_var	*spec_var_list;
 }			t_files_info;
 
+typedef struct s_quotes
+{
+	t_node		**new_env;
+	list_var	*spec_var_list;
+}		t_quotes;
+
 typedef struct	s_built {
 	char	*builtin;
 	int		(*ptr)(char **, t_node **);
@@ -112,7 +118,7 @@ int	delim_words(char *, char *);
 bool	check_delim(char, char *);
 int	is_lexem(char *);
 void	handling_sig(int);
-char	**handle_line(char **, char *, t_node **);
+char	**handle_line(char **, char *, t_node **, list_var *);
 
 /*
 ** Execution
@@ -178,8 +184,8 @@ char	*decal_line(char *, int);
 ** Quotes
 */
 
-char	*handle_dollars(char *, t_node **);
-char	**quotes(char **, char *, t_node **);
+char	*handle_dollars(char *, t_quotes *);
+char	**quotes(char **, char *, t_node **, list_var *);
 char	**simple_quotes(char **, char *);
 int	count_quotes(char **, char);
 char	*delete_special(char *);
@@ -194,6 +200,7 @@ list_var	*init_set(void);
 void		print_var(list_var *);
 int		special_var(char **, list_var **);
 list_var	*insert_end_var(list_var **, char *, char *);
+void		spec_var(list_var *, char *);
 
 /*
 ** Free

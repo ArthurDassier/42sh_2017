@@ -7,10 +7,11 @@
 
 #include "42sh.h"
 
-static char	*found_env(t_node **env_list, char *pathname)
+static char	*found_env(t_quotes *quotes, char *pathname)
 {
-	t_node *tmp = (*env_list);
-	t_save *tmp_content;
+	t_node		*tmp = (*quotes->new_env);
+	t_save		*tmp_content;
+	list_var	*var = quotes->spec_var_list;
 
 	do {
 		tmp_content = (t_save *)tmp->data;
@@ -19,9 +20,13 @@ static char	*found_env(t_node **env_list, char *pathname)
 			return (get_env_content(tmp, tmp_content->name));
 		}
 		tmp = tmp->next;
-	} while (tmp != (*env_list));
+	} while (tmp != (*quotes->new_env));
+	while (var != NULL) {
+		if (strcmp(var->name, pathname) == 0)
+			return (var->content);
+		var = var->next;
+	}
 	my_putstr(pathname);
-	free(pathname);
 	my_putstr(": Undefined variable.\n");
 	return (NULL);
 }
@@ -48,7 +53,7 @@ static char	*replace_line(char *line_one, char *name, int i, int save)
 	return (tmp);
 }
 
-static char	*replace_the_dollar(char *line_one, t_node **env_list, int i)
+static char	*replace_the_dollar(char *line_one, t_quotes *quotes, int i)
 {
 	char	*pathname = malloc(sizeof(char) * strlen(line_one));
 	char	*name;
@@ -62,20 +67,20 @@ static char	*replace_the_dollar(char *line_one, t_node **env_list, int i)
 		++j;
 	}
 	pathname[j] = '\0';
-	name = found_env(env_list, pathname);
+	name = found_env(quotes, pathname);
 	if (name == NULL)
 		return (NULL);
 	return (replace_line(line_one, name, i, save));
 }
 
-char	*handle_dollars(char *line_one, t_node **env_list)
+char	*handle_dollars(char *line_one, t_quotes *quotes_st)
 {
 	int	i = 0;
 
 	while (line_one[i] != '\0') {
 		if (line_one[i] == '$')
 			line_one = replace_the_dollar(line_one,
-							env_list, i + 1);
+							quotes_st, i + 1);
 		if (line_one == NULL)
 			return (NULL);
 		++i;
