@@ -29,7 +29,8 @@ __attribute((unused)) const char *, __attribute((unused)) t_history **hist_list)
 	case CTR_Y : return (1);
 	case DEL : return (1);
 	case TAB :
-		buf_function[TAB](line, prompt, hist_list);
+		if (buf_function[TAB](line, prompt, hist_list) == 1)
+			return (2);
 		return (1);
 	case ARROW :
 		buf_function[find_key(*line, pos)](line, prompt, hist_list);

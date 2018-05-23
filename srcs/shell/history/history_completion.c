@@ -42,7 +42,7 @@ char	*history_completion(t_history *hist_list, char *line, const char *prompt)
 	if (tmp == NULL)
 		return (NULL);
 	tmp = tmp->prev;
-	while (tmp->prev != NULL) {
+	while (tmp != NULL) {
 		if (strncmp(line, tmp->line, strlen(line)) == 0) {
 			rewrite_prompt(line, prompt);
 			write(1, tmp->line, strlen(tmp->line));

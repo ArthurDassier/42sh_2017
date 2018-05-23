@@ -57,6 +57,5 @@ char	*write_char(char buf, int *pos, char *line, const char *prompt)
 	remp_line(line, save, j, buf);
 	free(save);
 	rewrite_prompt_line(line, prompt, (*pos * -1));
-	*pos += 1;
 	return (line);
 }
