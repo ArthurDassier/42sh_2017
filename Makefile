@@ -94,8 +94,8 @@ SRCS	=	srcs/main.c									\
 SRCS_UT	=	$(DIR)/utils/check_perm.c				\
 			$(DIR)/utils/delete_list.c			\
 			$(DIR)/utils/get_env.c				\
-			$(DIR)/utils/print.c				\
 			$(DIR)/utils/fill_list.c			\
+			$(DIR)/utils/print.c				\
 			$(DIR)/utils/list_to_tab.c			\
 			$(DIR)/utils/comp.c				\
 			$(DIR)/utils/check_char.c			\
@@ -114,32 +114,41 @@ SRCS_UT	=	$(DIR)/utils/check_perm.c				\
 			$(DIR)/parser/handle_parentheses.c		\
 			$(DIR)/parser/get_name.c			\
 			$(DIR)/parser/pipexp_rule.c			\
-			$(DIR)/parser/rexp_rule.c			\
 			$(DIR)/parser/s_rule.c				\
+			$(DIR)/parser/rexp_rule.c			\
 			$(DIR)/execution/exec_cmd.c			\
 			$(DIR)/execution/redirect.c			\
 			$(DIR)/execution/pipe.c				\
-			$(DIR)/execution/builtins/env.c			\
 			$(DIR)/execution/builtins/builtins.c		\
-			$(DIR)/execution/parentheses.c			\
+			$(DIR)/execution/builtins/env.c			\
 			$(DIR)/execution/builtins/setenv.c		\
-			$(DIR)/execution/builtins/cd.c			\
 			$(DIR)/execution/builtins/env_special_cases.c	\
+			$(DIR)/execution/builtins/cd.c			\
 			$(DIR)/execution/builtins/ignore_env.c		\
 			$(DIR)/execution/builtins/env_chdir.c		\
-			$(DIR)/execution/builtins/cd_special_cases.c	\
 			$(DIR)/execution/separators.c			\
 			$(DIR)/execution/rules_exec.c			\
+			$(DIR)/execution/builtins/cd_special_cases.c	\
+			$(DIR)/inihibitors/inihibitors.c		\
+			$(DIR)/quotes/handle_dollars.c			\
 			$(DIR)/alias/alias_cmd.c			\
-			$(DIR)/alias/recup_aliases.c			\
 			$(DIR)/alias/change_for_alias.c			\
-			$(DIR)/scripting/check_script.c
+			$(DIR)/alias/recup_aliases.c			\
+			$(DIR)/scripting/check_script.c			\
+			$(DIR)/history/history_functions.c		\
+			$(DIR)/history/history_completion.c		\
+			$(DIR)/special_var/special_var_init.c		\
+			$(DIR)/special_var/special_var.c		\
+			$(DIR)/history/recup_index.c			\
+			$(DIR)/special_var/chainlist_spec.c		\
+			$(DIR)/special_var/spec_var.c
 
 UT_DIR	=	tests/lib/
 
 SRCS_TESTS=	tests/test_my_printf.c						\
 			tests/minishell/test_check_char.c			\
 			tests/minishell/test_check_builtins.c			\
+			tests/minishell/test_string_return.c			\
 			$(UT_DIR)test_my_strcat.c				\
 			$(UT_DIR)test_my_fact_it.c				\
 			$(UT_DIR)test_my_fact_rec.c				\
