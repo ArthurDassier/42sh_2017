@@ -45,7 +45,7 @@ static int	match_str(char **line, char *info, const char *prompt, int size)
 static int	auto_completion_from_history(t_history **hist_list, char **line,
 const char *prompt, int size)
 {
-	char	*save = malloc(sizeof(char));
+	char	*save = NULL;
 
 	if ((save = history_completion(*hist_list, *line, prompt)) != NULL) {
 		free(*line);
@@ -54,7 +54,6 @@ const char *prompt, int size)
 		fflush(stdout);
 		write(1, prompt, strlen(prompt));
 		write(1, *line, strlen(*line));
-		free(save);
 		return (1);
 	}
 	return (0);
