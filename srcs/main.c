@@ -24,13 +24,24 @@ static int	ignore_eof(list_var *spec)
 	return (0);
 }
 
+static t_files_info	*init_files_info(void)
+{
+	t_files_info	*info = malloc(sizeof(t_files_info));
+
+	info->hist_list = NULL;
+	info->alias_list = recup_aliases();
+	info->spec_var_list = init_set();
+	creat(".42_src/history.txt", O_RDWR);
+	return (info);
+}
+/*
 static void	ctrl_c(int sig)
 {
 	(void)sig;
 	my_putstr("\n");
 	my_putstr(prompt_line);
 }
-
+*/
 static void	ctrl_d(char *s, list_var *spec)
 {
 	if (s == NULL) {
@@ -54,8 +65,7 @@ t_files_info *info)
 		free(s);
 		return (FAILURE);
 	}
-	change_for_alias(info->alias_list, line);
-	if (changes_from_history(&info->hist_list, line) == -1)
+	if (change_line(line, info) == FAILURE)
 		return (FAILURE);
 	lexer(cmd_list, line, *env_list);
 	tree = s_rule(cmd_list);
@@ -75,13 +85,9 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 	char		*s;
 	t_node		*env_list = NULL;
 	t_node		*cmd_list = NULL;
-	t_files_info	*info = malloc(sizeof(t_files_info));
+	t_files_info	*info = init_files_info();
 
-	info->hist_list = NULL;
-	info->alias_list = recup_aliases();
-	info->spec_var_list = init_set();
-	open(".42_src/history.txt", O_RDWR | O_CREAT | O_TRUNC, S_IWUSR | S_IRUSR);
-	signal(SIGINT, ctrl_c);
+	//signal(SIGINT, ctrl_c);
 	init_list(&env_list, env);
 	while (VALID) {
 		prompt_line = prompt(env_list);

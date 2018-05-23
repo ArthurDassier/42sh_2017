@@ -1,7 +1,10 @@
-1	ls	Wed May 23 13:05:34 2018
-2	ls |cat -e	Wed May 23 13:05:45 2018
-3	ls	Wed May 23 13:05:46 2018
-4	ls |cat -e	Wed May 23 13:05:54 2018
-5	ls |cat -e	Wed May 23 13:05:59 2018
-6	ls |cat -e	Wed May 23 13:06:02 2018
-7	exit	Wed May 23 13:06:04 2018
+1	ls	Wed May 23 16:08:26 2018
+2	!1	Wed May 23 16:08:28 2018
+3	cat history	Wed May 23 16:08:32 2018
+4	ls	Wed May 23 16:08:34 2018
+5	!	Wed May 23 16:08:34 2018
+6	clear	Wed May 23 16:08:36 2018
+7	ls	Wed May 23 16:08:37 2018
+8	ls	Wed May 23 16:08:41 2018
+9	clear	Wed May 23 16:08:44 2018
+10	exit	Wed May 23 16:08:45 2018
