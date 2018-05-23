@@ -55,7 +55,5 @@ char *handle_backticks(char **line, int index, t_node *env_list)
 			if ((size > 0) && (size < sizeof(buffer)))
 					buffer[size] = 0;
 	}
-	//free_tree(tree);
-	//free_list(cmd_list, &free_lexer);
 	return (buffer);
 }
