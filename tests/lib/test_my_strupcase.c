@@ -18,7 +18,6 @@ Test(my_strupcase, return_value_is_good)
 	cr_expect_str_eq(my_strupcase(str), "HELLO");
 }
 
-
 Test(my_strupcase, return_value_is_good_V2)
 {
 	char	*str;
@@ -27,7 +26,6 @@ Test(my_strupcase, return_value_is_good_V2)
 	cr_expect_str_eq(my_strupcase(str), "HEL1O Y");
 }
 
-
 Test(my_strupcase, return_value_is_good_V3)
 {
 	char	*str;
@@ -35,4 +33,3 @@ Test(my_strupcase, return_value_is_good_V3)
 	str = strdup("42words");
 	cr_expect_str_eq(my_strupcase(str), "42WORDS");
 }
-
