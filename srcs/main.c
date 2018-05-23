@@ -11,11 +11,15 @@
 
 const char *prompt_line = NULL;
 
-static int	ignore_eof(list_var *spec)
+static int	ignore_eof(list_var **spec)
 {
-	list_var *tmp = spec;
+	list_var *tmp = *(spec);
 
 	while (tmp != NULL) {
+		if (strcmp(tmp->name, "cwd") == SUCCESS) {
+			tmp->content = NULL;
+			tmp->content = getcwd(tmp->content, 0);
+		}
 		if (strcmp(tmp->name, "ignoreof") == SUCCESS
 		&& tmp->content != NULL)
 			return (atoi(tmp->content));
@@ -31,10 +35,12 @@ static void	ctrl_c(int sig)
 	my_putstr(prompt_line);
 }
 
-static void	ctrl_d(char *s, list_var *spec)
+static void	ctrl_d(char *s, list_var **spec)
 {
+	int	ignoreof = ignore_eof(spec);
+
 	if (s == NULL) {
-		if (ignore_eof(spec) != 0) {
+		if (ignoreof != 0) {
 			my_putstr("exit\n");
 			exit(SUCCESS);
 		}
@@ -89,7 +95,7 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 		cmd_list = NULL;
 		s = recup_line(prompt_line, &info->hist_list);
 		s = inib(s);
-		ctrl_d(s, info->spec_var_list);
+		ctrl_d(s, &info->spec_var_list);
 		if (s != NULL && check_char(s) == SUCCESS
 		&& init_exec(s, &cmd_list, &env_list, info) == FAILURE)
 				continue;

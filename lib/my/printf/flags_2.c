@@ -8,7 +8,7 @@
 
 int flag_b(va_list ap, char const *str)
 {
-	unsigned int	nb  = va_arg(ap, unsigned int);
+	unsigned int	nb = va_arg(ap, unsigned int);
 	int		i = 0;
 
 	(void)str;

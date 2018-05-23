@@ -87,6 +87,7 @@ SRCS	=	srcs/main.c									\
 			$(DIR)/inihibitors/inihibitors.c					\
 			$(DIR)/special_var/chainlist_spec.c					\
 			$(DIR)/special_var/special_var_init.c					\
+			$(DIR)/special_var/special_var_utils.c					\
 			$(DIR)/special_var/special_var.c					\
 			$(DIR)/special_var/spec_var.c						\
 

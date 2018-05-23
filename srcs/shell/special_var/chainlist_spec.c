@@ -20,9 +20,19 @@ list_var *insert_end_var(list_var **first_elem, char *name, char *content)
 	else
 		new_elem->content = NULL;
 	new_elem->next = NULL;
-	while (actual->next != NULL)
+	while (actual->next != NULL
+	&& alphabetic_order(new_elem->name, actual->next->name) != SUCCESS)
 		actual = actual->next;
-	actual->next = new_elem;
+	if (actual->next == NULL)
+		actual->next = new_elem;
+	else if (actual != (*first_elem)) {
+		new_elem->next = actual->next;
+		actual->next = new_elem;
+	} else {
+		new_elem->next = *first_elem;
+		(*first_elem) = new_elem;
+		return (new_elem);
+	}
 	return (actual);
 }
 
