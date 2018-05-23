@@ -95,12 +95,12 @@ int	changes_from_history(t_history **hist_list, char **line)
 		if (line[i][0] == '!' && line[i][1] != '\0') {
 			if ((tmp  = find_in_history(hist_tmp, &line[i])) == -1)
 				return (-1);
-			buffer = realloc(buffer,
-			strlen(buffer) + strlen(line[i]) + 2);
-			buffer = strcat(buffer, line[i]);
-			buffer = strcat(buffer, " ");
 			flag = 1;
 		}
+		buffer = realloc(buffer,
+		strlen(buffer) + strlen(line[i]) + 2);
+		buffer = strcat(buffer, line[i]);
+		buffer = strcat(buffer, " ");
 		++i;
 	}
 	change_in_history_from_ex(hist_list, buffer, flag);

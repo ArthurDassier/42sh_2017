@@ -1,48 +1,7 @@
-1	ls && pwd	Wed May 23 10:40:52 2018
-2	ls && pwd     	Wed May 23 10:41:07 2018
-3	 	Wed May 23 10:41:07 2018
-4	 	Wed May 23 10:41:16 2018
-5	 	Wed May 23 10:41:24 2018
-6	 	Wed May 23 10:41:25 2018
-7	 	Wed May 23 10:41:26 2018
-8	 	Wed May 23 10:41:28 2018
-9	!1	Wed May 23 10:41:31 2018
-10	 \	Wed May 23 10:41:37 2018
-11	     	Wed May 23 10:41:42 2018
-12	     	Wed May 23 10:41:44 2018
-13	s && pwd 	Wed May 23 10:42:06 2018
-14	 	Wed May 23 10:42:06 2018
-15	 	Wed May 23 10:42:10 2018
-16	s && pwd 	Wed May 23 10:42:19 2018
-17	& pwd 	Wed May 23 10:42:27 2018
-18	 	Wed May 23 10:42:27 2018
-19	 	Wed May 23 10:42:27 2018
-20	 	Wed May 23 10:42:27 2018
-21	ls	Wed May 23 10:42:31 2018
-22	ls	Wed May 23 10:42:38 2018
-23	l	Wed May 23 10:42:42 2018
-24	 	Wed May 23 10:42:51 2018
-25	ls	Wed May 23 10:42:55 2018
-26	ls &	Wed May 23 10:43:12 2018
-27	 	Wed May 23 10:43:12 2018
-28	 	Wed May 23 10:43:13 2018
-29	 	Wed May 23 10:43:13 2018
-30	 	Wed May 23 10:43:13 2018
-31	ls	Wed May 23 10:43:14 2018
-32	 	Wed May 23 10:43:20 2018
-33	ls & 	Wed May 23 10:43:27 2018
-34	ls	Wed May 23 10:43:30 2018
-35	ls	Wed May 23 10:43:34 2018
-36	ls	Wed May 23 10:43:34 2018
-37	ls	Wed May 23 10:43:35 2018
-38	ls	Wed May 23 10:43:35 2018
-39	ls	Wed May 23 10:43:36 2018
-40	ls	Wed May 23 10:43:36 2018
-41	ls && pwd 	Wed May 23 10:43:43 2018
-42	ls	Wed May 23 10:43:44 2018
-43	ls 	Wed May 23 10:43:56 2018
-44	kkkkkkkkk	Wed May 23 10:44:10 2018
-45	ls	Wed May 23 10:44:15 2018
-46	ls   	Wed May 23 10:44:19 2018
-47	ls	Wed May 23 10:44:20 2018
-48	exit	Wed May 23 10:44:28 2018
+1	ls	Wed May 23 13:05:34 2018
+2	ls |cat -e	Wed May 23 13:05:45 2018
+3	ls	Wed May 23 13:05:46 2018
+4	ls |cat -e	Wed May 23 13:05:54 2018
+5	ls |cat -e	Wed May 23 13:05:59 2018
+6	ls |cat -e	Wed May 23 13:06:02 2018
+7	exit	Wed May 23 13:06:04 2018

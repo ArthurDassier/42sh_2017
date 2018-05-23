@@ -4,6 +4,3 @@ history
 src / dest
 toto
 ls
-src / dest
-mdr
-lol

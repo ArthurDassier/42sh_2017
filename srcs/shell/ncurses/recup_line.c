@@ -51,8 +51,9 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 	char		buf;
 	int		i = 0;
 	int		pos = 0;
+	int		curs = 0;
 	t_history	*tmp = *hist_list;
-	char		*line = malloc(sizeof(char) * size);
+	char		*line = malloc(sizeof(char) * size + 1);
 	static int	(*buf_function[177])(__attribute((unused)) char **,
 	__attribute((unused)) const char *,
 	__attribute((unused)) t_history **);
@@ -76,9 +77,12 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 			suppr_char(&pos, line, prompt);
 			continue;
 		}
-		else if (special_char_function(buf, &line, prompt, &tmp,
-		&pos, buf_function) == 1)
+		if ((curs = special_char_function(buf, &line, prompt, &tmp,
+		&pos, buf_function)) == 1 || curs == 2) {
+			if (curs == 2)
+				pos = 0;
 			continue;
+		}
 		else {
 			line = write_char(buf, &pos, line, prompt);
 			++i;
