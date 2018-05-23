@@ -31,11 +31,9 @@ static bool check_if_matching_quotes(char **line)
 
 char *handle_backticks(char **line, int index, t_node *env_list)
 {
-	t_node *cmd_list = NULL;
-	t_tree *tree;
+	FILE *cmd;
 	char *buffer = malloc(sizeof(char) * 10000);
-	int fd[2];
-	unsigned int size;
+	char *save = malloc(sizeof(char) * 10000);
 
 	if (!buffer)
 		return (NULL);
@@ -44,16 +42,12 @@ char *handle_backticks(char **line, int index, t_node *env_list)
 		return (NULL);
 	}
 	del_last_backticks(line, index + 1);
-	lexer(&cmd_list, line + index + 1, env_list);
-	tree = s_rule(&cmd_list);
-	pipe(fd);
-	if (fork() == SUCCESS) {
-			dup2(fd[1], STDOUT_FILENO);
-			s_exec(tree, &env_list);
-	} else {
-			size = read(fd[0], buffer, 1000);
-			if ((size > 0) && (size < sizeof(buffer)))
-					buffer[size] = 0;
+	my_show_word_array(line);
+	cmd = popen(line[index + 1], "r");
+	while (fgets(buffer, sizeof(buffer), cmd) != 0) {
+		save = realloc(save, sizeof(char) * strlen(buffer) + strlen(save) + 1);
+		strcat(save, buffer);
 	}
-	return (buffer);
+	pclose(cmd);
+	return (save);
 }
