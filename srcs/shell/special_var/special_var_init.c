@@ -9,7 +9,7 @@
 
 char **init_set_tab(void)
 {
-	char	**tab = malloc(sizeof(char *) * 3);
+	char	**tab = malloc(sizeof(char *) * 6);
 
 	if (tab == NULL)
 		return (NULL);
@@ -17,7 +17,13 @@ char **init_set_tab(void)
 	tab[0] = "cwd";
 	tab[1] = malloc(sizeof(char) * 9);
 	tab[1] = "ignoreof";
-	tab[2] = NULL;
+	tab[2] = malloc(sizeof(char) * 5);
+	tab[2] = "path";
+	tab[3] = malloc(sizeof(char) * 5);
+	tab[3] = "user";
+	tab[4] = malloc(sizeof(char) * 5);
+	tab[4] = "term";
+	tab[5] = NULL;
 	return (tab);
 }
 
@@ -33,5 +39,8 @@ list_var *init_set(void)
 	element->content = getcwd(element->content, 0);
 	element->next = NULL;
 	insert_end_var(&element, tab[1], "1");
+	insert_end_var(&element, tab[2], "(");
+	insert_end_var(&element, tab[3], "init");
+	insert_end_var(&element, tab[4], "init");
 	return (element);
 }
