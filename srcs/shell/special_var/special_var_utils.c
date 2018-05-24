@@ -12,19 +12,17 @@ char *delete_points(char *path)
 	char	*tmp = malloc(sizeof(char) * (strlen(path) + 3));
 	int	i = 0;
 
-	tmp[0] = '(';
 	while (path[i] != '\0') {
-		tmp[i + 1] = path[i];
+		tmp[i] = path[i];
 		if (tmp[i] == ':')
 			tmp[i] = ' ';
 		++i;
 	}
-	tmp[i + 1] = ')';
-	tmp[i + 2] = '\0';
+	tmp[i] = '\0';
 	return (tmp);
 }
 
-void concerned_spec(list_var *tmp, t_node *new_env)
+void concerned_spec(list_var *tmp, t_node *new_env, char *s)
 {
 	if (strcmp(tmp->name, "cwd") == SUCCESS) {
 		tmp->content = NULL;
@@ -44,14 +42,17 @@ void concerned_spec(list_var *tmp, t_node *new_env)
 		tmp->content = NULL;
 		tmp->content = get_env_content(new_env, "TERM");
 	}
+	if (s != NULL && strcmp(tmp->name, "echo") == SUCCESS
+	&& tmp->content != NULL)
+		my_printf("%s\n", s);
 }
 
-void reset_spec(list_var **spec, t_node *new_env)
+void reset_spec(list_var **spec, t_node *new_env, char *s)
 {
 	list_var *tmp = *(spec);
 
 	while (tmp != NULL) {
-		concerned_spec(tmp, new_env);
+		concerned_spec(tmp, new_env, s);
 		tmp = tmp->next;
 	}
 }

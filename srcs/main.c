@@ -47,7 +47,7 @@ list_var **spec)
 {
 	int	ignoreof = ignore_eof(spec);
 
-	reset_spec(spec, env_list);
+	reset_spec(spec, env_list, s);
 	if (s == NULL) {
 		if (ignoreof != 0) {
 			my_putstr("exit\n");

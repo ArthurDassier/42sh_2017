@@ -65,6 +65,11 @@ void	change_var(char **line, list_var **spec)
 			my_putstr(" contain alphanumeric characters.\n");
 			return;
 		}
+		if (line[i][0] >= '0' && line[i][0] <= '9') {
+			my_putstr("set: Variable name must");
+			my_putstr(" begin with a letter.\n");
+			return;
+		}
 		recup_arg_var(line, spec, &i);
 		++i;
 	}

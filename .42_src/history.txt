@@ -1,4 +1,0 @@
-1	ls	Thu May 24 11:55:12 2018
-2	mdr	Thu May 24 11:55:17 2018
-3	pwd	Thu May 24 11:55:19 2018
-4	exit	Thu May 24 11:55:20 2018
