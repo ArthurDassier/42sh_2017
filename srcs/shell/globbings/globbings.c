@@ -85,7 +85,7 @@ char	**globbings(char **line)
 			return (NULL);
 	}
 	release_tmp(line);
-	if (check_glob(tmp) == -1) {
+	if (check_glob(tmp) == -1 && strcmp("set", line[0]) == SUCCESS) {
 		my_printf("%s: No match.\n", tmp[0]);
 		release_tmp(tmp);
 		return (NULL);
