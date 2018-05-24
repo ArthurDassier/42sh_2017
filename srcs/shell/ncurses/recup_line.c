@@ -5,6 +5,7 @@
 ** recup_line
 */
 
+#include "my.h"
 #include "line.h"
 #include "ncurses_define.h"
 #include <curses.h>
@@ -101,6 +102,8 @@ char	*recup_line(const char *prompt, t_history **hist_list)
 	char	*term = NULL;
 	char	*line = NULL;
 
+	if (isatty(0) == 0)
+		return (get_next_line(0));
 	write(1, prompt, strlen(prompt));
 	canonique_mode(1);
 	term = getenv("TERM");
