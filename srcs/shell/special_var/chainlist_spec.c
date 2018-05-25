@@ -49,6 +49,7 @@ void print_var(list_var *liste)
 		printf("%s", temp->name);
 		if (temp->content != NULL)
 			printf("\t%s", temp->content);
+		fflush(stdout);
 		my_putchar('\n');
 		temp = temp->next;
 	}

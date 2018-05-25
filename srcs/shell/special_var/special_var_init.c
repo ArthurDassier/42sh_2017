@@ -10,25 +10,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Loop
+static const char	*special[13] = {
+	"cwd", "ignoreof", "path", "user", "term", "shell",
+	"tty", "uid", "gid", "euid", "echo", "status"
+};
+
 char **init_set_tab(void)
 {
+	int		i = 0;
+	unsigned int	j = 0;
 	char	**tab = malloc(sizeof(char *) * 13);
 
 	if (tab == NULL)
 		return (NULL);
-	tab[0] = "cwd";
-	tab[1] = "ignoreof";
-	tab[2] = "path";
-	tab[3] = "user";
-	tab[4] = "term";
-	tab[5] = "shell";
-	tab[6] = "tty";
-	tab[7] = "uid";
-	tab[8] = "gid";
-	tab[9] = "euid";
-	tab[10] = "echo";
-	tab[11] = "status";
+	while (i != 12) {
+		tab[i] = malloc(sizeof(char) * strlen(special[i]));
+		for (j = 0; j != strlen(special[i]); ++j)
+			tab[i][j] = special[i][j];
+		tab[i][j] = '\0';
+		++i;
+	}
 	tab[12] = NULL;
 	return (tab);
 }
