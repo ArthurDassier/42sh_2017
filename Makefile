@@ -26,6 +26,7 @@ SRCS	=	srcs/main.c									\
 			$(DIR)/history/history_functions.c					\
 			$(DIR)/history/history_completion.c					\
 			$(DIR)/ncurses/autocompletion.c						\
+			$(DIR)/ncurses/call_char_function.c					\
 			$(DIR)/ncurses/special_char_function.c					\
 			$(DIR)/ncurses/ctr_function.c						\
 			$(DIR)/ncurses/move_cursor.c						\
