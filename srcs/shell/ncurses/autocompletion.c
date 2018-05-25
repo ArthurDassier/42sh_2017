@@ -29,7 +29,7 @@ char *line)
 static int	match_str(char **line, char *info, const char *prompt, int size)
 {
 	if (strlen(*line) == 0)
-		return (0);
+		return (SUCCESS);
 	if (strncmp(*line, info, strlen(*line)) == 0) {
 		free(*line);
 		*line = malloc(sizeof(char) * (strlen(info) + 1));
@@ -38,7 +38,7 @@ static int	match_str(char **line, char *info, const char *prompt, int size)
 		fflush(stdout);
 		write(1, prompt, strlen(prompt));
 		write(1, *line, strlen(*line));
-		return (1);
+		return (VALID);
 	}
 	return (SUCCESS);
 }
@@ -55,7 +55,7 @@ const char *prompt, int size)
 		fflush(stdout);
 		write(1, prompt, strlen(prompt));
 		write(1, *line, strlen(*line));
-		return (1);
+		return (VALID);
 	}
 	return (SUCCESS);
 }

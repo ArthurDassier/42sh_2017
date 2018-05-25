@@ -13,7 +13,7 @@ int	do_nothing(__attribute((unused)) char **line,
 __attribute((unused)) const char *prompt,
 __attribute((unused)) t_history **hist_list)
 {
-	return (1);
+	return (VALID);
 }
 
 int	special_char_function(t_readline *rd,
