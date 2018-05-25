@@ -1,8 +1,9 @@
 norm.rb
+norminette.py
 GRAMMAR.txt
 test.c
 a.out
-mysh
+42sh
 *.o
 *.a
 script.sh

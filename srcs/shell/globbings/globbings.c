@@ -9,13 +9,13 @@
 #include <glob.h>
 #include <string.h>
 
-static int analyse_globbings(char *tmp)
+static int	analyse_globbings(char *tmp)
 {
 	int	i = 0;
 
 	while (tmp[i] != '\0') {
 		if ((tmp[i] == '*' || tmp[i] == '?' || tmp[i] == '['
-		|| tmp[i] == '{' || tmp[i] == '^' || tmp[i] == '$')
+		|| tmp[i] == '{' || tmp[i] == '^')
 		&& (back_slash(i, tmp) == 1))
 			return (-1);
 		++i;
@@ -23,7 +23,7 @@ static int analyse_globbings(char *tmp)
 	return (0);
 }
 
-static int check_glob(char **tmp)
+static int	check_glob(char **tmp)
 {
 	int	i = 0;
 
@@ -35,7 +35,7 @@ static int check_glob(char **tmp)
 	return (0);
 }
 
-static char **add_glob(char **tmp, char **globs)
+static char	**add_glob(char **tmp, char **globs)
 {
 	int	i = 0;
 	int	nb = 0;
@@ -55,7 +55,7 @@ static char **add_glob(char **tmp, char **globs)
 	return (tab);
 }
 
-static char **my_glob(char *line, char **tmp)
+static char	**my_glob(char *line, char **tmp)
 {
 	glob_t	globlist;
 
@@ -69,7 +69,7 @@ static char **my_glob(char *line, char **tmp)
 	return (tmp);
 }
 
-char **globbings(char **line)
+char	**globbings(char **line)
 {
 	char	**tmp = copy_line(line);
 
@@ -85,7 +85,7 @@ char **globbings(char **line)
 			return (NULL);
 	}
 	release_tmp(line);
-	if (check_glob(tmp) == -1) {
+	if (check_glob(tmp) == -1 && strcmp("set", line[0]) == SUCCESS) {
 		my_printf("%s: No match.\n", tmp[0]);
 		release_tmp(tmp);
 		return (NULL);

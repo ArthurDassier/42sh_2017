@@ -16,6 +16,7 @@
 #include <string.h>
 #include "list.h"
 #include "my.h"
+#include "history.h"
 #include "parser.h"
 #include "define.h"
 
@@ -44,10 +45,36 @@ typedef struct	s_save {
 	char	*content;
 }		t_save;
 
+typedef struct s_list_var
+{
+	char			*name;
+	char			*content;
+	struct s_list_var	*next;
+}		list_var;
+
+typedef struct s_files_info
+{
+	t_aliases_list	*alias_list;
+	t_history	*hist_list;
+	list_var	*spec_var_list;
+	bool		background;
+}			t_files_info;
+
+typedef struct s_quotes
+{
+	t_node		**new_env;
+	list_var	*spec_var_list;
+}		t_quotes;
+
 typedef struct	s_built {
 	char	*builtin;
 	int		(*ptr)(char **, t_node **);
 }				t_built;
+
+/*
+** Change_the_line_from_info
+*/
+int	change_line(char **, t_files_info *);
 
 /*
 ** Built-ins
@@ -56,9 +83,9 @@ int		env_built(char **, t_node **);
 int		exit_built(char **, t_node **);
 int		cd_built(char **, t_node **);
 int		setenv_built(char **, t_node **);
-bool	check_env_name(t_node *, char *);
+bool		check_env_name(t_node *, char *);
 int		unsetenv_built(char **, t_node **);
-void	change_pwd(t_node **, char *);
+void		change_pwd(t_node **, char *);
 int		cd_special_cases(char **, t_node **, char *);
 int		display_help(__attribute((unused)) char **, t_node **);
 int		normal_cd(t_node **, char **);
@@ -68,7 +95,7 @@ int		display_version(char **line, t_node **);
 int		rm_var(char **, t_node **);
 int		ignore_env(char **, t_node **);
 int		end_with_null(__attribute((unused)) char **, t_node **);
-int		env_chdir(char **, t_node **);
+int		env_chdir(char **, t_node **, bool);
 
 /*
 ** Initialization
@@ -81,42 +108,43 @@ void	init_cmd(t_node **, char *);
 */
 char 	*prompt(t_node *);
 void	delete_node(t_node **, char *);
-int		cmp(void *, void *);
+int	cmp(void *, void *);
 char	**list_to_tab(t_node *);
-int		check_char(char *);
+int	check_char(char *);
 void	delete_tab(void *);
 void	printing(void*);
 t_tree	*s_rule(t_node **);
-int		check_path(char **, char **, t_node *);
+int	check_path(char **, char **, t_node *);
 char	*get_env_name(t_node *, char *);
 void	check_perm(char **, char **, int, t_node *);
 void	check_perm_cmd(char **, t_node *);
 char	**get_path(t_node *);
 char	*get_env_content(t_node *, char *);
-int		delim_words(char *, char *);
+int	delim_words(char *, char *);
 bool	check_delim(char, char *);
-int		is_lexem(char *);
+int	is_lexem(char *);
 void	handling_sig(int);
+char	**handle_line(char **, char *, t_node **, list_var *);
 
 /*
 ** Execution
 */
-bool	exec_cmd(char **, t_node *);
-bool	s_exec(t_tree *, t_node **);
-bool	exp_exec(t_tree *, t_node **);
-bool	pipexp_exec(t_tree *, t_node **);
-bool	rexp_exec(t_tree *, t_node **);
-bool	cmd_exec(t_tree *, t_node **);
+bool	exec_cmd(char **, t_node *, bool);
+bool	s_exec(t_tree *, t_node **, t_files_info *);
+bool	exp_exec(t_tree *, t_node **, t_files_info *);
+bool	pipexp_exec(t_tree *, t_node **, t_files_info *);
+bool	rexp_exec(t_tree *, t_node **, t_files_info *);
+bool	cmd_exec(t_tree *, t_node **, t_files_info *);
 void	exec_com(char **, char **, t_node *);
 void	add_com(char **, char **);
 void	exec_line(t_node *, char **);
-bool	r_redirection(t_tree *, t_node **);
-bool	dr_redirection(t_tree *, t_node **);
-bool	l_redirection(t_tree *, t_node **);
-bool	pipe_exec(t_tree *, t_node **);
-bool	dl_redirection(t_tree *, t_node **);
-bool	separators_exec(t_tree *, t_node **);
-int		exec_builtins(char **, t_node **);
+bool	r_redirection(t_tree *, t_node **, t_files_info *);
+bool	dr_redirection(t_tree *, t_node **, t_files_info *);
+bool	l_redirection(t_tree *, t_node **, t_files_info *);
+bool	pipe_exec(t_tree *, t_node **, t_files_info *);
+bool	dl_redirection(t_tree *, t_node **, t_files_info *);
+bool	separators_exec(t_tree *, t_node **, t_files_info *);
+int	exec_builtins(char **, t_node **, t_files_info *);
 bool	semiexp_exec(t_tree *, t_node **);
 bool	parentheses(t_tree *, t_node **);
 
@@ -126,13 +154,6 @@ bool	parentheses(t_tree *, t_node **);
 void	change_for_alias(t_aliases_list *, char **);
 int	alias_cmd(t_aliases_list *, char **);
 t_aliases_list	*recup_aliases(void);
-
-/*
-** History
-*/
-void	put_in_history(char *);
-void	write_in_file(void);
-void	replace_from_history(char **);
 
 /*
 ** Scripting
@@ -149,19 +170,45 @@ void	print_list_with_null(void *);
 /*
 ** Globbings
 */
-char **globbings(char **);
-void release_tmp(char **);
-char **copy_line(char **);
-int alloc_tab(char **, char **);
-int back_slash(int, char *);
-int count_glob(char **);
+char	**globbings(char **);
+void	release_tmp(char **);
+char	**copy_line(char **);
+int	alloc_tab(char **, char **);
+int	back_slash(int, char *);
+int	count_glob(char **);
 
 /*
 ** Inihibitors
 */
 
-char *inib(char *);
-char **handle_backslash(char **, char *);
+char	*inib(char *);
+char	**handle_backslash(char **);
+char	*delete_backslash(char *);
+char	*decal_line(char *, int);
+
+/*
+** Quotes
+*/
+
+char	*handle_dollars(char *, t_quotes *);
+char	**quotes(char **, char *, t_node **, list_var *);
+char	**simple_quotes(char **, char *);
+int	count_quotes(char **, char);
+char	*delete_special(char *);
+char	*inc_space(char *, char *, char);
+char	*find_endspace(char *, char *, char);
+
+/*
+** Special variables
+*/
+
+list_var	*init_set(void);
+void		print_var(list_var *);
+int		special_var(char **, list_var **);
+list_var	*insert_end_var(list_var **, char *, char *);
+void		spec_var(list_var *, char *);
+void		reset_spec(list_var **, t_node *);
+int		alphabetic_order(char *, char *);
 
 /*
 ** Free

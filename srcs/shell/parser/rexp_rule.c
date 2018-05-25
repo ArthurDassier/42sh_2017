@@ -20,7 +20,7 @@ t_tree	*rexp_rule(t_node **cmd_list)
 	&& check_token(cmd_list, L_REDIRECT, tree) == false
 	&& check_token(cmd_list, DR_REDIRECT, tree) == false
 	&& check_token(cmd_list, DL_REDIRECT, tree) == false)
-		return (ret_node(tree,tree->left));
+		return (ret_node(tree, tree->left));
 	if (((t_parser *)(*cmd_list)->data)->visited == true)
 		return (NULL);
 	tree->right = cmd_rule(cmd_list);

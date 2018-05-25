@@ -18,7 +18,7 @@ t_tree	*exp_rule(t_node **cmd_list)
 	}
 	if (check_token(cmd_list, AND, tree) == false
 	&& check_token(cmd_list, OR, tree) == false)
-		return (ret_node(tree,tree->left));
+		return (ret_node(tree, tree->left));
 	if (((t_parser *)(*cmd_list)->data)->visited == true)
 		return (NULL);
 	tree->right = exp_rule(cmd_list);

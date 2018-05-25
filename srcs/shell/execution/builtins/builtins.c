@@ -22,7 +22,7 @@ int	exit_built(char **line, __attribute((unused)) t_node **env_list)
 	return (SUCCESS);
 }
 
-int	exec_builtins(char **line, t_node **env_list)
+int	exec_builtins(char **line, t_node **env_list, t_files_info *info)
 {
 	for (int i = 0; i < NB_BUILT; ++i) {
 		if (strcmp(tab_mini[i].builtin, line[0]) == SUCCESS) {
@@ -30,5 +30,11 @@ int	exec_builtins(char **line, t_node **env_list)
 				return (FAILURE);
 		}
 	}
+	if (strcmp("alias", line[0]) == SUCCESS)
+		return (alias_cmd(info->alias_list, line));
+	if (strcmp("!", line[0]) == SUCCESS)
+		return (show_history(info->hist_list));
+	if (strcmp("set", line[0]) == SUCCESS)
+		return (special_var(line, &info->spec_var_list));
 	return (SUCCESS);
 }

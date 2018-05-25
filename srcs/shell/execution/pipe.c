@@ -9,17 +9,17 @@
 
 // Father process
 static void	p_father(int *pipefd, int dupfd, t_tree *tree,
-t_node **env_list)
+t_node **env_list, t_files_info *info)
 {
 	dupfd = dup(0);
 	dup2(pipefd[0], 0);
 	close(pipefd[1]);
-	pipexp_exec(tree->right, env_list);
+	pipexp_exec(tree->right, env_list, info);
 	dup2(dupfd, 0);
 	close(pipefd[0]);
 }
 
-bool	pipe_exec(t_tree *tree, t_node **env_list)
+bool	pipe_exec(t_tree *tree, t_node **env_list, t_files_info *info)
 {
 	int	dupfd = 0;
 	int	pipefd[2];
@@ -27,9 +27,9 @@ bool	pipe_exec(t_tree *tree, t_node **env_list)
 	pipe(pipefd);
 	dupfd = dup(1);
 	dup2(pipefd[1], 1);
-	cmd_exec(tree->left, env_list);
+	cmd_exec(tree->left, env_list, info);
 	dup2(dupfd, 1);
 	close(dupfd);
-	p_father(pipefd, dupfd, tree, env_list);
+	p_father(pipefd, dupfd, tree, env_list, info);
 	return (true);
 }
