@@ -42,13 +42,6 @@ static t_files_info	*init_files_info(void)
 	creat(".42_src/history.txt", O_RDWR);
 	return (info);
 }
-/*
-static void	ctrl_c(int sig)
-{
-	(void)sig;
-	my_putstr("\n");
-	my_putstr(prompt_line);
-}*/
 
 static void	reset_var_list_ctrl_d(char *s, t_node *env_list,
 list_var **spec)

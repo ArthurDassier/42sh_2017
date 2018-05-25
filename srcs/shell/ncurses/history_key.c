@@ -8,6 +8,7 @@
 #include "history.h"
 #include "line.h"
 #include "ncurses_define.h"
+#include "define.h"
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -21,7 +22,7 @@ __attribute((unused)) t_history **hist_list)
 	int		len = 0;
 
 	if (*hist_list == NULL || (*hist_list)->prev == NULL)
-		return (0);
+		return (SUCCESS);
 	*hist_list = (*hist_list)->prev;
 	len = strlen(prompt) + strlen(*line);
 	cursorbackward(len);
@@ -34,7 +35,7 @@ __attribute((unused)) t_history **hist_list)
 	fflush(stdout);
 	free(*line);
 	*line = strdup((*hist_list)->line);
-	return (1);
+	return (VALID);
 }
 
 int	history_down(__attribute((unused)) char **line,
@@ -45,7 +46,7 @@ __attribute((unused)) t_history **hist_list)
 	int		len = 0;
 
 	if ((*hist_list)->next == NULL || (*hist_list)->next->next == NULL)
-		return (0);
+		return (SUCCESS);
 	*hist_list = (*hist_list)->next;
 	len = strlen(prompt) + strlen(*line);
 	cursorbackward(len);
@@ -58,5 +59,5 @@ __attribute((unused)) t_history **hist_list)
 	fflush(stdout);
 	free(*line);
 	*line = strdup((*hist_list)->line);
-	return (1);
+	return (VALID);
 }

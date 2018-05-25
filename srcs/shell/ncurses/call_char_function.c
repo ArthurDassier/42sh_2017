@@ -7,6 +7,7 @@
 
 #include "ncurses_define.h"
 #include "line.h"
+#include "define.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -43,7 +44,7 @@ int	call_char_function(t_readline *rd, int *pos)
 		printf("\n%s", rd->prompt);
 		fflush(stdout);
 	}
-	return (0);
+	return (SUCCESS);
 }
 
 int	analyse_call_from_read(t_readline *rd, int *pos, t_history **tmp,
@@ -64,5 +65,5 @@ __attribute((unused)) const char *, __attribute((unused)) t_history **hist_list)
 		*pos = 0;
 	else
 		rd->line = write_char(rd->buf, pos, rd->line, rd->prompt);
-	return (0);
+	return (SUCCESS);
 }
