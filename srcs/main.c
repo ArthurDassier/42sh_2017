@@ -33,7 +33,7 @@ t_aliases_list *alias_list)
 	line = delim_lexem(s, " \t\r");
 	line = handle_backslash(line, s);
 	line = globbings(line);
-	if (line == NULL)
+	if (!line)
 		return (FAILURE);
 	change_for_alias(alias_list, line);
 	lexer(cmd_list, line, *env_list);

@@ -24,9 +24,8 @@ void	lexer(t_node **cmd_list, char **line, t_node *env_list)
 
 	for (int i = 0; line[i]; ++i) {
 		path = get_path(env_list);
-		if (get_lexem(cmd_list, line, i, env_list) == FAILURE
+		if ((get_lexem(cmd_list, line, i)) == FAILURE
 		&& get_builtins(cmd_list, line[i]) == FAILURE)
 			get_cmd(cmd_list, line[i], path);
 	}
-	//display_list(*cmd_list, &display_list);
 }

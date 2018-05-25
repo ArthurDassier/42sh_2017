@@ -17,6 +17,7 @@ char	**my_str_to_wordtab_delim(char *, char *);
 void	my_sort_int_array(int *, int);
 int	my_strarraylen(char **);
 int	*my_tab_to_int(char **, int);
+char	*my_tab_to_str(char **);
 
 // char
 int	my_char_is_alpha(char);

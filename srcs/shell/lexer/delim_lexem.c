@@ -7,7 +7,7 @@
 #include "42sh.h"
 
 static const char	*lexem_list[WORD] = {
-	"&&", "|", "||", ";", ">", "<", ">>", "<<", "(", ")", "`"
+	"&&", "|", "||", ";", ">", "<", ">>", "<<", "(", ")",
 };
 
 int	is_lexem(char *str)

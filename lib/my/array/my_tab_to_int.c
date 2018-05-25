@@ -14,8 +14,8 @@ int	*my_tab_to_int(char **tab, int ac)
 
 	while (tab[i] != NULL) {
 		nb[j] = my_getnbr(tab[i]);
-		i++;
-		j++;
+		++i;
+		++j;
 	}
 	return (nb);
 }
