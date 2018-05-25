@@ -18,16 +18,18 @@
 
 const char *prompt_line = NULL;
 
-static int	ignore_eof(list_var **spec)
+static int	ignore_eof(t_node **spec)
 {
-	list_var *tmp = *(spec);
+	t_node	*tmp = *(spec);
+	t_save	*tmp_save;
 
-	while (tmp != NULL) {
-		if (strcmp(tmp->name, "ignoreof") == SUCCESS
-		&& tmp->content != NULL)
-			return (atoi(tmp->content));
+	do {
+		tmp_save = (t_save *)tmp->data;
+		if (strcmp(tmp_save->name, "ignoreof") == SUCCESS
+		&& tmp_save->content != NULL)
+			return (atoi(tmp_save->content));
 		tmp = tmp->next;
-	}
+	} while (tmp != *(spec));
 	return (SUCCESS);
 }
 
@@ -52,7 +54,7 @@ static void	ctrl_c(int sig)
 }*/
 
 static void	reset_var_ctrl_d(char *s, t_node *env_list,
-list_var **spec, int ret)
+t_node **spec, int ret)
 {
 	int	ignoreof = ignore_eof(spec);
 
@@ -73,7 +75,7 @@ t_files_info *info)
 	t_tree	*tree;
 
 	line = delim_lexem(s, " \t\r");
-	line = handle_line(line, s, env_list, info->spec_var_list);
+	line = handle_line(line, s, env_list, &info->spec_var_list);
 	if (!line) {
 		free(s);
 		return (FAILURE);

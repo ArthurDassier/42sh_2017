@@ -8,19 +8,19 @@
 #ifndef SPECIAL_VAR_H_
 #define SPECIAL_VAR_H_
 
+#include "42sh.h"
 #include "list.h"
 #include "quotes.h"
 
 /*
 ** Special variables
 */
-list_var	*init_set(void);
-void		print_var(list_var *);
-int		special_var(char **, list_var **);
-list_var	*insert_var(list_var **, char *, char *);
-void		spec_var(list_var *, char *);
-void		reset_spec(list_var **, t_node *, char *, int);
-int		alphabetic_order(char *, char *);
-
+t_node	*init_set(void);
+void		print_var(t_node *);
+int		special_var(char **, t_node **);
+void		spec_var(t_save *, char *);
+void		reset_spec(t_node **, t_node *, char *, int);
+int		alphabetic_order(void *, void *);
+t_save		*initialiser(char *, char *);
 
 #endif /* !SPECIAL_VAR_H_ */

@@ -8,7 +8,8 @@
 #include <unistd.h>
 #include <string.h>
 #include "special_var.h"
-#include "my.h"
+#include "list.h"
+#include "42sh.h"
 
 static const char	*special[13] = {
 	"cwd", "ignoreof", "path", "user", "term", "shell",
@@ -24,7 +25,7 @@ char **init_set_tab(void)
 	if (tab == NULL)
 		return (NULL);
 	while (i != 12) {
-		tab[i] = malloc(sizeof(char) * strlen(special[i]));
+		tab[i] = malloc(sizeof(char) * (strlen(special[i]) + 1));
 		for (j = 0; j != strlen(special[i]); ++j)
 			tab[i][j] = special[i][j];
 		tab[i][j] = '\0';
@@ -34,27 +35,25 @@ char **init_set_tab(void)
 	return (tab);
 }
 
-list_var *init_set(void)
+t_node *init_set(void)
 {
-	list_var	*element = malloc(sizeof(list_var));
-	char		**tab = init_set_tab();
+	t_node	*element = NULL;
+	char	**tab = init_set_tab();
 
-	if (element == NULL || tab == NULL)
+	if (tab == NULL)
 		return (NULL);
-	element->name = tab[0];
-	element->content = NULL;
-	element->content = getcwd(element->content, 0);
-	element->next = NULL;
-	insert_var(&element, tab[1], "1");
-	insert_var(&element, tab[2], "(");
-	insert_var(&element, tab[3], "init");
-	insert_var(&element, tab[4], "init");
-	insert_var(&element, tab[5], "42sh");
-	insert_var(&element, tab[6], NULL);
-	insert_var(&element, tab[7], my_itoa(getuid()));
-	insert_var(&element, tab[8], my_itoa(getgid()));
-	insert_var(&element, tab[9], my_itoa(geteuid()));
-	insert_var(&element, tab[10], NULL);
-	insert_var(&element, tab[11], NULL);
+	insert_end(&element, initialiser(tab[0], getcwd(NULL, 0)));
+	insert_end(&element, initialiser(tab[1], "1"));
+	insert_end(&element, initialiser(tab[2], "init"));
+	insert_end(&element, initialiser(tab[3], "init"));
+	insert_end(&element, initialiser(tab[4], "init"));
+	insert_end(&element, initialiser(tab[5], "42sh"));
+	insert_end(&element, initialiser(tab[6], NULL));
+	insert_end(&element, initialiser(tab[7], my_itoa(getuid())));
+	insert_end(&element, initialiser(tab[8], my_itoa(getgid())));
+	insert_end(&element, initialiser(tab[9], my_itoa(geteuid())));
+	insert_end(&element, initialiser(tab[10], NULL));
+	insert_end(&element, initialiser(tab[11], NULL));
+	my_sort_list(element, &alphabetic_order);
 	return (element);
 }

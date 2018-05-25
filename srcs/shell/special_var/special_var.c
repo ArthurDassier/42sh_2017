@@ -7,25 +7,28 @@
 
 #include "special_var.h"
 #include "define.h"
-#include "my.h"
+#include "42sh.h"
 #include <string.h>
 #include <stdlib.h>
 
-void change_spec(list_var **spec, char *line_one, char *line_two)
+void change_spec(t_node **spec, char *line_one, char *line_two)
 {
-	list_var *tmp = *spec;
+	t_node	*tmp = *(spec);
+	t_save	*tmp_save;
 
-	while (tmp != NULL) {
-		if (strcmp(tmp->name, line_one) == SUCCESS) {
-			spec_var(tmp, line_two);
+	do {
+		tmp_save = (t_save *)tmp->data;
+		if (strcmp(tmp_save->name, line_one) == SUCCESS) {
+			spec_var(tmp_save, line_two);
 			return;
 		}
 		tmp = tmp->next;
-	}
-	insert_var(spec, line_one, line_two);
+	} while (tmp != *(spec));
+	insert_end(spec, initialiser(strdup(line_one), strdup(line_two)));
+	my_sort_list(*spec, &alphabetic_order);
 }
 
-void cut_line(list_var **spec, char *line)
+void cut_line(t_node **spec, char *line)
 {
 	int	i = 0;
 	int	j = 0;
@@ -48,7 +51,7 @@ void cut_line(list_var **spec, char *line)
 	}
 }
 
-void recup_arg_var(char **line, list_var **spec, int *i)
+void recup_arg_var(char **line, t_node **spec, int *i)
 {
 	if (line [*i + 1] != NULL && line[*i + 1][0] == '='
 	&& strlen(line[*i + 1]) == 1) {
@@ -59,7 +62,7 @@ void recup_arg_var(char **line, list_var **spec, int *i)
 	cut_line(spec, line[*i]);
 }
 
-void	change_var(char **line, list_var **spec)
+void	change_var(char **line, t_node **spec)
 {
 	int	i = 1;
 
@@ -79,7 +82,7 @@ void	change_var(char **line, list_var **spec)
 	}
 }
 
-int	special_var(char **line, list_var **spec)
+int	special_var(char **line, t_node **spec)
 {
 	int	i = 0;
 

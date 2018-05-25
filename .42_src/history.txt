@@ -1,1 +1,5 @@
-1	set	Fri May 25 15:05:04 2018
+1	echp "$cwd"	Fri May 25 18:07:37 2018
+2	echo "$cwd"	Fri May 25 18:07:44 2018
+3	echo $status	Fri May 25 18:07:50 2018
+4	echo "$status"	Fri May 25 18:07:57 2018
+5	set	Fri May 25 18:08:01 2018
