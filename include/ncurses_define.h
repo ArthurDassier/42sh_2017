@@ -31,5 +31,6 @@
 #define	CTR_U		21
 #define	CTR_K		11
 #define	CTR_D		4
+#define CTR_C		3
 
 #endif /* !NCURSES_DEFINE_H_ */
