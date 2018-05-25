@@ -164,3 +164,16 @@ TESTS=
   echo 'ls > lol ; cat lol; ls |cat -e >> lol ; cat lol'
   echo 'rm lol'
 [916-END]
+
+[917]
+NAME="separators"
+SETUP="export VAR1=VALEUR1"
+CLEAN=""
+TESTS=
+  echo 'ls && pwd'
+  echo 'lss && pwd'
+  echo 'ls || pwd'
+  echo 'lss || pwd'
+  echo 'ls && pwd || cd ; ls'
+  echo 'lss && pwd || cd ; ls'
+[917-END]

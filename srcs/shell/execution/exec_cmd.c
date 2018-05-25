@@ -12,11 +12,13 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-static void	cmd_not_found(char **line)
+static int ret = false;
+
+static int	cmd_not_found(char **line)
 {
 	my_putstr(line[0]);
 	my_putstr(": Command not found.\n");
-	exit(SUCCESS);
+	exit(VALID);
 }
 
 int	check_path(char **line, char **path, t_node *env_list)
@@ -74,10 +76,9 @@ bool	exec_cmd(char **line, t_node *env_list, t_files_info *info)
 		if ((path == NULL || path[i] == 0)
 		&& (access(line[0], F_OK) != ERROR))
 			check_perm_cmd(line, env_list);
-		else {
+		else
 			cmd_not_found(line);
-			return (true);
-		}
 	}
-	return (false);
+	ret = WEXITSTATUS(status);
+	return (status);
 }
