@@ -1,14 +1,17 @@
 /*
 ** EPITECH PROJECT, 2018
-** globbings.c
+** PSU_42sh_2017
 ** File description:
-** Arthur
+** globbings
 */
 
-#include "42sh.h"
+#include "globbings.h"
+#include "define.h"
 #include <glob.h>
 #include <string.h>
 #include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
 
 static int	analyse_globbings(char *tmp)
 {
@@ -87,7 +90,7 @@ char	**globbings(char **line)
 	}
 	release_tmp(line);
 	if (check_glob(tmp) == -1 && strcmp("set", line[0]) == SUCCESS) {
-		my_printf("%s: No match.\n", tmp[0]);
+		printf("%s: No match.\n", tmp[0]);
 		release_tmp(tmp);
 		return (NULL);
 	}

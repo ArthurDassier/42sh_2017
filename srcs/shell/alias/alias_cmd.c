@@ -5,8 +5,10 @@
 ** alias_cmd
 */
 
-#include "42sh.h"
+#include "alias.h"
+#include "define.h"
 #include <string.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>

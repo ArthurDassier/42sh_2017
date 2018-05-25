@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2018
-** quotes_utils.c
+** PSU_42sh_2017
 ** File description:
-** Arthur
+** quotes_utils
 */
 
-#include "42sh.h"
+#include "quotes.h"
 #include <string.h>
 
 char *inc_space(char *line, char *s, char sign)

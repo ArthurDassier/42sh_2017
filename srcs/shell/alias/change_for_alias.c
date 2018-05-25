@@ -5,7 +5,8 @@
 ** change_for_alias
 */
 
-#include "42sh.h"
+#include "alias.h"
+#include "define.h"
 #include <string.h>
 #include <stdlib.h>
 

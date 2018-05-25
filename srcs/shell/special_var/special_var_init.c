@@ -1,14 +1,14 @@
 /*
 ** EPITECH PROJECT, 2018
-** special_var_init.c
+** PSU_42sh_2017
 ** File description:
-** Arthur
+** special_var_init
 */
 
-#include "42sh.h"
+#include <unistd.h>
 #include <string.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "special_var.h"
+#include "my.h"
 
 static const char	*special[13] = {
 	"cwd", "ignoreof", "path", "user", "term", "shell",
@@ -45,16 +45,16 @@ list_var *init_set(void)
 	element->content = NULL;
 	element->content = getcwd(element->content, 0);
 	element->next = NULL;
-	insert_end_var(&element, tab[1], "1");
-	insert_end_var(&element, tab[2], "(");
-	insert_end_var(&element, tab[3], "init");
-	insert_end_var(&element, tab[4], "init");
-	insert_end_var(&element, tab[5], "42sh");
-	insert_end_var(&element, tab[6], NULL);
-	insert_end_var(&element, tab[7], my_itoa(getuid()));
-	insert_end_var(&element, tab[8], my_itoa(getgid()));
-	insert_end_var(&element, tab[9], my_itoa(geteuid()));
-	insert_end_var(&element, tab[10], NULL);
-	insert_end_var(&element, tab[11], NULL);
+	insert_var(&element, tab[1], "1");
+	insert_var(&element, tab[2], "(");
+	insert_var(&element, tab[3], "init");
+	insert_var(&element, tab[4], "init");
+	insert_var(&element, tab[5], "42sh");
+	insert_var(&element, tab[6], NULL);
+	insert_var(&element, tab[7], my_itoa(getuid()));
+	insert_var(&element, tab[8], my_itoa(getgid()));
+	insert_var(&element, tab[9], my_itoa(geteuid()));
+	insert_var(&element, tab[10], NULL);
+	insert_var(&element, tab[11], NULL);
 	return (element);
 }

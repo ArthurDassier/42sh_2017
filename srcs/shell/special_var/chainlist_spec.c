@@ -1,17 +1,18 @@
 /*
-** EPITECH PROJECT, 2017
-** chainlist.c
+** EPITECH PROJECT, 2018
+** PSU_42sh_2017
 ** File description:
-** blabla
+** chainlist_spec
 */
 
-#include "42sh.h"
+#include "special_var.h"
+#include "define.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 
 // Decouper fonction
-list_var *insert_end_var(list_var **first_elem, char *name, char *content)
+list_var *insert_var(list_var **first_elem, char *name, char *content)
 {
 	list_var	*new_elem = malloc(sizeof(list_var));
 	list_var	*actual = (*first_elem);
@@ -50,7 +51,7 @@ void print_var(list_var *liste)
 		if (temp->content != NULL)
 			printf("\t%s", temp->content);
 		fflush(stdout);
-		my_putchar('\n');
+		putchar('\n');
 		temp = temp->next;
 	}
 }

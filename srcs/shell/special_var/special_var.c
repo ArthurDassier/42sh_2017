@@ -5,7 +5,9 @@
 ** Arthur
 */
 
-#include "42sh.h"
+#include "special_var.h"
+#include "define.h"
+#include "my.h"
 #include <string.h>
 #include <stdlib.h>
 
@@ -20,7 +22,7 @@ void change_spec(list_var **spec, char *line_one, char *line_two)
 		}
 		tmp = tmp->next;
 	}
-	insert_end_var(spec, line_one, line_two);
+	insert_var(spec, line_one, line_two);
 }
 
 void cut_line(list_var **spec, char *line)

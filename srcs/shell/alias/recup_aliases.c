@@ -5,7 +5,8 @@
 ** recup_aliases
 */
 
-#include "42sh.h"
+#include "alias.h"
+#include "my.h"
 #include <string.h>
 #include <stdlib.h>
 #include <sys/types.h>

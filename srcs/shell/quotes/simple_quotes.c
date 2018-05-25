@@ -1,11 +1,13 @@
 /*
 ** EPITECH PROJECT, 2018
-** simple_quotes.c
+** PSU_42sh_2017
 ** File description:
-** Arthur
+** simple_quotes
 */
 
-#include "42sh.h"
+#include "quotes.h"
+#include "my.h"
+#include "inhibitors.h"
 #include <string.h>
 #include <stdlib.h>
 

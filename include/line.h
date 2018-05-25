@@ -6,7 +6,7 @@
 */
 
 #ifndef LINE_H_
-	#define LINE_H_
+#define LINE_H_
 
 #include "history.h"
 

@@ -1,11 +1,13 @@
 /*
 ** EPITECH PROJECT, 2018
-** handle_line.c
+** PSU_42sh_2017
 ** File description:
-** Arthur
+** handle_line
 */
 
-#include "42sh.h"
+#include "quotes.h"
+#include "inhibitors.h"
+#include "globbings.h"
 #include <string.h>
 
 char	**handle_line(char **line, char *s, t_node **env_list, list_var *spec)
