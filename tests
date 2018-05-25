@@ -123,3 +123,44 @@ TESTS=
   echo 'ls -l'
   echo 'exit 45|cat /etc/resolv.conf'
 [912-END]
+
+[913]
+NAME="A pipe and redirect"
+SETUP="export VAR1=VALEUR1"
+CLEAN=""
+TESTS=
+  echo 'ls |cat -e > lol'
+  echo 'rm lol'
+[913-END]
+
+[914]
+NAME="touch files and redirect it in 42sh"
+SETUP="export VAR1=VALEUR1"
+CLEAN=""
+TESTS=
+  echo 'mkdir toto'
+  echo 'cd toto ; touch ls'
+  echo 'ls > titi'
+  echo 'cat titi | 42sh'
+  echo 'rm titi ; rm ls ; rm -r ../toto'
+[914-END]
+
+[915]
+NAME="parentheses"
+SETUP="export VAR1=VALEUR1"
+CLEAN=""
+TESTS=
+  echo '(ls && env) > lol'
+  echo 'rm lol'
+  echo 'lol ; mdr ; (pwd |cat -e || ls) > mdr'
+  echo 'rm mdr'
+[915-END]
+
+[916]
+NAME="redirect and ;"
+SETUP="export VAR1=VALEUR1"
+CLEAN=""
+TESTS=
+  echo 'ls > lol ; cat lol; ls |cat -e >> lol ; cat lol'
+  echo 'rm lol'
+[916-END]

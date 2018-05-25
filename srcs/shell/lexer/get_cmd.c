@@ -5,6 +5,8 @@
 ** get_cmd
 */
 #include "42sh.h"
+#include <string.h>
+#include <stdlib.h>
 
 static void add_cmd(char **path, char *line)
 {

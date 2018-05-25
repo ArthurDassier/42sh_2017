@@ -6,13 +6,15 @@
 */
 
 #include "42sh.h"
+#include <string.h>
+#include <stdlib.h>
 
 static t_aliases	*check_for_alias(t_aliases_list *list, char *line)
 {
 	t_aliases_list	*tmp = list;
 
 	while (tmp->next != NULL) {
-		if (my_strcmp(tmp->alias->src, line) == 0)
+		if (strcmp(tmp->alias->src, line) == SUCCESS)
 			break;
 		tmp = tmp->next;
 	}
@@ -23,13 +25,13 @@ static t_aliases	*check_for_alias(t_aliases_list *list, char *line)
 
 static char	*new_str(t_aliases *alias, char	*line)
 {
-	if (alias == NULL)
+	if (!alias)
 		return (line);
 	free(line);
 	if ((line = malloc(sizeof(char) *
-	(my_strlen(alias->dest) + 1))) == NULL)
-		exit(84);
-	my_strcpy(line, alias->dest);
+	(strlen(alias->dest) + 1))) == NULL)
+		exit(FAILURE);
+	strcpy(line, alias->dest);
 	return (line);
 }
 

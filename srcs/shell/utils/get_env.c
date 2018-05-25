@@ -5,13 +5,15 @@
 ** env functions
 */
 #include "42sh.h"
+#include <stdlib.h>
+#include <string.h>
 
 char	*get_env_name(t_node *head, char *name)
 {
 	t_node	*tmp = head;
 	t_save	*content;
 
-	if (head == NULL)
+	if (!head)
 		return (NULL);
 	do {
 		content = (t_save *)tmp->data;

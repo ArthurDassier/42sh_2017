@@ -6,6 +6,8 @@
 */
 
 #include "42sh.h"
+#include <string.h>
+#include <stdlib.h>
 
 static char	*my_cat_double(char *line_one, char *line_two,
 char *s, t_quotes *quotes_st)

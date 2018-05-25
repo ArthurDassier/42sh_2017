@@ -17,6 +17,7 @@ char	*del_char(int *, char *, const char *);
 char	*suppr_char(int *, char *, const char *);
 char	*write_char(char, int *, char *, const char *);
 void	rewrite_prompt_line(char *, const char *, int);
+int	call_char_function(char, char *, int *, const char *);
 
 int	special_char_function(char, char **, const char *,
 t_history **, int *, int (**)(__attribute((unused)) char **,

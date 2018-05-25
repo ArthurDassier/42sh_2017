@@ -56,9 +56,9 @@ int		get_options(t_node **, char *);
 void	get_cmd(t_node **, char *, char **);
 void	add_node(t_node **, e_token, char *);
 int		get_builtins(t_node **, char *);
-int		get_lexem(t_node **, char *);
 void	lexer(t_node **, char **, t_node *);
 char	**delim_lexem(char *, char *);
+int	get_lexem(t_node **, char **, int);
 
 /*
 ** Parser

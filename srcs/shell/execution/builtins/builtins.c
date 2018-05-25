@@ -4,7 +4,9 @@
 ** File description:
 ** env functions
 */
+
 #include "42sh.h"
+#include <string.h>
 
 static t_built	tab_mini[NB_BUILT] = {
 	{"cd", &cd_built},

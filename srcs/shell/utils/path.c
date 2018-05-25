@@ -5,6 +5,8 @@
 ** path functions
 */
 #include "42sh.h"
+#include <stdlib.h>
+#include <string.h>
 
 char	**get_path(t_node *head)
 {

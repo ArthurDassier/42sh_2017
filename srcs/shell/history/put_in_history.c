@@ -7,6 +7,7 @@
 
 #include "my.h"
 #include "history.h"
+#include "define.h"
 #include <time.h>
 #include <string.h>
 #include <stdlib.h>
@@ -19,7 +20,7 @@ static void	write_in_history(t_history *list)
 	static char	ct = '\t';
 	static int	fd = 0;
 
-	if (fd == 0) {
+	if (fd == SUCCESS) {
 		fd = open(".42_src/history.txt", O_WRONLY |
 		O_CREAT, S_IWUSR | S_IRUSR);
 	}
@@ -37,7 +38,7 @@ static void	first_node(t_history **list, char *line, char *timestamp)
 	t_history	*tmp = NULL;
 
 	if ((*list = malloc(sizeof(t_history))) == NULL)
-		exit (84);
+		exit(FAILURE);
 	(*list)->line = strdup(line);
 	(*list)->timestamp = strdup(timestamp);
 	write_in_history(*list);

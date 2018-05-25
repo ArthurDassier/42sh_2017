@@ -1,11 +1,13 @@
 /*
 ** EPITECH PROJECT, 2018
-** inihibitors.c
+** PSU_42sh_2017
 ** File description:
-** Arthur
+** inihibitors
 */
 
 #include "42sh.h"
+#include <string.h>
+#include <stdlib.h>
 
 char	*decal_line(char *line, int i)
 {

@@ -5,6 +5,8 @@
 ** setenv command functions
 */
 #include "42sh.h"
+#include <stdlib.h>
+#include <string.h>
 
 static void	adding_variable(t_save *data, char **line,
 t_node **env_list)

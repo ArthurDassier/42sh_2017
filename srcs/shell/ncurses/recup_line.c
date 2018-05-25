@@ -5,6 +5,7 @@
 ** recup_line
 */
 
+#include "my.h"
 #include "line.h"
 #include "ncurses_define.h"
 #include <curses.h>
@@ -50,6 +51,7 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 	int		size = 10;
 	char		buf;
 	int		i = 0;
+	int		ret = 0;
 	int		pos = 0;
 	int		curs = 0;
 	t_history	*tmp = *hist_list;
@@ -62,21 +64,10 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 	init_buf_function_tab(buf_function);
 	while (read(0, &buf, 1) != 0) {
 	//	history_completion(*hist_list, line, prompt);
-		if (buf == CTR_D)
+		if ((ret = call_char_function(buf, line, &pos, prompt)) == 1)
 			break;
-		if (buf == ENTER_KEY) {
-			if (line[0] == '\0')
-				line[0] = ' ';
-			break;
-		}
-		if (buf == DEL) {
-			del_char(&pos, line, prompt);
+		else if (ret == 2)
 			continue;
-		}
-		if (buf == SUPPR) {
-			suppr_char(&pos, line, prompt);
-			continue;
-		}
 		if ((curs = special_char_function(buf, &line, prompt, &tmp,
 		&pos, buf_function)) == 1 || curs == 2) {
 			if (curs == 2)
@@ -101,6 +92,8 @@ char	*recup_line(const char *prompt, t_history **hist_list)
 	char	*term = NULL;
 	char	*line = NULL;
 
+	if (isatty(0) == 0)
+		return (get_next_line(0));
 	write(1, prompt, strlen(prompt));
 	canonique_mode(1);
 	term = getenv("TERM");

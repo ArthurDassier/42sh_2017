@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+// Loop
 char **init_set_tab(void)
 {
 	char	**tab = malloc(sizeof(char *) * 13);

@@ -20,12 +20,13 @@ NAME	=	42sh
 DIR	=	srcs/shell/
 
 SRCS	=	srcs/main.c									\
-		srcs/change_line.c								\
+			$(DIR)/utils/change_line.c							\
 			$(DIR)/history/recup_index.c						\
 			$(DIR)/history/put_in_history.c						\
 			$(DIR)/history/history_functions.c					\
 			$(DIR)/history/history_completion.c					\
 			$(DIR)/ncurses/autocompletion.c						\
+			$(DIR)/ncurses/call_char_function.c					\
 			$(DIR)/ncurses/special_char_function.c					\
 			$(DIR)/ncurses/ctr_function.c						\
 			$(DIR)/ncurses/move_cursor.c						\
@@ -110,6 +111,7 @@ SRCS_UT	=	$(DIR)/utils/check_perm.c				\
 			$(DIR)/lexer/delim_lexem.c			\
 			$(DIR)/lexer/get_builtins.c			\
 			$(DIR)/lexer/get_cmd.c				\
+			$(DIR)/lexer/handle_backticks.c		\
 			$(DIR)/parser/cmd_rule.c			\
 			$(DIR)/parser/exp_rule.c			\
 			$(DIR)/parser/handle_parentheses.c		\
@@ -139,17 +141,21 @@ SRCS_UT	=	$(DIR)/utils/check_perm.c				\
 			$(DIR)/history/history_functions.c		\
 			$(DIR)/history/history_completion.c		\
 			$(DIR)/special_var/special_var_init.c		\
+			$(DIR)/special_var/special_var_utils.c		\
 			$(DIR)/special_var/special_var.c		\
 			$(DIR)/history/recup_index.c			\
 			$(DIR)/special_var/chainlist_spec.c		\
-			$(DIR)/special_var/spec_var.c
+			$(DIR)/special_var/spec_var.c			\
+			srcs/change_line.c
 
-UT_DIR	=	tests/lib/
+UT_DIR	=	test/lib/
 
-SRCS_TESTS=	tests/test_my_printf.c						\
-			tests/minishell/test_check_char.c			\
-			tests/minishell/test_check_builtins.c			\
-			tests/minishell/test_string_return.c			\
+SRCS_TESTS=	test/test_my_printf.c						\
+			test/minishell/test_check_char.c			\
+			test/minishell/test_check_builtins.c			\
+			test/minishell/test_string_return.c			\
+			test/minishell/test_cd_return.c				\
+			test/minishell/test_success_failure.c			\
 			$(UT_DIR)test_my_strcat.c				\
 			$(UT_DIR)test_my_fact_it.c				\
 			$(UT_DIR)test_my_fact_rec.c				\

@@ -6,6 +6,7 @@
 */
 
 #include "42sh.h"
+#include <string.h>
 
 char	**handle_line(char **line, char *s, t_node **env_list, list_var *spec)
 {

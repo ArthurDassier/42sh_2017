@@ -7,26 +7,11 @@
 
 #ifndef SH_H_
 #define SH_H_
-#include <fcntl.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <signal.h>
-#include <wait.h>
-#include <stdio.h>
-#include <string.h>
 #include "list.h"
 #include "my.h"
 #include "history.h"
 #include "parser.h"
 #include "define.h"
-
-#define RED     "\x1b[31m"
-#define GREEN   "\x1b[32m"
-#define YELLOW  "\x1b[33m"
-#define BLUE    "\x1b[34m"
-#define MAGENTA "\x1b[35m"
-#define CYAN    "\x1b[36m"
-#define RESET   "\x1b[0m"
 
 typedef struct	s_aliases
 {
@@ -58,6 +43,7 @@ typedef struct s_files_info
 	t_history	*hist_list;
 	list_var	*spec_var_list;
 	bool		background;
+	bool		dwait_pipe;
 	int		ret;
 }			t_files_info;
 
@@ -96,7 +82,7 @@ int		display_version(char **line, t_node **);
 int		rm_var(char **, t_node **);
 int		ignore_env(char **, t_node **);
 int		end_with_null(__attribute((unused)) char **, t_node **);
-int		env_chdir(char **, t_node **, bool);
+int		env_chdir(char **, t_node **, t_files_info *);
 
 /*
 ** Initialization
@@ -130,7 +116,7 @@ char	**handle_line(char **, char *, t_node **, list_var *);
 /*
 ** Execution
 */
-bool	exec_cmd(char **, t_node *, bool);
+bool	exec_cmd(char **, t_node *, t_files_info *);
 bool	s_exec(t_tree *, t_node **, t_files_info *);
 bool	exp_exec(t_tree *, t_node **, t_files_info *);
 bool	pipexp_exec(t_tree *, t_node **, t_files_info *);

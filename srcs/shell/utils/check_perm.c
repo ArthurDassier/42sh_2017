@@ -6,6 +6,10 @@
 */
 #include "42sh.h"
 
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <unistd.h>
+
 void	check_perm(char **path, char **line, int i, t_node *head)
 {
 	struct stat	s;
@@ -15,8 +19,8 @@ void	check_perm(char **path, char **line, int i, t_node *head)
 	|| (access(path[i], X_OK) == ERROR)) {
 			my_putstr(path[i]);
 			my_putstr(": Permission denied.\n");
-			exit(1);
-	} else if (access(path[i], X_OK) != -1) {
+			exit(VALID);
+	} else if (access(path[i], X_OK) != ERROR) {
 			execve(path[i], line, tab);
 	}
 }

@@ -6,6 +6,7 @@
 */
 
 #include "42sh.h"
+#include <stdlib.h>
 
 t_tree	*rexp_rule(t_node **cmd_list)
 {

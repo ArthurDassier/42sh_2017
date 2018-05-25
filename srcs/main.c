@@ -8,6 +8,11 @@
 #include "42sh.h"
 #include "history.h"
 #include "line.h"
+#include <string.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 const char *prompt_line = NULL;
 
@@ -21,13 +26,14 @@ static int	ignore_eof(list_var **spec)
 			return (atoi(tmp->content));
 		tmp = tmp->next;
 	}
-	return (0);
+	return (SUCCESS);
 }
 
 static t_files_info	*init_files_info(void)
 {
 	t_files_info	*info = malloc(sizeof(t_files_info));
 
+	info->dwait_pipe = false;
 	info->hist_list = NULL;
 	info->alias_list = recup_aliases();
 	info->spec_var_list = init_set();
@@ -66,7 +72,7 @@ t_files_info *info)
 
 	line = delim_lexem(s, " \t\r");
 	line = handle_line(line, s, env_list, info->spec_var_list);
-	if (line == NULL) {
+	if (!line) {
 		free(s);
 		return (FAILURE);
 	}
@@ -98,9 +104,7 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 		prompt_line = prompt(env_list);
 		free_list(cmd_list, &free_lexer);
 		cmd_list = NULL;
-		write(1, prompt_line, strlen(prompt_line));
-		s = get_next_line(0);
-		//s = recup_line(prompt_line, &info->hist_list);
+		s = recup_line(prompt_line, &info->hist_list);
 		s = inib(s);
 		reset_var_ctrl_d(s, env_list, &info->spec_var_list, info->ret);
 		if (s != NULL && check_char(s) == SUCCESS

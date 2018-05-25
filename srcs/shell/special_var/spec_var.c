@@ -6,6 +6,8 @@
 */
 
 #include "42sh.h"
+#include <stdlib.h>
+#include <string.h>
 
 void spec_var(list_var *tmp, char *line_two)
 {

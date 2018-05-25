@@ -5,6 +5,8 @@
 ** lexer
 */
 #include "42sh.h"
+#include <stdlib.h>
+#include <string.h>
 
 void	add_node(t_node **cmd_list, e_token token, char *line)
 {
@@ -24,7 +26,7 @@ void	lexer(t_node **cmd_list, char **line, t_node *env_list)
 
 	for (int i = 0; line[i]; ++i) {
 		path = get_path(env_list);
-		if (get_lexem(cmd_list, line[i]) == FAILURE
+		if ((get_lexem(cmd_list, line, i)) == FAILURE
 		&& get_builtins(cmd_list, line[i]) == FAILURE)
 			get_cmd(cmd_list, line[i], path);
 	}

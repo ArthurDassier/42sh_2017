@@ -1,11 +1,13 @@
 /*
 ** EPITECH PROJECT, 2018
-** special_var_utils.c
+** PSU_42sh_2017
 ** File description:
-** Arthur
+** special_var_utils
 */
 
 #include "42sh.h"
+#include <string.h>
+#include <stdlib.h>
 
 char *delete_points(char *path)
 {

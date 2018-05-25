@@ -6,6 +6,7 @@
 */
 
 #include "42sh.h"
+#include <unistd.h>
 
 // Father process
 static void	p_father(int *pipefd, int dupfd, t_tree *tree,
@@ -21,9 +22,10 @@ t_node **env_list, t_files_info *info)
 
 bool	pipe_exec(t_tree *tree, t_node **env_list, t_files_info *info)
 {
-	int	dupfd = 0;
-	int	pipefd[2];
+	int		dupfd = 0;
+	int		pipefd[2];
 
+	info->dwait_pipe = true;
 	pipe(pipefd);
 	dupfd = dup(1);
 	dup2(pipefd[1], 1);

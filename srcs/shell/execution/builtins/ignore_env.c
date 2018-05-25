@@ -6,6 +6,12 @@
 */
 
 #include "42sh.h"
+#include <string.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/wait.h>
 
 static int	exec_no_env(char *line, char **tab)
 {

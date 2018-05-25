@@ -6,6 +6,8 @@
 */
 
 #include "42sh.h"
+#include <string.h>
+#include <stdlib.h>
 
 static char	*found_env(t_quotes *quotes, char *pathname)
 {

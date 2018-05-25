@@ -6,6 +6,8 @@
 */
 
 #include "42sh.h"
+#include <string.h>
+#include <stdio.h>
 
 const int BUFF_SIZE = 256;
 

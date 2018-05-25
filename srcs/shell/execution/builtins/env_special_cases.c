@@ -6,6 +6,8 @@
 */
 
 #include "42sh.h"
+#include <stdlib.h>
+#include <string.h>
 
 int	unset_name(char **line, t_node **env_list)
 {

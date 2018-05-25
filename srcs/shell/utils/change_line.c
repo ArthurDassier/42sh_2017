@@ -6,6 +6,7 @@
 */
 
 #include "42sh.h"
+#include <string.h>
 
 static bool	is_background(char **line)
 {
@@ -22,10 +23,10 @@ static bool	is_background(char **line)
 
 int	change_line(char **line, t_files_info *info)
 {
-	if (strcmp(line[0], "&") == 0)
+	if (strcmp(line[0], "&") == SUCCESS)
 		return (FAILURE);
 	change_for_alias(info->alias_list, line);
-	if (changes_from_history(&info->hist_list, line) == -1)
+	if (changes_from_history(&info->hist_list, line) == ERROR)
 		return (FAILURE);
 	info->background  = is_background(line);
 	return (SUCCESS);

@@ -6,6 +6,9 @@
 */
 
 #include "42sh.h"
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 bool	parentheses(t_tree *tree, t_node **env_list)
 {

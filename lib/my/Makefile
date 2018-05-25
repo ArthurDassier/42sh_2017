@@ -13,6 +13,7 @@ AC	=	ar rc
 SRCS =		array/my_show_word_array.c 		\
 		array/my_tab_to_int.c			\
 		array/my_strarraylen.c			\
+		array/my_tab_to_str.c			\
 		char/my_char_is_alpha.c			\
 		char/my_char_is_num.c			\
 		char/my_char_is_alphanum.c		\

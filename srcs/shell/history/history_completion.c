@@ -7,6 +7,7 @@
 
 #include "history.h"
 #include "line.h"
+#include "define.h"
 #include "ncurses_define.h"
 #include <unistd.h>
 #include <stdio.h>

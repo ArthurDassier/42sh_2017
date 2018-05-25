@@ -5,6 +5,8 @@
 ** functions to init and fill the list
 */
 #include "42sh.h"
+#include <string.h>
+#include <stdlib.h>
 
 static int	count(char *env)
 {
@@ -42,7 +44,7 @@ static t_save *init_data(char *env)
 {
 	t_save *data = malloc(sizeof(*data));
 
-	if (data == NULL)
+	if (!data)
 		return (NULL);
 	data->name = get_name(env);
 	data->content = get_content(env);
