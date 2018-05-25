@@ -58,6 +58,7 @@ typedef struct s_files_info
 	t_history	*hist_list;
 	list_var	*spec_var_list;
 	bool		background;
+	bool		dwait_pipe;
 }			t_files_info;
 
 typedef struct s_quotes
@@ -95,7 +96,7 @@ int		display_version(char **line, t_node **);
 int		rm_var(char **, t_node **);
 int		ignore_env(char **, t_node **);
 int		end_with_null(__attribute((unused)) char **, t_node **);
-int		env_chdir(char **, t_node **, bool);
+int		env_chdir(char **, t_node **, t_files_info *);
 
 /*
 ** Initialization
@@ -129,7 +130,7 @@ char	**handle_line(char **, char *, t_node **, list_var *);
 /*
 ** Execution
 */
-bool	exec_cmd(char **, t_node *, bool);
+bool	exec_cmd(char **, t_node *, t_files_info *);
 bool	s_exec(t_tree *, t_node **, t_files_info *);
 bool	exp_exec(t_tree *, t_node **, t_files_info *);
 bool	pipexp_exec(t_tree *, t_node **, t_files_info *);

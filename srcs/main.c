@@ -28,6 +28,7 @@ static t_files_info	*init_files_info(void)
 {
 	t_files_info	*info = malloc(sizeof(t_files_info));
 
+	info->dwait_pipe = false;
 	info->hist_list = NULL;
 	info->alias_list = recup_aliases();
 	info->spec_var_list = init_set();

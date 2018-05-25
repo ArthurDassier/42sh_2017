@@ -1,0 +1,4 @@
+1	ls	Fri May 25 12:29:59 2018
+2	ls |cat -e	Fri May 25 12:30:01 2018
+3	man gcc |cat -e |cat -e	Fri May 25 12:30:07 2018
+4	cat /dev/urandom |cat -e	Fri May 25 12:30:16 2018
