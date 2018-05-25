@@ -1,3 +1,4 @@
-1	ls && pwd	Fri May 25 16:23:49 2018
-2	ls && pwd || cd ; ls	Fri May 25 16:24:33 2018
-3	lss && pwd || cd ; ls	Fri May 25 16:25:24 2018
+1	ls && pwd	Fri May 25 16:43:10 2018
+2	ls	Fri May 25 16:43:11 2018
+3	 && pwd	Fri May 25 16:43:15 2018
+4	ls	Fri May 25 16:43:16 2018
