@@ -5,8 +5,8 @@
 ** env functions
 */
 
-#include "42sh.h"
 #include "special_var.h"
+#include "builtins.h"
 #include <string.h>
 
 static t_built	tab_mini[NB_BUILT] = {

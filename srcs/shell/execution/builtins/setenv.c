@@ -4,7 +4,7 @@
 ** File description:
 ** setenv command functions
 */
-#include "42sh.h"
+#include "builtins.h"
 #include <stdlib.h>
 #include <string.h>
 

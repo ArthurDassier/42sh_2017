@@ -5,7 +5,7 @@
 ** env_special_cases
 */
 
-#include "42sh.h"
+#include "builtins.h"
 #include <stdlib.h>
 #include <string.h>
 
