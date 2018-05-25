@@ -22,7 +22,7 @@ char *delete_points(char *path)
 	return (tmp);
 }
 
-void concerned_spec(list_var *tmp, t_node *new_env, char *s)
+void concerned_spec_part2(list_var *tmp, t_node *new_env)
 {
 	if (strcmp(tmp->name, "cwd") == SUCCESS) {
 		tmp->content = NULL;
@@ -38,21 +38,30 @@ void concerned_spec(list_var *tmp, t_node *new_env, char *s)
 		tmp->content = NULL;
 		tmp->content = get_env_content(new_env, "USER");
 	}
+}
+
+void concerned_spec(list_var *tmp, t_node *new_env, char *s, int ret)
+{
+	concerned_spec_part2(tmp, new_env);
 	if (strcmp(tmp->name, "term") == SUCCESS) {
 		tmp->content = NULL;
 		tmp->content = get_env_content(new_env, "TERM");
+	}
+	if (strcmp(tmp->name, "status") == SUCCESS) {
+		tmp->content = NULL;
+		tmp->content = my_itoa(ret);
 	}
 	if (s != NULL && strcmp(tmp->name, "echo") == SUCCESS
 	&& tmp->content != NULL)
 		my_printf("%s\n", s);
 }
 
-void reset_spec(list_var **spec, t_node *new_env, char *s)
+void reset_spec(list_var **spec, t_node *new_env, char *s, int ret)
 {
 	list_var *tmp = *(spec);
 
 	while (tmp != NULL) {
-		concerned_spec(tmp, new_env, s);
+		concerned_spec(tmp, new_env, s, ret);
 		tmp = tmp->next;
 	}
 }

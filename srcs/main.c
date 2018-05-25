@@ -31,6 +31,7 @@ static t_files_info	*init_files_info(void)
 	info->hist_list = NULL;
 	info->alias_list = recup_aliases();
 	info->spec_var_list = init_set();
+	info->ret = 0;
 	creat(".42_src/history.txt", O_RDWR);
 	return (info);
 }
@@ -42,12 +43,12 @@ static void	ctrl_c(int sig)
 	my_putstr(prompt_line);
 }*/
 
-static void	reset_var_list_ctrl_d(char *s, t_node *env_list,
-list_var **spec)
+static void	reset_var_ctrl_d(char *s, t_node *env_list,
+list_var **spec, int ret)
 {
 	int	ignoreof = ignore_eof(spec);
 
-	reset_spec(spec, env_list, s);
+	reset_spec(spec, env_list, s, ret);
 	if (s == NULL) {
 		if (ignoreof != 0) {
 			my_putstr("exit\n");
@@ -101,7 +102,7 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 		s = get_next_line(0);
 		//s = recup_line(prompt_line, &info->hist_list);
 		s = inib(s);
-		reset_var_list_ctrl_d(s, env_list, &info->spec_var_list);
+		reset_var_ctrl_d(s, env_list, &info->spec_var_list, info->ret);
 		if (s != NULL && check_char(s) == SUCCESS
 		&& init_exec(s, &cmd_list, &env_list, info) == FAILURE)
 				continue;

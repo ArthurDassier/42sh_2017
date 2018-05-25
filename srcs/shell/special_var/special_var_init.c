@@ -12,7 +12,7 @@
 
 char **init_set_tab(void)
 {
-	char	**tab = malloc(sizeof(char *) * 12);
+	char	**tab = malloc(sizeof(char *) * 13);
 
 	if (tab == NULL)
 		return (NULL);
@@ -27,7 +27,8 @@ char **init_set_tab(void)
 	tab[8] = "gid";
 	tab[9] = "euid";
 	tab[10] = "echo";
-	tab[11] = NULL;
+	tab[11] = "status";
+	tab[12] = NULL;
 	return (tab);
 }
 
@@ -52,5 +53,6 @@ list_var *init_set(void)
 	insert_end_var(&element, tab[8], my_itoa(getgid()));
 	insert_end_var(&element, tab[9], my_itoa(geteuid()));
 	insert_end_var(&element, tab[10], NULL);
+	insert_end_var(&element, tab[11], NULL);
 	return (element);
 }
