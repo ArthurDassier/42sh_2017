@@ -8,6 +8,8 @@
 #include "42sh.h"
 #include "history.h"
 #include "line.h"
+#include "inhibitors.h"
+#include "special_var.h"
 #include <string.h>
 #include <stdlib.h>
 #include <sys/types.h>

@@ -1,11 +1,12 @@
 /*
 ** EPITECH PROJECT, 2018
-** special_var_init.c
+** PSU_42sh_2017
 ** File description:
-** Arthur
+** special_var_init
 */
 
-#include "42sh.h"
+#include "special_var.h"
+#include <unistd.h>
 
 // Loop
 char **init_set_tab(void)

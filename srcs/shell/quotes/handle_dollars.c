@@ -1,10 +1,11 @@
 /*
 ** EPITECH PROJECT, 2018
-** handle_dollars.c
+** PSU_42sh_2017
 ** File description:
-** Arthur
+** handle_dollars
 */
 
+#include "quotes.h"
 #include "42sh.h"
 #include <string.h>
 #include <stdlib.h>

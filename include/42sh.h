@@ -10,32 +10,15 @@
 #include "list.h"
 #include "my.h"
 #include "history.h"
+#include "alias.h"
 #include "parser.h"
 #include "define.h"
-
-typedef struct	s_aliases
-{
-	char	*src;
-	char	*dest;
-}		t_aliases;
-
-typedef struct	s_aliases_list
-{
-	t_aliases		*alias;
-	struct	s_aliases_list	*next;
-}				t_aliases_list;
+#include "quotes.h"
 
 typedef struct	s_save {
 	char	*name;
 	char	*content;
 }		t_save;
-
-typedef struct s_list_var
-{
-	char			*name;
-	char			*content;
-	struct s_list_var	*next;
-}		list_var;
 
 typedef struct s_files_info
 {
@@ -46,16 +29,11 @@ typedef struct s_files_info
 	bool		dwait_pipe;
 }			t_files_info;
 
-typedef struct s_quotes
-{
-	t_node		**new_env;
-	list_var	*spec_var_list;
-}		t_quotes;
-
 typedef struct	s_built {
 	char	*builtin;
 	int		(*ptr)(char **, t_node **);
 }				t_built;
+
 
 /*
 ** Change_the_line_from_info
@@ -110,7 +88,6 @@ int	delim_words(char *, char *);
 bool	check_delim(char, char *);
 int	is_lexem(char *);
 void	handling_sig(int);
-char	**handle_line(char **, char *, t_node **, list_var *);
 
 /*
 ** Execution
@@ -135,13 +112,6 @@ bool	semiexp_exec(t_tree *, t_node **);
 bool	parentheses(t_tree *, t_node **);
 
 /*
-** Aliases
-*/
-void	change_for_alias(t_aliases_list *, char **);
-int	alias_cmd(t_aliases_list *, char **);
-t_aliases_list	*recup_aliases(void);
-
-/*
 ** Scripting
 */
 bool	check_script(char **);
@@ -153,48 +123,6 @@ void	print_list(void *);
 void	display(void *);
 void	print_list_with_null(void *);
 
-/*
-** Globbings
-*/
-char	**globbings(char **);
-void	release_tmp(char **);
-char	**copy_line(char **);
-int	alloc_tab(char **, char **);
-int	back_slash(int, char *);
-int	count_glob(char **);
-
-/*
-** Inihibitors
-*/
-
-char	*inib(char *);
-char	**handle_backslash(char **);
-char	*delete_backslash(char *);
-char	*decal_line(char *, int);
-
-/*
-** Quotes
-*/
-
-char	*handle_dollars(char *, t_quotes *);
-char	**quotes(char **, char *, t_node **, list_var *);
-char	**simple_quotes(char **, char *);
-int	count_quotes(char **, char);
-char	*delete_special(char *);
-char	*inc_space(char *, char *, char);
-char	*find_endspace(char *, char *, char);
-
-/*
-** Special variables
-*/
-
-list_var	*init_set(void);
-void		print_var(list_var *);
-int		special_var(char **, list_var **);
-list_var	*insert_end_var(list_var **, char *, char *);
-void		spec_var(list_var *, char *);
-void		reset_spec(list_var **, t_node *);
-int		alphabetic_order(char *, char *);
 
 /*
 ** Free

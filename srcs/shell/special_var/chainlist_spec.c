@@ -1,11 +1,12 @@
 /*
-** EPITECH PROJECT, 2017
-** chainlist.c
+** EPITECH PROJECT, 2018
+** PSU_42sh_2017
 ** File description:
-** blabla
+** chainlist_spec
 */
 
-#include "42sh.h"
+#include "special_var.h"
+#include "define.h"
 #include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -49,7 +50,7 @@ void print_var(list_var *liste)
 		printf("%s", temp->name);
 		if (temp->content != NULL)
 			printf("\t%s", temp->content);
-		my_putchar('\n');
+		putchar('\n');
 		temp = temp->next;
 	}
 }

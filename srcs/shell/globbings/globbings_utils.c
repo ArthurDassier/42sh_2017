@@ -1,11 +1,12 @@
 /*
 ** EPITECH PROJECT, 2018
-** globbings_utils.c
+** PSU_42sh_2017
 ** File description:
-** Arthur
+** globbings_utils
 */
 
-#include "42sh.h"
+#include "globbings.h"
+#include "define.h"
 #include <stdlib.h>
 #include <string.h>
 

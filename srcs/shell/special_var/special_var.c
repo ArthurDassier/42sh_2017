@@ -5,7 +5,9 @@
 ** Arthur
 */
 
-#include "42sh.h"
+#include "special_var.h"
+#include "define.h"
+#include "my.h"
 #include <string.h>
 #include <stdlib.h>
 
