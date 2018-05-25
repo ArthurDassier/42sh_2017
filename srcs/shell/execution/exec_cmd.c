@@ -51,7 +51,7 @@ void	exec_line(t_node *env_list, char **line)
 	execve(line[0], line, tab);
 }
 
-bool	exec_cmd(char **line, t_node *env_list, bool background)
+bool	exec_cmd(char **line, t_node *env_list, t_files_info *info)
 {
 	char	**path = get_path(env_list);
 	int		status;
@@ -61,7 +61,9 @@ bool	exec_cmd(char **line, t_node *env_list, bool background)
 	if (pid == ERROR) {
 		my_print_err("Failed\n");
 	} else if (pid > 0) {
-		if (background == true)
+		if (info->dwait_pipe == true)
+			info->dwait_pipe = false;
+		else if (info->background == true)
 			waitpid(pid, &status, WNOHANG);
 		else
 			waitpid(pid, &status, WUNTRACED);

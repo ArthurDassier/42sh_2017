@@ -78,6 +78,6 @@ bool	cmd_exec(t_tree *tree, t_node **env_list, t_files_info *info)
 	if (tree->cmd.token == BUILTIN)
 		ret = exec_builtins(tree->cmd.name, env_list, info);
 	if (tree->cmd.token == CMD || tree->cmd.token == WORD)
-		ret = exec_cmd(tree->cmd.name, *env_list, info->background);
+		ret = exec_cmd(tree->cmd.name, *env_list, info);
 	return (ret);
 }

@@ -30,7 +30,7 @@ static char **get_cmd_from_line(char **line)
 	return (cmd);
 }
 
-int	env_chdir(char **line, t_node **env_list, bool background)
+int	env_chdir(char **line, t_node **env_list, t_files_info *info)
 {
 	char	*str;
 	struct stat	s;
@@ -42,7 +42,7 @@ int	env_chdir(char **line, t_node **env_list, bool background)
 		my_putstr(": Not a directory.\n");
 		return (FAILURE);
 	}
-	exec_cmd(get_cmd_from_line(line), *env_list, background);
+	exec_cmd(get_cmd_from_line(line), *env_list, info);
 	str = get_env_content(*env_list, "OLDPWD");
 	if (get_cd(str, env_list) == FAILURE)
 		return (FAILURE);
