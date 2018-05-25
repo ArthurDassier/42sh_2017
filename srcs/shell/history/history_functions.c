@@ -6,6 +6,7 @@
 */
 
 #include "history.h"
+#include "define.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -24,7 +25,7 @@ int	show_history(t_history *hist_list)
 		printf("%s", tmp->timestamp);
 		tmp = tmp->next;
 	}
-	return (1);
+	return (VALID);
 }
 
 
@@ -37,14 +38,14 @@ static int	pos_index(t_history *tmp, char **line, int index)
 	while (index > 1) {
 		if (tmp->next == NULL) {
 			printf("%d: Event not found\n", ind_tmp);
-			return (-1);
+			return (ERROR);
 		}
 		tmp = tmp->next;
 		--index;
 	}
 	free(*line);
 	*line = strdup(tmp->line);
-	return (0);
+	return (SUCCESS);
 }
 
 static int	find_in_history(t_history *hist_list, char **line)
@@ -60,7 +61,7 @@ static int	find_in_history(t_history *hist_list, char **line)
 		while (index < -1) {
 			if (tmp == NULL) {
 				printf("%d: Event not found\n", ind_tmp);
-				return (-1);
+				return (ERROR);
 			}
 			tmp = tmp->prev;
 			++index;
@@ -68,13 +69,13 @@ static int	find_in_history(t_history *hist_list, char **line)
 		free(*line);
 		*line = strdup(tmp->line);
 	}
-	return (0);
+	return (SUCCESS);
 }
 
 static void	change_in_history_from_ex(t_history **hist_list, char *buffer,
 int flag)
 {
-	if (flag == 1) {
+	if (flag == VALID) {
 		free((*hist_list)->prev->line);
 		(*hist_list)->prev->line = strdup(buffer);
 		write(1, buffer, strlen(buffer));
@@ -93,8 +94,8 @@ int	changes_from_history(t_history **hist_list, char **line)
 	buffer[0] = '\0';
 	while (line[i] != NULL) {
 		if (line[i][0] == '!' && line[i][1] != '\0') {
-			if ((tmp  = find_in_history(hist_tmp, &line[i])) == -1)
-				return (-1);
+			if ((tmp  = find_in_history(hist_tmp, &line[i])) == ERROR)
+				return (ERROR);
 			flag = 1;
 		}
 		buffer = realloc(buffer,
@@ -104,5 +105,5 @@ int	changes_from_history(t_history **hist_list, char **line)
 		++i;
 	}
 	change_in_history_from_ex(hist_list, buffer, flag);
-	return (0);
+	return (SUCCESS);
 }

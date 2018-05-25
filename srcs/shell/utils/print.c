@@ -5,6 +5,7 @@
 ** print function
 */
 #include "42sh.h"
+#include <stdio.h>
 
 void	print_list(void *data)
 {

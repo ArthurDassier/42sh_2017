@@ -6,12 +6,14 @@
 */
 
 #include "42sh.h"
+#include <stdlib.h>
+#include <string.h>
 
 int back_slash(int i, char *tmp)
 {
 	if (i == 0 || tmp[i - 1] != '\\')
-		return (1);
-	return (0);
+		return (VALID);
+	return (SUCCESS);
 }
 
 void release_tmp(char **tmp)

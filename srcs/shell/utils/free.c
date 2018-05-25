@@ -6,6 +6,7 @@
 */
 
 #include "42sh.h"
+#include <stdlib.h>
 
 void free_lexer(void *data)
 {

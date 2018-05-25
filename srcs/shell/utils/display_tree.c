@@ -6,10 +6,11 @@
 */
 
 #include "42sh.h"
+#include <stdio.h>
 
 void	display_tree(t_tree *tree)
 {
-	if (tree == NULL)
+	if (!tree)
 		return;
 	printf("node %d / %s\n", tree->cmd.token , tree->cmd.name[0]);
 	if (tree->left != NULL) {

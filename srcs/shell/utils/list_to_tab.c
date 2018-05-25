@@ -5,6 +5,8 @@
 ** transforms a linked list into an array
 */
 #include "42sh.h"
+#include <stdlib.h>
+#include <string.h>
 
 char	**list_to_tab(t_node *head)
 {

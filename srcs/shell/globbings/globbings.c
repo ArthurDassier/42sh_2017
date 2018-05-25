@@ -8,6 +8,7 @@
 #include "42sh.h"
 #include <glob.h>
 #include <string.h>
+#include <stdlib.h>
 
 static int	analyse_globbings(char *tmp)
 {
@@ -16,11 +17,11 @@ static int	analyse_globbings(char *tmp)
 	while (tmp[i] != '\0') {
 		if ((tmp[i] == '*' || tmp[i] == '?' || tmp[i] == '['
 		|| tmp[i] == '{' || tmp[i] == '^')
-		&& (back_slash(i, tmp) == 1))
-			return (-1);
+		&& (back_slash(i, tmp) == VALID))
+			return (ERROR);
 		++i;
 	}
-	return (0);
+	return (SUCCESS);
 }
 
 static int	check_glob(char **tmp)
@@ -28,11 +29,11 @@ static int	check_glob(char **tmp)
 	int	i = 0;
 
 	while (tmp[i] != NULL) {
-		if (analyse_globbings(tmp[i]) == -1)
-			return (-1);
+		if (analyse_globbings(tmp[i]) == ERROR)
+			return (ERROR);
 		++i;
 	}
-	return (0);
+	return (SUCCESS);
 }
 
 static char	**add_glob(char **tmp, char **globs)
@@ -42,9 +43,9 @@ static char	**add_glob(char **tmp, char **globs)
 	int	count = 0;
 	char	**tab = malloc(sizeof(char *) * alloc_tab(tmp, globs));
 
-	if (tab == NULL)
+	if (!tab)
 		return (NULL);
-	while (tmp[i] != NULL && analyse_globbings(tmp[i]) != -1)
+	while (tmp[i] != NULL && analyse_globbings(tmp[i]) != ERROR)
 		tab[nb++] = strdup(tmp[i++]);
 	while (globs[count] != NULL)
 		tab[nb++] = strdup(globs[count++]);
@@ -59,8 +60,8 @@ static char	**my_glob(char *line, char **tmp)
 {
 	glob_t	globlist;
 
-	if (analyse_globbings(line) == -1
-	&& glob(line, 0, NULL, &globlist) == 0) {
+	if (analyse_globbings(line) == ERROR
+	&& glob(line, 0, NULL, &globlist) == SUCCESS) {
 		tmp = add_glob(tmp, globlist.gl_pathv);
 		if (tmp == NULL)
 			return (NULL);
@@ -75,7 +76,7 @@ char	**globbings(char **line)
 
 	if (tmp == NULL)
 		return (NULL);
-	if (check_glob(tmp) != -1) {
+	if (check_glob(tmp) != ERROR) {
 		release_tmp(tmp);
 		return (line);
 	}

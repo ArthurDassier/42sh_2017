@@ -5,6 +5,7 @@
 ** display
 */
 #include "42sh.h"
+#include <stdio.h>
 
 void	display(void *data)
 {

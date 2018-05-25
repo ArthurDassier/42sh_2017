@@ -6,6 +6,8 @@
 */
 
 #include "42sh.h"
+#include <stdlib.h>
+#include <string.h>
 
 t_tree	*exp_rule(t_node **cmd_list)
 {

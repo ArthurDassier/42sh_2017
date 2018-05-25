@@ -22,7 +22,7 @@ static char	*replace_bs(char *line, int *i)
 	else {
 		line[*i] = j + 7;
 		line = decal_line(line, *i + 1);
-		++*i;
+		*i += 1;
 	}
 	return (line);
 }

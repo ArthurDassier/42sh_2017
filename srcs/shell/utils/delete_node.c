@@ -5,6 +5,8 @@
 ** function to delete a given node
 */
 #include "42sh.h"
+#include <stdlib.h>
+#include <string.h>
 
 void	delete_node(t_node **head, char *name)
 {

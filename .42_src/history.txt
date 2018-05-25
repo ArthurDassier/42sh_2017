@@ -1,0 +1,5 @@
+1	lol	Fri May 25 13:05:36 2018
+2	cd -	Fri May 25 13:05:39 2018
+3	cd -	Fri May 25 13:05:40 2018
+4	ls	Fri May 25 13:05:42 2018
+5	pwd	Fri May 25 13:05:43 2018

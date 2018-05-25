@@ -6,6 +6,8 @@
 */
 
 #include "42sh.h"
+#include <stdlib.h>
+#include <string.h>
 
 static int	get_nb_word(t_node *cmd_list)
 {

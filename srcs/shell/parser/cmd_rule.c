@@ -6,6 +6,7 @@
 */
 
 #include "42sh.h"
+#include <string.h>
 
 static t_node *save_par;
 

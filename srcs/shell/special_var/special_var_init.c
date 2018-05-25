@@ -7,6 +7,7 @@
 
 #include "42sh.h"
 
+// Loop
 char **init_set_tab(void)
 {
 	char	**tab = malloc(sizeof(char *) * 6);

@@ -6,6 +6,7 @@
 */
 
 #include "42sh.h"
+#include <stdlib.h>
 
 void	delete_tab(void *data)
 {

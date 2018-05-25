@@ -8,6 +8,11 @@
 #include "42sh.h"
 #include "history.h"
 #include "line.h"
+#include <string.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 
 const char *prompt_line = NULL;
 
@@ -21,7 +26,7 @@ static int	ignore_eof(list_var **spec)
 			return (atoi(tmp->content));
 		tmp = tmp->next;
 	}
-	return (0);
+	return (SUCCESS);
 }
 
 static t_files_info	*init_files_info(void)

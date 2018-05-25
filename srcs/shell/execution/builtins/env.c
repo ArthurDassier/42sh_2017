@@ -6,6 +6,8 @@
 */
 
 #include "42sh.h"
+#include <stdio.h>
+#include <string.h>
 
 static t_built	env_tab[NB_FLAGS] = {
 	{"-i", &ignore_env},

@@ -6,6 +6,11 @@
 */
 
 #include "42sh.h"
+#include <stdlib.h>
+#include <string.h>
+#include <sys/stat.h>
+#include <unistd.h>
+#include <sys/types.h>
 
 static char **get_cmd_from_line(char **line)
 {

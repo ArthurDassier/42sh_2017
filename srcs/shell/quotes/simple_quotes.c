@@ -6,6 +6,8 @@
 */
 
 #include "42sh.h"
+#include <string.h>
+#include <stdlib.h>
 
 char	*my_cat(char *line_one, char *line_two, char *s)
 {

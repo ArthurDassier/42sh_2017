@@ -6,6 +6,7 @@
 */
 
 #include "42sh.h"
+#include <unistd.h>
 
 // Father process
 static void	p_father(int *pipefd, int dupfd, t_tree *tree,

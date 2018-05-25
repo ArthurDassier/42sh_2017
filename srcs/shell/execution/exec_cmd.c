@@ -5,6 +5,11 @@
 ** minishell 1
 */
 #include "42sh.h"
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 
 static void	cmd_not_found(char **line)
 {

@@ -6,7 +6,11 @@
 */
 
 #include "42sh.h"
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
+// Decouper fonction
 list_var *insert_end_var(list_var **first_elem, char *name, char *content)
 {
 	list_var	*new_elem = malloc(sizeof(list_var));
@@ -42,9 +46,9 @@ void print_var(list_var *liste)
 
 	temp = liste;
 	while (temp != NULL) {
-		my_printf("%s", temp->name);
+		printf("%s", temp->name);
 		if (temp->content != NULL)
-			my_printf("\t%s", temp->content);
+			printf("\t%s", temp->content);
 		my_putchar('\n');
 		temp = temp->next;
 	}

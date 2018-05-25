@@ -1,11 +1,13 @@
 /*
 ** EPITECH PROJECT, 2018
-** special_var_utils.c
+** PSU_42sh_2017
 ** File description:
-** Arthur
+** special_var_utils
 */
 
 #include "42sh.h"
+#include <string.h>
+#include <stdlib.h>
 
 char *delete_points(char *path)
 {
@@ -24,6 +26,7 @@ char *delete_points(char *path)
 	return (tmp);
 }
 
+// Loop -> array of values ?
 void concerned_spec(list_var *tmp, t_node *new_env)
 {
 	if (strcmp(tmp->name, "cwd") == SUCCESS) {

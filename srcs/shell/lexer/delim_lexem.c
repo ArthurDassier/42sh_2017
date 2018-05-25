@@ -5,6 +5,8 @@
 ** str_to_wordarray with a delim as argument
 */
 #include "42sh.h"
+#include <string.h>
+#include <stdlib.h>
 
 static const char	*lexem_list[12] = {
 	"&&", "|", "||", ";", ">", "<", ">>", "<<", "(", ")", "\'", "\""
@@ -36,7 +38,7 @@ static int	l_words(char *str, char *delim)
 
 static int	add_lexem(char *str, char **tab, int *j, int count)
 {
-	if (is_lexem(str) != -1) {
+	if (is_lexem(str) != ERROR) {
 		if (count > 0) {
 			tab[*j][count] = '\0';
 			*j += 1;
@@ -48,7 +50,7 @@ static int	add_lexem(char *str, char **tab, int *j, int count)
 		tab[*j][count] = '\0';
 		*j += 1;
 	}
-	return (0);
+	return (SUCCESS);
 
 }
 

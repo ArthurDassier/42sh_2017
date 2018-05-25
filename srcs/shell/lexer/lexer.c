@@ -5,6 +5,8 @@
 ** lexer
 */
 #include "42sh.h"
+#include <stdlib.h>
+#include <string.h>
 
 void	add_node(t_node **cmd_list, e_token token, char *line)
 {

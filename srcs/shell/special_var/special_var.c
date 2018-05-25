@@ -6,6 +6,8 @@
 */
 
 #include "42sh.h"
+#include <string.h>
+#include <stdlib.h>
 
 void change_spec(list_var **spec, char *line_one, char *line_two)
 {
