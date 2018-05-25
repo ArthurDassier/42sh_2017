@@ -23,9 +23,10 @@ typedef struct s_files_info
 {
 	t_aliases_list	*alias_list;
 	t_history	*hist_list;
-	list_var	*spec_var_list;
+	t_node		*spec_var_list;
 	bool		background;
 	bool		dwait_pipe;
+	int		ret;
 }			t_files_info;
 
 typedef struct	s_built {

@@ -15,20 +15,17 @@ char *delete_points(char *path)
 	char	*tmp = malloc(sizeof(char) * (strlen(path) + 3));
 	int	i = 0;
 
-	tmp[0] = '(';
 	while (path[i] != '\0') {
-		tmp[i + 1] = path[i];
+		tmp[i] = path[i];
 		if (tmp[i] == ':')
 			tmp[i] = ' ';
 		++i;
 	}
-	tmp[i + 1] = ')';
-	tmp[i + 2] = '\0';
+	tmp[i] = '\0';
 	return (tmp);
 }
 
-// Loop -> array of values ?
-void concerned_spec(list_var *tmp, t_node *new_env)
+void concerned_spec_part2(t_save *tmp, t_node *new_env)
 {
 	if (strcmp(tmp->name, "cwd") == SUCCESS) {
 		tmp->content = NULL;
@@ -44,25 +41,43 @@ void concerned_spec(list_var *tmp, t_node *new_env)
 		tmp->content = NULL;
 		tmp->content = get_env_content(new_env, "USER");
 	}
+}
+
+void concerned_spec(t_save *tmp, t_node *new_env, char *s, int ret)
+{
+	concerned_spec_part2(tmp, new_env);
 	if (strcmp(tmp->name, "term") == SUCCESS) {
 		tmp->content = NULL;
 		tmp->content = get_env_content(new_env, "TERM");
 	}
-}
-
-void reset_spec(list_var **spec, t_node *new_env)
-{
-	list_var *tmp = *(spec);
-
-	while (tmp != NULL) {
-		concerned_spec(tmp, new_env);
-		tmp = tmp->next;
+	if (strcmp(tmp->name, "status") == SUCCESS) {
+		tmp->content = NULL;
+		tmp->content = my_itoa(ret);
 	}
+	if (s != NULL && strcmp(tmp->name, "echo") == SUCCESS
+	&& tmp->content != NULL)
+		my_printf("%s\n", s);
 }
 
-int	alphabetic_order(char *line_one, char *line_two)
+void reset_spec(t_node **spec, t_node *new_env, char *s, int ret)
+{
+	t_node	*tmp = *(spec);
+	t_save	*tmp_save;
+
+	do {
+		tmp_save = (t_save *)tmp->data;
+		concerned_spec(tmp_save, new_env, s, ret);
+		tmp = tmp->next;
+	} while (tmp != *(spec));
+}
+
+int	alphabetic_order(void *first, void *second)
 {
 	int	i = 0;
+	t_save	*one = (t_save *)first;
+	t_save	*two = (t_save *)second;
+	char	*line_one = one->name;
+	char	*line_two = two->name;
 
 	while (line_one[i] != '\0' && line_two[i] != '\0') {
 		if (line_one[i] < line_two[i])
@@ -72,6 +87,6 @@ int	alphabetic_order(char *line_one, char *line_two)
 		++i;
 	}
 	if (line_one[i] == '\0' && line_two[i] != '\0')
-		return (0);
-	return (1);
+		return (1);
+	return (0);
 }

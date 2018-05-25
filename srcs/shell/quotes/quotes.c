@@ -97,7 +97,7 @@ char	**quotes_commands(char **line, char *s, t_quotes *quotes_st, int i)
 	return (line);
 }
 
-char	**quotes(char **line, char *s, t_node **env_list, list_var *spec)
+char	**quotes(char **line, char *s, t_node **env_list, t_node **spec)
 {
 	int		i = 0;
 	t_quotes	*quotes_st = malloc(sizeof(t_quotes));

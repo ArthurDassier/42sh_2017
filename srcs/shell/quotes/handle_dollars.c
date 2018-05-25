@@ -15,7 +15,7 @@ static char	*found_env(t_quotes *quotes, char *pathname)
 {
 	t_node		*tmp = (*quotes->new_env);
 	t_save		*tmp_content;
-	list_var	*var = quotes->spec_var_list;
+	t_node		*var = (*quotes->spec_var_list);
 
 	do {
 		tmp_content = (t_save *)tmp->data;
@@ -25,11 +25,12 @@ static char	*found_env(t_quotes *quotes, char *pathname)
 		}
 		tmp = tmp->next;
 	} while (tmp != (*quotes->new_env));
-	while (var != NULL) {
-		if (strcmp(var->name, pathname) == 0)
-			return (var->content);
+	do {
+		tmp_content = (t_save *)var->data;
+		if (strcmp(tmp_content->name, pathname) == 0)
+			return (tmp_content->content);
 		var = var->next;
-	}
+	} while (var != (*quotes->spec_var_list));
 	my_putstr(pathname);
 	my_putstr(": Undefined variable.\n");
 	return (NULL);

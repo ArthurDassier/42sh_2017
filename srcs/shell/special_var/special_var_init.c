@@ -5,44 +5,55 @@
 ** special_var_init
 */
 
-#include "special_var.h"
 #include <unistd.h>
+#include <string.h>
+#include "special_var.h"
+#include "list.h"
+#include "42sh.h"
 
-// Loop
+static const char	*special[13] = {
+	"cwd", "ignoreof", "path", "user", "term", "shell",
+	"tty", "uid", "gid", "euid", "echo", "status"
+};
+
 char **init_set_tab(void)
 {
-	char	**tab = malloc(sizeof(char *) * 6);
+	int		i = 0;
+	unsigned int	j = 0;
+	char	**tab = malloc(sizeof(char *) * 13);
 
 	if (tab == NULL)
 		return (NULL);
-	tab[0] = malloc(sizeof(char) * 4);
-	tab[0] = "cwd";
-	tab[1] = malloc(sizeof(char) * 9);
-	tab[1] = "ignoreof";
-	tab[2] = malloc(sizeof(char) * 5);
-	tab[2] = "path";
-	tab[3] = malloc(sizeof(char) * 5);
-	tab[3] = "user";
-	tab[4] = malloc(sizeof(char) * 5);
-	tab[4] = "term";
-	tab[5] = NULL;
+	while (i != 12) {
+		tab[i] = malloc(sizeof(char) * (strlen(special[i]) + 1));
+		for (j = 0; j != strlen(special[i]); ++j)
+			tab[i][j] = special[i][j];
+		tab[i][j] = '\0';
+		++i;
+	}
+	tab[12] = NULL;
 	return (tab);
 }
 
-list_var *init_set(void)
+t_node *init_set(void)
 {
-	list_var	*element = malloc(sizeof(list_var));
-	char		**tab = init_set_tab();
+	t_node	*element = NULL;
+	char	**tab = init_set_tab();
 
-	if (element == NULL || tab == NULL)
+	if (tab == NULL)
 		return (NULL);
-	element->name = tab[0];
-	element->content = NULL;
-	element->content = getcwd(element->content, 0);
-	element->next = NULL;
-	insert_end_var(&element, tab[1], "1");
-	insert_end_var(&element, tab[2], "(");
-	insert_end_var(&element, tab[3], "init");
-	insert_end_var(&element, tab[4], "init");
+	insert_end(&element, initialiser(tab[0], getcwd(NULL, 0)));
+	insert_end(&element, initialiser(tab[1], "1"));
+	insert_end(&element, initialiser(tab[2], "init"));
+	insert_end(&element, initialiser(tab[3], "init"));
+	insert_end(&element, initialiser(tab[4], "init"));
+	insert_end(&element, initialiser(tab[5], "42sh"));
+	insert_end(&element, initialiser(tab[6], NULL));
+	insert_end(&element, initialiser(tab[7], my_itoa(getuid())));
+	insert_end(&element, initialiser(tab[8], my_itoa(getgid())));
+	insert_end(&element, initialiser(tab[9], my_itoa(geteuid())));
+	insert_end(&element, initialiser(tab[10], NULL));
+	insert_end(&element, initialiser(tab[11], NULL));
+	my_sort_list(element, &alphabetic_order);
 	return (element);
 }

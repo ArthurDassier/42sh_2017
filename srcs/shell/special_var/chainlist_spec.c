@@ -11,46 +11,27 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-// Decouper fonction
-list_var *insert_end_var(list_var **first_elem, char *name, char *content)
+t_save *initialiser(char *name, char *content)
 {
-	list_var	*new_elem = malloc(sizeof(list_var));
-	list_var	*actual = (*first_elem);
+	t_save	*spec_var = malloc(sizeof(t_save));
 
-	if (new_elem == NULL)
-		return (NULL);
-	new_elem->name = strdup(name);
-	if (content != NULL)
-		new_elem->content = strdup(content);
-	else
-		new_elem->content = NULL;
-	new_elem->next = NULL;
-	while (actual->next != NULL
-	&& alphabetic_order(new_elem->name, actual->next->name) != SUCCESS)
-		actual = actual->next;
-	if (actual->next == NULL)
-		actual->next = new_elem;
-	else if (actual != (*first_elem)) {
-		new_elem->next = actual->next;
-		actual->next = new_elem;
-	} else {
-		new_elem->next = *first_elem;
-		(*first_elem) = new_elem;
-		return (new_elem);
-	}
-	return (actual);
+	spec_var->name = name;
+	spec_var->content = content;
+	return (spec_var);
 }
 
-void print_var(list_var *liste)
+void print_var(t_node *list)
 {
-	list_var	*temp;
+	t_node	*tmp = list;
+	t_save	*tmp_save;
 
-	temp = liste;
-	while (temp != NULL) {
-		printf("%s", temp->name);
-		if (temp->content != NULL)
-			printf("\t%s", temp->content);
+	do {
+		tmp_save = (t_save *)tmp->data;
+		printf("%s", tmp_save->name);
+		if (tmp_save->content != NULL)
+			printf("\t%s", tmp_save->content);
+		fflush(stdout);
 		putchar('\n');
-		temp = temp->next;
-	}
+		tmp = tmp->next;
+	} while (tmp != list);
 }

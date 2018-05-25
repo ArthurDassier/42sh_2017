@@ -19,16 +19,18 @@
 
 const char *prompt_line = NULL;
 
-static int	ignore_eof(list_var **spec)
+static int	ignore_eof(t_node **spec)
 {
-	list_var *tmp = *(spec);
+	t_node	*tmp = *(spec);
+	t_save	*tmp_save;
 
-	while (tmp != NULL) {
-		if (strcmp(tmp->name, "ignoreof") == SUCCESS
-		&& tmp->content != NULL)
-			return (atoi(tmp->content));
+	do {
+		tmp_save = (t_save *)tmp->data;
+		if (strcmp(tmp_save->name, "ignoreof") == SUCCESS
+		&& tmp_save->content != NULL)
+			return (atoi(tmp_save->content));
 		tmp = tmp->next;
-	}
+	} while (tmp != *(spec));
 	return (SUCCESS);
 }
 
@@ -40,16 +42,17 @@ static t_files_info	*init_files_info(void)
 	info->hist_list = NULL;
 	info->alias_list = recup_aliases();
 	info->spec_var_list = init_set();
+	info->ret = 0;
 	creat(".42_src/history.txt", O_RDWR);
 	return (info);
 }
 
-static void	reset_var_list_ctrl_d(char *s, t_node *env_list,
-list_var **spec)
+static void	reset_var_ctrl_d(char *s, t_node *env_list,
+t_node **spec, int ret)
 {
 	int	ignoreof = ignore_eof(spec);
 
-	reset_spec(spec, env_list);
+	reset_spec(spec, env_list, s, ret);
 	if (s == NULL) {
 		if (ignoreof != 0) {
 			my_putstr("exit\n");
@@ -66,7 +69,7 @@ t_files_info *info)
 	t_tree	*tree;
 
 	line = delim_lexem(s, " \t\r");
-	line = handle_line(line, s, env_list, info->spec_var_list);
+	line = handle_line(line, s, env_list, &info->spec_var_list);
 	if (!line) {
 		free(s);
 		return (FAILURE);
@@ -101,7 +104,7 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 		cmd_list = NULL;
 		s = recup_line(prompt_line, &info->hist_list);
 		s = inib(s);
-		reset_var_list_ctrl_d(s, env_list, &info->spec_var_list);
+		reset_var_ctrl_d(s, env_list, &info->spec_var_list, info->ret);
 		if (s != NULL && check_char(s) == SUCCESS
 		&& init_exec(s, &cmd_list, &env_list, info) == FAILURE)
 				continue;

@@ -10,7 +10,7 @@
 #include "globbings.h"
 #include <string.h>
 
-char	**handle_line(char **line, char *s, t_node **env_list, list_var *spec)
+char	**handle_line(char **line, char *s, t_node **env_list, t_node **spec)
 {
 	line = quotes(line, s, env_list, spec);
 	if (line != NULL)
