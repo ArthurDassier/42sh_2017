@@ -40,10 +40,10 @@ int	find_key(char *line, int *pos)
 	if (read(0, &buf, 1) == -1)
 		return (84);
 	if (buf == LEFT_KEY && *pos > min_x) {
-		--*pos;
+		*pos -= 1;
 		return (LEFT_KEY);
 	} else if (buf == RIGHT_KEY && *pos < max_x) {
-		++*pos;
+		*pos += 1;
 		return (RIGHT_KEY);
 	}
 	if (buf == DOWN_KEY)
