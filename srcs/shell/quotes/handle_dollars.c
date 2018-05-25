@@ -5,8 +5,9 @@
 ** handle_dollars
 */
 
-#include "quotes.h"
 #include "42sh.h"
+#include "define.h"
+#include "quotes.h"
 #include <string.h>
 #include <stdlib.h>
 

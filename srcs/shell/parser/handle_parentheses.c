@@ -6,6 +6,7 @@
 */
 
 #include "42sh.h"
+#include "define.h"
 
 // Returns true if there's a right ). Returns false otherwise.
 static bool check_if_valid(t_node *cmd_list)

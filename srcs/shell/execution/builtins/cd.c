@@ -4,7 +4,9 @@
 ** File description:
 ** functions for cd builtin
 */
+
 #include "builtins.h"
+#include "define.h"
 #include <string.h>
 
 static int	only_cd(t_node **env_list, char *str)

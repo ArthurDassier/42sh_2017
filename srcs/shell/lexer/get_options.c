@@ -5,6 +5,7 @@
 ** options
 */
 #include "42sh.h"
+#include "define.h"
 #include <string.h>
 
 // Array of const value

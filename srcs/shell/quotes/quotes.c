@@ -8,6 +8,7 @@
 #include "quotes.h"
 #include "my.h"
 #include "inhibitors.h"
+#include "define.h"
 #include <string.h>
 #include <stdlib.h>
 

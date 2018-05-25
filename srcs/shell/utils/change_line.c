@@ -6,6 +6,7 @@
 */
 
 #include "42sh.h"
+#include "define.h"
 #include <string.h>
 
 static bool	is_background(char **line)

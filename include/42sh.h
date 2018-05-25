@@ -12,7 +12,6 @@
 #include "history.h"
 #include "alias.h"
 #include "parser.h"
-#include "define.h"
 #include "quotes.h"
 
 typedef struct	s_save {

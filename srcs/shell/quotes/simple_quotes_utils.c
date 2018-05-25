@@ -6,6 +6,7 @@
 */
 
 #include "quotes.h"
+#include "define.h"
 #include "inhibitors.h"
 
 static char	*replace_bs(char *line, int *i)

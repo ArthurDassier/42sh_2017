@@ -4,8 +4,9 @@
 ** File description:
 ** check permissions and file
 */
-#include "42sh.h"
 
+#include "42sh.h"
+#include "define.h"
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <unistd.h>

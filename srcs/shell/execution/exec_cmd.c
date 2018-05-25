@@ -6,6 +6,7 @@
 */
 
 #include "42sh.h"
+#include "define.h"
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>

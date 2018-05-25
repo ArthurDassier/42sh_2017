@@ -21,7 +21,7 @@ static char	*get_name(char *str)
 	char	*name = malloc(sizeof(*name) * count(str) + 1);
 	int	i;
 
-	if (name == NULL)
+	if (!name)
 		return (NULL);
 	for (i = 0; str[i] && str[i] != '='; ++i)
 		name[i] = str[i];
@@ -34,7 +34,7 @@ static char *get_content(char *str)
 	int	i = count(str);
 	char	*content = malloc(sizeof(*content) * (strlen(str) - i));
 
-	if (content == NULL)
+	if (!content)
 		return (NULL);
 	strcpy(content, str + i + 1);
 	return (content);

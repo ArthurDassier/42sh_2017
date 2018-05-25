@@ -5,6 +5,7 @@
 ** str_to_wordarray with a delim as argument
 */
 #include "42sh.h"
+#include "define.h"
 #include <string.h>
 #include <stdlib.h>
 

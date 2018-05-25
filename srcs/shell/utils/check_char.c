@@ -5,6 +5,7 @@
 ** check_char
 */
 #include "42sh.h"
+#include "define.h"
 
 int	check_char(char *str)
 {

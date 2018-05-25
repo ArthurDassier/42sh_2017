@@ -6,8 +6,11 @@
 */
 
 #include "builtins.h"
+#include "define.h"
 #include <stdio.h>
 #include <string.h>
+
+enum { NB_FLAGS = 9};
 
 static t_built	env_tab[NB_FLAGS] = {
 	{"-i", &ignore_env},

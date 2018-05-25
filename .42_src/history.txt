@@ -1,11 +1,1 @@
-<<<<<<< HEAD
-1	ls && pwd	Fri May 25 16:43:10 2018
-2	ls	Fri May 25 16:43:11 2018
-3	 && pwd	Fri May 25 16:43:15 2018
-4	ls	Fri May 25 16:43:16 2018
-=======
-1	mdr	Fri May 25 16:10:17 2018
-2	ls	Fri May 25 16:10:20 2018
-3	ext	Fri May 25 16:10:21 2018
-4	exit	Fri May 25 16:10:22 2018
->>>>>>> b24482484d6977e7cc3764a6a073ff397d54d58b
+1	ls	Fri May 25 18:07:15 2018
