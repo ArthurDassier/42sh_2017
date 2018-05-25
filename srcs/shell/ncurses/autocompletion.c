@@ -7,6 +7,7 @@
 
 #include "line.h"
 #include "ncurses_define.h"
+#include "define.h"
 #include <dirent.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -39,7 +40,7 @@ static int	match_str(char **line, char *info, const char *prompt, int size)
 		write(1, *line, strlen(*line));
 		return (1);
 	}
-	return (0);
+	return (SUCCESS);
 }
 
 static int	auto_completion_from_history(t_history **hist_list, char **line,
@@ -56,7 +57,7 @@ const char *prompt, int size)
 		write(1, *line, strlen(*line));
 		return (1);
 	}
-	return (0);
+	return (SUCCESS);
 }
 
 int	auto_completion(__attribute((unused)) char **line,
@@ -82,5 +83,5 @@ __attribute((unused)) t_history **hist_list)
 		strcat(save, " ");
 	}
 	rewrite_prompt_and_line(size, save, prompt, *line);
-	return (0);
+	return (SUCCESS);
 }

@@ -46,45 +46,38 @@ __attribute((unused)) t_history **hist_list))
 	buf_function[TAB] = &auto_completion;
 }
 
+static t_readline	*init_rd_struct(const char *prompt)
+{
+	t_readline	*rd = malloc(sizeof(t_readline));
+
+	rd->size = 10;
+	rd->line = malloc(sizeof(char) * 10);
+	memset(rd->line, '\0', rd->size);
+	rd->prompt = prompt;
+	return (rd);
+}
+
 static char	*read_loop(const char *prompt, t_history **hist_list)
 {
-	int		size = 10;
-	char		buf;
+	t_readline	*rd = init_rd_struct(prompt);
 	int		i = 0;
-	int		ret = 0;
 	int		pos = 0;
-	int		curs = 0;
+	int		ret = 0;
 	t_history	*tmp = *hist_list;
-	char		*line = malloc(sizeof(char) * size + 1);
 	static int	(*buf_function[177])(__attribute((unused)) char **,
 	__attribute((unused)) const char *,
 	__attribute((unused)) t_history **);
 
-	memset(line, '\0', size);
 	init_buf_function_tab(buf_function);
-	while (read(0, &buf, 1) != 0) {
-	//	history_completion(*hist_list, line, prompt);
-		if ((ret = call_char_function(buf, line, &pos, prompt)) == 1)
+	while (read(0, &(rd->buf), 1) != 0) {
+		ret = analyse_call_from_read(rd, &pos, &tmp, buf_function);
+		if (ret == -1)
 			break;
-		else if (ret == 2)
+		else if (ret == -2)
 			continue;
-		if ((curs = special_char_function(buf, &line, prompt, &tmp,
-		&pos, buf_function)) == 1 || curs == 2) {
-			if (curs == 2)
-				pos = 0;
-			continue;
-		}
-		else {
-			line = write_char(buf, &pos, line, prompt);
-			++i;
-		}
-		if (i == size - 1) {
-			size += size;
-			line = realloc(line, size + 1);
-			line[size] = '\0';
-		}
+		realloc_line(rd, &i);
 	}
-	return (line);
+	return (rd->line);
 }
 
 char	*recup_line(const char *prompt, t_history **hist_list)
@@ -101,7 +94,7 @@ char	*recup_line(const char *prompt, t_history **hist_list)
 		return (NULL);
 	line = read_loop(prompt, hist_list);
 	canonique_mode(0);
-	if (line[0] != '\0') {
+	if (strlen(line) > 0) {
 		put_in_history(hist_list, line);
 		printf("\n");
 	} else

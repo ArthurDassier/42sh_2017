@@ -7,6 +7,7 @@
 
 #include "line.h"
 #include "ncurses_define.h"
+#include "define.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
@@ -17,7 +18,7 @@ __attribute((unused)) t_history **hist_list)
 {
 	cursorbackward(1);
 	fflush(stdout);
-	return (0);
+	return (SUCCESS);
 }
 
 int	move_right(__attribute((unused)) char **line,
@@ -26,7 +27,7 @@ __attribute((unused)) t_history **hist_list)
 {
 	cursorforward(1);
 	fflush(stdout);
-	return (0);
+	return (SUCCESS);
 }
 
 int	find_key(char *line, int *pos)
@@ -36,9 +37,9 @@ int	find_key(char *line, int *pos)
 	int		min_x = strlen(line) * -1;
 
 	if (read(0, &buf, 1) == -1)
-		return (84);
+		return (FAILURE);
 	if (read(0, &buf, 1) == -1)
-		return (84);
+		return (FAILURE);
 	if (buf == LEFT_KEY && *pos > min_x) {
 		*pos -= 1;
 		return (LEFT_KEY);
