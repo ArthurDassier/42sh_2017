@@ -8,6 +8,7 @@
 #include "line.h"
 #include "ncurses_define.h"
 #include "define.h"
+#include "list.h"
 #include <dirent.h>
 #include <stdio.h>
 #include <unistd.h>
@@ -43,7 +44,7 @@ static int	match_str(char **line, char *info, const char *prompt, int size)
 	return (SUCCESS);
 }
 
-static int	auto_completion_from_history(t_history **hist_list, char **line,
+static int	auto_completion_from_history(t_node **hist_list, char **line,
 const char *prompt, int size)
 {
 	char	*save = NULL;
@@ -62,7 +63,7 @@ const char *prompt, int size)
 
 int	auto_completion(__attribute((unused)) char **line,
 __attribute((unused)) const char *prompt,
-__attribute((unused)) t_history **hist_list)
+__attribute((unused)) t_node **hist_list)
 {
 	int		size = strlen(*line) + strlen(prompt) + 1;
 	DIR		*dir = opendir(".");
@@ -71,7 +72,8 @@ __attribute((unused)) t_history **hist_list)
 
 	if (auto_completion_from_history(hist_list, line, prompt, size) == 1)
 		return (1);
-	save = malloc(sizeof(char));
+	if ((save = malloc(sizeof(char))) == NULL)
+		exit(FAILURE);
 	printf("\n");
 	save[0] = '\0';
 	while ((red = readdir(dir)) != NULL) {

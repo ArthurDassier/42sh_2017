@@ -29,8 +29,8 @@ bool	exp_exec(t_tree *tree, t_node **env_list, t_files_info *info)
 		ret = pipexp_exec(tree, env_list, info);
 	else {
 		ret = separators_exec(tree->left, env_list, info);
-		if ((tree->cmd.token == AND && ret)
-		|| (tree->cmd.token == OR && !ret))
+		if ((tree->cmd.token == AND && !ret)
+		|| (tree->cmd.token == OR && ret))
 			ret = exp_exec(tree->right, env_list, info);
 	}
 	return (ret);

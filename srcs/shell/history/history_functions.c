@@ -7,31 +7,35 @@
 
 #include "history.h"
 #include "define.h"
+#include "list.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
 
-int	show_history(t_history *hist_list)
+int	show_history(t_node *hist_list)
 {
-	t_history	*tmp = hist_list;
+	t_node		*tmp = hist_list;
+	t_history	*hist_data = NULL;
 	int		count = 1;
 
 	while (tmp->prev != NULL)
 		tmp = tmp->prev;
 	while (tmp->next != NULL) {
+		hist_data = (t_history *)tmp->data;
 		printf("%d\t", count++);
-		printf("%s\t", tmp->line);
-		printf("%s", tmp->timestamp);
+		printf("%s\t", hist_data->line);
+		printf("%s", hist_data->timestamp);
 		tmp = tmp->next;
 	}
 	return (VALID);
 }
 
 
-static int	pos_index(t_history *tmp, char **line, int index)
+static int	pos_index(t_node *tmp, char **line, int index)
 {
 	int		ind_tmp = index;
+	t_history	*hist_data = NULL;
 
 	while (tmp->prev != NULL)
 		tmp = tmp->prev;
@@ -44,13 +48,15 @@ static int	pos_index(t_history *tmp, char **line, int index)
 		--index;
 	}
 	free(*line);
-	*line = strdup(tmp->line);
+	hist_data = (t_history *)tmp->data;
+	*line = strdup(hist_data->line);
 	return (SUCCESS);
 }
 
-static int	find_in_history(t_history *hist_list, char **line)
+static int	find_in_history(t_node *hist_list, char **line)
 {
-	t_history	*tmp = hist_list;
+	t_node		*tmp = hist_list;
+	t_history	*hist_data = NULL;
 	int		index = recup_index(*line);
 	int		ind_tmp = index;
 
@@ -67,26 +73,29 @@ static int	find_in_history(t_history *hist_list, char **line)
 			++index;
 		}
 		free(*line);
-		*line = strdup(tmp->line);
+		hist_data = (t_history *)hist_list->data;
+		*line = strdup(hist_data->line);
 	}
 	return (SUCCESS);
 }
 
-static void	change_in_history_from_ex(t_history **hist_list, char *buffer,
+static void	change_in_history_from_ex(t_node **hist_list, char *buffer,
 int flag)
 {
+	t_history	*hist_data = NULL;
+
 	if (flag == VALID) {
-		free((*hist_list)->prev->line);
-		(*hist_list)->prev->line = strdup(buffer);
+		hist_data = (t_history *)(*hist_list)->prev->data;
+		free(hist_data->line);
+		hist_data->line = strdup(buffer);
 		write(1, buffer, strlen(buffer));
 		write(1, "\n", 1);
 	}
 }
 
-// Too long function
-int	changes_from_history(t_history **hist_list, char **line)
+int	changes_from_history(t_node **hist_list, char **line)
 {
-	t_history	*hist_tmp = *hist_list;
+	t_node		*hist_tmp = *hist_list;
 	int		i = 0;
 	int		tmp = 0;
 	char		*buffer = malloc(sizeof(char));

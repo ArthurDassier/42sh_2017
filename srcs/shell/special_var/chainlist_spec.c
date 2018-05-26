@@ -28,7 +28,10 @@ void print_var(t_node *list)
 	do {
 		tmp_save = (t_save *)tmp->data;
 		printf("%s", tmp_save->name);
-		if (tmp_save->content != NULL)
+		if (strcmp(tmp_save->name, "path") == SUCCESS
+		&& tmp_save->content != NULL) {
+			printf("\t(%s)", tmp_save->content);
+		} else if (tmp_save->content != NULL)
 			printf("\t%s", tmp_save->content);
 		fflush(stdout);
 		putchar('\n');

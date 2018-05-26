@@ -8,6 +8,7 @@
 #include "history.h"
 #include "line.h"
 #include "define.h"
+#include "list.h"
 #include "ncurses_define.h"
 #include <unistd.h>
 #include <stdio.h>
@@ -35,22 +36,24 @@ static void	print_cache(char *line)
 	fflush(stdout);
 }
 
-char	*history_completion(t_history *hist_list, char *line, const char *prompt)
+char	*history_completion(t_node *hist_list, char *line, const char *prompt)
 {
-	t_history	*tmp = hist_list;
+	t_node		*tmp = hist_list;
+	t_history	*hist_data = NULL;
 	int		len = 0;
 
 	if (tmp == NULL)
 		return (NULL);
 	tmp = tmp->prev;
 	while (tmp != NULL) {
-		if (strncmp(line, tmp->line, strlen(line)) == 0) {
+		hist_data = (t_history *)tmp->data;
+		if (strncmp(line, hist_data->line, strlen(line)) == 0) {
 			rewrite_prompt(line, prompt);
-			write(1, tmp->line, strlen(tmp->line));
-			len = strlen(tmp->line) - strlen(line);
+			write(1, hist_data->line, strlen(hist_data->line));
+			len = strlen(hist_data->line) - strlen(line);
 			cursorbackward(len);
 			fflush(stdout);
-			return (tmp->line);
+			return (hist_data->line);
 		}
 		tmp = tmp->prev;
 	}

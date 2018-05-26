@@ -92,8 +92,10 @@ char	**quotes_commands(char **line, char *s, t_quotes *quotes_st, int i)
 		line = double_quotes(line, s, quotes_st);
 		if (line == NULL)
 			return (NULL);
-	} else
+	} else {
 		line[i] = delete_backslash(line[i]);
+		line[i] = handle_dollars(line[i], quotes_st);
+	}
 	return (line);
 }
 
