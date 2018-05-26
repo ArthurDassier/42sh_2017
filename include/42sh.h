@@ -22,7 +22,7 @@ typedef struct	s_save {
 
 typedef struct s_files_info
 {
-	t_aliases_list	*alias_list;
+	t_node	*alias_list;
 	t_node		*hist_list;
 	list_var	*spec_var_list;
 	bool		background;

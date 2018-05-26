@@ -1,3 +1,6 @@
 src / dest
 history
 .42_src/history.txt
+src / dest
+lol
+mdr
