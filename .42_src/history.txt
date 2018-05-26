@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 1	ls	Sat May 26 13:31:26 2018
 2	ls	Sat May 26 13:31:28 2018
 3	ls	Sat May 26 13:31:30 2018
@@ -8,3 +9,8 @@
 8	ld	Sat May 26 13:31:46 2018
 9	ls	Sat May 26 13:31:47 2018
 10	ls	Sat May 26 13:31:48 2018
+=======
+1	ls	Sat May 26 13:43:55 2018
+2	ls |cat -e	Sat May 26 13:43:56 2018
+3	exit	Sat May 26 13:43:58 2018
+>>>>>>> vincent

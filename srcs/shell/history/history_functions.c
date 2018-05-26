@@ -62,20 +62,22 @@ static int	find_in_history(t_node *hist_list, char **line)
 
 	if (index > 0)
 		return (pos_index(tmp, line, index));
-	if (index < 0) {
-		tmp = tmp->prev->prev;
-		while (index < -1) {
-			if (tmp == NULL) {
-				printf("%d: Event not found\n", ind_tmp);
-				return (ERROR);
-			}
-			tmp = tmp->prev;
-			++index;
-		}
-		free(*line);
-		hist_data = (t_history *)hist_list->data;
-		*line = strdup(hist_data->line);
+	if (index == 0) {
+		printf("%d: Event not found\n", ind_tmp);
+		return (ERROR);
 	}
+	tmp = tmp->prev->prev;
+	while (index < -1) {
+		if (tmp == NULL) {
+			printf("%d: Event not found\n", ind_tmp);
+			return (ERROR);
+		}
+		tmp = tmp->prev;
+		++index;
+	}
+	free(*line);
+	hist_data = (t_history *)hist_list->data;
+	*line = strdup(hist_data->line);
 	return (SUCCESS);
 }
 

@@ -1,5 +1,6 @@
 src / dest
 history
+<<<<<<< HEAD
 .42_src/history.txt
 src / dest
 k
@@ -64,3 +65,6 @@ file
 src / dest
 file
 file
+=======
+.42_src/history.txt
+>>>>>>> vincent
