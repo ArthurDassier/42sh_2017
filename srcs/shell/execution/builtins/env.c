@@ -70,14 +70,14 @@ t_files_info *info)
 	}
 	if (strncmp(line[1], "--unset=", 8) == SUCCESS) {
 		if (unset_name(line, env_list) == FAILURE)
-			return (FAILURE);
+			return (VALID);
 		return (SUCCESS);
 	} else if (strcmp(line[1], "-C") == SUCCESS)
 		return (env_chdir(line, env_list, info));
 	for (int i = 0; i < NB_FLAGS; ++i) {
 		if (strcmp(env_tab[i].builtin, line[1]) == SUCCESS) {
 			if ((env_tab[i].ptr)(line, env_list) == FAILURE)
-				return (FAILURE);
+				return (VALID);
 		}
 	}
 	return (SUCCESS);

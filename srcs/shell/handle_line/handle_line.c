@@ -17,7 +17,5 @@ char	**handle_line(char **line, char *s, t_node **env_list, t_node **spec)
 		line = handle_backslash(line);
 	if (line != NULL)
 		line = globbings(line);
-	if (line == NULL)
-		return (NULL);
 	return (line);
 }
