@@ -7,18 +7,19 @@
 
 #include "line.h"
 #include "define.h"
+#include "list.h"
 #include "ncurses_define.h"
 
 int	do_nothing(__attribute((unused)) char **line,
 __attribute((unused)) const char *prompt,
-__attribute((unused)) t_history **hist_list)
+__attribute((unused)) t_node **hist_list)
 {
 	return (1);
 }
 
 int	special_char_function(t_readline *rd,
-t_history **hist_list, int *pos, int (**buf_function)(__attribute((unused)) char **,
-__attribute((unused)) const char *, __attribute((unused)) t_history **hist_list))
+t_node **hist_list, int *pos, int (**buf_function)(__attribute((unused)) char **,
+__attribute((unused)) const char *, __attribute((unused)) t_node **hist_list))
 {
 	switch (rd->buf) {
 	case CTR_L :

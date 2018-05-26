@@ -1,4 +1,6 @@
-1	mdr	Fri May 25 16:10:17 2018
-2	ls	Fri May 25 16:10:20 2018
-3	ext	Fri May 25 16:10:21 2018
-4	exit	Fri May 25 16:10:22 2018
+1	ls	Sat May 26 10:56:52 2018
+2	ls	Sat May 26 10:56:54 2018
+3	ls	Sat May 26 10:56:56 2018
+4	ls |cat -e	Sat May 26 10:56:58 2018
+5	ls |cat -e	Sat May 26 10:56:59 2018
+6	exit	Sat May 26 10:57:38 2018
