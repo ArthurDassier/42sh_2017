@@ -64,15 +64,16 @@ static int	find_in_history(t_node *hist_list, char **line)
 		return (pos_index(tmp, line, index));
 	if (index == 0)
 		return (print_no_event(ind_tmp));
-	tmp = tmp->prev->prev;
-	while (index < -1) {
+	if ((tmp = tmp->prev) == NULL)
+		return (print_no_event(ind_tmp));
+	while (index <= -1) {
 		if (tmp == NULL)
 			return (print_no_event(ind_tmp));
 		tmp = tmp->prev;
 		++index;
 	}
 	free(*line);
-	hist_data = (t_history *)hist_list->data;
+	hist_data = (t_history *)tmp->data;
 	*line = strdup(hist_data->line);
 	return (SUCCESS);
 }
