@@ -70,19 +70,19 @@ t_files_info *info)
 	char	**line = NULL;
 	t_tree	*tree;
 
-	line = delim_lexem(s, " \t\r");
 	line = handle_line(line, s, env_list, &info->spec_var_list);
-	if (!line) {
+	if (!line || change_line(line, info) == FAILURE) {
 		free(s);
 		return (FAILURE);
 	}
-	if (change_line(line, info) == FAILURE)
-		return (FAILURE);
 	lexer(cmd_list, line, *env_list);
 	tree = s_rule(cmd_list);
 	if (!tree)
 		return (FAILURE);
-	info->ret = s_exec(tree, env_list, info);
+	if (strcmp(s, "echo $status") != SUCCESS)
+		info->ret = s_exec(tree, env_list, info);
+	else
+		s_exec(tree, env_list, info);
 	free(s);
 	free_tree(tree);
 	return (SUCCESS);

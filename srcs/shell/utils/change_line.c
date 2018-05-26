@@ -17,7 +17,7 @@ static bool	is_background(char **line)
 
 	while (line[i + 1] != NULL)
 		++i;
-	if (line[i][strlen(line[i] - 1)] == '&') {
+	if (line[i][strlen(line[i]) - 1] == '&') {
 		line[i] = NULL;
 		return (true);
 	}
