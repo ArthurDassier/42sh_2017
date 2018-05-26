@@ -8,18 +8,18 @@
 #ifndef HISTORY_H_
 	#define HISTORY_H_
 
+#include "list.h"
+
 typedef struct	s_history
 {
-	char			*line;
-	char			*timestamp;
-	struct s_history	*next;
-	struct s_history	*prev;
-}				t_history;
+	char		*line;
+	char		*timestamp;
+}			t_history;
 
 int	recup_index(char *line);
-void	put_in_history(t_history **, char *);
-char	*history_completion(t_history *, char *, const char *);
-int	show_history(t_history *);
-int	changes_from_history(t_history **, char **line);
+void	put_in_history(t_node **, char *);
+char	*history_completion(t_node *, char *, const char *);
+int	show_history(t_node *);
+int	changes_from_history(t_node **, char **line);
 
 #endif /* !HISTORY_H_ */

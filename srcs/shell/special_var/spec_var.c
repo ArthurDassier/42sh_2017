@@ -6,6 +6,7 @@
 */
 
 #include "special_var.h"
+#include "define.h"
 #include <stdlib.h>
 #include <string.h>
 
