@@ -1,1 +1,5 @@
-1	ls	Sat May 26 11:28:52 2018
+1	ls	Sat May 26 12:00:47 2018
+2	lss	Sat May 26 12:00:50 2018
+3	echo $status	Sat May 26 12:00:55 2018
+4	echo $status	Sat May 26 12:01:03 2018
+5	echo ]	Sat May 26 12:01:21 2018

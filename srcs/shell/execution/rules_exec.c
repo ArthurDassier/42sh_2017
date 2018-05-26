@@ -33,7 +33,6 @@ bool	exp_exec(t_tree *tree, t_node **env_list, t_files_info *info)
 		|| (tree->cmd.token == OR && !ret))
 			ret = exp_exec(tree->right, env_list, info);
 	}
-	info->ret = ret;
 	return (ret);
 }
 

@@ -53,7 +53,7 @@ t_node **spec, int ret)
 	int	ignoreof = ignore_eof(spec);
 
 	reset_spec(spec, env_list, s, ret);
-	if (s == NULL) {
+	if (!s) {
 		if (ignoreof != 0) {
 			my_putstr("exit\n");
 			exit(SUCCESS);
