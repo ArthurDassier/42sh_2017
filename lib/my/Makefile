@@ -93,7 +93,6 @@ $(NAME): $(OBJ)
 	$(AC) $(NAME) $(OBJ)
 	ranlib $(NAME)
 	mv $(NAME) ..
-	$(CP) include/list.h ../../include
 
 clean:
 	$(RM) $(OBJ)

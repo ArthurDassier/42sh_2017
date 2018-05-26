@@ -1,12 +1,12 @@
 /*
 ** EPITECH PROJECT, 2018
-** minishell.c
+** PSU_42sh_2017
 ** File description:
-** minishell 1
+** exec_cmd
 */
 
 #include "42sh.h"
-#include "define.h"
+#include "const_values.h"
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
@@ -81,5 +81,5 @@ bool	exec_cmd(char **line, t_node *env_list, t_files_info *info)
 			cmd_not_found(line);
 	}
 	ret = WEXITSTATUS(status);
-	return (ret != 0 ? 1 : 0);
+	return (ret != SUCCESS ? VALID : SUCCESS);
 }
