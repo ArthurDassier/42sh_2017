@@ -19,7 +19,7 @@ Test(string_return, new_str)
 
 Test(string_return, history_completion)
 {
-	t_history *hist_list = NULL;
+	t_node *hist_list = NULL;
 	char *line = strdup("Hello");
 
 	cr_assert(history_completion(hist_list, line, "$>") == NULL);

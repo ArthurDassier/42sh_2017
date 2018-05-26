@@ -8,6 +8,7 @@
 #include "42sh.h"
 #include <unistd.h>
 
+// Too many parameters
 // Father process
 static void	p_father(int *pipefd, int dupfd, t_tree *tree,
 t_node **env_list, t_files_info *info)

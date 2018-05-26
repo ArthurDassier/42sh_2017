@@ -19,20 +19,21 @@ char *s, t_quotes *quotes_st)
 	int	i = 0;
 	int	j = strlen(line_one);
 
-	for (unsigned int nb = 0; nb != strlen(line_one); ++nb)
-		++find;
-	while (line_one[0] != '\0' && find[i] != line_two[0]) {
-		line_one[j] = find[i];
-		++j;
-		++i;
+	if (find == NULL)
+		line_one = strcat(line_one, " ");
+	else {
+		for (unsigned int nb = 0; nb != strlen(line_one); ++nb)
+			++find;
+		while (line_one[0] != '\0' && find[i] != line_two[0]) {
+			line_one[j] = find[i++];
+			++j;
+		}
 	}
 	if (line_one[0] == '\0')
 		line_one = inc_space(line_one, s, '"');
-	else
+	else if (find != NULL)
 		line_one[j] = '\0';
-	line_one = strcat(line_one, line_two);
-	line_one = delete_special(line_one);
-	line_one = handle_dollars(line_one, quotes_st);
+	line_one = dollar_specials(line_one, line_two, quotes_st);
 	return (line_one);
 }
 

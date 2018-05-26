@@ -7,26 +7,34 @@
 
 #include "alias.h"
 #include "my.h"
+#include "list.h"
+#include "define.h"
 #include <string.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 
-t_aliases_list	*recup_aliases(void)
+t_node	*recup_aliases(void)
 {
 	int		fd = open(".42_src/aliases.txt", O_RDONLY);
-	t_aliases_list	*list = malloc(sizeof(t_aliases_list));
-	t_aliases_list	*tmp = list;
+	t_node		*list = malloc(sizeof(t_node));
+	t_node		*tmp = list;
+	t_aliases	*alias_data = NULL;
 	char		*buf = NULL;
 
 	buf = get_next_line(fd);
-	tmp->alias = malloc(sizeof(t_aliases));
-	while ((tmp->alias->src = get_next_line(fd)) != NULL) {
-		tmp->alias->dest = get_next_line(fd);
-		tmp->next = malloc(sizeof(t_aliases_list));
+	if ((tmp->data = malloc(sizeof(t_aliases))) == NULL)
+		exit(FAILURE);
+	alias_data = tmp->data;
+	while ((alias_data->src = get_next_line(fd)) != NULL) {
+		alias_data->dest = get_next_line(fd);
+		if ((tmp->next = malloc(sizeof(t_node))) == NULL)
+			exit(FAILURE);
 		tmp = tmp->next;
-		tmp->alias = malloc(sizeof(t_aliases));
+		if ((tmp->data = malloc(sizeof(t_aliases))) == NULL)
+			exit(FAILURE);
+		alias_data = tmp->data;
 		buf = get_next_line(fd);
 	}
 	tmp->next = NULL;

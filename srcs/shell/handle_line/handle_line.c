@@ -5,6 +5,7 @@
 ** handle_line
 */
 
+#include "42sh.h"
 #include "quotes.h"
 #include "inhibitors.h"
 #include "globbings.h"
@@ -12,12 +13,11 @@
 
 char	**handle_line(char **line, char *s, t_node **env_list, t_node **spec)
 {
+	line = delim_lexem(s, " \t\r");
 	line = quotes(line, s, env_list, spec);
 	if (line != NULL)
 		line = handle_backslash(line);
 	if (line != NULL)
 		line = globbings(line);
-	if (line == NULL)
-		return (NULL);
 	return (line);
 }

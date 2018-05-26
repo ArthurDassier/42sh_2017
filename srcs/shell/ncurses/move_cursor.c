@@ -8,13 +8,14 @@
 #include "line.h"
 #include "ncurses_define.h"
 #include "define.h"
+#include "list.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <string.h>
 
 int	move_left(__attribute((unused)) char **line,
 __attribute((unused)) const char *prompt,
-__attribute((unused)) t_history **hist_list)
+__attribute((unused)) t_node **hist_list)
 {
 	cursorbackward(1);
 	fflush(stdout);
@@ -23,7 +24,7 @@ __attribute((unused)) t_history **hist_list)
 
 int	move_right(__attribute((unused)) char **line,
 __attribute((unused)) const char *prompt,
-__attribute((unused)) t_history **hist_list)
+__attribute((unused)) t_node **hist_list)
 {
 	cursorforward(1);
 	fflush(stdout);

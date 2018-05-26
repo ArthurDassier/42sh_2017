@@ -8,6 +8,8 @@
 #include "my.h"
 #include "line.h"
 #include "ncurses_define.h"
+#include "define.h"
+#include "list.h"
 #include <curses.h>
 #include <term.h>
 #include <termios.h>
@@ -35,7 +37,7 @@ void	canonique_mode(int set)
 // initialisation of the function tab
 static void	init_buf_function_tab(int (**buf_function)
 (__attribute((unused)) char **line, __attribute((unused)) const char *prompt,
-__attribute((unused)) t_history **hist_list))
+__attribute((unused)) t_node **hist_list))
 {
 	buf_function[0] = &do_nothing;
 	buf_function[CTR_L] = &ctr_l;
@@ -57,16 +59,16 @@ static t_readline	*init_rd_struct(const char *prompt)
 	return (rd);
 }
 
-static char	*read_loop(const char *prompt, t_history **hist_list)
+static char	*read_loop(const char *prompt, t_node **hist_list)
 {
 	t_readline	*rd = init_rd_struct(prompt);
 	int		i = 0;
 	int		pos = 0;
 	int		ret = 0;
-	t_history	*tmp = *hist_list;
+	t_node	*tmp = *hist_list;
 	static int	(*buf_function[177])(__attribute((unused)) char **,
 	__attribute((unused)) const char *,
-	__attribute((unused)) t_history **);
+	__attribute((unused)) t_node **);
 
 	init_buf_function_tab(buf_function);
 	while (read(0, &(rd->buf), 1) != 0) {
@@ -80,12 +82,12 @@ static char	*read_loop(const char *prompt, t_history **hist_list)
 	return (rd->line);
 }
 
-char	*recup_line(const char *prompt, t_history **hist_list)
+char	*recup_line(const char *prompt, t_node **hist_list)
 {
 	char	*term = NULL;
 	char	*line = NULL;
 
-	if (isatty(0) == 0)
+	if (isatty(0) == SUCCESS)
 		return (get_next_line(0));
 	write(1, prompt, strlen(prompt));
 	canonique_mode(1);

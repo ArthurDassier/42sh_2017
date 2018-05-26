@@ -1,2 +1,1 @@
-1	se	Sat May 26 12:04:10 2018
-2	echo "$status lol"	Sat May 26 12:04:16 2018
+1	echo "$status lol"	Sat May 26 14:22:43 2018

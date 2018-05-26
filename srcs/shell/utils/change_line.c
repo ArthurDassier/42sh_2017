@@ -7,6 +7,8 @@
 
 #include "42sh.h"
 #include "define.h"
+#include "alias.h"
+#include "history.h"
 #include <string.h>
 
 static bool	is_background(char **line)

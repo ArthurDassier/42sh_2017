@@ -27,5 +27,6 @@ char	*delete_special(char *);
 char	*inc_space(char *, char *, char);
 char	*find_endspace(char *, char *, char);
 char	**handle_line(char **, char *, t_node **, t_node **);
+char	*dollar_specials(char *, char *, t_quotes *);
 
 #endif /* !QUOTES_H_ */
