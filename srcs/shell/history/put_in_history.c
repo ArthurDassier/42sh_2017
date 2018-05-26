@@ -8,13 +8,14 @@
 #include "my.h"
 #include "history.h"
 #include "define.h"
+#include "list.h"
 #include <time.h>
 #include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 
-static void	write_in_history(t_history *list)
+static void	write_in_history(t_history *hist_data)
 {
 	static int	count = 1;
 	static char	ct = '\t';
@@ -26,34 +27,40 @@ static void	write_in_history(t_history *list)
 	}
 	write(fd, my_itoa(count), strlen(my_itoa(count)));
 	write(fd, &ct, 1);
-	if (list->line != NULL)
-		write(fd, list->line, strlen(list->line));
+	if (hist_data->line != NULL)
+		write(fd, hist_data->line, strlen(hist_data->line));
 	write(fd, &ct, 1);
-	write(fd, list->timestamp, strlen(list->timestamp));
+	write(fd, hist_data->timestamp, strlen(hist_data->timestamp));
 	++count;
 }
 
-static void	first_node(t_history **list, char *line, char *timestamp)
+static void	first_node(t_node **list, char *line, char *timestamp)
 {
-	t_history	*tmp = NULL;
+	t_node		*tmp = NULL;
+	t_history	*hist_data = NULL;
 
-	if ((*list = malloc(sizeof(t_history))) == NULL)
+	if ((*list = malloc(sizeof(t_node))) == NULL)
 		exit(FAILURE);
-	(*list)->line = strdup(line);
-	(*list)->timestamp = strdup(timestamp);
-	write_in_history(*list);
+	if (((*list)->data = malloc(sizeof(t_history))) == NULL)
+		exit(FAILURE);
+	hist_data = (t_history *)(*list)->data;
+	hist_data->line = strdup(line);
+	hist_data->timestamp = strdup(timestamp);
+	write_in_history(hist_data);
 	(*list)->prev = NULL;
-	(*list)->next = malloc(sizeof(t_history));
+	if (((*list)->next = malloc(sizeof(t_node))) == NULL)
+		exit(FAILURE);
 	tmp = *list;
 	*list = (*list)->next;
 	(*list)->next = NULL;
 	(*list)->prev = tmp;
 }
 
-void	put_in_history(t_history **list, char *line)
+void	put_in_history(t_node **list, char *line)
 {
 	time_t		timestamp = time(NULL);
-	t_history	*tmp = NULL;
+	t_node		*tmp = NULL;
+	t_history	*hist_data = NULL;
 
 	if (*list == NULL) {
 		first_node(list, line, ctime(&timestamp));
@@ -61,10 +68,12 @@ void	put_in_history(t_history **list, char *line)
 	}
 	if (line == NULL)
 		return;
-	(*list)->line = strdup(line);
-	(*list)->timestamp = strdup(ctime(&timestamp));
-	write_in_history(*list);
-	(*list)->next = malloc(sizeof(t_history));
+	(*list)->data = malloc(sizeof(t_history));
+	hist_data = (t_history *)(*list)->data;
+	hist_data->line = strdup(line);
+	hist_data->timestamp = strdup(ctime(&timestamp));
+	write_in_history(hist_data);
+	(*list)->next = malloc(sizeof(t_node));
 	tmp = *list;
 	*list = (*list)->next;
 	(*list)->prev = tmp;

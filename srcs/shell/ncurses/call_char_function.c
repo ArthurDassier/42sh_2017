@@ -7,6 +7,7 @@
 
 #include "ncurses_define.h"
 #include "line.h"
+#include "list.h"
 #include "define.h"
 #include <stdio.h>
 #include <string.h>
@@ -47,9 +48,9 @@ int	call_char_function(t_readline *rd, int *pos)
 	return (SUCCESS);
 }
 
-int	analyse_call_from_read(t_readline *rd, int *pos, t_history **tmp,
+int	analyse_call_from_read(t_readline *rd, int *pos, t_node **tmp,
 int (**buf_function)(__attribute((unused)) char **,
-__attribute((unused)) const char *, __attribute((unused)) t_history **hist_list))
+__attribute((unused)) const char *, __attribute((unused)) t_node **hist_list))
 {
 	int	ret = 0;
 	int	curs = 0;
