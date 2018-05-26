@@ -26,7 +26,7 @@ t_node	*recup_aliases(void)
 	buf = get_next_line(fd);
 	if ((tmp->data = malloc(sizeof(t_aliases))) == NULL)
 		exit(FAILURE);
-	alias_data = tmp->data;
+	alias_data = (t_aliases *)tmp->data;
 	while ((alias_data->src = get_next_line(fd)) != NULL) {
 		alias_data->dest = get_next_line(fd);
 		if ((tmp->next = malloc(sizeof(t_node))) == NULL)
@@ -34,7 +34,7 @@ t_node	*recup_aliases(void)
 		tmp = tmp->next;
 		if ((tmp->data = malloc(sizeof(t_aliases))) == NULL)
 			exit(FAILURE);
-		alias_data = tmp->data;
+		alias_data = (t_aliases *)tmp->data;
 		buf = get_next_line(fd);
 	}
 	tmp->next = NULL;
