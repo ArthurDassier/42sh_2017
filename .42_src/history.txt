@@ -1,6 +1,0 @@
-1	ls	Sat May 26 15:43:09 2018
-2	ls | cat -e	Sat May 26 15:43:13 2018
-3	pwd | cat -e	Sat May 26 15:43:16 2018
-4	ls | cat -e	Sat May 26 15:43:18 2018
-5	history 1	Sat May 26 15:43:24 2018
-6	history	Sat May 26 15:43:28 2018
