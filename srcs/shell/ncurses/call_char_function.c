@@ -22,6 +22,7 @@ void	realloc_line(t_readline *rd, int *i)
 	}
 }
 
+// Too long function
 int	call_char_function(t_readline *rd, int *pos)
 {
 	switch (rd->buf) {
@@ -49,7 +50,8 @@ int	call_char_function(t_readline *rd, int *pos)
 
 int	analyse_call_from_read(t_readline *rd, int *pos, t_history **tmp,
 int (**buf_function)(__attribute((unused)) char **,
-__attribute((unused)) const char *, __attribute((unused)) t_history **hist_list))
+__attribute((unused)) const char *, __attribute((unused))
+t_history **hist_list))
 {
 	int	ret = 0;
 	int	curs = 0;
