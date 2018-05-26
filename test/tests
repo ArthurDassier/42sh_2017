@@ -40,3 +40,29 @@ TESTS=
   echo 'set b = pwd'
   echo '$b'
 [004-END]
+
+[005]
+NAME="&&"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin:.'"
+CLEAN=""
+TESTS=
+  echo "ls && pwd"
+  echo 'lss && pwd'
+[005-END]
+
+[006]
+NAME="||"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin:.'"
+CLEAN=""
+TESTS=
+  echo "ls || pwd"
+  echo 'lss || pwd'
+[006-END]
+
+[007]
+NAME="|| & &&"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin:.'"
+CLEAN=""
+TESTS=
+  echo "ls || pwd && cd || ls -a"
+[007-END]

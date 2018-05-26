@@ -1,3 +1,72 @@
+[001]
+NAME="inhibiteurs avancés (option)"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin:.'"
+CLEAN=""
+TESTS=
+  echo 'mkdir "a b"'
+  echo 'touch "a "b/plip'
+  echo 'ls -l a" "b'
+  echo 'rm -Rf a\ b'
+  echo 'echo "$HOME"/coucou'
+[001-END]
+
+[002]
+NAME="interpretation variables env (option)"
+SETUP="export E=/usr ; export TERM=xterm ; PATH='/bin:/usr/bin:.'"
+CLEAN=""
+TESTS=
+  echo 'ls $E'
+  echo 'echo $PATH'
+[002-END]
+
+[003]
+NAME="interpretation variables locales (option)"
+SETUP="export D=/bin ; export TERM=xterm ; PATH='/bin:/usr/bin:.'"
+CLEAN=""
+TESTS=
+  echo 'set a=/usr'
+  echo 'ls -l $a'
+[303-END]
+
+[004]
+NAME="variables - utilisation avancée (option)"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin:.'"
+CLEAN=""
+TESTS=
+  echo "set a=b"
+  echo 'echo plop$a plip'
+  echo 'echo bon${a}soir'
+  echo 'ls $HOME'
+  echo 'set b = pwd'
+  echo '$b'
+[004-END]
+
+[005]
+NAME="&&"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin:.'"
+CLEAN=""
+TESTS=
+  echo "ls && pwd"
+  echo 'lss && pwd'
+[005-END]
+
+[006]
+NAME="||"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin:.'"
+CLEAN=""
+TESTS=
+  echo "ls || pwd"
+  echo 'lss || pwd'
+[006-END]
+
+[007]
+NAME="|| & &&"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin:.'"
+CLEAN=""
+TESTS=
+  echo "ls || pwd && cd || ls -a"
+[007-END]
+
 [901]
 NAME="Nothing"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
