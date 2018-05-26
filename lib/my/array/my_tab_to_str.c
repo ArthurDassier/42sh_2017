@@ -9,7 +9,7 @@
 
 static int	get_size_malloc(char **tab)
 {
-	int res = 0;
+	int	res = 0;
 
 	for (int i = 0; tab[i]; ++i)
 		res += my_strlen(tab[i]);
@@ -19,7 +19,7 @@ static int	get_size_malloc(char **tab)
 char	*my_tab_to_str(char **tab)
 {
 	char *str = malloc((sizeof(*str) * get_size_malloc(tab)
-	+ my_strarraylen(tab))  + 1);
+	+ my_strarraylen(tab)) + 1);
 	int	i;
 
 	if (!str)
