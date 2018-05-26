@@ -1,1 +1,9 @@
-1	ls	Sat May 26 15:31:13 2018
+1	set	Sat May 26 15:37:21 2018
+2	set a	Sat May 26 15:37:23 2018
+3	set	Sat May 26 15:37:24 2018
+4	set z	Sat May 26 15:37:27 2018
+5	set	Sat May 26 15:37:28 2018
+6	set g	Sat May 26 15:37:31 2018
+7	set	Sat May 26 15:37:32 2018
+8	set jkl	Sat May 26 15:37:40 2018
+9	set	Sat May 26 15:37:43 2018
