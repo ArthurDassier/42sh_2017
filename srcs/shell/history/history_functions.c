@@ -83,6 +83,7 @@ int flag)
 	}
 }
 
+// Too long function
 int	changes_from_history(t_history **hist_list, char **line)
 {
 	t_history	*hist_tmp = *hist_list;

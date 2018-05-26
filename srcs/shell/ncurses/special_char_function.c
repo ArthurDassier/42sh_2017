@@ -17,8 +17,10 @@ __attribute((unused)) t_history **hist_list)
 }
 
 int	special_char_function(t_readline *rd,
-t_history **hist_list, int *pos, int (**buf_function)(__attribute((unused)) char **,
-__attribute((unused)) const char *, __attribute((unused)) t_history **hist_list))
+t_history **hist_list, int *pos,
+int (**buf_function)(__attribute((unused)) char **,
+__attribute((unused)) const char *, __attribute((unused))
+t_history **hist_list))
 {
 	switch (rd->buf) {
 	case CTR_L :
