@@ -17,14 +17,6 @@ CPPFLAGS	+= -I./lib/my/include  -I./srcs/core -I./srcs/shell/alias  -I./srcs/cor
 
 NAME	=	42sh
 
-<<<<<<< HEAD
-DIR	=	srcs/shell/
-
-SRCS	=	srcs/main.c									\
-		srcs/define.c									\
-			$(DIR)/utils/change_line.c						\
-			$(DIR)/utils/print_no_event.c						\
-=======
 CORE	=	srcs/core
 
 DIR	=	srcs/shell
@@ -46,7 +38,6 @@ SRCS	=	$(CORE)/main.c									\
 			$(CORE)/execution/rules_exec.c						\
 			$(DIR)/parser/handle_parentheses.c					\
 			$(DIR)/utils/change_line.c							\
->>>>>>> angie
 			$(DIR)/history/recup_index.c						\
 			$(DIR)/history/put_in_history.c						\
 			$(DIR)/history/history_functions.c					\
@@ -64,6 +55,7 @@ SRCS	=	$(CORE)/main.c									\
 			$(DIR)/alias/recup_aliases.c						\
 			$(DIR)/alias/change_for_alias.c						\
 			$(DIR)/utils/check_perm.c						\
+			$(DIR)/utils/print_no_event.c						\
 			$(DIR)/utils/delete_list.c						\
 			$(DIR)/utils/print.c							\
 			$(DIR)/utils/fill_list.c						\
@@ -123,10 +115,6 @@ SRCS_UT	=	$(DIR)/utils/check_perm.c				\
 			$(DIR)/lexer/delim_lexem.c			\
 			$(DIR)/lexer/get_builtins.c			\
 			$(DIR)/lexer/get_cmd.c				\
-<<<<<<< HEAD
-			$(DIR)/lexer/handle_backticks.c			\
-=======
->>>>>>> angie
 			$(DIR)/parser/cmd_rule.c			\
 			$(DIR)/parser/exp_rule.c			\
 			$(DIR)/parser/handle_parentheses.c		\
