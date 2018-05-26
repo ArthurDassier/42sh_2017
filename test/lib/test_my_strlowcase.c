@@ -17,7 +17,6 @@ Test(my_strlowcase, return_value_is_good)
 	cr_expect_str_eq(my_strlowcase(str), "hello");
 }
 
-
 Test(my_strlowcase, return_value_is_good_V2)
 {
 	char	*str;
@@ -34,4 +33,3 @@ Test(my_strlowcase, return_value_is_good_V3)
 	str = strdup("42WORDS");
 	cr_expect_str_eq(my_strlowcase(str), "42words");
 }
-
