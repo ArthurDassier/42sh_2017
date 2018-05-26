@@ -67,7 +67,8 @@ void	change_var(char **line, t_node **spec)
 	int	i = 1;
 
 	while (line[i]) {
-		if (my_strisalphanum(line[i]) == SUCCESS) {
+		if (my_strisalphanum(line[i]) == SUCCESS
+		&& check_equal(line[i]) == SUCCESS) {
 			my_putstr("set: Variable name must");
 			my_putstr(" contain alphanumeric characters.\n");
 			return;

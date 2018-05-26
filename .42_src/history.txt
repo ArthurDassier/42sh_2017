@@ -1,1 +1,5 @@
-1	ls	Fri May 25 18:07:15 2018
+1	set	Sat May 26 10:55:41 2018
+2	echo $path	Sat May 26 10:55:50 2018
+3	eccho "$path"	Sat May 26 10:55:59 2018
+4	echo "$path"	Sat May 26 10:56:04 2018
+5	gst	Sat May 26 10:56:20 2018
