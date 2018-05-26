@@ -10,7 +10,7 @@
 #include <stdio.h>
 #include <string.h>
 
-enum { NB_FLAGS = 9};
+enum { NB_FLAGS = 8};
 
 static t_built	env_tab[NB_FLAGS] = {
 	{"-i", &ignore_env},
@@ -19,7 +19,6 @@ static t_built	env_tab[NB_FLAGS] = {
 	{"--null", &end_with_null},
 	{"-u", &rm_var},
 	{"--help", &display_help},
-	{"-C", &env_chdir},
 	{"--version", &display_version},
 	{"-", &ignore_env},
 };
@@ -62,7 +61,8 @@ int end_with_null(__attribute((unused)) char **line, t_node **env_list)
 	return (SUCCESS);
 }
 
-int	env_built( __attribute((unused)) char **line, t_node **env_list)
+int	env_built( __attribute((unused)) char **line, t_node **env_list,
+t_files_info *info)
 {
 	if (my_strarraylen(line) == VALID) {
 		display_list(*env_list, &print_list);
@@ -72,7 +72,8 @@ int	env_built( __attribute((unused)) char **line, t_node **env_list)
 		if (unset_name(line, env_list) == FAILURE)
 			return (FAILURE);
 		return (SUCCESS);
-	}
+	} else if (strcmp(line[1], "-C") == SUCCESS)
+		return (env_chdir(line, env_list, info));
 	for (int i = 0; i < NB_FLAGS; ++i) {
 		if (strcmp(env_tab[i].builtin, line[1]) == SUCCESS) {
 			if ((env_tab[i].ptr)(line, env_list) == FAILURE)

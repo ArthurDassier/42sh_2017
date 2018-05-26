@@ -1,0 +1,8 @@
+<<<<<<< HEAD
+=======
+1	env -C srcs lib	Sat May 26 11:59:30 2018
+2	env -C ls srcs	Sat May 26 11:59:34 2018
+3	env -C lib srcs	Sat May 26 11:59:39 2018
+4	env -C lib ls	Sat May 26 11:59:41 2018
+5	exit	Sat May 26 11:59:44 2018
+>>>>>>> vincent

@@ -19,7 +19,7 @@ typedef struct	s_built {
 /*
 ** Built-ins
 */
-int		env_built(char **, t_node **);
+int		env_built(char **, t_node **, t_files_info *);
 int		exit_built(char **, t_node **);
 int		cd_built(char **, t_node **);
 int		setenv_built(char **, t_node **);
