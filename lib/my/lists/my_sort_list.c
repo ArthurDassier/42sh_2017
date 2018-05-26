@@ -16,6 +16,14 @@ static	void my_sort_swap(t_node *node_1, t_node *node_2)
 
 }
 
+void sort_ptr(t_node *tmp, int (*ptr)(void *data, void *data_2), int *swap)
+{
+	if (ptr(tmp->data, tmp->next->data) == 1) {
+		my_sort_swap(tmp, tmp->next);
+		++*swap;
+	}
+}
+
 //Bubble sort for linked list.
 void	my_sort_list(t_node *list, int (*ptr)(void *data, void *data_2))
 {
@@ -29,10 +37,7 @@ void	my_sort_list(t_node *list, int (*ptr)(void *data, void *data_2))
 		i = 0;
 		tmp = list;
 		while (tmp->next != list && i + 1 < size) {
-			if (ptr(tmp->data, tmp->next->data) == 1) {
-				my_sort_swap(tmp, tmp->next);
-				++swap;
-			}
+			sort_ptr(tmp, ptr, &swap);
 			tmp = tmp->next;
 			++i;
 		}
