@@ -49,6 +49,8 @@ static char	*replace_line(char *line_one, char *name, int i, int save)
 		++nb;
 	}
 	while (line_one[i] != '\0') {
+		if (line_one[i] == '}')
+			++i;
 		tmp[nb] = line_one[i];
 		++nb;
 		++i;
@@ -65,8 +67,11 @@ static char	*replace_the_dollar(char *line_one, t_quotes *quotes, int i)
 	int	j = 0;
 	int	save = i - 1;
 
+	if (line_one[i] == '{') {
+		++i;
+	}
 	while (line_one[i] != '\0' && line_one[i] != ' '
-	&& line_one[i] != '\t') {
+	&& line_one[i] != '\t' && line_one[i] != '}') {
 		pathname[j] = line_one[i];
 		++i;
 		++j;
