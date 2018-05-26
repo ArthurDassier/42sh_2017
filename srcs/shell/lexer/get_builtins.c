@@ -10,11 +10,11 @@
 
 int	get_builtins(t_node **lexer_list, char *line)
 {
-	if (strcmp(line, "cd") == 0 || strcmp(line, "setenv") == 0
-	|| strcmp(line, "unsetenv") == 0 || strcmp(line, "env") == 0
-	|| strcmp(line, "env") == 0 || strcmp(line, "exit") == 0 ||
-	strcmp(line, "alias") == 0 || strcmp(line, "set") == 0 ||
-	line[0] == '!') {
+	if (strcmp(line, "cd") == SUCCESS || strcmp(line, "setenv") == SUCCESS
+	|| strcmp(line, "unsetenv") == SUCCESS ||
+	strcmp(line, "env") == SUCCESS || strcmp(line, "env") == SUCCESS ||
+	strcmp(line, "exit") == SUCCESS || strcmp(line, "alias") == SUCCESS
+	|| strcmp(line, "set") == 0 || strcmp(line, "history") == SUCCESS) {
 		add_node(lexer_list, BUILTIN, line);
 		return (SUCCESS);
 	}

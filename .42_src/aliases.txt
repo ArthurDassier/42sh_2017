@@ -1,6 +1,0 @@
-src / dest
-lol
-mdr
-src / dest
-mdr
-ls
