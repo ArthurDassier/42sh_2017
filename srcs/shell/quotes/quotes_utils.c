@@ -6,7 +6,7 @@
 */
 
 #include "quotes.h"
-#include "define.h"
+#include "const_values.h"
 #include <string.h>
 
 char *inc_space(char *line, char *s, char sign)

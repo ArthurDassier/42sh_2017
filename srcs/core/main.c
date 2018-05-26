@@ -7,7 +7,7 @@
 
 #include "42sh.h"
 #include "history.h"
-#include "define.h"
+#include "const_values.h"
 #include "alias.h"
 #include "line.h"
 #include "inhibitors.h"

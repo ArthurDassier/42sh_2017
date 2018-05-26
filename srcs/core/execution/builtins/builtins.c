@@ -9,7 +9,7 @@
 #include "builtins.h"
 #include "history.h"
 #include "alias.h"
-#include "define.h"
+#include "const_values.h"
 #include <string.h>
 
 enum { NB_BUILT = 4 };

@@ -6,7 +6,7 @@
 */
 
 #include "line.h"
-#include "define.h"
+#include "const_values.h"
 #include "list.h"
 #include "ncurses_define.h"
 

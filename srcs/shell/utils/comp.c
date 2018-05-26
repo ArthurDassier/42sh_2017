@@ -5,7 +5,7 @@
 ** comp function
 */
 #include "42sh.h"
-#include "define.h"
+#include "const_values.h"
 #include <string.h>
 
 int	cmp(void *data, void *data_cmp)
