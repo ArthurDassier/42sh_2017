@@ -20,8 +20,9 @@ NAME	=	42sh
 DIR	=	srcs/shell/
 
 SRCS	=	srcs/main.c									\
-			srcs/define.c									\
-			$(DIR)/utils/change_line.c							\
+		srcs/define.c									\
+			$(DIR)/utils/change_line.c						\
+			$(DIR)/utils/print_no_event.c						\
 			$(DIR)/history/recup_index.c						\
 			$(DIR)/history/put_in_history.c						\
 			$(DIR)/history/history_functions.c					\
@@ -112,7 +113,7 @@ SRCS_UT	=	$(DIR)/utils/check_perm.c				\
 			$(DIR)/lexer/delim_lexem.c			\
 			$(DIR)/lexer/get_builtins.c			\
 			$(DIR)/lexer/get_cmd.c				\
-			$(DIR)/lexer/handle_backticks.c		\
+			$(DIR)/lexer/handle_backticks.c			\
 			$(DIR)/parser/cmd_rule.c			\
 			$(DIR)/parser/exp_rule.c			\
 			$(DIR)/parser/handle_parentheses.c		\

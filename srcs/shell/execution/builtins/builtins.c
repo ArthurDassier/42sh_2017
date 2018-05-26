@@ -34,7 +34,7 @@ int	exec_builtins(char **line, t_node **env_list, t_files_info *info)
 	for (int i = 0; i < NB_BUILT; ++i) {
 		if (strcmp(tab_mini[i].builtin, line[0]) == SUCCESS) {
 			if ((tab_mini[i].ptr)(line, env_list) == FAILURE)
-				return (FAILURE);
+				return (VALID);
 		}
 	}
 	if (strcmp("env", line[0]) == SUCCESS)

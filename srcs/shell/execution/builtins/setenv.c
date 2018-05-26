@@ -8,6 +8,7 @@
 #include "define.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 static void	adding_variable(t_save *data, char **line,
 t_node **env_list)
@@ -44,9 +45,12 @@ int		setenv_built(char **line, t_node **env_list)
 		display_list(*env_list, &print_list);
 		return (SUCCESS);
 	}
+	if (my_char_is_alpha(line[1][0]) == SUCCESS) {
+		printf("setenv: Variable name must begin with a letter.\n");
+		return (FAILURE);
+	}
 	if (my_strisalphanum(line[1]) == SUCCESS) {
-		my_putstr("setenv: Variable name must");
-		my_putstr(" contain alphanumeric characters.\n");
+		printf("setenv: Variable name must contain alphanumeric characters.\n");
 		return (FAILURE);
 	}
 	if (check_env_name(*env_list, line[1]) == false) {

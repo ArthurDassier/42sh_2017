@@ -25,14 +25,17 @@ bool	pipe_exec(t_tree *tree, t_node **env_list, t_files_info *info)
 {
 	int		dupfd = 0;
 	int		pipefd[2];
+	bool	ret = false;
 
 	info->dwait_pipe = true;
 	pipe(pipefd);
 	dupfd = dup(1);
 	dup2(pipefd[1], 1);
-	cmd_exec(tree->left, env_list, info);
+	ret = cmd_exec(tree->left, env_list, info);
 	dup2(dupfd, 1);
 	close(dupfd);
+	if (ret == true)
+		return (true);
 	p_father(pipefd, dupfd, tree, env_list, info);
-	return (true);
+	return (ret);
 }
