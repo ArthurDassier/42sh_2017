@@ -10,12 +10,11 @@
 #include "define.h"
 #include <string.h>
 
-enum { NB_BUILT = 5 };
+enum { NB_BUILT = 4 };
 
 static t_built	tab_mini[NB_BUILT] = {
 	{"cd", &cd_built},
 	{"setenv", &setenv_built},
-	{"env", &env_built},
 	{"unsetenv", &unsetenv_built},
 	{"exit", &exit_built}
 };
@@ -36,6 +35,8 @@ int	exec_builtins(char **line, t_node **env_list, t_files_info *info)
 				return (FAILURE);
 		}
 	}
+	if (strcmp("env", line[0]) == SUCCESS)
+		return (env_built(line, env_list, info));
 	if (strcmp("alias", line[0]) == SUCCESS)
 		return (alias_cmd(info->alias_list, line));
 	if (strcmp("!", line[0]) == SUCCESS)

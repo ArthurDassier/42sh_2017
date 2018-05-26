@@ -93,12 +93,7 @@ int flag)
 	}
 }
 
-<<<<<<< HEAD
-// Too long function
-int	changes_from_history(t_history **hist_list, char **line)
-=======
 int	changes_from_history(t_node **hist_list, char **line)
->>>>>>> 9a94abbeed95086d2ce461b95cc2607ff19ae02c
 {
 	t_node		*hist_tmp = *hist_list;
 	int		i = 0;
