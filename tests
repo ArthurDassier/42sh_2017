@@ -192,3 +192,15 @@ TESTS=
   echo 'ls -l'
   echo 'exit 45|cat /etc/resolv.conf'
 [912-END]
+
+[913]
+NAME="alias"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'alias lol mdr'
+  echo 'ls toto'
+  echo 'lol ok'
+  echo 'alias lol ls'
+  echo 'ls'
+[913-END]
