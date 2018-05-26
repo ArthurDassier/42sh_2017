@@ -1,9 +1,9 @@
-1	ls	Sat May 26 12:00:47 2018
-2	lss	Sat May 26 12:00:50 2018
-3	echo $status	Sat May 26 12:00:55 2018
-4	echo $status	Sat May 26 12:01:03 2018
-1	env -C srcs lib	Sat May 26 11:59:30 2018
-2	env -C ls srcs	Sat May 26 11:59:34 2018
-3	env -C lib srcs	Sat May 26 11:59:39 2018
-4	env -C lib ls	Sat May 26 11:59:41 2018
-5	exit	Sat May 26 11:59:44 2018
+1	ls	Sat May 26 12:59:59 2018
+2	ls	Sat May 26 13:00:00 2018
+3	ls	Sat May 26 13:00:04 2018
+4	ls	Sat May 26 13:00:06 2018
+5	ls	Sat May 26 13:00:06 2018
+6	ls	Sat May 26 13:00:07 2018
+7	ls	Sat May 26 13:00:07 2018
+8	ls	Sat May 26 13:00:09 2018
+9	ls	Sat May 26 13:00:12 2018

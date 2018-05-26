@@ -13,6 +13,7 @@
 #include "inhibitors.h"
 #include "special_var.h"
 #include <string.h>
+#include <signal.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -57,7 +58,7 @@ t_node **spec, int ret)
 	if (!s) {
 		if (ignoreof != 0) {
 			my_putstr("exit\n");
-			exit(SUCCESS);
+			exit(ret);
 		}
 		my_putstr("Use \"exit\" to leave 42sh.\n");
 	}
@@ -79,11 +80,9 @@ t_files_info *info)
 		return (FAILURE);
 	lexer(cmd_list, line, *env_list);
 	tree = s_rule(cmd_list);
-	if (!tree) {
-		my_putstr("Error\n");
+	if (!tree)
 		return (FAILURE);
-	}
-	s_exec(tree, env_list, info);
+	info->ret = s_exec(tree, env_list, info);
 	free(s);
 	free_tree(tree);
 	return (SUCCESS);
@@ -97,7 +96,6 @@ int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
 	t_node		*cmd_list = NULL;
 	t_files_info	*info = init_files_info();
 
-	//signal(SIGINT, ctrl_c);
 	init_list(&env_list, env);
 	while (VALID) {
 		prompt_line = prompt(env_list);
