@@ -81,5 +81,5 @@ bool	exec_cmd(char **line, t_node *env_list, t_files_info *info)
 			cmd_not_found(line);
 	}
 	ret = WEXITSTATUS(status);
-	return (status);
+	return (ret != 0 ? 0 : 1);
 }

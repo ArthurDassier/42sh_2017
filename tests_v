@@ -1,0 +1,18 @@
+[311]
+NAME="alias with arg (option)"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin:.'"
+CLEAN=""
+TESTS=
+  echo 'alias k file /tmp'
+  echo 'k /bin'
+[311-END]
+
+[312]
+NAME="alias of alias (option)"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin:.'"
+CLEAN=""
+TESTS=
+  echo 'alias k file /tmp'
+  echo 'alias r k /bin'
+  echo 'r .'
+[312-END]

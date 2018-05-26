@@ -8,8 +8,8 @@
 #ifndef SPECIAL_VAR_H_
 #define SPECIAL_VAR_H_
 
-#include "42sh.h"
 #include "list.h"
+#include "42sh.h"
 #include "quotes.h"
 
 /*

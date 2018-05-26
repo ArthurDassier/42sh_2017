@@ -5,11 +5,10 @@
 ** special_var_init
 */
 
-#include <unistd.h>
-#include <string.h>
 #include "special_var.h"
 #include "list.h"
-#include "42sh.h"
+#include <unistd.h>
+#include <string.h>
 
 static const char	*special[13] = {
 	"cwd", "ignoreof", "path", "user", "term", "shell",

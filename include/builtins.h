@@ -11,6 +11,11 @@
 #include "list.h"
 #include "42sh.h"
 
+typedef struct	s_built {
+	char	*builtin;
+	int		(*ptr)(char **, t_node **);
+}				t_built;
+
 /*
 ** Built-ins
 */

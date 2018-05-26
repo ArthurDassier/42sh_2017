@@ -5,7 +5,7 @@
 ** special_var_utils
 */
 
-#include "42sh.h"
+#include "special_var.h"
 #include "define.h"
 #include <string.h>
 #include <stdlib.h>
@@ -25,6 +25,7 @@ char *delete_points(char *path)
 	return (tmp);
 }
 
+// Change func name
 void concerned_spec_part2(t_save *tmp, t_node *new_env)
 {
 	if (strcmp(tmp->name, "cwd") == SUCCESS) {
@@ -81,12 +82,12 @@ int	alphabetic_order(void *first, void *second)
 
 	while (line_one[i] != '\0' && line_two[i] != '\0') {
 		if (line_one[i] < line_two[i])
-			return (0);
+			return (SUCCESS);
 		if (line_one[i] > line_two[i])
-			return (1);
+			return (VALID);
 		++i;
 	}
 	if (line_one[i] == '\0' && line_two[i] != '\0')
-		return (1);
-	return (0);
+		return (VALID);
+	return (SUCCESS);
 }

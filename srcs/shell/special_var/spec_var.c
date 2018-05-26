@@ -1,11 +1,11 @@
 /*
 ** EPITECH PROJECT, 2018
-** change_var.c
+** PSU_42sh_2017
 ** File description:
-** Arthur
+** spec_var
 */
 
-#include "42sh.h"
+#include "special_var.h"
 #include <stdlib.h>
 #include <string.h>
 

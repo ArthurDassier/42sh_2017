@@ -29,12 +29,6 @@ typedef struct s_files_info
 	int		ret;
 }			t_files_info;
 
-typedef struct	s_built {
-	char	*builtin;
-	int		(*ptr)(char **, t_node **);
-}				t_built;
-
-
 /*
 ** Change_the_line_from_info
 */

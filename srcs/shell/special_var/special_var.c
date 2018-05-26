@@ -7,7 +7,6 @@
 
 #include "special_var.h"
 #include "define.h"
-#include "42sh.h"
 #include <string.h>
 #include <stdlib.h>
 
