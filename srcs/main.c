@@ -8,6 +8,7 @@
 #include "42sh.h"
 #include "history.h"
 #include "define.h"
+#include "alias.h"
 #include "line.h"
 #include "inhibitors.h"
 #include "special_var.h"

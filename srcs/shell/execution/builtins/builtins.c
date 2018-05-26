@@ -7,6 +7,8 @@
 
 #include "special_var.h"
 #include "builtins.h"
+#include "history.h"
+#include "alias.h"
 #include "define.h"
 #include <string.h>
 

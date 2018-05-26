@@ -9,8 +9,6 @@
 #define SH_H_
 #include "list.h"
 #include "my.h"
-#include "history.h"
-#include "alias.h"
 #include "parser.h"
 #include "quotes.h"
 
