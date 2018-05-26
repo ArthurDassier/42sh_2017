@@ -7,9 +7,5 @@ a.out
 *.o
 *.a
 script.sh
-<<<<<<< HEAD
-tester.sh
-=======
 tester.sh
 a
->>>>>>> 3b50e1ea837d4c115e877c254925e04f575ab55a
