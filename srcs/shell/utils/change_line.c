@@ -6,7 +6,7 @@
 */
 
 #include "42sh.h"
-#include "define.h"
+#include "const_values.h"
 #include "alias.h"
 #include "history.h"
 #include <string.h>

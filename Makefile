@@ -5,7 +5,7 @@
 ## Makefile
 ##
 
-CC	=	gcc -g3
+CC	=	gcc
 
 RM	=	rm -rf
 
@@ -13,16 +13,31 @@ TEST_CC	=	gcc -Wall -Wextra -I./include -I./lib/my/include --coverage
 
 CFLAGS	+=	-Wall -Wextra
 
-CPPFLAGS	+=	-I./include -I./lib/my/include
+CPPFLAGS	+= -I./lib/my/include  -I./srcs/core -I./srcs/shell/alias  -I./srcs/core/execution/builtins -I./srcs/shell/globbings -I./srcs/shell/history -I./srcs/shell/inhibitors -I./srcs/shell/ncurses -I./srcs/shell/parser -I./srcs/shell/quotes -I./srcs/shell/special_var
 
 NAME	=	42sh
 
-DIR	=	srcs/shell/
+CORE	=	srcs/core
 
-SRCS	=	srcs/main.c									\
-		srcs/define.c									\
-			$(DIR)/utils/change_line.c						\
-			$(DIR)/utils/print_no_event.c						\
+DIR		=	srcs/shell
+
+SRCS	=	$(CORE)/main.c									\
+			$(CORE)/define.c									\
+			$(CORE)/execution/exec_cmd.c						\
+			$(CORE)/execution/redirect.c						\
+			$(CORE)/execution/builtins/cd_special_cases.c				\
+			$(CORE)/execution/builtins/builtins.c					\
+			$(CORE)/execution/builtins/cd.c						\
+			$(CORE)/execution/builtins/env.c						\
+			$(CORE)/execution/builtins/ignore_env.c					\
+			$(CORE)/execution/builtins/env_chdir.c					\
+			$(CORE)/execution/builtins/env_special_cases.c				\
+			$(CORE)/execution/builtins/setenv.c					\
+			$(CORE)/execution/pipe.c							\
+			$(CORE)/execution/separators.c						\
+			$(CORE)/execution/rules_exec.c						\
+			$(DIR)/parser/handle_parentheses.c					\
+			$(DIR)/utils/change_line.c							\
 			$(DIR)/history/recup_index.c						\
 			$(DIR)/history/put_in_history.c						\
 			$(DIR)/history/history_functions.c					\
@@ -40,6 +55,7 @@ SRCS	=	srcs/main.c									\
 			$(DIR)/alias/recup_aliases.c						\
 			$(DIR)/alias/change_for_alias.c						\
 			$(DIR)/utils/check_perm.c						\
+			$(DIR)/utils/print_no_event.c						\
 			$(DIR)/utils/delete_list.c						\
 			$(DIR)/utils/print.c							\
 			$(DIR)/utils/fill_list.c						\
@@ -65,20 +81,6 @@ SRCS	=	srcs/main.c									\
 			$(DIR)/parser/pipexp_rule.c						\
 			$(DIR)/parser/rexp_rule.c						\
 			$(DIR)/parser/s_rule.c							\
-			$(DIR)/parser/handle_parentheses.c					\
-			$(DIR)/execution/exec_cmd.c						\
-			$(DIR)/execution/redirect.c						\
-			$(DIR)/execution/builtins/cd_special_cases.c				\
-			$(DIR)/execution/builtins/builtins.c					\
-			$(DIR)/execution/builtins/cd.c						\
-			$(DIR)/execution/builtins/env.c						\
-			$(DIR)/execution/builtins/ignore_env.c					\
-			$(DIR)/execution/builtins/env_chdir.c					\
-			$(DIR)/execution/builtins/env_special_cases.c				\
-			$(DIR)/execution/builtins/setenv.c					\
-			$(DIR)/execution/pipe.c							\
-			$(DIR)/execution/separators.c						\
-			$(DIR)/execution/rules_exec.c						\
 			$(DIR)/handle_line/handle_line.c					\
 			$(DIR)/scripting/check_script.c						\
 			$(DIR)/globbings/globbings.c						\
@@ -88,7 +90,7 @@ SRCS	=	srcs/main.c									\
 			$(DIR)/quotes/simple_quotes.c						\
 			$(DIR)/quotes/simple_quotes_utils.c					\
 			$(DIR)/quotes/handle_dollars.c						\
-			$(DIR)/inihibitors/inihibitors.c					\
+			$(DIR)/inhibitors/inhibitors.c					\
 			$(DIR)/special_var/chainlist_spec.c					\
 			$(DIR)/special_var/special_var_init.c					\
 			$(DIR)/special_var/special_var_utils.c					\
@@ -113,7 +115,6 @@ SRCS_UT	=	$(DIR)/utils/check_perm.c				\
 			$(DIR)/lexer/delim_lexem.c			\
 			$(DIR)/lexer/get_builtins.c			\
 			$(DIR)/lexer/get_cmd.c				\
-			$(DIR)/lexer/handle_backticks.c			\
 			$(DIR)/parser/cmd_rule.c			\
 			$(DIR)/parser/exp_rule.c			\
 			$(DIR)/parser/handle_parentheses.c		\
@@ -148,7 +149,7 @@ SRCS_UT	=	$(DIR)/utils/check_perm.c				\
 			$(DIR)/history/recup_index.c			\
 			$(DIR)/special_var/chainlist_spec.c		\
 			$(DIR)/special_var/spec_var.c			\
-			srcs/change_line.c
+			$(DIR)/utils/change_line.c				\
 
 UT_DIR	=	test/lib/
 

@@ -9,7 +9,7 @@
 #include "line.h"
 #include "ncurses_define.h"
 #include "list.h"
-#include "define.h"
+#include "const_values.h"
 #include <string.h>
 #include <stdio.h>
 #include <unistd.h>

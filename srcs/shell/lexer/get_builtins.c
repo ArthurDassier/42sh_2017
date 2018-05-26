@@ -5,7 +5,7 @@
 ** get_builtins
 */
 #include "42sh.h"
-#include "define.h"
+#include "const_values.h"
 #include <string.h>
 
 int	get_builtins(t_node **lexer_list, char *line)

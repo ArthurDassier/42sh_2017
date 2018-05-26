@@ -5,8 +5,8 @@
 ** define
 */
 
-#ifndef DEFINE_H_
-#define DEFINE_H_
+#ifndef CONST_VALUES_H_
+#define CONST_VALUES_H_
 
 /*
 ** Error handling
@@ -50,4 +50,4 @@ extern const char *MAGENTA;
 extern const char *CYAN;
 extern const char *RESET;
 
-#endif /* !DEFINE_H_ */
+#endif /* !CONST_VALUES_H_ */

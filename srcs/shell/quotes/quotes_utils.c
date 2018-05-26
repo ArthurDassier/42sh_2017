@@ -6,7 +6,7 @@
 */
 
 #include "quotes.h"
-#include "define.h"
+#include "const_values.h"
 #include <string.h>
 
 char *dollar_specials(char *line_one, char *line_two, t_quotes *quotes_st)

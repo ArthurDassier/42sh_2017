@@ -6,7 +6,7 @@
 */
 
 #include "builtins.h"
-#include "define.h"
+#include "const_values.h"
 #include <string.h>
 #include <stdlib.h>
 #include <sys/types.h>

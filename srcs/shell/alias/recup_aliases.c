@@ -8,7 +8,7 @@
 #include "alias.h"
 #include "my.h"
 #include "list.h"
-#include "define.h"
+#include "const_values.h"
 #include <string.h>
 #include <stdlib.h>
 #include <sys/types.h>

@@ -8,7 +8,7 @@
 #include "my.h"
 #include "line.h"
 #include "ncurses_define.h"
-#include "define.h"
+#include "const_values.h"
 #include "list.h"
 #include <curses.h>
 #include <term.h>

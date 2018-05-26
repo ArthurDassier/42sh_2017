@@ -6,7 +6,7 @@
 */
 
 #include "history.h"
-#include "define.h"
+#include "const_values.h"
 #include "list.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -30,7 +30,6 @@ int	show_history(t_node *hist_list)
 	}
 	return (VALID);
 }
-
 
 static int	pos_index(t_node *tmp, char **line, int index)
 {

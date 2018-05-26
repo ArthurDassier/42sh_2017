@@ -7,7 +7,7 @@
 
 #include "my.h"
 #include "history.h"
-#include "define.h"
+#include "const_values.h"
 #include "list.h"
 #include <time.h>
 #include <string.h>

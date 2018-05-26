@@ -8,7 +8,7 @@
 #include "line.h"
 #include "history.h"
 #include "list.h"
-#include "define.h"
+#include "const_values.h"
 #include <unistd.h>
 #include <ncurses.h>
 #include <termios.h>

@@ -6,7 +6,7 @@
 */
 
 #include "globbings.h"
-#include "define.h"
+#include "const_values.h"
 #include <glob.h>
 #include <string.h>
 #include <stdlib.h>

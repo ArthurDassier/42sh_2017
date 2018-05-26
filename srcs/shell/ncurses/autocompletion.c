@@ -7,7 +7,7 @@
 
 #include "line.h"
 #include "ncurses_define.h"
-#include "define.h"
+#include "const_values.h"
 #include "list.h"
 #include <dirent.h>
 #include <stdio.h>
