@@ -8,6 +8,7 @@
 #include "my.h"
 #include "line.h"
 #include "ncurses_define.h"
+#include "define.h"
 #include "list.h"
 #include <curses.h>
 #include <term.h>
@@ -86,7 +87,7 @@ char	*recup_line(const char *prompt, t_node **hist_list)
 	char	*term = NULL;
 	char	*line = NULL;
 
-	if (isatty(0) == 0)
+	if (isatty(0) == SUCCESS)
 		return (get_next_line(0));
 	write(1, prompt, strlen(prompt));
 	canonique_mode(1);

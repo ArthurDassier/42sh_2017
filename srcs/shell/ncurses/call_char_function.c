@@ -45,6 +45,7 @@ int	call_char_function(t_readline *rd, int *pos)
 		cursorbackward(100);
 		printf("\n%s", rd->prompt);
 		fflush(stdout);
+		return (-2);
 	}
 	return (SUCCESS);
 }
