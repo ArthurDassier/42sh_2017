@@ -1,0 +1,6 @@
+<<<<<<< HEAD
+=======
+1	ls	Sat May 26 13:48:23 2018
+2	ls |cat -e	Sat May 26 13:48:24 2018
+3	exit	Sat May 26 13:48:26 2018
+>>>>>>> vincent
