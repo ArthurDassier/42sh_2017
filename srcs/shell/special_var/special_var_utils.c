@@ -26,7 +26,7 @@ char *delete_points(char *path)
 }
 
 // Change func name
-void concerned_spec_part2(t_save *tmp, t_node *new_env)
+void spec_cwd_path_user(t_save *tmp, t_node *new_env)
 {
 	if (strcmp(tmp->name, "cwd") == SUCCESS) {
 		tmp->content = NULL;
@@ -44,9 +44,9 @@ void concerned_spec_part2(t_save *tmp, t_node *new_env)
 	}
 }
 
-void concerned_spec(t_save *tmp, t_node *new_env, char *s, int ret)
+void spec_term_status_echo(t_save *tmp, t_node *new_env, char *s, int ret)
 {
-	concerned_spec_part2(tmp, new_env);
+	spec_cwd_path_user(tmp, new_env);
 	if (strcmp(tmp->name, "term") == SUCCESS) {
 		tmp->content = NULL;
 		tmp->content = get_env_content(new_env, "TERM");
@@ -67,7 +67,7 @@ void reset_spec(t_node **spec, t_node *new_env, char *s, int ret)
 
 	do {
 		tmp_save = (t_save *)tmp->data;
-		concerned_spec(tmp_save, new_env, s, ret);
+		spec_term_status_echo(tmp_save, new_env, s, ret);
 		tmp = tmp->next;
 	} while (tmp != *(spec));
 }

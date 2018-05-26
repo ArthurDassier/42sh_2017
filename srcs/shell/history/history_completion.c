@@ -36,6 +36,12 @@ static void	print_cache(char *line)
 	fflush(stdout);
 }
 
+static void	rewrite_print(char *line, const char *prompt)
+{
+	rewrite_prompt(line, prompt);
+	print_cache(line);
+}
+
 char	*history_completion(t_node *hist_list, char *line, const char *prompt)
 {
 	t_node		*tmp = hist_list;
@@ -57,7 +63,6 @@ char	*history_completion(t_node *hist_list, char *line, const char *prompt)
 		}
 		tmp = tmp->prev;
 	}
-	rewrite_prompt(line, prompt);
-	print_cache(line);
+	rewrite_print(line, prompt);
 	return (NULL);
 }

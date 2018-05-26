@@ -23,7 +23,11 @@ void change_spec(t_node **spec, char *line_one, char *line_two)
 		}
 		tmp = tmp->next;
 	} while (tmp != *(spec));
-	insert_end(spec, initialiser(strdup(line_one), strdup(line_two)));
+	if (line_two != NULL)
+		insert_end(spec, initialiser(strdup(line_one),
+							strdup(line_two)));
+	else
+		insert_end(spec, initialiser(strdup(line_one), NULL));
 	my_sort_list(*spec, &alphabetic_order);
 }
 
@@ -61,7 +65,7 @@ void recup_arg_var(char **line, t_node **spec, int *i)
 	cut_line(spec, line[*i]);
 }
 
-void	change_var(char **line, t_node **spec)
+int	change_var(char **line, t_node **spec)
 {
 	int	i = 1;
 
@@ -70,16 +74,17 @@ void	change_var(char **line, t_node **spec)
 		&& check_equal(line[i]) == SUCCESS) {
 			my_putstr("set: Variable name must");
 			my_putstr(" contain alphanumeric characters.\n");
-			return;
+			return (VALID);
 		}
 		if (line[i][0] >= '0' && line[i][0] <= '9') {
 			my_putstr("set: Variable name must");
 			my_putstr(" begin with a letter.\n");
-			return;
+			return (VALID);
 		}
 		recup_arg_var(line, spec, &i);
 		++i;
 	}
+	return (SUCCESS);
 }
 
 int	special_var(char **line, t_node **spec)
@@ -91,6 +96,7 @@ int	special_var(char **line, t_node **spec)
 	if (i == 1)
 		print_var(*spec);
 	else if (i > 1)
-		change_var(line, spec);
+		if (change_var(line, spec) == VALID)
+			return (VALID);
 	return (SUCCESS);
 }

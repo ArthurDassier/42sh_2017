@@ -9,6 +9,14 @@
 #include "const_values.h"
 #include <string.h>
 
+char *dollar_specials(char *line_one, char *line_two, t_quotes *quotes_st)
+{
+	line_one = strcat(line_one, line_two);
+	line_one = delete_special(line_one);
+	line_one = handle_dollars(line_one, quotes_st);
+	return (line_one);
+}
+
 char *inc_space(char *line, char *s, char sign)
 {
 	int	i = 0;

@@ -19,7 +19,7 @@ NAME	=	42sh
 
 CORE	=	srcs/core
 
-DIR	=	srcs/shell
+DIR		=	srcs/shell
 
 SRCS	=	$(CORE)/main.c									\
 			$(CORE)/define.c									\
@@ -55,6 +55,7 @@ SRCS	=	$(CORE)/main.c									\
 			$(DIR)/alias/recup_aliases.c						\
 			$(DIR)/alias/change_for_alias.c						\
 			$(DIR)/utils/check_perm.c						\
+			$(DIR)/utils/print_no_event.c						\
 			$(DIR)/utils/delete_list.c						\
 			$(DIR)/utils/print.c							\
 			$(DIR)/utils/fill_list.c						\
