@@ -58,7 +58,7 @@ void	exec_line(t_node *env_list, char **line)
 bool	exec_cmd(char **line, t_node *env_list, t_files_info *info)
 {
 	char	**path = get_path(env_list);
-	int		status;
+	int		status = 0;
 	pid_t	pid = fork();
 	int		i;
 

@@ -1,0 +1,5 @@
+1	ls	Sun May 27 11:18:03 2018
+2	ls |cat -e	Sun May 27 11:18:05 2018
+3	ls |cat -e	Sun May 27 11:18:09 2018
+4	man gcc |cat -e	Sun May 27 11:18:14 2018
+5	exit	Sun May 27 11:18:17 2018
