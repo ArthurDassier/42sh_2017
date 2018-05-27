@@ -57,7 +57,7 @@ t_node **spec, int ret)
 	reset_spec(spec, env_list, s, ret);
 	if (!s) {
 		if (ignoreof != 0) {
-			my_putstr("exit\n");
+			//my_putstr("exit\n");
 			exit(ret);
 		}
 		my_putstr("Use \"exit\" to leave 42sh.\n");
