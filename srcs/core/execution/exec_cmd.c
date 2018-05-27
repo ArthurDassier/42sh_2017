@@ -8,6 +8,8 @@
 #include "shell.h"
 #include "const_values.h"
 #include <stdlib.h>
+#include <stdio.h>
+#include <errno.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -40,6 +42,8 @@ void	exec_line(t_node *env_list, char **line)
 
 	tab = list_to_tab(env_list);
 	execve(line[0], line, tab);
+	if (errno == ENOEXEC)
+		printf("%s: Exec format error. Wrong architecture.\n", line[0]);
 }
 
 static void handle_big_input(t_files_info *info, int *status, pid_t pid)
