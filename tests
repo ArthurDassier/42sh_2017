@@ -206,9 +206,19 @@ TESTS=
 [913-END]
 
 [914]
+NAME="advanced alias"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
+CLEAN=""
+TESTS=
+  echo 'alias cat mdr'
+  echo 'mdr toto'
+  echo 'ls lol'
+[914-END]
+
+[915]
 NAME="multipipe"
 SETUP="export TERM=xterm ; PATH='/bin:/usr/bin'"
 CLEAN=""
 TESTS=
   echo 'ls |cat -e'
-[914-END]
+[915-END]

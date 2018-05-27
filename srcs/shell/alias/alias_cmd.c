@@ -39,7 +39,7 @@ static void	change_alias(t_node *tmp, char *line)
 static void write_in_aliase_txt(t_node *list)
 {
 	t_node		*head = list;
-	int		fd = open(".42_src/aliases.txt", O_RDWR | O_CREAT |
+	int		fd = open(".shell_src/aliases.txt", O_RDWR | O_CREAT |
 	O_TRUNC, S_IWUSR | S_IRUSR);
 	t_aliases	*alias_data = NULL;
 
@@ -64,7 +64,7 @@ static void	new_alias(t_node **head)
 
 int	alias_cmd(t_node *list, char **line)
 {
-	int		fd = open(".42_src/aliases.txt", O_RDWR | O_APPEND);
+	int		fd = open(".shell_src/aliases.txt", O_RDWR | O_APPEND);
 	t_node		*head = list;
 	t_aliases	*alias_data = NULL;
 
