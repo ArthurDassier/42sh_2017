@@ -88,8 +88,8 @@ t_files_info *info)
 	return (SUCCESS);
 }
 
-int	main(__attribute((unused)) int ac, __attribute((unused)) char **av, char
-**env)
+int	main(__attribute((unused)) int ac, __attribute((unused)) char **av,
+char **env)
 {
 	char		*s;
 	t_node		*env_list = NULL;

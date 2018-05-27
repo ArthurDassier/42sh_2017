@@ -50,7 +50,8 @@ int		setenv_built(char **line, t_node **env_list)
 		return (FAILURE);
 	}
 	if (my_strisalphanum(line[1]) == SUCCESS) {
-		printf("setenv: Variable name must contain alphanumeric characters.\n");
+		printf("setenv: Variable name must contain alphanumeric\
+		 characters.\n");
 		return (FAILURE);
 	}
 	if (check_env_name(*env_list, line[1]) == false) {

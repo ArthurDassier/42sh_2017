@@ -26,7 +26,7 @@ static void	rewrite_prompt(char *line, const char *prompt)
 
 static void	print_cache(char *line)
 {
-	char	cache[] = "                                     ";
+	static char	cache[] = "                                          ";
 	int	len = 0;
 
 	write(1, line, strlen(line));

@@ -74,6 +74,6 @@ t_tree	*create_node(void);
 bool	check_token(t_node **, e_token, t_tree *);
 t_tree	*ret_node(t_tree *, t_tree *);
 t_tree	*semiexp_rule(t_node **);
-int		handle_parentheses(t_node **, t_tree *);
+int	handle_parentheses(t_node **, t_tree *);
 
 #endif /* !PARSER_H_ */

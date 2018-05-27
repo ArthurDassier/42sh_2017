@@ -15,8 +15,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-static void	rewrite_prompt_and_line(int size, char *save, const char *prompt,
-char *line)
+static void	rewrite_prompt_and_line(int size, char *save, const
+char *prompt, char *line)
 {
 	cursorbackward(size);
 	printf("%s", save);
@@ -27,7 +27,8 @@ char *line)
 	write(1, line, strlen(line));
 }
 
-static int	match_str(char **line, char *info, const char *prompt, int size)
+static int	match_str(char **line, char *info,
+const char *prompt, int size)
 {
 	if (strlen(*line) == 0)
 		return (SUCCESS);
