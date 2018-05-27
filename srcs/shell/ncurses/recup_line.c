@@ -19,7 +19,6 @@
 #include <stdio.h>
 #include <sys/types.h>
 
-// function to set the canonique mode with the var set OFF = 0 / ON = 1
 void	canonique_mode(int set)
 {
 	static struct	termios old;
@@ -34,7 +33,6 @@ void	canonique_mode(int set)
 		tcsetattr(STDIN_FILENO, TCSANOW, &old);
 }
 
-// initialisation of the function tab
 static void	init_buf_function_tab(int (**buf_function)
 (__attribute((unused)) char **line, __attribute((unused)) const char *prompt,
 __attribute((unused)) t_node **hist_list))

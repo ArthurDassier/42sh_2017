@@ -25,7 +25,7 @@ void change_spec(t_node **spec, char *line_one, char *line_two)
 	} while (tmp != *(spec));
 	if (line_two != NULL)
 		insert_end(spec, initialiser(strdup(line_one),
-							strdup(line_two)));
+		strdup(line_two)));
 	else
 		insert_end(spec, initialiser(strdup(line_one), NULL));
 	my_sort_list(*spec, &alphabetic_order);

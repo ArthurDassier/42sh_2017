@@ -90,7 +90,7 @@ char	*handle_dollars(char *line_one, t_quotes *quotes_st)
 	while (line_one[i] != '\0') {
 		if (line_one[i] == '$')
 			line_one = replace_the_dollar(line_one,
-							quotes_st, i + 1);
+			quotes_st, i + 1);
 		if (line_one == NULL)
 			return (NULL);
 		++i;

@@ -29,7 +29,6 @@ bool	check_token(t_node **cmd_list, e_token token, t_tree *tree)
 		return (true);
 	}
 	return (false);
-
 }
 
 t_tree *ret_node(t_tree *tree, t_tree *ret)

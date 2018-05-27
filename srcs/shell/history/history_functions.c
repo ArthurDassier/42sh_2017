@@ -102,7 +102,8 @@ int	changes_from_history(t_node **hist_list, char **line)
 	buffer[0] = '\0';
 	while (line[i] != NULL) {
 		if (line[i][0] == '!' && line[i][1] != '\0') {
-			if ((tmp  = find_in_history(hist_tmp, &line[i])) == ERROR)
+			if ((tmp  = find_in_history(hist_tmp,
+			&line[i])) == ERROR)
 				return (ERROR);
 			flag = 1;
 		}
