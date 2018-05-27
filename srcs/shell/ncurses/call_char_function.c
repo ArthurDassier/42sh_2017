@@ -23,10 +23,11 @@ void	realloc_line(t_readline *rd, int *i)
 	}
 }
 
-static void	change_str_for_entr_key(char *str)
+static int	change_str_for_entr_key(char *str)
 {
 	if (strlen(str) == 0)
 		str[0] = ' ';
+	return (-1);
 }
 // Too long function
 int	call_char_function(t_readline *rd, int *pos)
@@ -37,8 +38,7 @@ int	call_char_function(t_readline *rd, int *pos)
 			return (0);
 		return (-1);
 	case ENTER_KEY :
-		change_str_for_entr_key(rd->line);
-		return (-1);
+		return (change_str_for_entr_key(rd->line));
 	case DEL :
 		del_char(pos, rd->line, rd->prompt);
 		return (-2);

@@ -42,11 +42,11 @@ static t_files_info	*init_files_info(void)
 
 	info->dwait_pipe = false;
 	info->hist_list = NULL;
+	creat(".shell_src/aliases.txt", O_RDWR);
 	info->alias_list = recup_aliases();
 	info->spec_var_list = init_set();
 	info->ret = 0;
 	creat(".shell_src/history.txt", O_RDWR);
-	creat(".shell_src/aliases.txt", O_RDWR);
 	return (info);
 }
 

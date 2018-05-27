@@ -1,0 +1,24 @@
+1	slai	Sun May 27 17:20:01 2018
+2	 	Sun May 27 17:20:02 2018
+3	 	Sun May 27 17:20:03 2018
+4	 	Sun May 27 17:20:03 2018
+5	 	Sun May 27 17:20:03 2018
+6	 	Sun May 27 17:20:04 2018
+7	 	Sun May 27 17:20:04 2018
+8	 	Sun May 27 17:20:04 2018
+9	 	Sun May 27 17:20:04 2018
+10	 	Sun May 27 17:20:04 2018
+11	 	Sun May 27 17:20:04 2018
+12	 	Sun May 27 17:20:04 2018
+13	 	Sun May 27 17:20:04 2018
+14	 	Sun May 27 17:20:04 2018
+15	 	Sun May 27 17:20:04 2018
+16	salit	Sun May 27 17:20:05 2018
+17	salut	Sun May 27 17:20:06 2018
+18	cl	Sun May 27 17:20:07 2018
+19	ls |cat -e	Sun May 27 17:20:10 2018
+20	ls	Sun May 27 17:20:12 2018
+21	alias	Sun May 27 17:20:13 2018
+22	alias lol mdr	Sun May 27 17:20:15 2018
+23	alias	Sun May 27 17:20:18 2018
+24	exit	Sun May 27 17:20:20 2018

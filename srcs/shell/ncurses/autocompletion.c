@@ -82,8 +82,7 @@ __attribute((unused)) t_node **hist_list)
 			return (1);
 		size += strlen(red->d_name) + 1;
 		save = realloc(save, size);
-		strcat(save, red->d_name);
-		strcat(save, " ");
+		strcat(save, strcat(red->d_name, " "));
 	}
 	rewrite_prompt_and_line(size, save, prompt, *line);
 	return (SUCCESS);

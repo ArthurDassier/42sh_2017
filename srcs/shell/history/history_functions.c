@@ -71,7 +71,6 @@ int	find_in_history(t_node *hist_list, char **line)
 		tmp = tmp->prev;
 		++index;
 	}
-	free(*line);
 	hist_data = (t_history *)tmp->data;
 	*line = strdup(hist_data->line);
 	return (SUCCESS);
