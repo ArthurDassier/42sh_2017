@@ -38,6 +38,7 @@ SRCS	=	$(CORE)/main.c						\
 			$(CORE)/execution/rules_exec.c			\
 			$(DIR)/parser/handle_parentheses.c		\
 			$(DIR)/history/recup_index.c			\
+			$(DIR)/history/check_in_history.c		\
 			$(DIR)/history/put_in_history.c			\
 			$(DIR)/history/history_functions.c		\
 			$(DIR)/history/history_completion.c		\
@@ -51,6 +52,7 @@ SRCS	=	$(CORE)/main.c						\
 			$(DIR)/ncurses/recup_line.c			\
 			$(DIR)/ncurses/history_key.c			\
 			$(DIR)/alias/alias_cmd.c			\
+			$(DIR)/alias/show_alias.c			\
 			$(DIR)/alias/recup_aliases.c			\
 			$(DIR)/alias/change_for_alias.c			\
 			$(DIR)/utils/check_perm.c			\

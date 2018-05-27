@@ -16,6 +16,8 @@ typedef struct	s_history
 	char		*timestamp;
 }			t_history;
 
+int	find_in_history(t_node *, char **);
+int	check_in_history(char **, t_node *, int *, int);
 int	print_no_event(int);
 int	recup_index(char *line);
 void	put_in_history(t_node **, char *);
