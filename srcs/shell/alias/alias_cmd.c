@@ -52,6 +52,7 @@ static void write_in_aliase_txt(t_node *list)
 		write(fd, "\n", 1);
 		head = head->next;
 	}
+	close(fd);
 }
 
 static void	new_alias(t_node **head)
@@ -64,10 +65,11 @@ static void	new_alias(t_node **head)
 
 int	alias_cmd(t_node *list, char **line)
 {
-	int		fd = open(".shell_src/aliases.txt", O_RDWR | O_APPEND);
 	t_node		*head = list;
 	t_aliases	*alias_data = NULL;
 
+	if (my_strarraylen(line) == 1)
+		return (show_alias(list));
 	if (my_strarraylen(line) != 3)
 		return (VALID);
 	while (head->next != NULL) {
@@ -81,7 +83,6 @@ int	alias_cmd(t_node *list, char **line)
 		create_aliase(&head, line);
 	} else
 		change_alias(head, line[2]);
-	close(fd);
 	write_in_aliase_txt(list);
 	return (SUCCESS);
 }

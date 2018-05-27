@@ -52,7 +52,7 @@ static int	pos_index(t_node *tmp, char **line, int index)
 	return (SUCCESS);
 }
 
-static int	find_in_history(t_node *hist_list, char **line)
+int	find_in_history(t_node *hist_list, char **line)
 {
 	t_node		*tmp = hist_list;
 	t_history	*hist_data = NULL;
@@ -95,18 +95,13 @@ int	changes_from_history(t_node **hist_list, char **line)
 {
 	t_node		*hist_tmp = *hist_list;
 	int		i = 0;
-	int		tmp = 0;
 	char		*buffer = malloc(sizeof(char));
 	int		flag = 0;
 
 	buffer[0] = '\0';
 	while (line[i] != NULL) {
-		if (line[i][0] == '!' && line[i][1] != '\0') {
-			if ((tmp  = find_in_history(hist_tmp,
-			&line[i])) == ERROR)
-				return (ERROR);
-			flag = 1;
-		}
+		if (check_in_history(line, hist_tmp, &flag, i) == ERROR)
+			return (ERROR);
 		buffer = realloc(buffer,
 		strlen(buffer) + strlen(line[i]) + 2);
 		buffer = strcat(buffer, line[i]);

@@ -1,9 +1,5 @@
-1	ls	Sun May 27 11:35:17 2018
-2	ls	Sun May 27 11:35:27 2018
-3	ls |cat -e	Sun May 27 11:35:36 2018
-4	alias lol mdr	Sun May 27 11:35:40 2018
-5	ls lol	Sun May 27 11:35:42 2018
-6	alias lol ok	Sun May 27 11:35:48 2018
-7	alias mdr ol	Sun May 27 11:35:55 2018
-8	alias ol ok	Sun May 27 11:36:03 2018
-9	exit	Sun May 27 11:36:12 2018
+1	srcs	Sun May 27 17:02:06 2018
+2	cd srcs	Sun May 27 17:02:12 2018
+3	cd -	Sun May 27 17:02:14 2018
+4	ls	Sun May 27 17:02:15 2018
+5	exit	Sun May 27 17:02:37 2018

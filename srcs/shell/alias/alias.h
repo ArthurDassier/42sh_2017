@@ -22,5 +22,6 @@ typedef struct	s_aliases
 void	change_for_alias(t_node *, char **);
 int	alias_cmd(t_node *, char **);
 t_node	*recup_aliases(void);
+int	show_alias(t_node *list);
 
 #endif /* !ALIAS_H_ */
