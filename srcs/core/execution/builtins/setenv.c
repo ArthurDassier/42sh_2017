@@ -59,17 +59,7 @@ int		setenv_built(char **line, t_node **env_list)
 		display_list(*env_list, &print_list);
 		return (SUCCESS);
 	}
-<<<<<<< HEAD
-	if (my_char_is_alpha(line[1][0]) == SUCCESS) {
-		printf("setenv: Variable name must begin with a letter.\n");
-		return (FAILURE);
-	}
-	if (my_strisalphanum(line[1]) == SUCCESS) {
-		printf("setenv: Variable name must contain alphanumeric\
-		 characters.\n");
-=======
 	if (setenv_special_cases(line) == FAILURE)
->>>>>>> angie
 		return (FAILURE);
 	if (check_env_name(*env_list, line[1]) == false) {
 		adding_variable(data, line, env_list);

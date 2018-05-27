@@ -1,4 +1,0 @@
-1	ls && pwd	Sun May 27 15:23:29 2018
-2	ls && pwdd || cd	Sun May 27 15:23:40 2018
-3	cd -	Sun May 27 15:23:43 2018
-4	ls	Sun May 27 15:23:43 2018

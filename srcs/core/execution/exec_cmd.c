@@ -20,17 +20,6 @@ static int	cmd_not_found(char **line)
 	exit(VALID);
 }
 
-int	check_path(char **line, char **path, t_node *env_list)
-{
-	int	i;
-
-	for (i = 0; path != NULL && path[i] != 0; ++i) {
-		add_com(path, line);
-		exec_com(path, line, env_list);
-	}
-	return (i);
-}
-
 void	handling_sig(int status)
 {
 	if (WIFSIGNALED(status) != 0 && WTERMSIG(status) != 0) {
@@ -53,27 +42,32 @@ void	exec_line(t_node *env_list, char **line)
 	execve(line[0], line, tab);
 }
 
+static void handle_big_input(t_files_info *info, int status, pid_t pid)
+{
+	if (info->dwait_pipe == true)
+			info->dwait_pipe = false;
+	else if (info->background == true)
+		waitpid(pid, &status, WNOHANG);
+	else
+		waitpid(pid, &status, WUNTRACED);
+	handling_sig(status);
+}
+
 bool	exec_cmd(char **line, t_node *env_list, t_files_info *info)
 {
 	char	**path = get_path(env_list);
 	int		status = 0;
 	pid_t	pid = fork();
 	int		i;
-	int	ret;
+	int		ret;
 
 	if (pid == ERROR) {
 		my_print_err("Failed\n");
 	} else if (pid > 0) {
-		if (info->dwait_pipe == true)
-			info->dwait_pipe = false;
-		else if (info->background == true)
-			waitpid(pid, &status, WNOHANG);
-		else
-			waitpid(pid, &status, WUNTRACED);
-		handling_sig(status);
+		handle_big_input(info, status, pid);
 	} else {
 		i = check_path(line, path, env_list);
-		if ((path == NULL || path[i] == 0)
+		if ((path == NULL || path[i] == SUCCESS)
 		&& (access(line[0], F_OK) != ERROR))
 			check_perm_cmd(line, env_list);
 		else

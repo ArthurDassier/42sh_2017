@@ -9,6 +9,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+int	check_path(char **line, char **path, t_node *env_list)
+{
+	int	i;
+
+	for (i = 0; path != NULL && path[i] != 0; ++i) {
+		add_com(path, line);
+		exec_com(path, line, env_list);
+	}
+	return (i);
+}
+
 char	**get_path(t_node *head)
 {
 	t_node	*tmp = head;
