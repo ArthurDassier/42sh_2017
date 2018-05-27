@@ -5,7 +5,7 @@
 ** s_rule
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include "const_values.h"
 #include <stdlib.h>
 #include <string.h>

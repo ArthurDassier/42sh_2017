@@ -5,7 +5,7 @@
 ** handle_line
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include "quotes.h"
 #include "inhibitors.h"
 #include "globbings.h"

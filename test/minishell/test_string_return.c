@@ -5,7 +5,7 @@
 ** test_string_return
 */
 #include <criterion/criterion.h>
-#include "42sh.h"
+#include "shell.h"
 
 char *new_str(t_aliases *, char *);
 

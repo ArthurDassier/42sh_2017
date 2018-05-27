@@ -5,7 +5,7 @@
 ** parentheses
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include <sys/types.h>
 #include <unistd.h>
 #include <stdlib.h>

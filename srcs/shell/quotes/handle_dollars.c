@@ -5,7 +5,7 @@
 ** handle_dollars
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include "const_values.h"
 #include "quotes.h"
 #include <string.h>

@@ -5,7 +5,7 @@
 ** redirect
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include "const_values.h"
 #include <string.h>
 #include <stdlib.h>

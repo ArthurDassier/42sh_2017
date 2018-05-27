@@ -5,7 +5,7 @@
 ** delete_list
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include <stdlib.h>
 
 void	delete_tab(void *data)

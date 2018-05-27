@@ -5,7 +5,7 @@
 ** display_tree
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include <stdio.h>
 
 void	display_tree(t_tree *tree)

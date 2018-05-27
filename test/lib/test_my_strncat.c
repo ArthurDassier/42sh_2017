@@ -5,7 +5,7 @@
 ** test_my_strncat
 */
 #include <criterion/criterion.h>
-#include "42sh.h"
+#include "shell.h"
 
 char	*my_strncat(char *dest, char const *src, int nb);
 

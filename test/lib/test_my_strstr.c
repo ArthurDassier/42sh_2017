@@ -6,7 +6,7 @@
 */
 #include <criterion/criterion.h>
 #include <string.h>
-#include "42sh.h"
+#include "shell.h"
 
 char *my_strstr(char *s1, const char *to_find);
 

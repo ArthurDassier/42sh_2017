@@ -4,7 +4,7 @@
 ** File description:
 ** check_char
 */
-#include "42sh.h"
+#include "shell.h"
 #include "const_values.h"
 
 int	check_char(char *str)

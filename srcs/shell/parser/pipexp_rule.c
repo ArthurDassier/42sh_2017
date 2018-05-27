@@ -5,7 +5,7 @@
 ** pipexpr
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include <stdlib.h>
 
 t_tree	*pipexp_rule(t_node **cmd_list)

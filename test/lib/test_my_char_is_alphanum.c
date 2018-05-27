@@ -5,7 +5,7 @@
 ** test_my_char_is_alphanum
 */
 #include <criterion/criterion.h>
-#include "42sh.h"
+#include "shell.h"
 
 int my_char_is_alphanum(char);
 

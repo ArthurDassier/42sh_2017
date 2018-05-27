@@ -4,7 +4,7 @@
 ** File description:
 ** function to delete a given node
 */
-#include "42sh.h"
+#include "shell.h"
 #include <stdlib.h>
 #include <string.h>
 

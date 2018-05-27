@@ -5,7 +5,7 @@
 ** free
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include <stdlib.h>
 
 void free_lexer(void *data)

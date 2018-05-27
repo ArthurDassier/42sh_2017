@@ -5,7 +5,7 @@
 ** test_check_char
 */
 #include <criterion/criterion.h>
-#include "42sh.h"
+#include "shell.h"
 
 int	check_char(char *);
 

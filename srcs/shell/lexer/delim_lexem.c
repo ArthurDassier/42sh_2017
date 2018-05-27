@@ -4,7 +4,7 @@
 ** File description:
 ** str_to_wordarray with a delim as argument
 */
-#include "42sh.h"
+#include "shell.h"
 #include "const_values.h"
 #include <string.h>
 #include <stdlib.h>

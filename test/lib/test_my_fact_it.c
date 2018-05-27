@@ -5,7 +5,7 @@
 ** test_my_fact_it
 */
 #include <criterion/criterion.h>
-#include "42sh.h"
+#include "shell.h"
 
 int my_compute_factorial_it(int nb);
 

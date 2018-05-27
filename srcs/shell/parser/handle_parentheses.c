@@ -5,7 +5,7 @@
 ** handle_parentheses
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include "const_values.h"
 
 // Returns true if there's a right ). Returns false otherwise.

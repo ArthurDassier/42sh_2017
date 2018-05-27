@@ -4,7 +4,7 @@
 ** File description:
 ** transforms a linked list into an array
 */
-#include "42sh.h"
+#include "shell.h"
 #include <stdlib.h>
 #include <string.h>
 
