@@ -71,7 +71,7 @@ int	alias_cmd(t_node *list, char **line)
 	if (my_strarraylen(line) == 1)
 		return (show_alias(list));
 	if (my_strarraylen(line) != 3)
-		return (VALID);
+		return (SUCCESS);
 	while (head->next != NULL) {
 		alias_data = (t_aliases *)head->data;
 		if (strcmp(alias_data->src, line[1]) == SUCCESS)

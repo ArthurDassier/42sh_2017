@@ -16,3 +16,25 @@ TESTS=
   echo 'alias r k /bin'
   echo 'r .'
 [312-END]
+
+[003]
+NAME="alias"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin:.'"
+CLEAN=""
+TESTS=
+  echo 'alias lol mdr'
+  echo 'ls mdr'
+  echo 'alias'
+[003-END]
+
+[004]
+NAME="alias"
+SETUP="export TERM=xterm ; PATH='/bin:/usr/bin:.'"
+CLEAN=""
+TESTS=
+  echo 'alias lol mdr'
+  echo 'ls mdr'
+  echo 'mdr lol'
+  echo 'alias'
+  echo 'alias lol mdr trop marrant'
+[004-END]
