@@ -5,7 +5,7 @@
 ** delim_words
 */
 
-#include "42sh.h"
+#include "shell.h"
 
 bool	check_delim(char to_cmp, char *delim)
 {

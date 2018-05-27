@@ -5,7 +5,7 @@
 ** test_check_builtins
 */
 #include <criterion/criterion.h>
-#include "42sh.h"
+#include "shell.h"
 
 int	get_builtins(t_node **, char *);
 

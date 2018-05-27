@@ -5,7 +5,7 @@
 ** exp_rule
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include <stdlib.h>
 #include <string.h>
 

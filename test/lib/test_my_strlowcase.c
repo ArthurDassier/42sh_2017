@@ -5,7 +5,7 @@
 ** test_my_strlowcase
 */
 #include <criterion/criterion.h>
-#include "42sh.h"
+#include "shell.h"
 
 char *my_strlowcase(char *str);
 

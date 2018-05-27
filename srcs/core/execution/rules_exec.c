@@ -5,7 +5,7 @@
 ** rules_exec
 */
 
-#include "42sh.h"
+#include "shell.h"
 
 bool	s_exec(t_tree *tree, t_node **env_list, t_files_info *info)
 {

@@ -5,7 +5,7 @@
 ** test_success_failure
 */
 #include "criterion/criterion.h"
-#include "42sh.h"
+#include "shell.h"
 
 Test(cd_return, normal_cd)
 {

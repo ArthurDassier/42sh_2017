@@ -5,7 +5,7 @@
 ** power test
 */
 #include <criterion/criterion.h>
-#include "42sh.h"
+#include "shell.h"
 int my_compute_power_it(int nb, int p);
 
 Test(my_compute_power_it, return_value_is_good)

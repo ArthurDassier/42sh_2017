@@ -5,7 +5,7 @@
 ** test_my_strlen
 */
 #include <criterion/criterion.h>
-#include "42sh.h"
+#include "shell.h"
 
 int my_strlen(const char *);
 

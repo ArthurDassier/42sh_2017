@@ -34,12 +34,16 @@ int	normal_cd(t_node **env_list, char **line)
 {
 	struct stat	s;
 
-	if (stat(line[1], &s) == 0 && S_ISDIR(s.st_mode)) {
+	if (stat(line[1], &s) == SUCCESS && S_ISDIR(s.st_mode)) {
 		change_pwd(env_list, line[1]);
 		return (SUCCESS);
-	} else {
+	} else if (stat(line[1], &s) == SUCCESS && !(S_ISDIR(s.st_mode))) {
 		my_putstr(line[1]);
 		my_putstr(": Not a directory.\n");
+		return (FAILURE);
+	} else {
+		my_putstr(line[1]);
+		my_putstr(": No such file or directory.\n");
 		return (FAILURE);
 	}
 }

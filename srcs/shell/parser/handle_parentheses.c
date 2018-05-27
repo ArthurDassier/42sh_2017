@@ -5,7 +5,7 @@
 ** handle_parentheses
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include "const_values.h"
 
 static bool check_if_valid(t_node *cmd_list)

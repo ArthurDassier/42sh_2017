@@ -5,7 +5,7 @@
 ** test_my_strarraylen
 */
 #include <criterion/criterion.h>
-#include "42sh.h"
+#include "shell.h"
 
 int my_strarraylen(char **array);
 

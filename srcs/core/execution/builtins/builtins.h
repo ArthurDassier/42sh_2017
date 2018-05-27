@@ -9,7 +9,7 @@
 #define BUILTINS_H_
 
 #include "list.h"
-#include "42sh.h"
+#include "shell.h"
 
 typedef struct	s_built {
 	char	*builtin;

@@ -5,7 +5,7 @@
 ** main
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include "history.h"
 #include "const_values.h"
 #include "alias.h"
@@ -57,10 +57,8 @@ t_node **spec, int ret)
 
 	reset_spec(spec, env_list, s, ret);
 	if (!s) {
-		if (ignoreof != 0) {
-			my_putstr("exit\n");
+		if (ignoreof != SUCCESS)
 			exit(ret);
-		}
 		my_putstr("Use \"exit\" to leave 42sh.\n");
 	}
 }

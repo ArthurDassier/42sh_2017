@@ -4,7 +4,7 @@
 ** File description:
 ** comp function
 */
-#include "42sh.h"
+#include "shell.h"
 #include "const_values.h"
 #include <string.h>
 

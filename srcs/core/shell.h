@@ -2,7 +2,7 @@
 ** EPITECH PROJECT, 2018
 ** PSU_42sh_2017
 ** File description:
-** 42sh
+** shell
 */
 
 #ifndef SH_H_
@@ -101,4 +101,4 @@ void	print_list_with_null(void *);
 void	free_lexer(void *);
 void	free_tree(t_tree *);
 
-#endif /* !42SH_H_ */
+#endif /* !SHELL_H_ */

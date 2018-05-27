@@ -5,7 +5,7 @@
 ** change_line
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include "const_values.h"
 #include "alias.h"
 #include "history.h"

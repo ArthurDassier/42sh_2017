@@ -4,7 +4,7 @@
 ** File description:
 ** display
 */
-#include "42sh.h"
+#include "shell.h"
 #include <stdio.h>
 
 void	display(void *data)

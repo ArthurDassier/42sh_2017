@@ -7,5 +7,6 @@ a.out
 *.o
 *.a
 script.sh
+tests
 tester.sh
 a

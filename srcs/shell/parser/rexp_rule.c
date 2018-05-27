@@ -5,7 +5,7 @@
 ** rexp_rule
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include <stdlib.h>
 
 t_tree	*rexp_rule(t_node **cmd_list)

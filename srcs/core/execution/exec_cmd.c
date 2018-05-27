@@ -5,15 +5,13 @@
 ** exec_cmd
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include "const_values.h"
 #include <stdlib.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-
-static int ret = false;
 
 static int	cmd_not_found(char **line)
 {
@@ -61,6 +59,7 @@ bool	exec_cmd(char **line, t_node *env_list, t_files_info *info)
 	int		status = 0;
 	pid_t	pid = fork();
 	int		i;
+	int	ret;
 
 	if (pid == ERROR) {
 		my_print_err("Failed\n");

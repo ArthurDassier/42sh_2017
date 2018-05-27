@@ -6,7 +6,7 @@
 */
 #include <criterion/criterion.h>
 #include <criterion/redirect.h>
-#include "42sh.h"
+#include "shell.h"
 
 int my_putnbr_base(int, const char *str);
 

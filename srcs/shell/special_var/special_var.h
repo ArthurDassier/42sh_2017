@@ -9,7 +9,7 @@
 #define SPECIAL_VAR_H_
 
 #include "list.h"
-#include "42sh.h"
+#include "shell.h"
 #include "quotes.h"
 
 /*

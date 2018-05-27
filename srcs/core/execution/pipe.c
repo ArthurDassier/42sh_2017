@@ -5,7 +5,7 @@
 ** pipe
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include <unistd.h>
 
 static void	p_father(int *pipefd, t_tree *tree,

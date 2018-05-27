@@ -5,7 +5,7 @@
 ** cmd_rule
 */
 
-#include "42sh.h"
+#include "shell.h"
 #include <string.h>
 
 static t_node *save_par;

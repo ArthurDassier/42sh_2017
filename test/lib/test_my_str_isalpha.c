@@ -5,7 +5,7 @@
 ** test_my_str_isalpha
 */
 #include <criterion/criterion.h>
-#include "42sh.h"
+#include "shell.h"
 
 int my_str_isalpha(const char *str);
 

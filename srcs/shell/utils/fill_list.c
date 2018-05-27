@@ -4,7 +4,7 @@
 ** File description:
 ** functions to init and fill the list
 */
-#include "42sh.h"
+#include "shell.h"
 #include <string.h>
 #include <stdlib.h>
 

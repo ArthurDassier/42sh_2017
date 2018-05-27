@@ -5,7 +5,7 @@
 ** separators
 */
 
-#include "42sh.h"
+#include "shell.h"
 
 bool	separators_exec(t_tree *tree, t_node **env_list,
 t_files_info *info)
