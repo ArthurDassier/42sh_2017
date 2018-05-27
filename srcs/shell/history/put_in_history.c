@@ -22,7 +22,7 @@ static void	write_in_history(t_history *hist_data)
 	static int	fd = 0;
 
 	if (fd == SUCCESS) {
-		fd = open(".42_src/history.txt", O_WRONLY |
+		fd = open(".shell_src/history.txt", O_WRONLY |
 		O_CREAT, S_IWUSR | S_IRUSR);
 	}
 	write(fd, my_itoa(count), strlen(my_itoa(count)));
