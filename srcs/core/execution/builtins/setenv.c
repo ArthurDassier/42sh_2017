@@ -44,8 +44,8 @@ static int setenv_special_cases(char **line)
 		return (FAILURE);
 	}
 	if (my_strisalphanum(line[1]) == SUCCESS) {
-		printf("setenv: Variable name must contain alphanumeric\
-		 characters.\n");
+		printf("setenv: Variable name must contain alphanumeric ");
+		printf("characters.\n");
 		return (FAILURE);
 	}
 	return (SUCCESS);

@@ -9,12 +9,23 @@
 #include <stdlib.h>
 #include <string.h>
 
+static int check_double_slash(char **path)
+{
+	for (int i = 0; path[i]; ++i) {
+		if (strncmp(path[i], "//", 2) == SUCCESS)
+			return (FAILURE);
+	}
+	return (SUCCESS);
+}
+
 int	check_path(char **line, char **path, t_node *env_list)
 {
 	int	i;
 
 	for (i = 0; path != NULL && path[i] != 0; ++i) {
 		add_com(path, line);
+		if (check_double_slash(path) == FAILURE)
+			return (FAILURE);
 		exec_com(path, line, env_list);
 	}
 	return (i);
@@ -41,7 +52,7 @@ char	**get_path(t_node *head)
 void	exec_com(char **path, char **line, t_node *head)
 {
 	for (int i = 0; path != NULL && path[i] != NULL; ++i) {
-		if (access(path[i], F_OK) != -1)
+		if (access(path[i], F_OK) != ERROR)
 			check_perm(path, line, i, head);
 	}
 }

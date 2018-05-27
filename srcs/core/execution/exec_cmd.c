@@ -67,7 +67,7 @@ bool	exec_cmd(char **line, t_node *env_list, t_files_info *info)
 		handle_big_input(info, &status, pid);
 	} else {
 		i = check_path(line, path, env_list);
-		if ((path == NULL || path[i] == 0)
+		if (i != FAILURE && (path == NULL || path[i] == NULL)
 		&& (access(line[0], F_OK) != ERROR))
 			check_perm_cmd(line, env_list);
 		else
