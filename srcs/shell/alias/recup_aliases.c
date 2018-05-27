@@ -24,7 +24,7 @@ static void	create_next_alias(t_node **tmp)
 
 t_node	*recup_aliases(void)
 {
-	int		fd = open(".42_src/aliases.txt", O_RDONLY);
+	int		fd = open(".shell_src/aliases.txt", O_RDONLY);
 	t_node		*list = malloc(sizeof(t_node));
 	t_node		*tmp = list;
 	t_aliases	*alias_data = NULL;

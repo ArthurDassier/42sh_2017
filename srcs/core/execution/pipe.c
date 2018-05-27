@@ -10,9 +10,11 @@
 
 // Too many parameters
 // Father process
-static void	p_father(int *pipefd, int dupfd, t_tree *tree,
+static void	p_father(int *pipefd, t_tree *tree,
 t_node **env_list, t_files_info *info)
 {
+	int	dupfd = 0;
+
 	dupfd = dup(0);
 	dup2(pipefd[0], 0);
 	close(pipefd[1]);
@@ -36,6 +38,6 @@ bool	pipe_exec(t_tree *tree, t_node **env_list, t_files_info *info)
 	close(dupfd);
 	if (ret == true)
 		return (true);
-	p_father(pipefd, dupfd, tree, env_list, info);
+	p_father(pipefd, tree, env_list, info);
 	return (ret);
 }

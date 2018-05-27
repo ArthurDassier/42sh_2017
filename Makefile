@@ -37,7 +37,6 @@ SRCS	=	$(CORE)/main.c						\
 			$(CORE)/execution/separators.c			\
 			$(CORE)/execution/rules_exec.c			\
 			$(DIR)/parser/handle_parentheses.c		\
-			$(DIR)/utils/change_line.c			\
 			$(DIR)/history/recup_index.c			\
 			$(DIR)/history/put_in_history.c			\
 			$(DIR)/history/history_functions.c		\
@@ -55,17 +54,18 @@ SRCS	=	$(CORE)/main.c						\
 			$(DIR)/alias/recup_aliases.c			\
 			$(DIR)/alias/change_for_alias.c			\
 			$(DIR)/utils/check_perm.c			\
-			$(DIR)/utils/print_no_event.c			\
+			$(DIR)/display/print_no_event.c			\
+			$(DIR)/utils/change_line.c			\
 			$(DIR)/utils/delete_list.c			\
-			$(DIR)/utils/print.c				\
+			$(DIR)/display/print.c				\
 			$(DIR)/utils/fill_list.c			\
 			$(DIR)/utils/get_env.c				\
 			$(DIR)/utils/list_to_tab.c			\
 			$(DIR)/utils/comp.c				\
 			$(DIR)/utils/check_char.c			\
 			$(DIR)/utils/delete_node.c			\
-			$(DIR)/utils/display.c				\
-			$(DIR)/utils/display_tree.c			\
+			$(DIR)/display/display.c				\
+			$(DIR)/display/display_tree.c			\
 			$(DIR)/utils/delim_words.c			\
 			$(DIR)/utils/path.c				\
 			$(DIR)/utils/free.c				\

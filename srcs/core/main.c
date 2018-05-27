@@ -45,8 +45,7 @@ static t_files_info	*init_files_info(void)
 	info->alias_list = recup_aliases();
 	info->spec_var_list = init_set();
 	info->ret = 0;
-	creat(".42_src/history.txt", O_RDWR);
-	creat(".42_src/aliases.txt", O_RDWR);
+	creat(".shell_src/history.txt", O_RDWR);
 	return (info);
 }
 
