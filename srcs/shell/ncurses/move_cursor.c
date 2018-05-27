@@ -52,5 +52,5 @@ int	find_key(char *line, int *pos)
 		return (DOWN_KEY);
 	else if (buf == UP_KEY)
 		return (UP_KEY);
-	return (0);
+	return (SUCCESS);
 }

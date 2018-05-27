@@ -79,7 +79,7 @@ __attribute((unused)) t_node **hist_list)
 	save[0] = '\0';
 	while ((red = readdir(dir)) != NULL) {
 		if (match_str(line, red->d_name, prompt, size) == 1)
-			return (1);
+			return (VALID);
 		size += strlen(red->d_name) + 1;
 		save = realloc(save, size);
 		strcat(save, strcat(red->d_name, " "));
