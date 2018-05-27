@@ -42,15 +42,15 @@ void	exec_line(t_node *env_list, char **line)
 	execve(line[0], line, tab);
 }
 
-static void handle_big_input(t_files_info *info, int status, pid_t pid)
+static void handle_big_input(t_files_info *info, int *status, pid_t pid)
 {
 	if (info->dwait_pipe == true)
 			info->dwait_pipe = false;
 	else if (info->background == true)
-		waitpid(pid, &status, WNOHANG);
+		waitpid(pid, status, WNOHANG);
 	else
-		waitpid(pid, &status, WUNTRACED);
-	handling_sig(status);
+		waitpid(pid, status, WUNTRACED);
+	handling_sig(*status);
 }
 
 bool	exec_cmd(char **line, t_node *env_list, t_files_info *info)
@@ -64,10 +64,10 @@ bool	exec_cmd(char **line, t_node *env_list, t_files_info *info)
 	if (pid == ERROR) {
 		my_print_err("Failed\n");
 	} else if (pid > 0) {
-		handle_big_input(info, status, pid);
+		handle_big_input(info, &status, pid);
 	} else {
 		i = check_path(line, path, env_list);
-		if ((path == NULL || path[i] == SUCCESS)
+		if ((path == NULL || path[i] == 0)
 		&& (access(line[0], F_OK) != ERROR))
 			check_perm_cmd(line, env_list);
 		else
